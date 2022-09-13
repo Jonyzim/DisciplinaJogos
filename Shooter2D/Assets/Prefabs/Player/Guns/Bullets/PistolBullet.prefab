@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7518485961728425993}
   - component: {fileID: 3222478079910831049}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: PistolBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977d85a61764bda4283681c693caf1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.5
 --- !u!212 &3222478079910831049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.025
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

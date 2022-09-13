@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
     Camera cam;
     [SerializeField] private float rof;
     public Image reloadImage;
+    public Image magazineImage;
     private float cd = 0;
 
     [SerializeField] private uint magazine;
@@ -15,26 +16,23 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private float reloadTime;
     private float reloadProgress = 0;
-
-    [SerializeField] protected GameObject bullet;
     private Vector3 direction;
-
     Vector2 mousePos;
 
 
-    protected void Fire(Vector3 direction){
-        GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
-        _bullet.GetComponent<Bullet>().SetDirection(direction);
-    }
+    protected abstract void Fire(Vector3 direction);
 
-    void Start()
+    protected virtual void Start()
     {
         cam = Camera.main;
         cur_magazine = magazine;
+        magazineImage.fillAmount = (float)cur_magazine/(float)magazine;
     }
 
-    void Update()
+    protected virtual void Update()
     {
+        magazineImage.fillAmount = (float)cur_magazine/(float)magazine;
+
         if(cur_magazine == 0){
             reloadProgress += Time.deltaTime;
             reloadImage.fillAmount = reloadProgress/reloadTime;
@@ -57,8 +55,10 @@ public class Gun : MonoBehaviour
 
         if (Input.GetButton("Fire1") && cur_magazine > 0)
         {
+            
             if(cd <= 0){
                 Fire(direction);
+
                 cd = 1/rof;
                 cur_magazine -= 1;
             }
