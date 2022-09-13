@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float speed;
+
+    public void move(float x, float y){
+        transform.position += new Vector3(x, y, 0)*speed;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +21,6 @@ public class PlayerMovement : MonoBehaviour
         float _x = Input.GetAxisRaw("Horizontal");
         float _y = Input.GetAxisRaw("Vertical");
 
-        transform.position += new Vector3(_x, _y, 0)*speed;
+        
     }
 }

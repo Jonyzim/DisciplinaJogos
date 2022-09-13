@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
 
     [SerializeField] protected float speed;
-
+    [SerializeField] protected float lifetime;
     protected Vector3 direction;
 
     public void SetDirection(Vector3 _direction){
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame

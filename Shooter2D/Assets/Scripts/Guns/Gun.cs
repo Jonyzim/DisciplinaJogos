@@ -6,21 +6,29 @@ using UnityEngine.UI;
 public abstract class Gun : MonoBehaviour
 {
     Camera cam;
-    [SerializeField] private float rof;
+    [SerializeField] protected float rof;
     public Image reloadImage;
     public Image magazineImage;
-    private float cd = 0;
+    protected float cd = 0;
 
     [SerializeField] private uint magazine;
-    private uint cur_magazine;
+    protected uint cur_magazine;
 
     [SerializeField] private float reloadTime;
     private float reloadProgress = 0;
-    private Vector3 direction;
-    Vector2 mousePos;
+    protected Vector3 direction;
+    private Vector2 mousePos;
+
+    [Header("Teste")]
+    [SerializeField] private Sprite magazineSprite;
+    [SerializeField] private Sprite reloadSprite;
+    [SerializeField] private Sprite backgroundSprite;
+
+
 
 
     protected abstract void Fire(Vector3 direction);
+    protected abstract void ReloadProps(float time);
 
     protected virtual void Start()
     {
@@ -33,7 +41,8 @@ public abstract class Gun : MonoBehaviour
     {
         magazineImage.fillAmount = (float)cur_magazine/(float)magazine;
 
-        if(cur_magazine == 0){
+        if(cur_magazine == 0 && cd <= 0){
+            ReloadProps(reloadTime);
             reloadProgress += Time.deltaTime;
             reloadImage.fillAmount = reloadProgress/reloadTime;
             if(reloadProgress > reloadTime){
@@ -52,16 +61,6 @@ public abstract class Gun : MonoBehaviour
         Vector2 center = transform.position;
 
         direction = (mousePos - center).normalized;
-
-        if (Input.GetButton("Fire1") && cur_magazine > 0)
-        {
-            
-            if(cd <= 0){
-                Fire(direction);
-
-                cd = 1/rof;
-                cur_magazine -= 1;
-            }
-        }
+        
     }
 }

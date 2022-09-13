@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : Gun
+public class BasicPistol : SingleShot
 {
-    [SerializeField] protected GameObject bullet;
-
-
-    protected override void Fire(Vector3 direction){
-        GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
-        _bullet.GetComponent<Bullet>().SetDirection(direction);
+    protected override void FireProps()
+    {
+        //Inserir animação, sons e etc do tiro
+    }
+    protected override void ReloadProps(float time){
+        //Inserir animação, sons e etc do reload
     }
 
     // Start is called before the first frame update

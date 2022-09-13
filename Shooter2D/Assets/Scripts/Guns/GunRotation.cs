@@ -5,8 +5,7 @@ using UnityEngine;
 public class GunRotation : MonoBehaviour
 {
     Camera cam;
-    [SerializeField] SpriteRenderer bodySprite;
-    [SerializeField] SpriteRenderer gunSprite;
+    [SerializeField] GameObject gun;
     private Vector3 direction;
     private Quaternion lookRotation;
     float angle;
@@ -26,18 +25,19 @@ public class GunRotation : MonoBehaviour
 
         direction = (mousePos - center).normalized;
 
+        
         if (direction.x > 0) // virado pra direita
         {
-            transform.parent.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
             angle = -Vector2.SignedAngle(direction,  Vector2.right);
         }
         else // virado pra esquerda
         {
-            transform.parent.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
             angle = -Vector2.SignedAngle(direction, Vector2.left);
         }
 
         lookRotation = Quaternion.Euler(0,0,angle);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }
