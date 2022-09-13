@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunRotation : MonoBehaviour
 {
     Camera cam;
-    [SerializeField]SpriteRenderer bodySprite;
+    [SerializeField] SpriteRenderer bodySprite;
     [SerializeField] SpriteRenderer gunSprite;
     private Vector3 direction;
     private Quaternion lookRotation;
