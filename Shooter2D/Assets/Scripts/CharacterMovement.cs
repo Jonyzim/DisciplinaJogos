@@ -9,18 +9,4 @@ public class CharacterMovement : MonoBehaviour
     public void move(float x, float y){
         transform.position += new Vector3(x, y, 0)*speed;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        float _x = Input.GetAxisRaw("Horizontal");
-        float _y = Input.GetAxisRaw("Vertical");
-
-        
-    }
 }

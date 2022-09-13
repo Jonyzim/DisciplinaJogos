@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicPistol : SingleShotGun
+public class BasicMachineGun : AutomaticGun
 {
     protected override void FireProps()
     {

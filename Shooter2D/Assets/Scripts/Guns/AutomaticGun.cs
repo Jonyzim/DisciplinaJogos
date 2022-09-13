@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class SingleShot : Gun
+public abstract class AutomaticGun : Gun
 {
-    [Header("SingleShotSpecifics")]
+    [Header("AutomaticSpecifics")]
     [SerializeField] protected GameObject bullet;
+    [SerializeField] protected float spread;
 
     protected abstract void FireProps();
     protected override void Fire(Vector3 direction){
@@ -31,11 +32,12 @@ abstract public class SingleShot : Gun
     {
         base.Update();
 
-        if (Input.GetButtonDown("Fire1") && cur_magazine > 0)
+        if (Input.GetButton("Fire1") && cur_magazine > 0)
         {
             
             if(cd <= 0){
-                Fire(direction);
+                Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
+                Fire(_direction);
             }
         }
     }

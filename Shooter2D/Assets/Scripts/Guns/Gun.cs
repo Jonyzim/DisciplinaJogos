@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public abstract class Gun : MonoBehaviour
 {
     Camera cam;
+    [Header("General")]
     [SerializeField] protected float rof;
     public Image reloadImage;
     public Image magazineImage;
@@ -15,14 +16,15 @@ public abstract class Gun : MonoBehaviour
     protected uint cur_magazine;
 
     [SerializeField] private float reloadTime;
-    private float reloadProgress = 0;
-    protected Vector3 direction;
-    private Vector2 mousePos;
 
-    [Header("Teste")]
+    //Substituir quando equipar arma
+    [Header("Sprites")]
     [SerializeField] private Sprite magazineSprite;
     [SerializeField] private Sprite reloadSprite;
     [SerializeField] private Sprite backgroundSprite;
+    private float reloadProgress = 0;
+    protected Vector3 direction;
+    private Vector2 mousePos;
 
 
 
