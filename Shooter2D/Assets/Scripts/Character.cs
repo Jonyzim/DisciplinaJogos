@@ -1,9 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunRotation : MonoBehaviour
+public class Character : MonoBehaviour
 {
+    public event Action onInteract;
+    public void interact(){
+        if(onInteract != null){
+            onInteract();
+        }
+    }
+
+
+    
+
+    [SerializeField] float speed;
+
     Camera cam;
     [SerializeField] private Gun gun;
     private Vector3 direction;
@@ -12,13 +25,18 @@ public class GunRotation : MonoBehaviour
 
     [SerializeField] private float rotationSpeed;
 
-    void Start()
-    {
-        cam = Camera.main;
+    public void move(float x, float y){
+        transform.position += new Vector3(x, y, 0)*speed;
     }
 
-    void Update()
-    {
+    void Start(){
+        cam = Camera.main;
+    }
+    void Update(){
+        controlRotation();
+    }
+
+    private void controlRotation(){
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 center = transform.position;

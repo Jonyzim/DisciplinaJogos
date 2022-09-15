@@ -8,7 +8,6 @@ public abstract class SingleShotGun : Gun
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
 
-    protected abstract void FireProps();
     protected override void Fire(Vector3 direction){
         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
         _bullet.GetComponent<Bullet>().SetDirection(direction);

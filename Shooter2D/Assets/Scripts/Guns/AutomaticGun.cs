@@ -8,15 +8,10 @@ public abstract class AutomaticGun : Gun
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
 
-    protected abstract void FireProps();
     protected override void Fire(Vector3 direction){
+        base.Fire(direction);
         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
         _bullet.GetComponent<Bullet>().SetDirection(direction);
-
-    
-        FireProps();
-        cd = 1/rof;
-        cur_magazine -= 1;
     }
 
     protected abstract override void ReloadProps(float time);

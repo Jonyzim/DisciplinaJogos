@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public abstract class Gun : MonoBehaviour
 {
     Camera cam;
+
     [Header("General")]
     [SerializeField] protected float rof;
-    public Image reloadImage;
-    public Image magazineImage;
     protected float cd = 0;
 
     [SerializeField] private uint magazine;
@@ -27,30 +26,40 @@ public abstract class Gun : MonoBehaviour
     private Vector2 mousePos;
 
 
+    public void drop(){
 
+    }
 
-    protected abstract void Fire(Vector3 direction);
+    protected virtual void Fire(Vector3 direction){
+        FireProps();
+        cd = 1/rof;
+        cur_magazine -= 1;
+        GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
+    }
+    protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
     protected virtual void Start()
     {
         cam = Camera.main;
         cur_magazine = magazine;
-        magazineImage.fillAmount = (float)cur_magazine/(float)magazine;
+
+        GameEvents.current.pickWeapon(1, magazineSprite, backgroundSprite);
+        GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
     }
 
     protected virtual void Update()
     {
-        magazineImage.fillAmount = (float)cur_magazine/(float)magazine;
 
         if(cur_magazine == 0 && cd <= 0){
             ReloadProps(reloadTime);
             reloadProgress += Time.deltaTime;
-            reloadImage.fillAmount = reloadProgress/reloadTime;
+            GameEvents.current.reloadUpdate(1, reloadProgress/reloadTime);
             if(reloadProgress > reloadTime){
                 reloadProgress = 0;
                 cur_magazine = magazine;
-                reloadImage.fillAmount = 0;
+                GameEvents.current.reloadUpdate(1, 0);
+                GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
             }
         }
         else {

@@ -1,21 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Character pawn;
 
-    [SerializeField] private CharacterMovement pawn;
-
-    void Possess(CharacterMovement character){
+    void Possess(Character character)
+    {
         pawn = character;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    void Update(){
+        if(Input.GetButtonDown("Fire2")){
+            pawn.interact();
+        }
+    }
 
     void FixedUpdate()
     {
