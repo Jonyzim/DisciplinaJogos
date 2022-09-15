@@ -9,9 +9,13 @@ public abstract class AutomaticGun : Gun
     [SerializeField] protected float spread;
 
     protected override void Fire(Vector3 direction){
-        base.Fire(direction);
-        GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
-        _bullet.GetComponent<Bullet>().SetDirection(direction);
+        if(cd <= 0 && cur_magazine > 0){
+            base.Fire(direction);
+            Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
+
+            GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
+            _bullet.GetComponent<Bullet>().SetDirection(_direction);
+        }
     }
 
     protected abstract override void ReloadProps(float time);
@@ -26,14 +30,5 @@ public abstract class AutomaticGun : Gun
     protected virtual new void Update()
     {
         base.Update();
-
-        if (Input.GetButton("Fire1") && cur_magazine > 0)
-        {
-            
-            if(cd <= 0){
-                Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
-                Fire(_direction);
-            }
-        }
     }
 }

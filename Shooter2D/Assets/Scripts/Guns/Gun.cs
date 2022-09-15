@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Gun : MonoBehaviour
 {
-    Camera cam;
-
     [Header("General")]
     [SerializeField] protected float rof;
     protected float cd = 0;
@@ -22,8 +20,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite reloadSprite;
     [SerializeField] private Sprite backgroundSprite;
     private float reloadProgress = 0;
-    protected Vector3 direction;
-    private Vector2 mousePos;
+
 
 
     public void drop(){
@@ -34,18 +31,27 @@ public abstract class Gun : MonoBehaviour
         FireProps();
         cd = 1/rof;
         cur_magazine -= 1;
-        GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
+        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
     }
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
+    public void SetOwner(Character character){
+        character.onFire += Fire;
+    }
+
+    public void RemoveOwner(Character character){
+        character.onFire -= Fire;
+    }
+
     protected virtual void Start()
     {
-        cam = Camera.main;
         cur_magazine = magazine;
 
-        GameEvents.current.pickWeapon(1, magazineSprite, backgroundSprite);
-        GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
+        SetOwner(gameObject.GetComponentInParent<Character>());
+
+        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
+        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
     }
 
     protected virtual void Update()
@@ -54,24 +60,18 @@ public abstract class Gun : MonoBehaviour
         if(cur_magazine == 0 && cd <= 0){
             ReloadProps(reloadTime);
             reloadProgress += Time.deltaTime;
-            GameEvents.current.reloadUpdate(1, reloadProgress/reloadTime);
+            GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
             if(reloadProgress > reloadTime){
                 reloadProgress = 0;
                 cur_magazine = magazine;
-                GameEvents.current.reloadUpdate(1, 0);
-                GameEvents.current.magazineUpdate(1, (float)cur_magazine/(float)magazine);
+                GameEvents.current.ReloadUpdate(1, 0);
+                GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
             }
         }
         else {
             reloadProgress = 0;
         }
 
-        cd -= Time.deltaTime;
-
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 center = transform.position;
-
-        direction = (mousePos - center).normalized;
-        
+        cd -= Time.deltaTime;        
     }
 }
