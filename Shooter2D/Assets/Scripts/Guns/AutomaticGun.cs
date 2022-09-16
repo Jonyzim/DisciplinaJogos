@@ -7,10 +7,10 @@ public abstract class AutomaticGun : Gun
     [Header("AutomaticSpecifics")]
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
-
+    [SerializeField] protected Transform spawnTransf;
     protected override void Fire(Vector3 direction){
         base.Fire(direction);
-        GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
+        GameObject _bullet = Instantiate(bullet, spawnTransf.position, Quaternion.Euler(0, 0, 0));
         _bullet.GetComponent<Bullet>().SetDirection(direction);
     }
 

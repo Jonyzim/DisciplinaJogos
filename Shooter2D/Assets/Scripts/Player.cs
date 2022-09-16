@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Character pawn;
-
+    private Vector2 movement = new Vector2(0, 0);
     void Possess(Character character)
     {
         pawn = character;
@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Fire2")){
             pawn.interact();
         }
+
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
-        float _x = Input.GetAxisRaw("Horizontal");
-        float _y = Input.GetAxisRaw("Vertical");
         
-        pawn.move(_x, _y);
+        pawn.move(movement.x, movement.y);
     }
 }
