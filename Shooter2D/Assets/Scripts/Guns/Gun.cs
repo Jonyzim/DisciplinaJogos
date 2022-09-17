@@ -10,7 +10,7 @@ public abstract class Gun : MonoBehaviour
     protected float cd = 0;
 
     [SerializeField] private uint magazine;
-    protected uint cur_magazine;
+    public uint cur_magazine;
 
     [SerializeField] private float reloadTime;
 
@@ -20,11 +20,18 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite reloadSprite;
     [SerializeField] private Sprite backgroundSprite;
     private float reloadProgress = 0;
+    [SerializeField] private GameObject interactableReference;
 
 
 
-    public void drop(){
+    public void drop(Character character){
+        RemoveOwner(character);
+        GameObject instance = Instantiate(interactableReference);
 
+        
+        instance.GetComponent<GunInteractable>().gun = gameObject;
+
+        gameObject.transform.parent = instance.transform;
     }
 
     protected virtual void Fire(Vector3 direction){

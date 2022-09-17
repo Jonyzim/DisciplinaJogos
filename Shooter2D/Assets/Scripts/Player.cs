@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
             pawn.Fire(direction);
         }
         if(Input.GetButtonDown("Fire2")){
-            pawn.Interact();
+            pawn.Interact(pawn.character_id);
         }
 
         movement.x = Input.GetAxisRaw("Horizontal");
