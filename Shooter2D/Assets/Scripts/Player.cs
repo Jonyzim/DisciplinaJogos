@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     private Vector2 mousePos;
     private Vector2 center;
-
+    private Vector2 movement = new Vector2(0, 0);
+    
     void Possess(Character character)
     {
         pawn = character;
@@ -33,13 +34,13 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Fire2")){
             pawn.Interact();
         }
+
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
-        float _x = Input.GetAxisRaw("Horizontal");
-        float _y = Input.GetAxisRaw("Vertical");
-        
-        pawn.Move(_x, _y);
+        pawn.Move(movement.x, movement.y);
     }
 }

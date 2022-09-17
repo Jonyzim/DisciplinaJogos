@@ -7,7 +7,7 @@ public abstract class AutomaticGun : Gun
     [Header("AutomaticSpecifics")]
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
-
+    [SerializeField] protected Transform spawnTransf;
     protected override void Fire(Vector3 direction){
         if(cd <= 0 && cur_magazine > 0){
             base.Fire(direction);
