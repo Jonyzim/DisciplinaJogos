@@ -10,7 +10,7 @@ public abstract class Gun : MonoBehaviour
     protected float cd = 0;
 
     [SerializeField] private uint magazine;
-    protected uint cur_magazine;
+    public uint cur_magazine;
 
     [SerializeField] private float reloadTime;
 
@@ -20,11 +20,26 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite reloadSprite;
     [SerializeField] private Sprite backgroundSprite;
     private float reloadProgress = 0;
+    [SerializeField] private GameObject interactableReference;
 
 
+    public void pick(Character character){
+        SetOwner(character);
+        transform.parent = character.gameObject.transform;
+        transform.localPosition = Vector3.zero;
+        transform.localScale = Vector3.one;
+        character.gun = this;
+        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
+        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+    }
+    public void drop(Character character){
+        RemoveOwner(character);
+        GameObject instance = Instantiate(interactableReference);
 
-    public void drop(){
+        
+        instance.GetComponent<GunInteractable>().gun = gameObject;
 
+        gameObject.transform.parent = instance.transform;
     }
 
     protected virtual void Fire(Vector3 direction){
@@ -48,10 +63,14 @@ public abstract class Gun : MonoBehaviour
     {
         cur_magazine = magazine;
 
-        SetOwner(gameObject.GetComponentInParent<Character>());
+        //Caso a arma já esteja equipada antes do jogo começar
+        Character character = gameObject.GetComponentInParent<Character>();
+        if(character != null){
+            SetOwner(character);
 
-        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
-        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+            GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
+            GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+        }
     }
 
     protected virtual void Update()

@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class GunInteractable : Interactable
 {
-    [SerializeField] private Gun gunType;
-    [SerializeField] private Gun currentMagazine;
-    [SerializeField] private Gun currentBullets;
-    protected override void Interact(){
-        
+    [SerializeField] public GameObject gun;
+
+    protected override void Interact(int id){
+        Gun gunComponent = gun.GetComponent<Gun>();
+
+
+        character[id].gun.drop(character[id]);
+
+        gunComponent.pick(character[id]);
+
+
+        Destroy(gameObject);
     }
 }

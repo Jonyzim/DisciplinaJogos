@@ -8,15 +8,23 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     private int _character_id = 0;
-
     public int character_id
     {
         get { return _character_id; }
     }
-    public event Action onInteract;
-    public void Interact(){
+
+    [SerializeField] float speed;
+    Camera cam;
+    [SerializeField] public Gun gun;
+    private Vector3 direction;
+    private Quaternion lookRotation;
+    float angle;
+
+    //Custom Events
+    public event Action<int> onInteract;
+    public void Interact(int id){
         if(onInteract != null){
-            onInteract();
+            onInteract(id);
         }
     }
 
@@ -28,20 +36,7 @@ public class Character : MonoBehaviour
     }
 
 
-    
-
-    [SerializeField] float speed;
-
-    Camera cam;
-    [SerializeField] private Gun gun;
-    private Vector3 direction;
-    private Quaternion lookRotation;
-    float angle;
-
-    public void Move(float x, float y){
-        transform.position += new Vector3(x, y, 0)*speed;
-    }
-
+    //Engine Methods
     void Start(){
         cam = Camera.main;
     }
@@ -49,6 +44,10 @@ public class Character : MonoBehaviour
         ControlRotation();
     }
 
+    //Methods
+    public void Move(float x, float y){
+        transform.position += new Vector3(x, y, 0)*speed;
+    }
     private void ControlRotation(){
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -71,4 +70,5 @@ public class Character : MonoBehaviour
         lookRotation = Quaternion.Euler(0,0,angle);
         gun.transform.rotation = lookRotation;
     }
+
 }

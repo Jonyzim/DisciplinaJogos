@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    List<Character> character = new List<Character>();
+    protected List<Character> character = new List<Character>();
 
-    //!Não suporta multiplayer ainda, tem que diferenciar o gameObject caso vários players estejam dentro do trigger
+    //?Talvez já esteja funcionando com o multiplayer
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Character"){
@@ -26,7 +26,7 @@ public class Interactable : MonoBehaviour
             character.RemoveAt(_character.character_id);
         }
     }
-    protected virtual void Interact(){
-        Debug.Log("INTERAGIU");
+    protected virtual void Interact(int id){
+        //Debug.Log("INTERAGIU");
     }
 }
