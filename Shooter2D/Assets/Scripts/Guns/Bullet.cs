@@ -34,4 +34,11 @@ public class Bullet : MonoBehaviour
     {
         transform.position += new Vector3(direction.x, direction.y, 0)*speed;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

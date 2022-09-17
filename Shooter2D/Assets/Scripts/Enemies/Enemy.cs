@@ -29,6 +29,7 @@ public abstract class Enemy : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+        spriteRenderer.color = Color.Lerp(initial, final, 1f);
     }
     public IEnumerator DamageFx()
     {

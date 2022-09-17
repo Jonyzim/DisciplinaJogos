@@ -13,6 +13,8 @@ public class Character : MonoBehaviour
         get { return _character_id; }
     }
 
+    Rigidbody2D body;
+
     [SerializeField] float speed;
     Camera cam;
     [SerializeField] public Gun gun;
@@ -39,6 +41,7 @@ public class Character : MonoBehaviour
     //Engine Methods
     void Start(){
         cam = Camera.main;
+        body = GetComponent<Rigidbody2D>();
     }
     void Update(){
         ControlRotation();
@@ -46,7 +49,7 @@ public class Character : MonoBehaviour
 
     //Methods
     public void Move(float x, float y){
-        transform.position += new Vector3(x, y, 0)*speed;
+        body.velocity= new Vector3(x, y, 0)*speed;
     }
     private void ControlRotation(){
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

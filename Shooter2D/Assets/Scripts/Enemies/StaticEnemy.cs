@@ -19,5 +19,13 @@ public class StaticEnemy : Enemy
     {
         Movement();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        if (collision.CompareTag("Wall"))
+        {
+            speed = -speed;
+        }
+    }
 
 }
