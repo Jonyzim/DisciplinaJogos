@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Fire2")){
             pawn.Interact(pawn.character_id);
         }
+        if(Input.GetButtonDown("Reload")){
+            Debug.Log("Reload");
+            pawn.Reload();
+        }
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

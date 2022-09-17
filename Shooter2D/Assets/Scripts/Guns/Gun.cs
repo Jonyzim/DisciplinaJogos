@@ -13,6 +13,7 @@ public abstract class Gun : MonoBehaviour
     public uint cur_magazine;
 
     [SerializeField] private float reloadTime;
+    [SerializeField] protected Transform spawnTransf;
 
     //Substituir quando equipar arma
     [Header("Sprites")]
@@ -53,10 +54,12 @@ public abstract class Gun : MonoBehaviour
 
     public void SetOwner(Character character){
         character.onFire += Fire;
+        character.onReload += Teste;
     }
 
     public void RemoveOwner(Character character){
         character.onFire -= Fire;
+        character.onReload -= Teste;
     }
 
     protected virtual void Start()
@@ -77,20 +80,27 @@ public abstract class Gun : MonoBehaviour
     {
 
         if(cur_magazine == 0 && cd <= 0){
-            ReloadProps(reloadTime);
-            reloadProgress += Time.deltaTime;
-            GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
-            if(reloadProgress > reloadTime){
-                reloadProgress = 0;
-                cur_magazine = magazine;
-                GameEvents.current.ReloadUpdate(1, 0);
-                GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
-            }
+            Reload();
         }
         else {
             reloadProgress = 0;
         }
-
         cd -= Time.deltaTime;        
+    }
+
+    void Reload(){
+        ReloadProps(reloadTime);
+        reloadProgress += Time.deltaTime;
+        GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
+        if(reloadProgress > reloadTime){
+            reloadProgress = 0;
+            cur_magazine = magazine;
+            GameEvents.current.ReloadUpdate(1, 0);
+            GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+        }
+    }
+
+    void Teste(){
+        cur_magazine = 0;
     }
 }

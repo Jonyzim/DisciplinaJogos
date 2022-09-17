@@ -37,6 +37,13 @@ public class Character : MonoBehaviour
         }
     }
 
+    public event Action onReload;
+    public void Reload(){
+        if(onReload != null){
+            onReload();
+        }
+    }
+
 
     //Engine Methods
     void Start(){
