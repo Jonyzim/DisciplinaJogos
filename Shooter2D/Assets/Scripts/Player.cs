@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     //Consertar o centro para ser o centro da arma
     void Update(){
-        center = transform.position;
+        center = pawn.transform.position;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         direction = (mousePos - center).normalized;
