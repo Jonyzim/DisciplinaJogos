@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Constants;
 
 public abstract class Enemy : MonoBehaviour
 {
-    const string BULLET_TAG = "Bullet";
-
     Color startColor;
     Color damageColor = new Color(1f, 0, 0, 1f);
     [SerializeField] private SpriteRenderer spriteRenderer;

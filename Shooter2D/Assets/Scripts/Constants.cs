@@ -1,4 +1,4 @@
 public class Constants
 {
-    public const int NUM_CHARACTERS = 4;
+    public const string BULLET_TAG = "Bullet";
 }
