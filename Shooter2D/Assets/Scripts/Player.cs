@@ -6,15 +6,33 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Character pawn;
+    private Camera cam;
+    private Vector3 direction;
+    private Vector2 mousePos;
+    private Vector2 center;
     private Vector2 movement = new Vector2(0, 0);
+    
     void Possess(Character character)
     {
         pawn = character;
     }
 
+    void Start(){
+        cam = Camera.main;
+    }
+
+    //Consertar o centro para ser o centro da arma
     void Update(){
+        center = transform.position;
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        direction = (mousePos - center).normalized;
+
+        if(Input.GetButton("Fire1")){
+            pawn.Fire(direction);
+        }
         if(Input.GetButtonDown("Fire2")){
-            pawn.interact();
+            pawn.Interact();
         }
 
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -23,7 +41,6 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        pawn.move(movement.x, movement.y);
+        pawn.Move(movement.x, movement.y);
     }
 }

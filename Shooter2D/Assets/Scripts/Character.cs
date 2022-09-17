@@ -3,12 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Classe futuramente abstrata, serão utilizados as classes CowCharacter, PigCharacter e etc
+
 public class Character : MonoBehaviour
 {
+    private int _character_id = 0;
+
+    public int character_id
+    {
+        get { return _character_id; }
+    }
     public event Action onInteract;
-    public void interact(){
+    public void Interact(){
         if(onInteract != null){
             onInteract();
+        }
+    }
+
+    public event Action<Vector3> onFire;
+    public void Fire(Vector3 direction){
+        if(onFire != null){
+            onFire(direction);
         }
     }
 
@@ -23,9 +38,7 @@ public class Character : MonoBehaviour
     private Quaternion lookRotation;
     float angle;
 
-    [SerializeField] private float rotationSpeed;
-
-    public void move(float x, float y){
+    public void Move(float x, float y){
         transform.position += new Vector3(x, y, 0)*speed;
     }
 
@@ -33,10 +46,10 @@ public class Character : MonoBehaviour
         cam = Camera.main;
     }
     void Update(){
-        controlRotation();
+        ControlRotation();
     }
 
-    private void controlRotation(){
+    private void ControlRotation(){
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 center = transform.position;
@@ -56,6 +69,6 @@ public class Character : MonoBehaviour
         }
 
         lookRotation = Quaternion.Euler(0,0,angle);
-        gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        gun.transform.rotation = lookRotation;
     }
 }

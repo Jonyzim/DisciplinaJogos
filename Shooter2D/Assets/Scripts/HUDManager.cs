@@ -12,12 +12,12 @@ public class HUDManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEvents.current.onPickWeapon += changeMagazine;
-        GameEvents.current.onMagazineUpdate += updateMagazine;
-        GameEvents.current.onReloadUpdate += updateReload;
+        GameEvents.current.onPickWeapon += ChangeMagazine;
+        GameEvents.current.onMagazineUpdate += UpdateMagazine;
+        GameEvents.current.onReloadUpdate += UpdateReload;
     }
 
-    private void changeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
+    private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
         Debug.Log("called");
         if(id == _id)
         {
@@ -26,12 +26,12 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void updateMagazine(int _id, float fillAmount){
+    private void UpdateMagazine(int _id, float fillAmount){
         if(id == _id)
             magazineSprite.fillAmount = fillAmount;
     }
 
-    private void updateReload(int _id, float fillAmount){
+    private void UpdateReload(int _id, float fillAmount){
         if(id == _id)
             reloadSprite.fillAmount = fillAmount;
     }
