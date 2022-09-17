@@ -13,6 +13,7 @@ public abstract class Gun : MonoBehaviour
     public uint cur_magazine;
 
     [SerializeField] private float reloadTime;
+    [SerializeField] protected Transform spawnTransf;
 
     //Substituir quando equipar arma
     [Header("Sprites")]

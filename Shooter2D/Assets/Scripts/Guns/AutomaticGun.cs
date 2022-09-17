@@ -7,13 +7,12 @@ public abstract class AutomaticGun : Gun
     [Header("AutomaticSpecifics")]
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
-    [SerializeField] protected Transform spawnTransf;
     protected override void Fire(Vector3 direction){
         if(cd <= 0 && cur_magazine > 0){
             base.Fire(direction);
             Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
 
-            GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
+            GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
             _bullet.GetComponent<Bullet>().SetDirection(_direction);
         }
     }
