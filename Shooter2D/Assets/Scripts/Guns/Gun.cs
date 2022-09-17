@@ -23,7 +23,15 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private GameObject interactableReference;
 
 
-
+    public void pick(Character character){
+        SetOwner(character);
+        transform.parent = character.gameObject.transform;
+        transform.localPosition = Vector3.zero;
+        transform.localScale = Vector3.one;
+        character.gun = this;
+        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
+        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+    }
     public void drop(Character character){
         RemoveOwner(character);
         GameObject instance = Instantiate(interactableReference);
@@ -55,10 +63,14 @@ public abstract class Gun : MonoBehaviour
     {
         cur_magazine = magazine;
 
-        SetOwner(gameObject.GetComponentInParent<Character>());
+        //Caso a arma já esteja equipada antes do jogo começar
+        Character character = gameObject.GetComponentInParent<Character>();
+        if(character != null){
+            SetOwner(character);
 
-        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
-        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+            GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
+            GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+        }
     }
 
     protected virtual void Update()
