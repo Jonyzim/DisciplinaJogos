@@ -6,29 +6,17 @@ public class HitscanBullet : Bullet
 {
     [SerializeField] private float reach;
 
-    [SerializeField] private LineRenderer bulletTrail;
+    [SerializeField] private GameObject particles;
     private Color lineColor;
     private float cur_lifetime;
 
-
-    protected override void Start(){
-        cur_lifetime = lifetime;
-    }
-    void Update(){
-        cur_lifetime -= Time.deltaTime;
-        lineColor = new Color(1f, 1f, 1f, cur_lifetime/lifetime);
-        bulletTrail.startColor = lineColor;
-        bulletTrail.endColor = lineColor;
-    }
-
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
-        bulletTrail.positionCount = 2;
-        bulletTrail.SetPosition(0, transform.position);
+        Vector2 position;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach);
         if(hitInfo.collider != null){
-            transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y,0);
+            position = hitInfo.point;
 
             Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
             if(enemy != null){
@@ -36,11 +24,16 @@ public class HitscanBullet : Bullet
             }
         }
         else{
-            transform.position = transform.position + direction * reach;
+            position = transform.position + direction * reach;
         }
-        bulletTrail.SetPosition(1, transform.position);
-        bulletTrail.transform.position = Vector3.zero;
-        DestroyBullet(lifetime);
+
+
+        particles.transform.localScale = new Vector3(Vector3.Distance(transform.position, position), 1, 1);
+        particles.transform.SetParent(null, true);
+        particles.gameObject.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+
+        Destroy(particles.gameObject, 2);
+        transform.position = new Vector3(position.x, position.y,0);
     }
 
 }

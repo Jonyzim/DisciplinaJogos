@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     protected virtual void Start()
     {
         //StartCoroutine(DestroyDelay());
-        Destroy(gameObject, lifetime);
+        DestroyBullet(lifetime);
     }
     
     public void DestroyBullet(float timer = 0)
