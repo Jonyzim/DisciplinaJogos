@@ -12,10 +12,8 @@ public class PhysicsBullet : Bullet
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        // if(enemy != null){
-        //     enemy.DamageFx();
-        // }
+        
+        //Colisões com trigger não rodam essa parte
         DestroyBullet();
     }
 }
