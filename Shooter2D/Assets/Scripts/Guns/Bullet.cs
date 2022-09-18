@@ -9,8 +9,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected float lifetime;
     protected Vector3 direction;
     [SerializeField] private GameObject destroyFxPrefab;
+
+    [SerializeField] private Rigidbody2D rgbd;
     public void SetDirection(Vector3 _direction){
         direction = _direction;
+        rgbd.AddForce(direction * speed, ForceMode2D.Impulse);
     }
     IEnumerator DestroyDelay()
     {
@@ -32,7 +35,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(direction.x, direction.y, 0)*speed;
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
