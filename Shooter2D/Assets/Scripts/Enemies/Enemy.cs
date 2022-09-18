@@ -10,6 +10,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] float fxSpeed = 0.05f;
 
+    [SerializeField] private Collider2D player;
+
     protected abstract void Movement();
     protected abstract void Damage();
 
@@ -17,6 +19,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         startColor = spriteRenderer.color;
+        IgnoreCollision();
     }
     IEnumerator ChangeColorFx(Color initial, Color final)
     {
@@ -43,6 +46,10 @@ public abstract class Enemy : MonoBehaviour
             Damage();
             col.GetComponent<Bullet>().DestroyBullet();
         }
+    }
+
+    protected void IgnoreCollision(){
+        Physics2D.IgnoreCollision(player, GetComponent<BoxCollider2D>(), true);
     }
 
 
