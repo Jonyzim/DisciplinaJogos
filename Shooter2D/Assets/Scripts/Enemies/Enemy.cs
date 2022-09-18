@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     Color damageColor = new Color(1f, 0, 0, 1f);
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] float fxSpeed = 0.05f;
+    [SerializeField] private GameObject hitFxPrefab;
 
     protected abstract void Movement();
     protected abstract void Damage();
@@ -42,7 +43,8 @@ public abstract class Enemy : MonoBehaviour
         if (col.CompareTag(BULLET_TAG))
         {
             Damage();
-            col.GetComponent<Bullet>().DestroyBullet();
+            col.gameObject.GetComponent<Bullet>().DestroyBullet();
+            Instantiate(hitFxPrefab, col.gameObject.transform.position, Quaternion.identity);
         }
     }
 

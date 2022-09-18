@@ -18,7 +18,6 @@ public class HUDManager : MonoBehaviour
     }
 
     private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
-        Debug.Log("called");
         if(id == _id)
         {
             magazineSprite.sprite = _magazineSprite;

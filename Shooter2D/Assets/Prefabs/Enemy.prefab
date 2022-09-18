@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4152129265690600297}
   fxSpeed: 0.1
+  hitFxPrefab: {fileID: 1578568067691224791, guid: 7cd045d191ce2bf4b8197149d19f497e, type: 3}
   speed: {x: 0.01, y: 0, z: 0}
 --- !u!70 &4785942600551865928
 CapsuleCollider2D:
@@ -143,4 +144,4 @@ MonoBehaviour:
   - {x: -0.4755969, y: 1.5139983, z: 0}
   m_ShapePathHash: 842048781
   m_Mesh: {fileID: 0}
-  m_InstanceId: 75068
+  m_InstanceId: 45512
