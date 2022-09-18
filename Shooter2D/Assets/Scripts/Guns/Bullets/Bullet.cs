@@ -20,15 +20,15 @@ public class Bullet : MonoBehaviour
     //     DestroyBullet();
     // }
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //StartCoroutine(DestroyDelay());
         Destroy(gameObject, lifetime);
     }
     
-    public void DestroyBullet()
+    public void DestroyBullet(float timer = 0)
     {
         Instantiate(destroyFxPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Destroy(gameObject, timer);
     }
 }

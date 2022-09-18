@@ -7,26 +7,40 @@ public class HitscanBullet : Bullet
     [SerializeField] private float reach;
 
     [SerializeField] private LineRenderer bulletTrail;
+    private Color lineColor;
+    private float cur_lifetime;
+
+
+    protected override void Start(){
+        cur_lifetime = lifetime;
+    }
+    void Update(){
+        cur_lifetime -= Time.deltaTime;
+        lineColor = new Color(1f, 1f, 1f, cur_lifetime/lifetime);
+        bulletTrail.startColor = lineColor;
+        bulletTrail.endColor = lineColor;
+    }
 
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
-        Vector3 position;
-        bulletTrail.transform.position = Vector3.zero;
         bulletTrail.positionCount = 2;
         bulletTrail.SetPosition(0, transform.position);
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach);
         if(hitInfo.collider != null){
-            position = new Vector3(hitInfo.point.x, hitInfo.point.y,0);
+            transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y,0);
+
             Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
             if(enemy != null){
-                enemy.Damage(position);
+                enemy.Damage(transform.position);
             }
-            bulletTrail.SetPosition(1, position);
         }
         else{
-            position = transform.position + direction * reach;
-            bulletTrail.SetPosition(1, position);
+            transform.position = transform.position + direction * reach;
         }
+        bulletTrail.SetPosition(1, transform.position);
+        bulletTrail.transform.position = Vector3.zero;
+        DestroyBullet(lifetime);
     }
+
 }
