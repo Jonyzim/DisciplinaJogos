@@ -10,18 +10,19 @@ public class StaticEnemy : Enemy
         transform.position += speed;
     } 
 
-    protected override void Damage()
+    public override void Damage(Vector3 hitPos)
     {
         //print("DAMAGE");
+        base.Damage(hitPos);
         StartCoroutine(DamageFx());
     }
     void Update()
     {
         Movement();
     }
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        // base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Wall"))
         {
             speed = -speed;

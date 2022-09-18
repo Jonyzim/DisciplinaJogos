@@ -89,14 +89,18 @@ public abstract class Gun : MonoBehaviour
     }
 
     void Reload(){
-        ReloadProps(reloadTime);
-        reloadProgress += Time.deltaTime;
-        GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
-        if(reloadProgress > reloadTime){
-            reloadProgress = 0;
-            cur_magazine = magazine;
-            GameEvents.current.ReloadUpdate(1, 0);
-            GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+
+        //Não recarregar caso munição esteja cheia
+        if(!(cur_magazine == magazine)){
+            ReloadProps(reloadTime);
+            reloadProgress += Time.deltaTime;
+            GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
+            if(reloadProgress > reloadTime){
+                reloadProgress = 0;
+                cur_magazine = magazine;
+                GameEvents.current.ReloadUpdate(1, 0);
+                GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+            }
         }
     }
 

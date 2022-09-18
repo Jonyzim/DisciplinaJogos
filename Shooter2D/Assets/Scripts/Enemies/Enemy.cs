@@ -9,10 +9,12 @@ public abstract class Enemy : MonoBehaviour
     Color damageColor = new Color(1f, 0, 0, 1f);
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] float fxSpeed = 0.05f;
-    [SerializeField] private GameObject hitFxPrefab;
+    [SerializeField] protected GameObject hitFxPrefab;
 
     protected abstract void Movement();
-    protected abstract void Damage();
+    public virtual void Damage(Vector3 pos){
+        Instantiate(hitFxPrefab, pos, Quaternion.identity);
+    }
 
 
     protected virtual void Start()
@@ -38,15 +40,15 @@ public abstract class Enemy : MonoBehaviour
         yield return StartCoroutine(ChangeColorFx(damageColor, startColor));
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag(BULLET_TAG))
-        {
-            Damage();
-            col.gameObject.GetComponent<Bullet>().DestroyBullet();
-            Instantiate(hitFxPrefab, col.gameObject.transform.position, Quaternion.identity);
-        }
-    }
+    // protected virtual void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     if (col.CompareTag(BULLET_TAG))
+    //     {
+    //         Damage();
+    //         col.gameObject.GetComponent<Bullet>().DestroyBullet(); 
+    //         Instantiate(hitFxPrefab, col.gameObject.transform.position, Quaternion.identity);
+    //     }
+    // }
 
 
 }
