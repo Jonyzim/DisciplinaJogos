@@ -6,23 +6,27 @@ public class HitscanBullet : Bullet
 {
     [SerializeField] private float reach;
 
+    [SerializeField] private LineRenderer bulletTrail;
+
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
+        Vector3 position;
+        bulletTrail.transform.position = Vector3.zero;
+        bulletTrail.positionCount = 2;
+        bulletTrail.SetPosition(0, transform.position);
 
-        // float distance;
-        
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach);
         if(hitInfo.collider != null){
-            // distance = Vector2.Distance(transform.position, hitInfo.point);
-            transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y,0);
+            position = new Vector3(hitInfo.point.x, hitInfo.point.y,0);
             Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
             if(enemy != null){
-                enemy.Damage(transform.position);
-                DestroyBullet();
+                enemy.Damage(position);
             }
+            bulletTrail.SetPosition(1, position);
         }
         else{
-            // distance = Vector2.Distance(transform.position, transform.position + direction * reach);
+            position = transform.position + direction * reach;
+            bulletTrail.SetPosition(1, position);
         }
     }
 }
