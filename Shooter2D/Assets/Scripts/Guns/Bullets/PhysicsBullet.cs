@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class PhysicsBullet : Bullet
 
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
+        print("force");
         rgbd.AddForce(_direction * speed, ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
