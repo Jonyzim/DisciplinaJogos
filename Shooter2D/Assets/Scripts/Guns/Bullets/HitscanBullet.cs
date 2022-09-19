@@ -9,12 +9,15 @@ public class HitscanBullet : Bullet
     [SerializeField] private GameObject particles;
     private Color lineColor;
     private float cur_lifetime;
-    [SerializeField] float damageCaused ;
+    [SerializeField] LayerMask ignoreLayer;
+
+
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
         Vector2 position;
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach, ~ignoreLayer);
+
         if(hitInfo.collider != null){
             position = hitInfo.point;
 

@@ -6,7 +6,7 @@ public class StaticEnemy : Enemy
 {
     [SerializeField] Vector3 speed = new Vector3(0.1f,0,0);
     [SerializeField] private bool randomSpeed = false;
-    private void Start()
+    protected override void Start()
     {
         base.Start();
         if (randomSpeed)

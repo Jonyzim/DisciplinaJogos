@@ -4940,6 +4940,9 @@ MonoBehaviour:
   speed: 200
   lifetime: 1
   destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
+  damageCaused: 35
   reach: 30
   particles: {fileID: 6449976476276772354}
-  damageCaused: 35
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 64
