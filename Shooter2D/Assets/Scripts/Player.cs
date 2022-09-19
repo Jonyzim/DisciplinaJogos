@@ -21,14 +21,29 @@ public class Player : MonoBehaviour
         cam = Camera.main;
     }
 
+    [SerializeField] private bool isJoystick = false;
     //Consertar o centro para ser o centro da arma
     void Update(){
-        center = pawn.transform.position;
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (isJoystick)
+        {
 
-        direction = (mousePos - center).normalized;
+            Vector2 oldDir = direction;
+            direction.x = -Input.GetAxis("RightVertical");
+            direction.y = -Input.GetAxis("RightHorizontal");
+            if (direction.magnitude < 0.75f)
+            {
+                direction = oldDir;
+            }
+        }
+        else
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 center = transform.position;
+            direction = (mousePos - center).normalized;
+        }
 
-        if(Input.GetButton("Fire1")){
+        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1")!=0)
+        {
             pawn.Fire(direction);
         }
         if(Input.GetButtonDown("Fire2")){
@@ -38,6 +53,8 @@ public class Player : MonoBehaviour
             Debug.Log("Reload");
             pawn.Reload();
         }
+
+        pawn.ControlRotation(direction);
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
