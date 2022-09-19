@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected float lifetime;
     protected Vector3 direction;
     [SerializeField] private GameObject destroyFxPrefab;
+    [SerializeField] protected float damageCaused;
     
     public virtual void SetDirection(Vector3 _direction){
         direction = _direction;

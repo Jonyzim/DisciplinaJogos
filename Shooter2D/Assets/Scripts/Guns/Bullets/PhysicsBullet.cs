@@ -7,7 +7,7 @@ using static Constants;
 public class PhysicsBullet : Bullet
 {
     [SerializeField] private Rigidbody2D rgbd;
-    [SerializeField] float damageCaused;
+
 
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
