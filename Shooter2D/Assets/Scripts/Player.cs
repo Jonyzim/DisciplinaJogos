@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Character pawn;
     private Camera cam;
-    private Vector3 direction;
+    private Vector3 direction=new Vector3(0,0,0);
     private Vector2 mousePos;
     private Vector2 center;
     private Vector2 movement = new Vector2(0, 0);
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         else
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 center = transform.position;
+            Vector2 center = pawn.transform.position;
             direction = (mousePos - center).normalized;
         }
 
