@@ -10,10 +10,32 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] float fxSpeed = 0.05f;
     [SerializeField] protected GameObject hitFxPrefab;
+    [SerializeField] protected GameObject deathFxPrefab;
 
+    private float life = 100f;
     protected abstract void Movement();
-    public virtual void Damage(Vector3 pos){
+    protected virtual void Death()
+    {
+        Vector3 pos = transform.position;
+        pos.y += 1f;
+        Instantiate(deathFxPrefab, pos, Quaternion.identity);
+        Destroy(gameObject,0.1f); 
+        
+        MonoBehaviour[] scripts = gameObject.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
+        }
+    }
+
+    public virtual void Damage(Vector3 pos, float damage){
         Instantiate(hitFxPrefab, pos, Quaternion.identity);
+        StartCoroutine(DamageFx());
+        life -= damage;
+        if (life <= 0)
+        {
+            Death();
+        }
     }
 
 

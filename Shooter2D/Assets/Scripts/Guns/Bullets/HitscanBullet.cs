@@ -9,7 +9,7 @@ public class HitscanBullet : Bullet
     [SerializeField] private GameObject particles;
     private Color lineColor;
     private float cur_lifetime;
-
+    [SerializeField] float damageCaused ;
     public override void SetDirection(Vector3 _direction){
         base.SetDirection(_direction);
         Vector2 position;
@@ -20,7 +20,7 @@ public class HitscanBullet : Bullet
 
             Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
             if(enemy != null){
-                enemy.Damage(transform.position);
+                enemy.Damage(position, damageCaused);
             }
         }
         else{
