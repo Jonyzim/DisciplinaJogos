@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 
     Rigidbody2D body;
 
-    [SerializeField] float speed;
+    private float baseSpeed = 10;
     Camera cam;
     [SerializeField] public Gun gun;
     private Vector3 direction;
@@ -25,10 +25,18 @@ public class Character : MonoBehaviour
     
     public Player PlayerControlling => playerControlling;
 
+
+
     public void SetPlayerControlling(Player p)
     {
         _character_id = p.PlayerId;
     }
+
+    [Header("Status")]
+    public int Health;
+    public int Strenght;
+    public int Speed;
+    public int Aim;
 
     //Custom Events
     public event Action<int> onInteract;
@@ -38,10 +46,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    public event Action<Vector3> onFire;
+    public event Action<Vector3, int> onFire;
     public void Fire(Vector3 direction){
         if(onFire != null){
-            onFire(direction);
+            onFire(direction, Strenght);
         }
     }
 
@@ -71,7 +79,7 @@ public class Character : MonoBehaviour
 
     //Methods
     public void Move(float x, float y){
-        body.velocity= new Vector3(x, y, 0)*speed;
+        body.velocity= new Vector3(x, y, 0)*baseSpeed*(Speed/100);
     }
     private void ControlRotation(){
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

@@ -12,8 +12,8 @@ public class HitscanBullet : Bullet
     [SerializeField] LayerMask ignoreLayer;
 
 
-    public override void SetDirection(Vector3 _direction){
-        base.SetDirection(_direction);
+    public override void SetVariables(Vector3 _direction, int strenght){
+        base.SetVariables(_direction, strenght);
         Vector2 position;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach, ~ignoreLayer);

@@ -4,19 +4,11 @@ using UnityEngine;
 
 public abstract class AutomaticGun : Gun
 {
-    [Header("AutomaticSpecifics")]
-    [SerializeField] protected GameObject bullet;
-    [SerializeField] protected float spread;
-    protected override void Fire(Vector3 direction){
+    //[Header("AutomaticSpecifics")]
+
+    protected override void Fire(Vector3 direction, int strenght){
         if(cd <= 0 && cur_magazine > 0){
-            base.Fire(direction);
-            Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
-
-            GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
-            Bullet bulletScript=_bullet.GetComponent<Bullet>();
-            bulletScript.SetDirection(_direction);
-            bulletScript.SetPlayer(ownerId);
-
+            base.Fire(direction, strenght);
         }
     }
 

@@ -17,8 +17,9 @@ public class Bullet : MonoBehaviour
         ownerId = id;
     }
 
-    public virtual void SetDirection(Vector3 _direction){
+    public virtual void SetVariables(Vector3 _direction, int strenght){
         direction = _direction;
+        damageCaused *= ((float)strenght/100);
     }
 
     // IEnumerator DestroyDelay()

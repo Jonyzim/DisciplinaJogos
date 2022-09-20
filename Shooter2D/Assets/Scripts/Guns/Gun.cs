@@ -25,6 +25,9 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private GameObject interactableReference;
     [SerializeField] private Light2D flashLight;
 
+    [SerializeField] protected GameObject bullet;
+    [SerializeField] protected float spread;
+
     [HideInInspector] protected int ownerId;
 
 
@@ -47,11 +50,18 @@ public abstract class Gun : MonoBehaviour
         gameObject.transform.parent = instance.transform;
     }
 
-    protected virtual void Fire(Vector3 direction){
+    protected virtual void Fire(Vector3 direction, int strenght){
         FireProps();
         cd = 1/rof;
         cur_magazine -= 1;
         GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+
+        Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
+            
+        GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
+        Bullet bulletScript = _bullet.GetComponent<Bullet>();
+        bulletScript.SetVariables(_direction, strenght);
+        bulletScript.SetPlayer(ownerId);
     }
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
