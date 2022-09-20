@@ -106,6 +106,7 @@ MonoBehaviour:
   reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
+  flashLight: {fileID: 8935347613397548414}
   bullet: {fileID: 1456941150638956597, guid: 153766331879c3e4598a361d21498145, type: 3}
   spread: 6
 --- !u!1 &5742514778229871706
@@ -118,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2632225942477895277}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GunPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 5263907559953978285}
   - component: {fileID: 8935347613397548414}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -42,8 +42,8 @@ public abstract class Enemy : MonoBehaviour
         life -= damage;
         Vector3 scorePos = transform.position;
         scorePos.y += 1f;
-        GameObject score=Instantiate(scoreViewPrefab,scorePos,Quaternion.identity, scoreCanvas);
-        score.GetComponentInChildren<TMP_Text>().text = damageCaused + "";
+        GameObject score = Instantiate(scoreViewPrefab,scorePos,Quaternion.identity, scoreCanvas);
+        score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
         if (life <= 0)
         {
             Death();

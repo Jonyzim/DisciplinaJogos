@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public abstract class Gun : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite backgroundSprite;
     private float reloadProgress = 0;
     [SerializeField] private GameObject interactableReference;
+    [SerializeField] private Light2D flashLight;
 
     [HideInInspector] protected int ownerId;
 
@@ -54,17 +56,26 @@ public abstract class Gun : MonoBehaviour
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
+    public void SwitchFlashlight(){
+        if(flashLight != null){
+            flashLight.enabled = !flashLight.enabled;
+        }
+    }
+
     public void SetOwner(Character character)
     {
         ownerId = character.character_id;
         print("Player " + ownerId + " got a " + gameObject.name);
         character.onFire += Fire;
         character.onReload += Teste;
+        character.onSwitchLight += SwitchFlashlight;
     }
 
     public void RemoveOwner(Character character){
+        ownerId = -1;
         character.onFire -= Fire;
         character.onReload -= Teste;
+        character.onSwitchLight -= SwitchFlashlight;
     }
 
     protected virtual void Start()

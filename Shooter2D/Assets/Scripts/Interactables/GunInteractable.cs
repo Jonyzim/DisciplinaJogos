@@ -10,9 +10,9 @@ public class GunInteractable : Interactable
         Gun gunComponent = gun.GetComponent<Gun>();
 
 
-        character[id].gun.drop(character[id]);
+        character[id-1].gun.drop(character[id-1]);
 
-        gunComponent.pick(character[id]);
+        gunComponent.pick(character[id-1]);
 
 
         Destroy(gameObject);

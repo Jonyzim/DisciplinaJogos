@@ -51,7 +51,8 @@ public class Player : MonoBehaviour
 
         //!Temporary
         if(Input.GetButtonDown("Fire3")){
-            GameEvents.current.WaveChange();
+            pawn.SwitchLight();
+            //GameEvents.current.WaveChange();
         }
 
         movement.x = Input.GetAxisRaw("Horizontal");

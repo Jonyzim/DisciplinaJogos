@@ -52,6 +52,13 @@ public class Character : MonoBehaviour
         }
     }
 
+    public event Action onSwitchLight;
+    public void SwitchLight(){
+        if(onSwitchLight != null){
+            onSwitchLight();
+        }
+    }
+
 
     //Engine Methods
     void Start(){
