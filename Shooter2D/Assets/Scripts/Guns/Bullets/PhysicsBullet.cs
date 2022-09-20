@@ -21,8 +21,9 @@ public class PhysicsBullet : Bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if(enemy != null){
-            enemy.Damage(transform.position, damageCaused);
+        if(enemy != null && !enemy.IsDead)
+        {
+            DamageOnEnemy(enemy,transform.position);
             DestroyBullet();
         }
     }
