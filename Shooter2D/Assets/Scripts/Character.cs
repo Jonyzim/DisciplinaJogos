@@ -21,6 +21,14 @@ public class Character : MonoBehaviour
     private Vector3 direction;
     private Quaternion lookRotation;
     float angle;
+    private Player playerControlling;
+    
+    public Player PlayerControlling => playerControlling;
+
+    public void SetPlayerControlling(Player p)
+    {
+        playerControlling = p;
+    }
 
     //Custom Events
     public event Action<int> onInteract;

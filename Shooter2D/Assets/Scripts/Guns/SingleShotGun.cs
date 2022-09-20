@@ -14,7 +14,9 @@ public abstract class SingleShotGun : Gun
             Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-spread, spread), new Vector3(0, 0, 1)) * direction;
             
             GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 0));
-            _bullet.GetComponent<Bullet>().SetDirection(direction);
+            Bullet bulletScript = _bullet.GetComponent<Bullet>();
+            bulletScript.SetPlayer(player);
+            bulletScript.SetDirection(_direction);
         }
         
     }

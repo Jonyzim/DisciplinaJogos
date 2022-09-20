@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Wall
   - Enemy
+  - ScoreCanvas
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 3017571623
+    locked: 0
+  - name: Canvas
+    uniqueID: 1618720109
     locked: 0

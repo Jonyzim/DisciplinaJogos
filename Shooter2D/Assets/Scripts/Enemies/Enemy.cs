@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
-
+using TMPro;
 public abstract class Enemy : MonoBehaviour
 {
     Color startColor;
@@ -11,8 +11,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] float fxSpeed = 0.05f;
     [SerializeField] protected GameObject hitFxPrefab;
     [SerializeField] protected GameObject deathFxPrefab;
-
+    private Transform scoreCanvas;
+    [SerializeField] private GameObject scoreViewPrefab;
     private float life = 100f;
+    public int Life => (int)life;
+    bool isDead=false;
+    public bool IsDead => isDead;
     protected abstract void Movement();
     protected virtual void Death()
     {
@@ -28,20 +32,32 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Damage(Vector3 pos, float damage){
+    
+    public virtual bool Damage(Vector3 pos, float damage){
+        if (isDead) return false;
+
         Instantiate(hitFxPrefab, pos, Quaternion.identity);
         StartCoroutine(DamageFx());
+        float damageCaused = Mathf.Min(life, damage);
         life -= damage;
+        Vector3 scorePos = transform.position;
+        scorePos.y += 1f;
+        GameObject score=Instantiate(scoreViewPrefab,scorePos,Quaternion.identity, scoreCanvas);
+        score.GetComponentInChildren<TMP_Text>().text = damageCaused + "";
         if (life <= 0)
         {
             Death();
+            isDead = true;
+            return true;
         }
+        return false;
     }
 
 
     protected virtual void Start()
     {
         startColor = spriteRenderer.color;
+        scoreCanvas = GameObject.FindGameObjectWithTag("ScoreCanvas").transform;
     }
     IEnumerator ChangeColorFx(Color initial, Color final)
     {
