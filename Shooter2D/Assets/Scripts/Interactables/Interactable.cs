@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     protected List<Character> character = new List<Character>();
 
@@ -26,7 +26,5 @@ public class Interactable : MonoBehaviour
             character.RemoveAt(_character.character_id);
         }
     }
-    protected virtual void Interact(int id){
-        //Debug.Log("INTERAGIU");
-    }
+    protected abstract void Interact(int id);
 }

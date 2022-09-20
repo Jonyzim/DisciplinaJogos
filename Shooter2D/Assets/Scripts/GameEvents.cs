@@ -31,4 +31,11 @@ public class GameEvents : MonoBehaviour
             onReloadUpdate(id, fillAmount);
         }
     }
+
+    public event Action onWaveChange;
+    public void WaveChange(){
+        if(onWaveChange != null){
+            onWaveChange();
+        }
+    }
 }

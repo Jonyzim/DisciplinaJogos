@@ -20,14 +20,14 @@ public abstract class AutomaticGun : Gun
     protected abstract override void ReloadProps(float time);
 
     // Start is called before the first frame update
-    protected virtual new void Start()
-    {
-        base.Start();
-    }
+    // protected virtual new void Start()
+    // {
+    //     base.Start();
+    // }
 
-    // Update is called once per frame
-    protected virtual new void Update()
-    {
-        base.Update();
-    }
+    // // Update is called once per frame
+    // protected virtual new void Update()
+    // {
+    //     base.Update();
+    // }
 }

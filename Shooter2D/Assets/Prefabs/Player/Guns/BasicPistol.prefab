@@ -135,5 +135,5 @@ MonoBehaviour:
   reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
-  bullet: {fileID: 1456941150638956597, guid: 153766331879c3e4598a361d21498145, type: 3}
+  bullet: {fileID: 8032982355752834923, guid: bd38ccf29c9484245b621c1888872b1d, type: 3}
   spread: 0
