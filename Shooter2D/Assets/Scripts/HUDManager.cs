@@ -1,37 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
     public int id;
-    public Image magazineSprite;
-    public Image backgroundSprite;
-    public Image reloadSprite;
+    public Image MagazineSprite;
+    public Image BackgroundSprite;
+    public Image ReloadSprite;
+    public TMP_Text ScoreText;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         GameEvents.current.onPickWeapon += ChangeMagazine;
         GameEvents.current.onMagazineUpdate += UpdateMagazine;
         GameEvents.current.onReloadUpdate += UpdateReload;
+        GameEvents.current.onScoreUpdate += AddScore;
     }
 
     private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
         if(id == _id)
         {
-            magazineSprite.sprite = _magazineSprite;
-            backgroundSprite.sprite = _backgroundSprite;
+            MagazineSprite.sprite = _magazineSprite;
+            BackgroundSprite.sprite = _backgroundSprite;
         }
     }
 
     private void UpdateMagazine(int _id, float fillAmount){
         if(id == _id)
-            magazineSprite.fillAmount = fillAmount;
+            MagazineSprite.fillAmount = fillAmount;
     }
 
     private void UpdateReload(int _id, float fillAmount){
         if(id == _id)
-            reloadSprite.fillAmount = fillAmount;
+            ReloadSprite.fillAmount = fillAmount;
+    }
+
+    public void AddScore(int _id, int n)
+    {
+        if(id == _id){
+            score += n;
+            ScoreText.text = score.ToString().PadLeft(10, '0');
+        }
     }
 }

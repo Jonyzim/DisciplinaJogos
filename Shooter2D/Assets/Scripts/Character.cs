@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private int _character_id = 0;
+    private int _character_id;
     public int character_id
     {
         get { return _character_id; }
@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
 
     public void SetPlayerControlling(Player p)
     {
-        playerControlling = p;
+        _character_id = p.PlayerId;
     }
 
     //Custom Events

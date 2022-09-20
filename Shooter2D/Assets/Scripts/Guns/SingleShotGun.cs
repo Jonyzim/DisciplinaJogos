@@ -15,7 +15,7 @@ public abstract class SingleShotGun : Gun
             
             GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
             Bullet bulletScript = _bullet.GetComponent<Bullet>();
-            bulletScript.SetPlayer(player);
+            bulletScript.SetPlayer(ownerId);
             bulletScript.SetDirection(_direction);
         }
         

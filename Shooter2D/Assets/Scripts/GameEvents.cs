@@ -38,4 +38,11 @@ public class GameEvents : MonoBehaviour
             onWaveChange();
         }
     }
+
+    public event Action<int, int> onScoreUpdate;
+    public void ScoreUpdate(int id, int addScore){
+        if(onScoreUpdate != null){
+            onScoreUpdate(id, addScore);
+        }
+    }
 }

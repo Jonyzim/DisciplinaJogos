@@ -15,7 +15,7 @@ public abstract class AutomaticGun : Gun
             GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
             Bullet bulletScript=_bullet.GetComponent<Bullet>();
             bulletScript.SetDirection(_direction);
-            bulletScript.SetPlayer(player);
+            bulletScript.SetPlayer(ownerId);
 
         }
     }

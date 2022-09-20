@@ -185,9 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  magazineSprite: {fileID: 8600263706453429579}
-  backgroundSprite: {fileID: 8600263706498781128}
-  reloadSprite: {fileID: 8600263705553101867}
+  MagazineSprite: {fileID: 8600263706453429579}
+  BackgroundSprite: {fileID: 8600263706498781128}
+  ReloadSprite: {fileID: 8600263705553101867}
+  ScoreText: {fileID: 8600263704930022085}
 --- !u!1 &8600263705553101861
 GameObject:
   m_ObjectHideFlags: 0

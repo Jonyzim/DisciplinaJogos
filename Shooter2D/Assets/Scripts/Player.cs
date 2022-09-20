@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Character pawn;
@@ -12,7 +11,10 @@ public class Player : MonoBehaviour
     private Vector2 center;
     private Vector2 movement = new Vector2(0, 0);
     private int score;
-    [SerializeField] TMP_Text playerScoreView;
+    [SerializeField] private int playerId;
+    public int PlayerId{
+        get {return playerId;}
+    }
 
 
     void Possess(Character character)
@@ -21,11 +23,6 @@ public class Player : MonoBehaviour
         pawn.SetPlayerControlling(this);
     }
 
-    public void AddScore(int n)
-    {
-        score += n;
-        playerScoreView.text = score.ToString().PadLeft(10, '0');
-    }
     void Start(){
         cam = Camera.main;
         if (pawn != null)

@@ -10,11 +10,11 @@ public class Bullet : MonoBehaviour
     protected Vector3 direction;
     [SerializeField] private GameObject destroyFxPrefab;
     [SerializeField] protected float damageCaused;
-    [SerializeField] protected Player playerThatShooted;
+    [SerializeField] protected int ownerId;
 
-    public void SetPlayer(Player p)
+    public void SetPlayer(int id)
     {
-        playerThatShooted = p;
+        ownerId = id;
     }
 
     public virtual void SetDirection(Vector3 _direction){
@@ -35,9 +35,8 @@ public class Bullet : MonoBehaviour
 
     protected virtual void AddPlayerScore(int n)
     {
-       
-        if(playerThatShooted!=null)
-            playerThatShooted.AddScore(n);
+        if(ownerId != -1)
+            GameEvents.current.ScoreUpdate(ownerId, n);
     }
     protected virtual void DamageOnEnemy(Enemy enemy,Vector3 pos)
     {

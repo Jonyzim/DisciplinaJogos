@@ -23,7 +23,7 @@ public abstract class Gun : MonoBehaviour
     private float reloadProgress = 0;
     [SerializeField] private GameObject interactableReference;
 
-    [SerializeField] protected Player player;
+    [SerializeField] protected int ownerId;
 
 
     public void pick(Character character){
@@ -56,8 +56,8 @@ public abstract class Gun : MonoBehaviour
 
     public void SetOwner(Character character)
     {
-        player = character.PlayerControlling;
-        print(player.gameObject.name + " got a " + gameObject.name);
+        ownerId = character.character_id;
+        print("Player " + ownerId + " got a " + gameObject.name);
         character.onFire += Fire;
         character.onReload += Teste;
     }
