@@ -23,7 +23,7 @@ public abstract class Gun : MonoBehaviour
     private float reloadProgress = 0;
     [SerializeField] private GameObject interactableReference;
 
-    [SerializeField] protected int ownerId;
+    [HideInInspector] protected int ownerId;
 
 
     public void pick(Character character){
