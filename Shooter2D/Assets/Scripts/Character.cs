@@ -46,10 +46,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    public event Action<Vector3, int> onFire;
+    public event Action<Vector3, int, int> onFire;
     public void Fire(Vector3 direction){
         if(onFire != null){
-            onFire(direction, Strenght);
+            onFire(direction, Strenght, Aim);
         }
     }
 
