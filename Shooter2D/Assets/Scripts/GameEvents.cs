@@ -39,6 +39,15 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action<int> onPause;
+    public void Pause(int id)
+    {
+        if (onPause != null)
+        {
+            onPause(id);
+        }
+    }
+
     public event Action<int, int> onScoreUpdate;
     public void ScoreUpdate(int id, int addScore){
         if(onScoreUpdate != null){

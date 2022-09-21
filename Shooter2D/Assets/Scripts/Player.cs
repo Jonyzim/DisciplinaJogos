@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         pawn.SetPlayerControlling(this);
     }
 
-    void Start(){
+    void Awake(){
         cam = Camera.main;
         if (pawn != null)
         {
@@ -32,7 +32,16 @@ public class Player : MonoBehaviour
     }
 
     //Consertar o centro para ser o centro da arma
-    void Update(){
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            GameEvents.current.Pause(PlayerId);
+        }
+
+        if (HUDManager.IsPaused)
+            return;
+
         center = pawn.transform.position;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 

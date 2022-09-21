@@ -13,6 +13,10 @@ public class HUDManager : MonoBehaviour
     public Image ReloadSprite;
     public TMP_Text ScoreText;
     public int score;
+    [SerializeField] private GameObject pauseMenu;
+    static bool isPaused = false;
+    static public bool IsPaused => isPaused;
+     bool thisPlayerPaused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,7 @@ public class HUDManager : MonoBehaviour
         GameEvents.current.onMagazineUpdate += UpdateMagazine;
         GameEvents.current.onReloadUpdate += UpdateReload;
         GameEvents.current.onScoreUpdate += AddScore;
+        GameEvents.current.onPause += PauseGame;
     }
 
     private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
@@ -40,7 +45,26 @@ public class HUDManager : MonoBehaviour
         if(id == _id)
             ReloadSprite.fillAmount = fillAmount;
     }
-
+    public void PauseGame(int _id)
+    {
+        if (id == _id)
+        {
+            if (!isPaused)
+            {
+                Time.timeScale = 0f;
+                pauseMenu.SetActive(true);
+                isPaused = true;
+                thisPlayerPaused = true;
+            }
+            else if (thisPlayerPaused)
+            {
+                Time.timeScale = 1f;
+                pauseMenu.SetActive(false);
+                isPaused = false;
+                thisPlayerPaused = false;
+            }
+        }
+    }
     public void AddScore(int _id, int n)
     {
         if(id == _id){

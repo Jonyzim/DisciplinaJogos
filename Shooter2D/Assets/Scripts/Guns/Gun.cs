@@ -28,7 +28,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
 
-    [HideInInspector] protected int ownerId;
+     protected int ownerId;
 
 
     public void pick(Character character){
