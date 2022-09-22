@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private int _character_id;
+    public int _character_id;
     public int character_id
     {
         get { return _character_id; }
@@ -20,8 +20,14 @@ public class Character : MonoBehaviour
 
     public void SetPlayerControlling(Player p)
     {
-        _character_id = p.PlayerId;
+        if(p != null){
+            _character_id = p.PlayerId;
+        }
+        else 
+            _character_id = 0;
+        gun.SetOwner(this);
     }
+
 
     [Header("Status")]
     public int Health;

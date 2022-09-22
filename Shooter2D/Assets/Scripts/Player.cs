@@ -5,7 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    public static Player[] activePlayers = new Player[4];
+
     [SerializeField] private Character pawn;
+
+    //TEMPORARY
+    public GameObject CharacterPrefab;
+
     private Camera cam;
     private Vector2 direction;
     private Vector2 movement = new Vector2(0, 0);
@@ -18,18 +24,28 @@ public class Player : MonoBehaviour
     private bool _isFiring = false;
 
 
-    void Possess(Character character)
+    public void Possess(Character character)
     {
-        pawn = character;
-        pawn.SetPlayerControlling(this);
-    }
-
-    void Awake(){
-        cam = Camera.main;
-        if (pawn != null)
-        {
+        if(character != null){
+            pawn = character;
             pawn.SetPlayerControlling(this);
         }
+    }
+
+    void Start(){
+        cam = Camera.main;
+
+        for(int i = 0; i < 4; i++){
+            if(activePlayers[i] == null){
+                playerId = i+1;
+                activePlayers[i] = this;
+                break;
+            }
+        }
+
+        //TEMPORARY, Change to character selection instead
+        Possess(Instantiate(CharacterPrefab).GetComponent<Character>());
+
     }
 
     // ---------------------- Old Input System --------------------------
@@ -86,7 +102,6 @@ public class Player : MonoBehaviour
         else if(context.canceled){
             _isFiring = false;
         }
-        Debug.Log(context.ReadValueAsButton());
     }
     public void OnReload(InputAction.CallbackContext context){
         if(context.performed){
@@ -104,8 +119,12 @@ public class Player : MonoBehaviour
         }
     }
     public void OnAim(InputAction.CallbackContext context){
-        direction = ((Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>()) - (Vector2)pawn.transform.position).normalized;
-        Debug.Log(direction);
+        if(context.control.device.name == "Mouse"){
+            direction = ((Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>()) - (Vector2)pawn.transform.position).normalized;
+        }
+        else{
+            direction = context.ReadValue<Vector2>();
+        }
         pawn.ControlRotation(direction);
     }
     void FixedUpdate()
@@ -117,5 +136,10 @@ public class Player : MonoBehaviour
         else{
             pawn.ReleaseFire();
         }
+    }
+
+    void OnDestroy(){
+        pawn.SetPlayerControlling(null);
+        activePlayers[playerId-1] = null;
     }
 }
