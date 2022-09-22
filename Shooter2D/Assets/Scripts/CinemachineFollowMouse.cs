@@ -19,8 +19,9 @@ public class CinemachineFollowMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePos = (cam.ScreenToViewportPoint(Input.mousePosition) - (new Vector3(0.5f, 0.5f, 0f))) * 2;
+        //TODO Fix input later
+        //Vector2 mousePos = (cam.ScreenToViewportPoint(Input.mousePosition) - (new Vector3(0.5f, 0.5f, 0f))) * 2;
 
-        cameraOffset.m_Offset = Vector3.Lerp(cameraOffset.m_Offset, mousePos*offsetAmount, Time.deltaTime * offsetSpeed);;
+        //cameraOffset.m_Offset = Vector3.Lerp(cameraOffset.m_Offset, mousePos*offsetAmount, Time.deltaTime * offsetSpeed);;
     }
 }

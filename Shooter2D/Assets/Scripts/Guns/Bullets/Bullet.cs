@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         ownerId = id;
     }
 
-    public virtual void SetVariables(Vector3 _direction, int strenght){
+    public virtual void SetVariables(Vector2 _direction, int strenght){
         direction = _direction;
         damageCaused *= ((float)strenght/100);
     }

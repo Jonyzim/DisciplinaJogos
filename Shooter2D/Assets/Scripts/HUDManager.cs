@@ -16,7 +16,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     static bool isPaused = false;
     static public bool IsPaused => isPaused;
-     bool thisPlayerPaused = false;
+    bool thisPlayerPaused = false;
     // Start is called before the first frame update
     void Start()
     {

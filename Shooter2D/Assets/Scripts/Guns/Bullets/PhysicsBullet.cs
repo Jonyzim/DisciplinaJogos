@@ -8,7 +8,7 @@ public class PhysicsBullet : Bullet
     [SerializeField] private Rigidbody2D rgbd;
 
 
-    public override void SetVariables(Vector3 _direction, int strenght){
+    public override void SetVariables(Vector2 _direction, int strenght){
         base.SetVariables(_direction, strenght);
         rgbd.AddForce(direction * speed, ForceMode2D.Impulse);
     }

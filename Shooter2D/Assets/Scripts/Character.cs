@@ -14,17 +14,8 @@ public class Character : MonoBehaviour
     }
 
     Rigidbody2D body;
-
     private float baseSpeed = 10;
-    Camera cam;
     [SerializeField] public Gun gun;
-    private Vector3 direction;
-    private Quaternion lookRotation;
-    float angle;
-    private Player playerControlling;
-    
-    public Player PlayerControlling => playerControlling;
-
 
 
     public void SetPlayerControlling(Player p)
@@ -46,8 +37,8 @@ public class Character : MonoBehaviour
         }
     }
 
-    public event Action<Vector3, int, int> onFire;
-    public void Fire(Vector3 direction){
+    public event Action<Vector2, int, int> onFire;
+    public void Fire(Vector2 direction){
         if(onFire != null){
             onFire(direction, Strenght, Aim);
         }
@@ -70,25 +61,18 @@ public class Character : MonoBehaviour
 
     //Engine Methods
     void Start(){
-        cam = Camera.main;
         body = GetComponent<Rigidbody2D>();
     }
     void Update(){
-        ControlRotation();
+        //ControlRotation();
     }
 
     //Methods
-    public void Move(float x, float y){
-        body.velocity= new Vector3(x, y, 0)*baseSpeed*(Speed/100);
+    public void Move(Vector2 velocity){
+        body.velocity= velocity*baseSpeed*(Speed/100);
     }
-    private void ControlRotation(){
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector2 center = transform.position;
-
-        direction = (mousePos - center).normalized;
-
-        
+    public void ControlRotation(Vector2 direction){
+        float angle;
         if (direction.x > 0) // virado pra direita
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -100,8 +84,7 @@ public class Character : MonoBehaviour
             angle = -Vector2.SignedAngle(direction, Vector2.left);
         }
 
-        lookRotation = Quaternion.Euler(0,0,angle);
-        gun.transform.rotation = lookRotation;
+        gun.transform.rotation = Quaternion.Euler(0,0,angle);
     }
 
 }

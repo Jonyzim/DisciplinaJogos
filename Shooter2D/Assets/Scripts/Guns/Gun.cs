@@ -50,7 +50,7 @@ public abstract class Gun : MonoBehaviour
         gameObject.transform.parent = instance.transform;
     }
 
-    protected virtual void Fire(Vector3 direction, int strenght, int aim){
+    protected virtual void Fire(Vector2 direction, int strenght, int aim){
         FireProps();
         cd = 1/rof;
         cur_magazine -= 1;
@@ -59,7 +59,7 @@ public abstract class Gun : MonoBehaviour
         //Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (spread * (100/((aim*2)-100))) : (spread + 100 - aim);
 
-        Vector3 _direction = Quaternion.AngleAxis(-Random.Range(-_spread, _spread), new Vector3(0, 0, 1)) * direction;
+        Vector2 _direction = Quaternion.AngleAxis(-Random.Range(-_spread, _spread), new Vector3(0, 0, 1)) * direction;
             
         GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
         Bullet bulletScript = _bullet.GetComponent<Bullet>();

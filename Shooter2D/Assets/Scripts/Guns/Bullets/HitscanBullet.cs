@@ -12,7 +12,7 @@ public class HitscanBullet : Bullet
     [SerializeField] LayerMask ignoreLayer;
 
 
-    public override void SetVariables(Vector3 _direction, int strenght){
+    public override void SetVariables(Vector2 _direction, int strenght){
         base.SetVariables(_direction, strenght);
         Vector2 position;
 
