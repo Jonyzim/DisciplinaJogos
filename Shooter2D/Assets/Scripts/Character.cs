@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
     private float baseSpeed = 10;
     Camera cam;
     [SerializeField] public Gun gun;
+    private Vector3 direction;
     private Quaternion lookRotation;
     float angle;
     private Player playerControlling;
@@ -73,15 +74,21 @@ public class Character : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
     void Update(){
+        ControlRotation();
     }
 
     //Methods
     public void Move(float x, float y){
         body.velocity= new Vector3(x, y, 0)*baseSpeed*(Speed/100);
     }
-    public void ControlRotation(Vector2 direction){
+    private void ControlRotation(){
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
+        Vector2 center = transform.position;
 
+        direction = (mousePos - center).normalized;
+
+        
         if (direction.x > 0) // virado pra direita
         {
             transform.localScale = new Vector3(1, 1, 1);
