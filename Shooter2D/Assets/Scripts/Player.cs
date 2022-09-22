@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private Vector2 direction = new Vector2(1, 0);
     private Vector2 movement = new Vector2(0, 0);
     private int score;
+    private Vector2 mousePos;
     private int playerId;
     public int PlayerId{
         get {return playerId;}
@@ -126,13 +127,22 @@ public class Player : MonoBehaviour
     public void OnAim(InputAction.CallbackContext context){
         Vector2 newDirection;
         if(context.control.device.name == "Mouse"){
-            newDirection = ((Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>()) - (Vector2)pawn.transform.position).normalized;
+            mousePos = (Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
+            newDirection = (mousePos - ((Vector2)pawn.transform.position)).normalized;
         }
         else{
             newDirection = context.ReadValue<Vector2>();
         }
         if(newDirection != Vector2.zero){
             direction = newDirection;
+        }
+    }
+
+    void Update(){
+
+        //Updates camera even with a still mouse
+        if(mousePos != null){
+            direction = (mousePos - ((Vector2)pawn.transform.position)).normalized;    
         }
         pawn.ControlRotation(direction);
     }
