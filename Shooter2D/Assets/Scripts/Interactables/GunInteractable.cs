@@ -8,9 +8,10 @@ public class GunInteractable : Interactable
 
     protected override void Interact(int id){
         Gun gunComponent = gun.GetComponent<Gun>();
-
-
-        character[id-1].gun.drop(character[id-1]);
+        
+        if(character[id-1].gun != null){
+            character[id-1].gun.drop(character[id-1]);
+        }
 
         gunComponent.pick(character[id-1]);
 

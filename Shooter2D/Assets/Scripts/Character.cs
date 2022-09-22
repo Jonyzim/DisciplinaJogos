@@ -43,32 +43,20 @@ public class Character : MonoBehaviour
         }
     }
 
-    public event Action<Vector2, int, int> onFire;
     public void Fire(Vector2 direction){
-        if(onFire != null){
-            onFire(direction, Strenght, Aim);
-        }
+        gun.Fire(direction, Strenght, Aim);
     }
 
-    public event Action onReleaseFire;
     public void ReleaseFire(){
-        if(onReleaseFire != null){
-            onReleaseFire();
-        }
+        gun.ReleaseFire();
     }
 
-    public event Action onReload;
+
     public void Reload(){
-        if(onReload != null){
-            onReload();
-        }
+        gun.Teste();
     }
-
-    public event Action onSwitchLight;
     public void SwitchLight(){
-        if(onSwitchLight != null){
-            onSwitchLight();
-        }
+        gun.SwitchFlashlight();
     }
 
 

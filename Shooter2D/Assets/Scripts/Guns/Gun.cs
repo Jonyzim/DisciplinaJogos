@@ -50,7 +50,7 @@ public abstract class Gun : MonoBehaviour
         gameObject.transform.parent = instance.transform;
     }
 
-    protected virtual void Fire(Vector2 direction, int strenght, int aim){
+    public virtual void Fire(Vector2 direction, int strenght, int aim){
         FireProps();
         cd = 1/rof;
         cur_magazine -= 1;
@@ -66,7 +66,7 @@ public abstract class Gun : MonoBehaviour
         bulletScript.SetVariables(_direction, strenght);
         bulletScript.SetPlayer(ownerId);
     }
-    protected abstract void ReleaseFire();
+    public abstract void ReleaseFire();
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
@@ -80,18 +80,11 @@ public abstract class Gun : MonoBehaviour
     {
         ownerId = character.character_id;
         print("Player " + ownerId + " got a " + gameObject.name);
-        character.onFire += Fire;
-        character.onReleaseFire += ReleaseFire;
-        character.onReload += Teste;
-        character.onSwitchLight += SwitchFlashlight;
     }
 
     public void RemoveOwner(Character character){
+        print("Player " + ownerId + " dropped a " + gameObject.name);
         ownerId = -1;
-        character.onFire -= Fire;
-        character.onReleaseFire -= ReleaseFire;
-        character.onReload -= Teste;
-        character.onSwitchLight -= SwitchFlashlight;
     }
 
     protected virtual void Start()
@@ -101,10 +94,7 @@ public abstract class Gun : MonoBehaviour
         //Caso a arma já esteja equipada antes do jogo começar
         Character character = gameObject.GetComponentInParent<Character>();
         if(character != null){
-            SetOwner(character);
-
-            GameEvents.current.PickWeapon(ownerId, magazineSprite, backgroundSprite);
-            GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
+            pick(character);
         }
     }
 
@@ -136,7 +126,7 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    void Teste(){
+    public void Teste(){
         cur_magazine = 0;
     }
 }
