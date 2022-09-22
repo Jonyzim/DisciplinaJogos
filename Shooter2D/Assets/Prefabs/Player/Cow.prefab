@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcaddf27074e024490cdfa5354a8631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _character_id: 0
   gun: {fileID: 7103224928303296464}
   Health: 100
-  Strenght: 120
+  Strenght: 100
   Speed: 100
   Aim: 100
 --- !u!61 &4318612108955275971

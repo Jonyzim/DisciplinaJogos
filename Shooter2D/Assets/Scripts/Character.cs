@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int _character_id;
+    private int _character_id;
     public int character_id
     {
         get { return _character_id; }
