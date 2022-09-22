@@ -17,7 +17,7 @@ public class ProjectileShooter : MonoBehaviour
             GameObject obj=Instantiate(projectilePrefab, transf.position, Quaternion.identity);
             PhysicsBullet bullet =obj.GetComponent<PhysicsBullet>();
             if (bullet != null)
-                bullet.SetDirection(direction[i]);
+                bullet.SetVariables(direction[i], 100);
             i++;
         }
     }
