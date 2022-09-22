@@ -9,14 +9,17 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Character pawn;
 
+
+    [SerializeField] private GameObject HUDPrefab;
     //TEMPORARY
-    public GameObject CharacterPrefab;
+    
+    [SerializeField] private GameObject CharacterPrefab;
 
     private Camera cam;
     private Vector2 direction;
     private Vector2 movement = new Vector2(0, 0);
     private int score;
-    [SerializeField] private int playerId;
+    private int playerId;
     public int PlayerId{
         get {return playerId;}
     }
@@ -42,6 +45,8 @@ public class Player : MonoBehaviour
                 break;
             }
         }
+
+        Instantiate(HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(playerId);
 
         //TEMPORARY, Change to character selection instead
         Possess(Instantiate(CharacterPrefab).GetComponent<Character>());

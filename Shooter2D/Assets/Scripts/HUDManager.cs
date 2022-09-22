@@ -56,7 +56,7 @@ public class HUDManager : MonoBehaviour
                 isPaused = true;
                 thisPlayerPaused = true;
             }
-            else if (thisPlayerPaused)
+            else
             {
                 Time.timeScale = 1f;
                 pauseMenu.SetActive(false);
@@ -70,6 +70,36 @@ public class HUDManager : MonoBehaviour
         if(id == _id){
             score += n;
             ScoreText.text = score.ToString().PadLeft(10, '0');
+        }
+    }
+
+    public void SetupHUD(int _id){
+        id = _id;
+        RectTransform rectTransform = this.GetComponent<RectTransform>();
+
+        switch(id){
+            case 1:
+                rectTransform.anchorMin = new Vector2(0, 1);
+                rectTransform.anchorMax = new Vector2(0, 1);
+                rectTransform.anchoredPosition = new Vector2(0, 0);
+                break;
+            case 2:
+                rectTransform.anchorMin = new Vector2(1, 1);
+                rectTransform.anchorMax = new Vector2(1, 1);
+                rectTransform.anchoredPosition = new Vector2(-350, 0);
+                break;
+
+            case 3:
+                rectTransform.anchorMin = new Vector2(0, 0);
+                rectTransform.anchorMax = new Vector2(0, 0);
+                rectTransform.anchoredPosition = new Vector2(0, 150);
+                break;
+            case 4:
+                rectTransform.anchorMin = new Vector2(1, 0);
+                rectTransform.anchorMax = new Vector2(1, 0);
+                rectTransform.anchoredPosition = new Vector2(-350, 150);
+                break;
+
         }
     }
 }
