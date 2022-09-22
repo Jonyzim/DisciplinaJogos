@@ -116,7 +116,7 @@ public abstract class Gun : MonoBehaviour
         if(!(cur_magazine == magazine)){
             ReloadProps(reloadTime);
             reloadProgress += Time.deltaTime;
-            GameEvents.current.ReloadUpdate(1, reloadProgress/reloadTime);
+            GameEvents.current.ReloadUpdate(ownerId, reloadProgress/reloadTime);
             if(reloadProgress > reloadTime){
                 reloadProgress = 0;
                 cur_magazine = magazine;

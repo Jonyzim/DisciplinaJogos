@@ -215,6 +215,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5a7c03e3-b6b8-4a36-b427-f5bebc07694f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e60b8ee8-95dd-48c3-823a-01c0994d50ac",
                     "path": "<Keyboard>/t",
                     "interactions": "",
@@ -231,6 +242,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc25c880-d36b-40ad-a75b-99e4f3c88c94",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone,NormalizeVector2",
+                    "groups": "Controller",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false

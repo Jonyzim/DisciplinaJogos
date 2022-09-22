@@ -124,11 +124,15 @@ public class Player : MonoBehaviour
         }
     }
     public void OnAim(InputAction.CallbackContext context){
+        Vector2 newDirection;
         if(context.control.device.name == "Mouse"){
-            direction = ((Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>()) - (Vector2)pawn.transform.position).normalized;
+            newDirection = ((Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>()) - (Vector2)pawn.transform.position).normalized;
         }
         else{
-            direction = context.ReadValue<Vector2>();
+            newDirection = context.ReadValue<Vector2>();
+        }
+        if(newDirection != Vector2.zero){
+            direction = newDirection;
         }
         pawn.ControlRotation(direction);
     }
