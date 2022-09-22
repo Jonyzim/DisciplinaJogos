@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject CharacterPrefab;
 
     private Camera cam;
-    private Vector2 direction;
+    private Vector2 direction = new Vector2(1, 0);
     private Vector2 movement = new Vector2(0, 0);
     private int score;
     private int playerId;

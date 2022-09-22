@@ -37,8 +37,8 @@ public abstract class Gun : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         character.gun = this;
-        GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
-        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+        GameEvents.current.PickWeapon(ownerId, magazineSprite, backgroundSprite);
+        GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
     }
     public void drop(Character character){
         RemoveOwner(character);
@@ -54,7 +54,7 @@ public abstract class Gun : MonoBehaviour
         FireProps();
         cd = 1/rof;
         cur_magazine -= 1;
-        GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+        GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
 
         //Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (spread * (100/((aim*2)-100))) : (spread + 100 - aim);
@@ -103,8 +103,8 @@ public abstract class Gun : MonoBehaviour
         if(character != null){
             SetOwner(character);
 
-            GameEvents.current.PickWeapon(1, magazineSprite, backgroundSprite);
-            GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+            GameEvents.current.PickWeapon(ownerId, magazineSprite, backgroundSprite);
+            GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
         }
     }
 
@@ -130,8 +130,8 @@ public abstract class Gun : MonoBehaviour
             if(reloadProgress > reloadTime){
                 reloadProgress = 0;
                 cur_magazine = magazine;
-                GameEvents.current.ReloadUpdate(1, 0);
-                GameEvents.current.MagazineUpdate(1, (float)cur_magazine/(float)magazine);
+                GameEvents.current.ReloadUpdate(ownerId, 0);
+                GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
             }
         }
     }
