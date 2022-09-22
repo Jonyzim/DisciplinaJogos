@@ -66,6 +66,7 @@ public abstract class Gun : MonoBehaviour
         bulletScript.SetVariables(_direction, strenght);
         bulletScript.SetPlayer(ownerId);
     }
+    protected abstract void ReleaseFire();
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
@@ -80,6 +81,7 @@ public abstract class Gun : MonoBehaviour
         ownerId = character.character_id;
         print("Player " + ownerId + " got a " + gameObject.name);
         character.onFire += Fire;
+        character.onReleaseFire += ReleaseFire;
         character.onReload += Teste;
         character.onSwitchLight += SwitchFlashlight;
     }
@@ -87,6 +89,7 @@ public abstract class Gun : MonoBehaviour
     public void RemoveOwner(Character character){
         ownerId = -1;
         character.onFire -= Fire;
+        character.onReleaseFire -= ReleaseFire;
         character.onReload -= Teste;
         character.onSwitchLight -= SwitchFlashlight;
     }

@@ -12,6 +12,10 @@ public abstract class AutomaticGun : Gun
         }
     }
 
+    protected override void ReleaseFire()
+    {
+    }
+
     protected abstract override void ReloadProps(float time);
 
     // Start is called before the first frame update

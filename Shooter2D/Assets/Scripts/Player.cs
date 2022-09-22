@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
         get {return playerId;}
     }
 
+    private bool _isFiring = false;
+
 
     void Possess(Character character)
     {
@@ -79,8 +81,12 @@ public class Player : MonoBehaviour
     }
     public void OnFire(InputAction.CallbackContext context){
         if(context.performed){
-            pawn.Fire(direction);
+            _isFiring = true;
         }
+        else if(context.canceled){
+            _isFiring = false;
+        }
+        Debug.Log(context.ReadValueAsButton());
     }
     public void OnReload(InputAction.CallbackContext context){
         if(context.performed){
@@ -105,5 +111,11 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         pawn.Move(movement);
+        if(_isFiring){
+            pawn.Fire(direction);
+        }
+        else{
+            pawn.ReleaseFire();
+        }
     }
 }

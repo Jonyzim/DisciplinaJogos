@@ -44,6 +44,13 @@ public class Character : MonoBehaviour
         }
     }
 
+    public event Action onReleaseFire;
+    public void ReleaseFire(){
+        if(onReleaseFire != null){
+            onReleaseFire();
+        }
+    }
+
     public event Action onReload;
     public void Reload(){
         if(onReload != null){
