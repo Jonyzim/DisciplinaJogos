@@ -19,6 +19,9 @@ public class SetCinemachineTargetGroup : MonoBehaviour
         if(vcam.m_Follow == null){
             vcam.m_Follow = character.gameObject.transform;
         }
+        else{
+            GameEvents.current.isMultiplayer = true;
+        }
         group.AddMember(character.gameObject.transform, 1, 1);
     }
 }
