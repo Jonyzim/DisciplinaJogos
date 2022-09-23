@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2806869754087728481}
   - component: {fileID: 3532206035116839835}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d0fedc3f31dc540ab325f0d51adfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 75
+  Speed: 25
   Lifetime: 2
   DamageCaused: 7
   OwnerId: 0
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2697124188063697444}
   - component: {fileID: 1628040748234195573}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

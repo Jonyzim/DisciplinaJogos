@@ -29,7 +29,9 @@ public class Character : MonoBehaviour
         }
         else
             _characterId = 0;
-        EquippedGun.SetOwner(this);
+        if(EquippedGun != null){
+            EquippedGun.SetOwner(this);
+        }
     }
 
 
@@ -83,7 +85,9 @@ public class Character : MonoBehaviour
             angle = -Vector2.SignedAngle(direction, Vector2.left);
         }
 
-        EquippedGun.transform.rotation = Quaternion.Euler(0, 0, angle);
+        if(EquippedGun != null){
+            EquippedGun.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     //Unity Methods

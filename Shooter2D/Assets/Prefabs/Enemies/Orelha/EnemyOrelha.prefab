@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitFxPrefab: {fileID: 1578568067691224791, guid: 7cd045d191ce2bf4b8197149d19f497e, type: 3}
+  HitFxPrefab: {fileID: 5179699964768657960, guid: ef50e7115620c6a419e5a9c10bfceb48, type: 3}
   DeathFxPrefab: {fileID: 9155610215595514981, guid: 71c5d40763d47524eb73296682d7f446, type: 3}
   _spriteRenderer: {fileID: 3946848180864773164}
   _fxSpeed: 0.05
@@ -211,7 +211,7 @@ MonoBehaviour:
   - {x: -0.4755969, y: 1.5139983, z: 0}
   m_ShapePathHash: 842048781
   m_Mesh: {fileID: 0}
-  m_InstanceId: 76626
+  m_InstanceId: 80870
 --- !u!114 &3946848180864773160
 MonoBehaviour:
   m_ObjectHideFlags: 0
