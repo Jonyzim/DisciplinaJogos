@@ -7,36 +7,31 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-
-    AudioSource test;
-    private int _character_id;
-    public int character_id
-    {
-        get { return _character_id; }
-    }
-
-    Rigidbody2D body;
-    private float baseSpeed = 10;
-    [SerializeField] public Gun gun;
-
-
-    public void SetPlayerControlling(Player p)
-    {
-        if (p != null)
-        {
-            _character_id = p.PlayerId;
-        }
-        else
-            _character_id = 0;
-        gun.SetOwner(this);
-    }
-
+    public Gun EquippedGun;
 
     [Header("Status")]
     [Range(80, 120)] public int Health;
     [Range(80, 120)] public int Strenght;
     [Range(80, 120)] public int Speed;
     [Range(80, 120)] public int Aim;
+    public int CharacterId => _characterId;
+    private int _characterId;
+
+    private Rigidbody2D _body;
+    private float _baseSpeed = 10;
+
+    //Methods
+    public void SetPlayerControlling(Player p)
+    {
+        if (p != null)
+        {
+            _characterId = p.PlayerId;
+        }
+        else
+            _characterId = 0;
+        EquippedGun.SetOwner(this);
+    }
+
 
     //Custom Events
     public event Action<int> onInteract;
@@ -48,41 +43,31 @@ public class Character : MonoBehaviour
         }
     }
 
+    //Methods
     public void Fire(Vector2 direction)
     {
-        gun.Fire(direction, Strenght, Aim);
+        EquippedGun.Fire(direction, Strenght, Aim);
     }
 
     public void ReleaseFire()
     {
-        gun.ReleaseFire();
+        EquippedGun.ReleaseFire();
     }
 
 
     public void Reload()
     {
-        gun.Reload();
+        EquippedGun.Reload();
     }
+
     public void SwitchLight()
     {
-        gun.SwitchFlashlight();
+        EquippedGun.SwitchFlashlight();
     }
 
-
-    //Engine Methods
-    void Start()
-    {
-        body = GetComponent<Rigidbody2D>();
-    }
-    void Update()
-    {
-        //ControlRotation();
-    }
-
-    //Methods
     public void Move(Vector2 velocity)
     {
-        body.velocity = velocity * baseSpeed * (Speed / 100);
+        _body.velocity = velocity * _baseSpeed * (Speed / 100);
     }
     public void ControlRotation(Vector2 direction)
     {
@@ -98,7 +83,14 @@ public class Character : MonoBehaviour
             angle = -Vector2.SignedAngle(direction, Vector2.left);
         }
 
-        gun.transform.rotation = Quaternion.Euler(0, 0, angle);
+        EquippedGun.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+
+    //Unity Methods
+    void Start()
+    {
+        _body = GetComponent<Rigidbody2D>();
+    }
+
 
 }

@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
     protected virtual void AddPlayerScore(int n)
     {
         if (OwnerId != -1)
-            GameEvents.s_instance.ScoreUpdate(OwnerId, n);
+            GameEvents.s_Instance.ScoreUpdate(OwnerId, n);
     }
     protected virtual void DamageOnEnemy(Enemy enemy, Vector3 pos)
     {

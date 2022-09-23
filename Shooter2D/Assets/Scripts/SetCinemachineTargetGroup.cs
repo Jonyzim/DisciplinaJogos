@@ -6,14 +6,14 @@ using Cinemachine;
 
 public class SetCinemachineTargetGroup : MonoBehaviour
 {
+    public static SetCinemachineTargetGroup s_Instance => s_instance;
+    private static SetCinemachineTargetGroup s_instance;
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private CinemachineTargetGroup _group;
-    static private SetCinemachineTargetGroup instance;
-    static public SetCinemachineTargetGroup Instance => instance;
 
     void Awake()
     {
-        instance = this;
+        s_instance = this;
     }
 
     public void AddCharacter(Character character)
@@ -24,7 +24,7 @@ public class SetCinemachineTargetGroup : MonoBehaviour
         }
         else
         {
-            GameEvents.s_instance.isMultiplayer = true;
+            GameEvents.s_Instance.IsMultiplayer = true;
         }
         _group.AddMember(character.gameObject.transform, 1, 1);
     }

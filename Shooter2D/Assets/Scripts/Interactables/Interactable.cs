@@ -4,13 +4,16 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected List<Character> character = new List<Character>(4);
+    protected List<Character> CharacterList = new List<Character>(4);
 
+    protected abstract void Interact(int id);
+
+    //Unity Methods
     void Start()
     {
         for (int i = 0; i < 4; i++)
         {
-            character.Add(null);
+            CharacterList.Add(null);
         }
     }
 
@@ -20,8 +23,8 @@ public abstract class Interactable : MonoBehaviour
         if (other.gameObject.tag == "Character")
         {
             Character _character = other.gameObject.GetComponent<Character>();
-            character.Insert(_character.character_id - 1, _character);
-            character[_character.character_id - 1].onInteract += Interact;
+            CharacterList.Insert(_character.CharacterId - 1, _character);
+            CharacterList[_character.CharacterId - 1].onInteract += Interact;
         }
     }
 
@@ -32,8 +35,7 @@ public abstract class Interactable : MonoBehaviour
             Character _character = other.gameObject.GetComponent<Character>();
 
             _character.onInteract -= Interact;
-            character.RemoveAt(_character.character_id - 1);
+            CharacterList.RemoveAt(_character.CharacterId - 1);
         }
     }
-    protected abstract void Interact(int id);
 }

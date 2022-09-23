@@ -4,42 +4,41 @@ using UnityEngine;
 
 public class PlotInteractable : Interactable
 {
-    Plant plant;
-    public GameObject tempPrefab; //Substituir pela seleção futuramente
-    [SerializeField] private SpriteRenderer defaultRenderer;
+    public GameObject TempPrefab; //Substituir pela seleção futuramente
+    [SerializeField] private SpriteRenderer _defaultRenderer;
+    private Plant _plant;
 
     protected override void Interact(int id)
     {
-        Debug.Log("interacted");
-        if (plant == null)
+        if (_plant == null)
         {
-            GameObject plantPrefab = tempPrefab;
+            GameObject plantPrefab = TempPrefab;
             //Seleção de plantas entra aqui
 
             GameObject plantObject = Instantiate(plantPrefab, transform);
             SetPlant(plantObject.GetComponent<Plant>());
-            defaultRenderer.enabled = false;
+            _defaultRenderer.enabled = false;
         }
         else
         {
 
             //Caso a planta não esteja madura
-            if (plant.Growth < plant.GrowthTime)
+            if (_plant.Growth < _plant.GrowthTime)
             {
-                plant.waterPlant();
+                _plant.waterPlant();
             }
 
             else
             {
-                plant.Use(id);
-                defaultRenderer.enabled = true;
-                plant = null;
+                _plant.Use(id);
+                _defaultRenderer.enabled = true;
+                _plant = null;
             }
         }
     }
 
-    private void SetPlant(Plant _plant)
+    private void SetPlant(Plant plant)
     {
-        plant = _plant;
+        _plant = plant;
     }
 }

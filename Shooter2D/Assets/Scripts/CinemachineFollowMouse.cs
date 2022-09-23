@@ -6,18 +6,19 @@ using UnityEngine.InputSystem;
 
 public class CinemachineFollowMouse : MonoBehaviour
 {
-    public CinemachineCameraOffset cameraOffset;
-    public CinemachineTargetGroup targetGroup;
+    public CinemachineCameraOffset CameraOffset;
+    public CinemachineTargetGroup TargetGroup;
 
-    public float offsetMultiplier;
-    public float offsetSpeed;
+    public float OffsetMultiplier;
+    public float OffsetSpeed;
     public Vector2 MaxOffsetAmount;
-    private Camera cam;
-    private Vector2 offset;
+    private Camera _cam;
+    private Vector2 _offset;
+
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        _cam = Camera.main;
 
     }
 
@@ -25,20 +26,20 @@ public class CinemachineFollowMouse : MonoBehaviour
     void Update()
     {
 
-        if (GameEvents.s_instance.isMultiplayer)
+        if (GameEvents.s_Instance.IsMultiplayer)
         {
-            offset = targetGroup.gameObject.transform.position - cam.gameObject.transform.position;
+            _offset = TargetGroup.gameObject.transform.position - _cam.gameObject.transform.position;
         }
         //TODO add offset for singleplayer controller aiming
         else
         {
-            offset = (cam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - (new Vector3(0.5f, 0.5f, 0f))) * 2;
+            _offset = (_cam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - (new Vector3(0.5f, 0.5f, 0f))) * 2;
         }
 
-        offset = Vector2.Min(offset, MaxOffsetAmount);
-        offset = Vector2.Max(offset, -MaxOffsetAmount);
+        _offset = Vector2.Min(_offset, MaxOffsetAmount);
+        _offset = Vector2.Max(_offset, -MaxOffsetAmount);
 
-        Debug.Log(offset);
-        cameraOffset.m_Offset = Vector3.Lerp(cameraOffset.m_Offset, offset * offsetMultiplier, Time.deltaTime * offsetSpeed); ;
+        Debug.Log(_offset);
+        CameraOffset.m_Offset = Vector3.Lerp(CameraOffset.m_Offset, _offset * OffsetMultiplier, Time.deltaTime * OffsetSpeed); ;
     }
 }

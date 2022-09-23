@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents s_instance;
-    public bool isMultiplayer;
+    public static GameEvents s_Instance;
+    public bool IsMultiplayer;
 
     void Awake()
     {
-        s_instance = this;
+        s_Instance = this;
     }
 
     public event Action<int, Sprite, Sprite> OnPickWeapon;

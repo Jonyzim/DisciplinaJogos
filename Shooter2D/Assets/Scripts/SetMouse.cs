@@ -5,12 +5,12 @@ using static Constants;
 
 public class SetMouse : MonoBehaviour
 {
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    public Texture2D CursorTexture;
+    public CursorMode CursorMode = CursorMode.Auto;
+    public Vector2 HotSpot = Vector2.zero;
     void Start()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.SetCursor(CursorTexture, HotSpot, CursorMode);
         Screen.SetResolution(426, 240, true);
     }
 }

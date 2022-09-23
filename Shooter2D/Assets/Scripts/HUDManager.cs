@@ -7,82 +7,24 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    public int id;
+    public int Id;
     public Image MagazineSprite;
     public Image BackgroundSprite;
     public Image ReloadSprite;
     public TMP_Text ScoreText;
-    public int score;
-    [SerializeField] private GameObject pauseMenu;
-    static bool isPaused = false;
-    static public bool IsPaused => isPaused;
-    bool thisPlayerPaused = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        score = 0;
-        GameEvents.s_instance.OnPickWeapon += ChangeMagazine;
-        GameEvents.s_instance.OnMagazineUpdate += UpdateMagazine;
-        GameEvents.s_instance.OnReloadUpdate += UpdateReload;
-        GameEvents.s_instance.OnScoreUpdate += AddScore;
-        GameEvents.s_instance.OnPause += PauseGame;
-    }
+    public int Score;
+    public static bool s_IsPaused => isPaused;
+    [SerializeField] private GameObject _pauseMenu;
+    private static bool isPaused = false;
+    private bool _thisPlayerPaused = false;
 
-    private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite)
+    //Methods
+    public void SetupHUD(int id)
     {
-        if (id == _id)
-        {
-            MagazineSprite.sprite = _magazineSprite;
-            BackgroundSprite.sprite = _backgroundSprite;
-        }
-    }
-
-    private void UpdateMagazine(int _id, float fillAmount)
-    {
-        if (id == _id)
-            MagazineSprite.fillAmount = fillAmount;
-    }
-
-    private void UpdateReload(int _id, float fillAmount)
-    {
-        if (id == _id)
-            ReloadSprite.fillAmount = fillAmount;
-    }
-    public void PauseGame(int _id)
-    {
-        if (id == _id)
-        {
-            if (!isPaused)
-            {
-                Time.timeScale = 0f;
-                pauseMenu.SetActive(true);
-                isPaused = true;
-                thisPlayerPaused = true;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                pauseMenu.SetActive(false);
-                isPaused = false;
-                thisPlayerPaused = false;
-            }
-        }
-    }
-    public void AddScore(int _id, int n)
-    {
-        if (id == _id)
-        {
-            score += n;
-            ScoreText.text = score.ToString().PadLeft(10, '0');
-        }
-    }
-
-    public void SetupHUD(int _id)
-    {
-        id = _id;
+        Id = id;
         RectTransform rectTransform = this.GetComponent<RectTransform>();
 
-        switch (id)
+        switch (Id)
         {
             case 1:
                 rectTransform.anchorMin = new Vector2(0, 1);
@@ -107,5 +49,66 @@ public class HUDManager : MonoBehaviour
                 break;
 
         }
+    }
+    
+    private void ChangeMagazine(int id, Sprite magazineSprite, Sprite backgroundSprite)
+    {
+        if (Id == id)
+        {
+            MagazineSprite.sprite = magazineSprite;
+            BackgroundSprite.sprite = backgroundSprite;
+        }
+    }
+
+    private void UpdateMagazine(int id, float fillAmount)
+    {
+        if (Id == id)
+            MagazineSprite.fillAmount = fillAmount;
+    }
+
+    private void UpdateReload(int id, float fillAmount)
+    {
+        if (Id == id)
+            ReloadSprite.fillAmount = fillAmount;
+    }
+    private void PauseGame(int id)
+    {
+        if (Id == id)
+        {
+            if (!isPaused)
+            {
+                Time.timeScale = 0f;
+                _pauseMenu.SetActive(true);
+                isPaused = true;
+                _thisPlayerPaused = true;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                _pauseMenu.SetActive(false);
+                isPaused = false;
+                _thisPlayerPaused = false;
+            }
+        }
+    }
+    private void AddScore(int id, int n)
+    {
+        if (Id == id)
+        {
+            Score += n;
+            ScoreText.text = Score.ToString().PadLeft(10, '0');
+        }
+    }
+
+
+    //Unity Methods
+    void Start()
+    {
+        Score = 0;
+        GameEvents.s_Instance.OnPickWeapon += ChangeMagazine;
+        GameEvents.s_Instance.OnMagazineUpdate += UpdateMagazine;
+        GameEvents.s_Instance.OnReloadUpdate += UpdateReload;
+        GameEvents.s_Instance.OnScoreUpdate += AddScore;
+        GameEvents.s_Instance.OnPause += PauseGame;
     }
 }

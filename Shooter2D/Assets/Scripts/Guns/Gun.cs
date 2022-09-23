@@ -37,9 +37,9 @@ public abstract class Gun : MonoBehaviour
         transform.parent = character.gameObject.transform;
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
-        character.gun = this;
-        GameEvents.s_instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
-        GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+        character.EquippedGun = this;
+        GameEvents.s_Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
+        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
     }
     public void Drop(Character character)
     {
@@ -47,7 +47,7 @@ public abstract class Gun : MonoBehaviour
         GameObject instance = Instantiate(_interactableReference);
 
 
-        instance.GetComponent<GunInteractable>().gun = gameObject;
+        instance.GetComponent<GunInteractable>().Gun = gameObject;
 
         gameObject.transform.parent = instance.transform;
     }
@@ -57,7 +57,7 @@ public abstract class Gun : MonoBehaviour
         FireProps();
         cd = 1 / Rof;
         CurMagazine -= 1;
-        GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
 
         //Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
@@ -78,7 +78,7 @@ public abstract class Gun : MonoBehaviour
     }
     public void SetOwner(Character character)
     {
-        OwnerId = character.character_id;
+        OwnerId = character.CharacterId;
         print("Player " + OwnerId + " got a " + gameObject.name);
     }
     public void RemoveOwner(Character character)
@@ -106,13 +106,13 @@ public abstract class Gun : MonoBehaviour
         {
             ReloadProps(_reloadTime);
             _reloadProgress += Time.deltaTime;
-            GameEvents.s_instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+            GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
             if (_reloadProgress > _reloadTime)
             {
                 _reloadProgress = 0;
                 CurMagazine = _magazine;
-                GameEvents.s_instance.ReloadUpdate(OwnerId, 0);
-                GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+                GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
+                GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
             }
         }
     }

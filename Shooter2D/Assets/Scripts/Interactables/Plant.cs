@@ -4,48 +4,41 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    [SerializeField] private int growthTime;
-    [SerializeField] private Sprite[] plantSprites;
-    [SerializeField] private Sprite[] groundSprites;
-    [SerializeField] private SpriteRenderer plantRenderer;
-    [SerializeField] private SpriteRenderer groundRenderer;
-    private bool isWatered;
+    public int GrowthTime => _growthTime;
+    public int Growth => _growth;
+    [SerializeField] private int _growthTime;
+    [SerializeField] private Sprite[] _plantSprites;
+    [SerializeField] private Sprite[] _groundSprites;
+    [SerializeField] private SpriteRenderer _plantRenderer;
+    [SerializeField] private SpriteRenderer _groundRenderer;
+    private bool _isWatered;
+    private int _growth;
 
-    public int GrowthTime
-    {
-        get { return growthTime; }
-    }
-
-    private int growth;
-    public int Growth
-    {
-        get { return growth; }
-    }
 
     void Start()
     {
-        growth = 1;
-        plantRenderer.sprite = plantSprites[growth - 1];
-        GameEvents.s_instance.OnWaveChange += GrowPlant;
-        isWatered = false;
+        _growth = 1;
+        _plantRenderer.sprite = _plantSprites[_growth - 1];
+        GameEvents.s_Instance.OnWaveChange += GrowPlant;
+        _isWatered = false;
     }
 
     private void GrowPlant()
     {
 
-        if (growth < GrowthTime && isWatered)
+        if (_growth < GrowthTime && _isWatered)
         {
-            isWatered = false;
-            groundRenderer.sprite = groundSprites[0];
-            growth += 1;
-            plantRenderer.sprite = plantSprites[growth - 1];
+            _isWatered = false;
+            _groundRenderer.sprite = _groundSprites[0];
+            _growth += 1;
+            _plantRenderer.sprite = _plantSprites[_growth - 1];
         }
     }
 
     public void waterPlant()
     {
-        groundRenderer.sprite = groundSprites[1];
-        isWatered = true;
+        _groundRenderer.sprite = _groundSprites[1];
+        _isWatered = true;
     }
 
     public void Use(int id)

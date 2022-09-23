@@ -5,28 +5,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
-    public static Player[] activePlayers = new Player[4];
+    public static Player[] s_ActivePlayers = new Player[4];
 
-    [SerializeField] private Character pawn;
-    public Character Pawn => pawn;
+    public Character Pawn => _pawn;
+    public int PlayerId => _playerId;
 
 
-    [SerializeField] private GameObject HUDPrefab;
+    [SerializeField] private GameObject _HUDPrefab;
+
     //TEMPORARY
+    [SerializeField] private GameObject _characterPrefab;
 
-    [SerializeField] private GameObject CharacterPrefab;
-
-    private Camera cam;
-    private Vector2 direction = new Vector2(1, 0);
-    private Vector2 movement = new Vector2(0, 0);
-    private int score;
-    private Vector2 mousePos;
+    [SerializeField] private Character _pawn;
+    private Camera _cam;
+    private Vector2 _direction = new Vector2(1, 0);
+    private Vector2 _movement = new Vector2(0, 0);
+    private int _score;
+    private Vector2 _mousePos;
     private bool _isMouse;
-    private int playerId;
-    public int PlayerId
-    {
-        get { return playerId; }
-    }
+    private int _playerId;
 
     private bool _isFiring = false;
 
@@ -35,31 +32,12 @@ public class Player : MonoBehaviour
     {
         if (character != null)
         {
-            pawn = character;
-            pawn.SetPlayerControlling(this);
-            SetCinemachineTargetGroup.Instance.AddCharacter(pawn);
+            _pawn = character;
+            _pawn.SetPlayerControlling(this);
+            SetCinemachineTargetGroup.s_Instance.AddCharacter(_pawn);
         }
     }
 
-    void Start()
-    {
-        cam = Camera.main;
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (activePlayers[i] == null)
-            {
-                playerId = i + 1;
-                activePlayers[i] = this;
-                break;
-            }
-        }
-
-        Instantiate(HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(playerId);
-
-        //TEMPORARY, Change to character selection instead
-        Possess(Instantiate(CharacterPrefab).GetComponent<Character>());
-    }
 
     // ---------------------- Old Input System --------------------------
     //Consertar o centro para ser o centro da arma
@@ -87,9 +65,6 @@ public class Player : MonoBehaviour
     //     if(Input.GetButtonDown("Reload")){
     //         pawn.Reload();
     //     }
-
-
-    //     //!Temporary
     //     if(Input.GetButtonDown("Fire3")){
     //         pawn.SwitchLight();
     //         //GameEvents.current.WaveChange();
@@ -102,13 +77,13 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movement = context.ReadValue<Vector2>();
+        _movement = context.ReadValue<Vector2>();
     }
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            GameEvents.s_instance.Pause(PlayerId);
+            GameEvents.s_Instance.Pause(PlayerId);
         }
     }
     public void OnFire(InputAction.CallbackContext context)
@@ -126,21 +101,21 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            pawn.Reload();
+            _pawn.Reload();
         }
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            pawn.Interact(pawn.character_id);
+            _pawn.Interact(PlayerId);
         }
     }
     public void OnFlashLight(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            pawn.SwitchLight();
+            _pawn.SwitchLight();
         }
     }
     public void OnAim(InputAction.CallbackContext context)
@@ -149,8 +124,8 @@ public class Player : MonoBehaviour
         if (context.control.device.name == "Mouse")
         {
             _isMouse = true;
-            mousePos = (Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
-            newDirection = (mousePos - ((Vector2)pawn.transform.position)).normalized;
+            _mousePos = (Vector2)_cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
+            newDirection = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
         }
         else
         {
@@ -160,36 +135,55 @@ public class Player : MonoBehaviour
 
         if (newDirection != Vector2.zero)
         {
-            direction = newDirection;
+            _direction = newDirection;
         }
     }
 
+    //Unity Methods
+    void Start()
+    {
+        _cam = Camera.main;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (s_ActivePlayers[i] == null)
+            {
+                _playerId = i + 1;
+                s_ActivePlayers[i] = this;
+                break;
+            }
+        }
+
+        Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(_playerId);
+
+        //TEMPORARY, Change to character selection instead
+        Possess(Instantiate(_characterPrefab).GetComponent<Character>());
+    }
     void Update()
     {
 
         //Updates camera even with a still mouse
         if (_isMouse)
         {
-            direction = (mousePos - ((Vector2)pawn.transform.position)).normalized;
+            _direction = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
         }
-        pawn.ControlRotation(direction);
+        _pawn.ControlRotation(_direction);
     }
     void FixedUpdate()
     {
-        pawn.Move(movement);
+        _pawn.Move(_movement);
         if (_isFiring)
         {
-            pawn.Fire(direction);
+            _pawn.Fire(_direction);
         }
         else
         {
-            pawn.ReleaseFire();
+            _pawn.ReleaseFire();
         }
     }
-
     void OnDestroy()
     {
-        pawn.SetPlayerControlling(null);
-        activePlayers[playerId - 1] = null;
+        _pawn.SetPlayerControlling(null);
+        s_ActivePlayers[_playerId - 1] = null;
     }
 }
