@@ -230,7 +230,7 @@ MonoBehaviour:
   _direction:
   - {x: -1, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
-  _projectilePrefab: {fileID: 0}
+  _projectilePrefab: {fileID: 2306244708848214752, guid: af06794d590931847b91d594d2b8d015, type: 3}
 --- !u!95 &3946848180864773163
 Animator:
   serializedVersion: 3
