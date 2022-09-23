@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static Player[] activePlayers = new Player[4];
 
     [SerializeField] private Character pawn;
+    public Character Pawn => pawn;
 
 
     [SerializeField] private GameObject HUDPrefab;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private Vector2 movement = new Vector2(0, 0);
     private int score;
     private Vector2 mousePos;
+    private bool _isMouse;
     private int playerId;
     public int PlayerId{
         get {return playerId;}
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         if(character != null){
             pawn = character;
             pawn.SetPlayerControlling(this);
+            SetCinemachineTargetGroup.Instance.AddCharacter(pawn);
         }
     }
 
@@ -51,7 +54,6 @@ public class Player : MonoBehaviour
 
         //TEMPORARY, Change to character selection instead
         Possess(Instantiate(CharacterPrefab).GetComponent<Character>());
-
     }
 
     // ---------------------- Old Input System --------------------------
@@ -127,12 +129,15 @@ public class Player : MonoBehaviour
     public void OnAim(InputAction.CallbackContext context){
         Vector2 newDirection;
         if(context.control.device.name == "Mouse"){
+            _isMouse = true;
             mousePos = (Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
             newDirection = (mousePos - ((Vector2)pawn.transform.position)).normalized;
         }
         else{
+            _isMouse = false;
             newDirection = context.ReadValue<Vector2>();
         }
+
         if(newDirection != Vector2.zero){
             direction = newDirection;
         }
@@ -141,7 +146,7 @@ public class Player : MonoBehaviour
     void Update(){
 
         //Updates camera even with a still mouse
-        if(mousePos != null){
+        if(_isMouse){
             direction = (mousePos - ((Vector2)pawn.transform.position)).normalized;    
         }
         pawn.ControlRotation(direction);
