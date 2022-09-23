@@ -11,25 +11,30 @@ public class Plant : MonoBehaviour
     [SerializeField] private SpriteRenderer groundRenderer;
     private bool isWatered;
 
-    public int GrowthTime{
-        get {return growthTime;}
+    public int GrowthTime
+    {
+        get { return growthTime; }
     }
 
     private int growth;
-    public int Growth{
-        get {return growth;}
+    public int Growth
+    {
+        get { return growth; }
     }
 
-    void Start(){
+    void Start()
+    {
         growth = 1;
         plantRenderer.sprite = plantSprites[growth - 1];
-        GameEvents.current.onWaveChange += GrowPlant;
+        GameEvents.s_instance.OnWaveChange += GrowPlant;
         isWatered = false;
     }
 
-    private void GrowPlant(){
+    private void GrowPlant()
+    {
 
-        if(growth < GrowthTime && isWatered){
+        if (growth < GrowthTime && isWatered)
+        {
             isWatered = false;
             groundRenderer.sprite = groundSprites[0];
             growth += 1;
@@ -37,12 +42,14 @@ public class Plant : MonoBehaviour
         }
     }
 
-    public void waterPlant(){
+    public void waterPlant()
+    {
         groundRenderer.sprite = groundSprites[1];
         isWatered = true;
     }
 
-    public void Use(int id){
+    public void Use(int id)
+    {
 
         Destroy(gameObject);
     }

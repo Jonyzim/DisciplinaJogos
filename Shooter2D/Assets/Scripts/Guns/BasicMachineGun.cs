@@ -8,7 +8,8 @@ public class BasicMachineGun : AutomaticGun
     {
         //Inserir animação, sons e etc do tiro
     }
-    protected override void ReloadProps(float time){
+    protected override void ReloadProps(float time)
+    {
         //Inserir animação, sons e etc do reload
     }
 

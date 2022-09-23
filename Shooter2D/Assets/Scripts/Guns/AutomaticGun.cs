@@ -6,8 +6,10 @@ public abstract class AutomaticGun : Gun
 {
     //[Header("AutomaticSpecifics")]
 
-    public override void Fire(Vector2 direction, int strenght, int aim){
-        if(cd <= 0 && cur_magazine > 0){
+    public override void Fire(Vector2 direction, int strenght, int aim)
+    {
+        if (cd <= 0 && curMagazine > 0)
+        {
             base.Fire(direction, strenght, aim);
         }
     }

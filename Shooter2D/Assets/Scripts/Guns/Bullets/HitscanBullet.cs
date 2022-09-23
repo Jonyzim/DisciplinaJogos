@@ -12,22 +12,25 @@ public class HitscanBullet : Bullet
     [SerializeField] LayerMask ignoreLayer;
 
 
-    public override void SetVariables(Vector2 _direction, int strenght){
+    public override void SetVariables(Vector2 _direction, int strenght)
+    {
         base.SetVariables(_direction, strenght);
         Vector2 position;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach, ~ignoreLayer);
 
-        if(hitInfo.collider != null){
+        if (hitInfo.collider != null)
+        {
             position = hitInfo.point;
 
             Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-            if(enemy != null && !enemy.IsDead)
+            if (enemy != null && !enemy.IsDead)
             {
-                DamageOnEnemy(enemy,position);
+                DamageOnEnemy(enemy, position);
             }
         }
-        else{
+        else
+        {
             position = transform.position + direction * reach;
         }
 
@@ -37,7 +40,7 @@ public class HitscanBullet : Bullet
         particles.gameObject.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction));
 
         Destroy(particles.gameObject, 2);
-        transform.position = new Vector3(position.x, position.y,0);
+        transform.position = new Vector3(position.x, position.y, 0);
     }
 
 }

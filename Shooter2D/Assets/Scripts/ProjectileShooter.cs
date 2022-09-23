@@ -12,10 +12,10 @@ public class ProjectileShooter : MonoBehaviour
     public void Shoot()
     {
         int i = 0;
-        foreach(Transform transf in spawnPos)
+        foreach (Transform transf in spawnPos)
         {
-            GameObject obj=Instantiate(projectilePrefab, transf.position, Quaternion.identity);
-            PhysicsBullet bullet =obj.GetComponent<PhysicsBullet>();
+            GameObject obj = Instantiate(projectilePrefab, transf.position, Quaternion.identity);
+            PhysicsBullet bullet = obj.GetComponent<PhysicsBullet>();
             if (bullet != null)
                 bullet.SetVariables(direction[i], 100);
             i++;

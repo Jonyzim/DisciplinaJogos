@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject HUDPrefab;
     //TEMPORARY
-    
+
     [SerializeField] private GameObject CharacterPrefab;
 
     private Camera cam;
@@ -23,8 +23,9 @@ public class Player : MonoBehaviour
     private Vector2 mousePos;
     private bool _isMouse;
     private int playerId;
-    public int PlayerId{
-        get {return playerId;}
+    public int PlayerId
+    {
+        get { return playerId; }
     }
 
     private bool _isFiring = false;
@@ -32,19 +33,23 @@ public class Player : MonoBehaviour
 
     public void Possess(Character character)
     {
-        if(character != null){
+        if (character != null)
+        {
             pawn = character;
             pawn.SetPlayerControlling(this);
             SetCinemachineTargetGroup.Instance.AddCharacter(pawn);
         }
     }
 
-    void Start(){
+    void Start()
+    {
         cam = Camera.main;
 
-        for(int i = 0; i < 4; i++){
-            if(activePlayers[i] == null){
-                playerId = i+1;
+        for (int i = 0; i < 4; i++)
+        {
+            if (activePlayers[i] == null)
+            {
+                playerId = i + 1;
                 activePlayers[i] = this;
                 break;
             }
@@ -95,75 +100,96 @@ public class Player : MonoBehaviour
     // }
     // ----------------------------------------------------------------------
 
-    public void OnMove(InputAction.CallbackContext context){
+    public void OnMove(InputAction.CallbackContext context)
+    {
         movement = context.ReadValue<Vector2>();
     }
-    public void OnPause(InputAction.CallbackContext context){
-        if(context.performed){
-            GameEvents.current.Pause(PlayerId);
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameEvents.s_instance.Pause(PlayerId);
         }
     }
-    public void OnFire(InputAction.CallbackContext context){
-        if(context.performed){
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             _isFiring = true;
         }
-        else if(context.canceled){
+        else if (context.canceled)
+        {
             _isFiring = false;
         }
     }
-    public void OnReload(InputAction.CallbackContext context){
-        if(context.performed){
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             pawn.Reload();
         }
     }
-    public void OnInteract(InputAction.CallbackContext context){
-        if(context.performed){
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             pawn.Interact(pawn.character_id);
         }
     }
-    public void OnFlashLight(InputAction.CallbackContext context){
-        if(context.performed){
+    public void OnFlashLight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             pawn.SwitchLight();
         }
     }
-    public void OnAim(InputAction.CallbackContext context){
+    public void OnAim(InputAction.CallbackContext context)
+    {
         Vector2 newDirection;
-        if(context.control.device.name == "Mouse"){
+        if (context.control.device.name == "Mouse")
+        {
             _isMouse = true;
             mousePos = (Vector2)cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
             newDirection = (mousePos - ((Vector2)pawn.transform.position)).normalized;
         }
-        else{
+        else
+        {
             _isMouse = false;
             newDirection = context.ReadValue<Vector2>();
         }
 
-        if(newDirection != Vector2.zero){
+        if (newDirection != Vector2.zero)
+        {
             direction = newDirection;
         }
     }
 
-    void Update(){
+    void Update()
+    {
 
         //Updates camera even with a still mouse
-        if(_isMouse){
-            direction = (mousePos - ((Vector2)pawn.transform.position)).normalized;    
+        if (_isMouse)
+        {
+            direction = (mousePos - ((Vector2)pawn.transform.position)).normalized;
         }
         pawn.ControlRotation(direction);
     }
     void FixedUpdate()
     {
         pawn.Move(movement);
-        if(_isFiring){
+        if (_isFiring)
+        {
             pawn.Fire(direction);
         }
-        else{
+        else
+        {
             pawn.ReleaseFire();
         }
     }
 
-    void OnDestroy(){
+    void OnDestroy()
+    {
         pawn.SetPlayerControlling(null);
-        activePlayers[playerId-1] = null;
+        activePlayers[playerId - 1] = null;
     }
 }

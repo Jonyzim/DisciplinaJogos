@@ -21,28 +21,31 @@ public class HUDManager : MonoBehaviour
     void Start()
     {
         score = 0;
-        GameEvents.current.onPickWeapon += ChangeMagazine;
-        GameEvents.current.onMagazineUpdate += UpdateMagazine;
-        GameEvents.current.onReloadUpdate += UpdateReload;
-        GameEvents.current.onScoreUpdate += AddScore;
-        GameEvents.current.onPause += PauseGame;
+        GameEvents.s_instance.OnPickWeapon += ChangeMagazine;
+        GameEvents.s_instance.OnMagazineUpdate += UpdateMagazine;
+        GameEvents.s_instance.OnReloadUpdate += UpdateReload;
+        GameEvents.s_instance.OnScoreUpdate += AddScore;
+        GameEvents.s_instance.OnPause += PauseGame;
     }
 
-    private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite){
-        if(id == _id)
+    private void ChangeMagazine(int _id, Sprite _magazineSprite, Sprite _backgroundSprite)
+    {
+        if (id == _id)
         {
             MagazineSprite.sprite = _magazineSprite;
             BackgroundSprite.sprite = _backgroundSprite;
         }
     }
 
-    private void UpdateMagazine(int _id, float fillAmount){
-        if(id == _id)
+    private void UpdateMagazine(int _id, float fillAmount)
+    {
+        if (id == _id)
             MagazineSprite.fillAmount = fillAmount;
     }
 
-    private void UpdateReload(int _id, float fillAmount){
-        if(id == _id)
+    private void UpdateReload(int _id, float fillAmount)
+    {
+        if (id == _id)
             ReloadSprite.fillAmount = fillAmount;
     }
     public void PauseGame(int _id)
@@ -67,17 +70,20 @@ public class HUDManager : MonoBehaviour
     }
     public void AddScore(int _id, int n)
     {
-        if(id == _id){
+        if (id == _id)
+        {
             score += n;
             ScoreText.text = score.ToString().PadLeft(10, '0');
         }
     }
 
-    public void SetupHUD(int _id){
+    public void SetupHUD(int _id)
+    {
         id = _id;
         RectTransform rectTransform = this.GetComponent<RectTransform>();
 
-        switch(id){
+        switch (id)
+        {
             case 1:
                 rectTransform.anchorMin = new Vector2(0, 1);
                 rectTransform.anchorMax = new Vector2(0, 1);

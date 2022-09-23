@@ -17,9 +17,10 @@ public class Bullet : MonoBehaviour
         ownerId = id;
     }
 
-    public virtual void SetVariables(Vector2 _direction, int strenght){
+    public virtual void SetVariables(Vector2 _direction, int strenght)
+    {
         direction = _direction;
-        damageCaused *= ((float)strenght/100);
+        damageCaused *= ((float)strenght / 100);
     }
 
     // IEnumerator DestroyDelay()
@@ -36,10 +37,10 @@ public class Bullet : MonoBehaviour
 
     protected virtual void AddPlayerScore(int n)
     {
-        if(ownerId != -1)
-            GameEvents.current.ScoreUpdate(ownerId, n);
+        if (ownerId != -1)
+            GameEvents.s_instance.ScoreUpdate(ownerId, n);
     }
-    protected virtual void DamageOnEnemy(Enemy enemy,Vector3 pos)
+    protected virtual void DamageOnEnemy(Enemy enemy, Vector3 pos)
     {
 
         //if(enemy.Damage(transform.position, damageCaused))

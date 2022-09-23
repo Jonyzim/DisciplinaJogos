@@ -9,7 +9,8 @@ public class BasicPistol : SingleShotGun
         //Inserir animação, sons e etc do tiro
     }
 
-    protected override void ReloadProps(float time){
+    protected override void ReloadProps(float time)
+    {
         //Inserir animação, sons e etc do reload
     }
 

@@ -11,7 +11,8 @@ public class PlotInteractable : Interactable
     protected override void Interact(int id)
     {
         Debug.Log("interacted");
-        if(plant == null){
+        if (plant == null)
+        {
             GameObject plantPrefab = tempPrefab;
             //Seleção de plantas entra aqui
 
@@ -19,14 +20,17 @@ public class PlotInteractable : Interactable
             SetPlant(plantObject.GetComponent<Plant>());
             defaultRenderer.enabled = false;
         }
-        else{
+        else
+        {
 
             //Caso a planta não esteja madura
-            if(plant.Growth < plant.GrowthTime){
+            if (plant.Growth < plant.GrowthTime)
+            {
                 plant.waterPlant();
             }
 
-            else{
+            else
+            {
                 plant.Use(id);
                 defaultRenderer.enabled = true;
                 plant = null;
@@ -34,7 +38,8 @@ public class PlotInteractable : Interactable
         }
     }
 
-    private void SetPlant(Plant _plant){
+    private void SetPlant(Plant _plant)
+    {
         plant = _plant;
     }
 }

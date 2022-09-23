@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StaticEnemy : Enemy
 {
-    [SerializeField] Vector3 speed = new Vector3(0.1f,0,0);
+    [SerializeField] Vector3 speed = new Vector3(0.1f, 0, 0);
     [SerializeField] private bool randomSpeed = false;
     protected override void Start()
     {
@@ -19,7 +19,7 @@ public class StaticEnemy : Enemy
     protected override void Movement()
     {
         transform.position += speed;
-    } 
+    }
     void Update()
     {
         Movement();

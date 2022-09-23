@@ -10,57 +10,59 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected float rof;
     protected float cd = 0;
 
-    [SerializeField] private uint magazine;
-    public uint cur_magazine;
+    [SerializeField] private uint _magazine;
+    public uint curMagazine;
 
-    [SerializeField] private float reloadTime;
+    [SerializeField] private float _reloadTime;
     [SerializeField] protected Transform spawnTransf;
 
     //Substituir quando equipar arma
     [Header("Sprites")]
-    [SerializeField] private Sprite magazineSprite;
-    [SerializeField] private Sprite reloadSprite;
-    [SerializeField] private Sprite backgroundSprite;
-    private float reloadProgress = 0;
+    [SerializeField] private Sprite _magazineSprite;
+    [SerializeField] private Sprite _reloadSprite;
+    [SerializeField] private Sprite _backgroundSprite;
+    private float _reloadProgress = 0;
     [SerializeField] private GameObject interactableReference;
-    [SerializeField] private Light2D flashLight;
+    [SerializeField] private Light2D _flashLight;
 
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float spread;
 
     protected int ownerId;
 
-
-    public void pick(Character character){
+    public void Pick(Character character)
+    {
         SetOwner(character);
         transform.parent = character.gameObject.transform;
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         character.gun = this;
-        GameEvents.current.PickWeapon(ownerId, magazineSprite, backgroundSprite);
-        GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
+        GameEvents.s_instance.PickWeapon(ownerId, _magazineSprite, _backgroundSprite);
+        GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
     }
-    public void drop(Character character){
+    public void Drop(Character character)
+    {
         RemoveOwner(character);
         GameObject instance = Instantiate(interactableReference);
 
-        
+
         instance.GetComponent<GunInteractable>().gun = gameObject;
 
         gameObject.transform.parent = instance.transform;
     }
 
-    public virtual void Fire(Vector2 direction, int strenght, int aim){
+    public virtual void Fire(Vector2 direction, int strenght, int aim)
+    {
         FireProps();
-        cd = 1/rof;
-        cur_magazine -= 1;
-        GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
+        cd = 1 / rof;
+        curMagazine -= 1;
+        GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
 
         //Calculate new spread based on character Aim stat
-        float _spread = aim > 100 ? (spread * (100/((aim*2)-100))) : (spread + 100 - aim);
+        float _spread = aim > 100 ? (spread * (100 / ((aim * 2) - 100))) : (spread + 100 - aim);
 
         Vector2 _direction = Quaternion.AngleAxis(-Random.Range(-_spread, _spread), new Vector3(0, 0, 1)) * direction;
-            
+
         GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
         Bullet bulletScript = _bullet.GetComponent<Bullet>();
         bulletScript.SetVariables(_direction, strenght);
@@ -70,9 +72,11 @@ public abstract class Gun : MonoBehaviour
     protected abstract void FireProps();
     protected abstract void ReloadProps(float time);
 
-    public void SwitchFlashlight(){
-        if(flashLight != null){
-            flashLight.enabled = !flashLight.enabled;
+    public void SwitchFlashlight()
+    {
+        if (_flashLight != null)
+        {
+            _flashLight.enabled = !_flashLight.enabled;
         }
     }
 
@@ -82,51 +86,59 @@ public abstract class Gun : MonoBehaviour
         print("Player " + ownerId + " got a " + gameObject.name);
     }
 
-    public void RemoveOwner(Character character){
+    public void RemoveOwner(Character character)
+    {
         print("Player " + ownerId + " dropped a " + gameObject.name);
         ownerId = -1;
     }
 
     protected virtual void Start()
     {
-        cur_magazine = magazine;
+        curMagazine = _magazine;
 
         //Caso a arma já esteja equipada antes do jogo começar
         Character character = gameObject.GetComponentInParent<Character>();
-        if(character != null){
-            pick(character);
+        if (character != null)
+        {
+            Pick(character);
         }
     }
 
     protected virtual void Update()
     {
 
-        if(cur_magazine == 0 && cd <= 0){
-            Reload();
+        if (curMagazine == 0 && cd <= 0)
+        {
+            ReloadUpdate();
         }
-        else {
-            reloadProgress = 0;
+        else
+        {
+            _reloadProgress = 0;
         }
-        cd -= Time.deltaTime;        
+        cd -= Time.deltaTime;
     }
 
-    void Reload(){
+    void ReloadUpdate()
+    {
 
         //Não recarregar caso munição esteja cheia
-        if(!(cur_magazine == magazine)){
-            ReloadProps(reloadTime);
-            reloadProgress += Time.deltaTime;
-            GameEvents.current.ReloadUpdate(ownerId, reloadProgress/reloadTime);
-            if(reloadProgress > reloadTime){
-                reloadProgress = 0;
-                cur_magazine = magazine;
-                GameEvents.current.ReloadUpdate(ownerId, 0);
-                GameEvents.current.MagazineUpdate(ownerId, (float)cur_magazine/(float)magazine);
+        if (!(curMagazine == _magazine))
+        {
+            ReloadProps(_reloadTime);
+            _reloadProgress += Time.deltaTime;
+            GameEvents.s_instance.ReloadUpdate(ownerId, _reloadProgress / _reloadTime);
+            if (_reloadProgress > _reloadTime)
+            {
+                _reloadProgress = 0;
+                curMagazine = _magazine;
+                GameEvents.s_instance.ReloadUpdate(ownerId, 0);
+                GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
             }
         }
     }
 
-    public void Teste(){
-        cur_magazine = 0;
+    public void Reload()
+    {
+        curMagazine = 0;
     }
 }

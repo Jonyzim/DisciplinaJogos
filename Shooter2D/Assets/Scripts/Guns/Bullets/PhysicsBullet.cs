@@ -8,7 +8,8 @@ public class PhysicsBullet : Bullet
     [SerializeField] private Rigidbody2D rgbd;
 
 
-    public override void SetVariables(Vector2 _direction, int strenght){
+    public override void SetVariables(Vector2 _direction, int strenght)
+    {
         base.SetVariables(_direction, strenght);
         rgbd.AddForce(direction * speed, ForceMode2D.Impulse);
     }
@@ -21,9 +22,9 @@ public class PhysicsBullet : Bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if(enemy != null && !enemy.IsDead)
+        if (enemy != null && !enemy.IsDead)
         {
-            DamageOnEnemy(enemy,transform.position);
+            DamageOnEnemy(enemy, transform.position);
             DestroyBullet();
         }
     }
