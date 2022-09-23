@@ -103,7 +103,7 @@ MonoBehaviour:
   _fxSpeed: 0.05
   _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
   _speed: {x: 0.02, y: 0, z: 0}
-  _randomSpeed: 0
+  _randomSpeed: 1
 --- !u!70 &4785942600551865928
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,4 +147,4 @@ MonoBehaviour:
   - {x: -0.4755969, y: 1.5139983, z: 0}
   m_ShapePathHash: 842048781
   m_Mesh: {fileID: 0}
-  m_InstanceId: 80824
+  m_InstanceId: 31926

@@ -6,10 +6,11 @@ public class EnemyBullet : PhysicsBullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Character player = collision.gameObject.GetComponent<Character>();
-        if (player != null)
+        Character character = collision.gameObject.GetComponent<Character>();
+        if (character != null)
         {
             print("Colidiu player");
+            character.GetDamage((int)DamageCaused);
             DestroyBullet();
         }
     }

@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
         Vector3 scorePos = transform.position;
         scorePos.y += 1f;
         GameObject score = Instantiate(_scoreViewPrefab, scorePos, Quaternion.identity, _scoreCanvas);
+        
         score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
         if (_life <= 0)
         {
