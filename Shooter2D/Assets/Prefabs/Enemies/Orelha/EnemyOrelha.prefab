@@ -165,6 +165,7 @@ MonoBehaviour:
   fxSpeed: 0.1
   hitFxPrefab: {fileID: 5179699964768657960, guid: ef50e7115620c6a419e5a9c10bfceb48, type: 3}
   deathFxPrefab: {fileID: 9155610215595514981, guid: 71c5d40763d47524eb73296682d7f446, type: 3}
+  scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
   speed: {x: 0, y: 0, z: 0}
   randomSpeed: 0
 --- !u!70 &5562582582260338957
