@@ -8,7 +8,7 @@ public abstract class Gun : MonoBehaviour
 {
     [Header("General")]
 
-    public uint CurMagazine;
+    protected uint CurMagazine;
 
     [SerializeField] protected float Rof;
     [SerializeField] protected Transform SpawnTransf;
@@ -44,7 +44,7 @@ public abstract class Gun : MonoBehaviour
     public void Drop(Character character)
     {
         RemoveOwner(character);
-        GameObject instance = Instantiate(_interactableReference);
+        GameObject instance = Instantiate(_interactableReference, gameObject.transform.position, gameObject.transform.rotation);
 
 
         instance.GetComponent<GunInteractable>().Gun = gameObject;
@@ -88,7 +88,10 @@ public abstract class Gun : MonoBehaviour
     }
     public void Reload()
     {
-        CurMagazine = 0;
+        //Não recarregar caso munição esteja cheia
+        if(CurMagazine < _magazine){
+            CurMagazine = 0;
+        }
     }
     public abstract void ReleaseFire();
     protected abstract void FireProps();
@@ -100,20 +103,15 @@ public abstract class Gun : MonoBehaviour
 
     private void ReloadUpdate()
     {
-
-        //Não recarregar caso munição esteja cheia
-        if (!(CurMagazine == _magazine))
+        ReloadProps(_reloadTime);
+        _reloadProgress += Time.deltaTime;
+        GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+        if (_reloadProgress > _reloadTime)
         {
-            ReloadProps(_reloadTime);
-            _reloadProgress += Time.deltaTime;
-            GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
-            if (_reloadProgress > _reloadTime)
-            {
-                _reloadProgress = 0;
-                CurMagazine = _magazine;
-                GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
-                GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
-            }
+            _reloadProgress = 0;
+            CurMagazine = _magazine;
+            GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
+            GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
         }
     }
 
