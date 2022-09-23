@@ -7,9 +7,10 @@ public abstract class SingleShotGun : Gun
     //[Header("SingleShotSpecifics")]
     private bool _fired = false;
 
+    //Methods
     public override void Fire(Vector2 direction, int strenght, int aim)
     {
-        if (cd <= 0 && curMagazine > 0 && !_fired)
+        if (cd <= 0 && CurMagazine > 0 && !_fired)
         {
             _fired = true;
             base.Fire(direction, strenght, aim);

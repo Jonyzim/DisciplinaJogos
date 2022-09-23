@@ -7,29 +7,30 @@ using UnityEngine.Experimental.Rendering.Universal;
 public abstract class Gun : MonoBehaviour
 {
     [Header("General")]
-    [SerializeField] protected float rof;
-    protected float cd = 0;
 
-    [SerializeField] private uint _magazine;
-    public uint curMagazine;
+    public uint CurMagazine;
+
+    [SerializeField] protected float Rof;
+    [SerializeField] protected Transform SpawnTransf;
+    [SerializeField] protected GameObject Bullet;
+    [SerializeField] protected float Spread;
+    protected float cd = 0;
+    protected int OwnerId;
 
     [SerializeField] private float _reloadTime;
-    [SerializeField] protected Transform spawnTransf;
+    [SerializeField] private uint _magazine;
+    [SerializeField] private GameObject _interactableReference;
+    [SerializeField] private Light2D _flashLight;
 
     //Substituir quando equipar arma
     [Header("Sprites")]
     [SerializeField] private Sprite _magazineSprite;
     [SerializeField] private Sprite _reloadSprite;
     [SerializeField] private Sprite _backgroundSprite;
+
     private float _reloadProgress = 0;
-    [SerializeField] private GameObject interactableReference;
-    [SerializeField] private Light2D _flashLight;
 
-    [SerializeField] protected GameObject bullet;
-    [SerializeField] protected float spread;
-
-    protected int ownerId;
-
+    //Methods
     public void Pick(Character character)
     {
         SetOwner(character);
@@ -37,13 +38,13 @@ public abstract class Gun : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         character.gun = this;
-        GameEvents.s_instance.PickWeapon(ownerId, _magazineSprite, _backgroundSprite);
-        GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
+        GameEvents.s_instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
+        GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
     }
     public void Drop(Character character)
     {
         RemoveOwner(character);
-        GameObject instance = Instantiate(interactableReference);
+        GameObject instance = Instantiate(_interactableReference);
 
 
         instance.GetComponent<GunInteractable>().gun = gameObject;
@@ -54,24 +55,20 @@ public abstract class Gun : MonoBehaviour
     public virtual void Fire(Vector2 direction, int strenght, int aim)
     {
         FireProps();
-        cd = 1 / rof;
-        curMagazine -= 1;
-        GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
+        cd = 1 / Rof;
+        CurMagazine -= 1;
+        GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
 
         //Calculate new spread based on character Aim stat
-        float _spread = aim > 100 ? (spread * (100 / ((aim * 2) - 100))) : (spread + 100 - aim);
+        float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
 
         Vector2 _direction = Quaternion.AngleAxis(-Random.Range(-_spread, _spread), new Vector3(0, 0, 1)) * direction;
 
-        GameObject _bullet = Instantiate(bullet, spawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
+        GameObject _bullet = Instantiate(Bullet, SpawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
         Bullet bulletScript = _bullet.GetComponent<Bullet>();
         bulletScript.SetVariables(_direction, strenght);
-        bulletScript.SetPlayer(ownerId);
+        bulletScript.SetPlayer(OwnerId);
     }
-    public abstract void ReleaseFire();
-    protected abstract void FireProps();
-    protected abstract void ReloadProps(float time);
-
     public void SwitchFlashlight()
     {
         if (_flashLight != null)
@@ -79,22 +76,51 @@ public abstract class Gun : MonoBehaviour
             _flashLight.enabled = !_flashLight.enabled;
         }
     }
-
     public void SetOwner(Character character)
     {
-        ownerId = character.character_id;
-        print("Player " + ownerId + " got a " + gameObject.name);
+        OwnerId = character.character_id;
+        print("Player " + OwnerId + " got a " + gameObject.name);
     }
-
     public void RemoveOwner(Character character)
     {
-        print("Player " + ownerId + " dropped a " + gameObject.name);
-        ownerId = -1;
+        print("Player " + OwnerId + " dropped a " + gameObject.name);
+        OwnerId = -1;
+    }
+    public void Reload()
+    {
+        CurMagazine = 0;
+    }
+    public abstract void ReleaseFire();
+    protected abstract void FireProps();
+
+    protected abstract void ReloadProps(float time);
+
+
+
+
+    private void ReloadUpdate()
+    {
+
+        //Não recarregar caso munição esteja cheia
+        if (!(CurMagazine == _magazine))
+        {
+            ReloadProps(_reloadTime);
+            _reloadProgress += Time.deltaTime;
+            GameEvents.s_instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+            if (_reloadProgress > _reloadTime)
+            {
+                _reloadProgress = 0;
+                CurMagazine = _magazine;
+                GameEvents.s_instance.ReloadUpdate(OwnerId, 0);
+                GameEvents.s_instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+            }
+        }
     }
 
+    //Unity Methods
     protected virtual void Start()
     {
-        curMagazine = _magazine;
+        CurMagazine = _magazine;
 
         //Caso a arma já esteja equipada antes do jogo começar
         Character character = gameObject.GetComponentInParent<Character>();
@@ -107,7 +133,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (curMagazine == 0 && cd <= 0)
+        if (CurMagazine == 0 && cd <= 0)
         {
             ReloadUpdate();
         }
@@ -118,27 +144,4 @@ public abstract class Gun : MonoBehaviour
         cd -= Time.deltaTime;
     }
 
-    void ReloadUpdate()
-    {
-
-        //Não recarregar caso munição esteja cheia
-        if (!(curMagazine == _magazine))
-        {
-            ReloadProps(_reloadTime);
-            _reloadProgress += Time.deltaTime;
-            GameEvents.s_instance.ReloadUpdate(ownerId, _reloadProgress / _reloadTime);
-            if (_reloadProgress > _reloadTime)
-            {
-                _reloadProgress = 0;
-                curMagazine = _magazine;
-                GameEvents.s_instance.ReloadUpdate(ownerId, 0);
-                GameEvents.s_instance.MagazineUpdate(ownerId, (float)curMagazine / (float)_magazine);
-            }
-        }
-    }
-
-    public void Reload()
-    {
-        curMagazine = 0;
-    }
 }

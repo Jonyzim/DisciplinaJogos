@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class HitscanBullet : Bullet
 {
-    [SerializeField] private float reach;
 
-    [SerializeField] private GameObject particles;
-    private Color lineColor;
-    private float cur_lifetime;
-    [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] private float _reach;
+    [SerializeField] private LayerMask IgnoreLayer;
+    [SerializeField] private GameObject _particles;
+    private Color _lineColor;
+    private float _curLifetime;
 
 
-    public override void SetVariables(Vector2 _direction, int strenght)
+    public override void SetVariables(Vector2 direction, int strenght)
     {
-        base.SetVariables(_direction, strenght);
+        base.SetVariables(direction, strenght);
         Vector2 position;
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, reach, ~ignoreLayer);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Direction, _reach, ~IgnoreLayer);
 
         if (hitInfo.collider != null)
         {
@@ -31,15 +31,15 @@ public class HitscanBullet : Bullet
         }
         else
         {
-            position = transform.position + direction * reach;
+            position = transform.position + Direction * _reach;
         }
 
 
-        particles.transform.localScale = new Vector3(Vector3.Distance(transform.position, position), 1, 1);
-        particles.transform.SetParent(null, true);
-        particles.gameObject.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+        _particles.transform.localScale = new Vector3(Vector3.Distance(transform.position, position), 1, 1);
+        _particles.transform.SetParent(null, true);
+        _particles.gameObject.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, Direction));
 
-        Destroy(particles.gameObject, 2);
+        Destroy(_particles.gameObject, 2);
         transform.position = new Vector3(position.x, position.y, 0);
     }
 

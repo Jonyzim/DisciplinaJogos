@@ -5,22 +5,23 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    [SerializeField] protected float speed;
-    [SerializeField] protected float lifetime;
-    protected Vector3 direction;
-    [SerializeField] private GameObject destroyFxPrefab;
-    [SerializeField] protected float damageCaused;
-    [SerializeField] protected int ownerId;
+    [SerializeField] protected float Speed;
+    [SerializeField] protected float Lifetime;
+    [SerializeField] protected float DamageCaused;
+    [SerializeField] protected int OwnerId;
+    protected Vector3 Direction;
+    [SerializeField] private GameObject _destroyFxPrefab;
 
+    //Methods
     public void SetPlayer(int id)
     {
-        ownerId = id;
+        OwnerId = id;
     }
 
-    public virtual void SetVariables(Vector2 _direction, int strenght)
+    public virtual void SetVariables(Vector2 direction, int strenght)
     {
-        direction = _direction;
-        damageCaused *= ((float)strenght / 100);
+        Direction = direction;
+        DamageCaused *= ((float)strenght / 100);
     }
 
     // IEnumerator DestroyDelay()
@@ -28,17 +29,17 @@ public class Bullet : MonoBehaviour
     //     yield return new WaitForSeconds(lifetime);
     //     DestroyBullet();
     // }
-    // Start is called before the first frame update
-    protected virtual void Start()
+
+    public void DestroyBullet(float timer = 0)
     {
-        //StartCoroutine(DestroyDelay());
-        DestroyBullet(lifetime);
+        Instantiate(_destroyFxPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject, timer);
     }
 
     protected virtual void AddPlayerScore(int n)
     {
-        if (ownerId != -1)
-            GameEvents.s_instance.ScoreUpdate(ownerId, n);
+        if (OwnerId != -1)
+            GameEvents.s_instance.ScoreUpdate(OwnerId, n);
     }
     protected virtual void DamageOnEnemy(Enemy enemy, Vector3 pos)
     {
@@ -46,12 +47,14 @@ public class Bullet : MonoBehaviour
         //if(enemy.Damage(transform.position, damageCaused))
         //    AddPlayerScore(10);
         int life = enemy.Life;
-        enemy.Damage(pos, damageCaused);
-        AddPlayerScore(Mathf.Min(life, (int)damageCaused));
+        enemy.Damage(pos, DamageCaused);
+        AddPlayerScore(Mathf.Min(life, (int)DamageCaused));
     }
-    public void DestroyBullet(float timer = 0)
+
+    //Unity Methods
+    protected virtual void Start()
     {
-        Instantiate(destroyFxPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject, timer);
+        //StartCoroutine(DestroyDelay());
+        DestroyBullet(Lifetime);
     }
 }

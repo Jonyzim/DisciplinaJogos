@@ -5,13 +5,13 @@ using static Constants;
 
 public class PhysicsBullet : Bullet
 {
-    [SerializeField] private Rigidbody2D rgbd;
+    [SerializeField] private Rigidbody2D _rgbd;
 
 
-    public override void SetVariables(Vector2 _direction, int strenght)
+    public override void SetVariables(Vector2 direction, int strenght)
     {
-        base.SetVariables(_direction, strenght);
-        rgbd.AddForce(direction * speed, ForceMode2D.Impulse);
+        base.SetVariables(direction, strenght);
+        _rgbd.AddForce(Direction * Speed, ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

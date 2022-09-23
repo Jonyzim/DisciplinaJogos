@@ -8,7 +8,7 @@ public abstract class AutomaticGun : Gun
 
     public override void Fire(Vector2 direction, int strenght, int aim)
     {
-        if (cd <= 0 && curMagazine > 0)
+        if (cd <= 0 && CurMagazine > 0)
         {
             base.Fire(direction, strenght, aim);
         }
