@@ -127,18 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04533057b01f17c4cb465aea6016ca44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rof: 2
-  magazine: 6
-  cur_magazine: 0
-  reloadTime: 1.5
-  spawnTransf: {fileID: 1105940939752651179}
-  magazineSprite: {fileID: 21300000, guid: c5e5acccdbb65094c849c0d388ac87a4, type: 3}
-  reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
-  backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
-  interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
-  flashLight: {fileID: 5108238204843573927}
-  bullet: {fileID: 8032982355752834923, guid: bd38ccf29c9484245b621c1888872b1d, type: 3}
-  spread: 0
+  CurMagazine: 0
+  Rof: 2
+  SpawnTransf: {fileID: 1105940939752651179}
+  Bullet: {fileID: 8032982355752834923, guid: bd38ccf29c9484245b621c1888872b1d, type: 3}
+  Spread: 0
+  _reloadTime: 1.5
+  _magazine: 6
+  _interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
+  _flashLight: {fileID: 5108238204843573927}
+  _magazineSprite: {fileID: 21300000, guid: c5e5acccdbb65094c849c0d388ac87a4, type: 3}
+  _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
+  _backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
 --- !u!1 &3945712455869863793
 GameObject:
   m_ObjectHideFlags: 0

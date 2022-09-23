@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf015c353c9a4a4aa3631bf98d273b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
-  defaultRenderer: {fileID: 8505358314903055160}
+  TempPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
+  _defaultRenderer: {fileID: 8505358314903055160}
 --- !u!212 &8505358314903055160
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -4937,13 +4937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198436fa67c93e64bb4b4d5311474db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
-  lifetime: 1
-  destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
-  damageCaused: 35
-  ownerId: 0
-  reach: 30
-  particles: {fileID: 6449976476276772354}
-  ignoreLayer:
+  Speed: 150
+  Lifetime: 1
+  DamageCaused: 35
+  OwnerId: 0
+  _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
+  _reach: 30
+  IgnoreLayer:
     serializedVersion: 2
-    m_Bits: 196
+    m_Bits: 0
+  _particles: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}

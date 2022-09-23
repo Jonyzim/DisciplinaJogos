@@ -47,11 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcaddf27074e024490cdfa5354a8631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character_id: 0
-  gun: {fileID: 7103224928303296464}
+  EquippedGun: {fileID: 0}
   Health: 100
-  Strenght: 100
-  Speed: 100
+  Strenght: 120
+  Speed: 110
   Aim: 100
 --- !u!61 &4318612108955275971
 BoxCollider2D:
@@ -280,14 +279,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7135700896935887514, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
   m_PrefabInstance: {fileID: 2053848719}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7103224928303296464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -2120147107106221729, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
-  m_PrefabInstance: {fileID: 2053848719}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920b70ec207e52744a494a47afd6680e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

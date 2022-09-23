@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1432a94351c5a46b7eb2d597e541a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawn: {fileID: 0}
-  HUDPrefab: {fileID: 8600263705661354210, guid: ae61558f8b8aca544a3a4667afa6a6c1, type: 3}
-  CharacterPrefab: {fileID: 504088863901828090, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+  _HUDPrefab: {fileID: 8600263705661354210, guid: ae61558f8b8aca544a3a4667afa6a6c1, type: 3}
+  _characterPrefab: {fileID: 504088863901828090, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+  _pawn: {fileID: 0}
 --- !u!114 &8589076917191964790
 MonoBehaviour:
   m_ObjectHideFlags: 0

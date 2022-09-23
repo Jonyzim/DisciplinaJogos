@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d0fedc3f31dc540ab325f0d51adfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  lifetime: 1
-  destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
-  damageCaused: 5
-  ownerId: 0
-  rgbd: {fileID: 764459423577976922}
+  Speed: 75
+  Lifetime: 2
+  DamageCaused: 7
+  OwnerId: 0
+  _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
+  _rgbd: {fileID: 764459423577976922}
 --- !u!61 &2742247130830106684
 BoxCollider2D:
   m_ObjectHideFlags: 0

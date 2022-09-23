@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 4152129265690600297}
-  fxSpeed: 0.1
-  hitFxPrefab: {fileID: 5179699964768657960, guid: ef50e7115620c6a419e5a9c10bfceb48, type: 3}
-  deathFxPrefab: {fileID: 9155610215595514981, guid: 71c5d40763d47524eb73296682d7f446, type: 3}
-  scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
-  speed: {x: 0.01, y: 0, z: 0}
-  randomSpeed: 1
+  HitFxPrefab: {fileID: 1578568067691224791, guid: 7cd045d191ce2bf4b8197149d19f497e, type: 3}
+  DeathFxPrefab: {fileID: 9155610215595514981, guid: 71c5d40763d47524eb73296682d7f446, type: 3}
+  _spriteRenderer: {fileID: 4152129265690600297}
+  _fxSpeed: 0.05
+  _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
+  _speed: {x: 0.1, y: 0, z: 0}
+  _randomSpeed: 0
 --- !u!70 &4785942600551865928
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,4 +147,4 @@ MonoBehaviour:
   - {x: -0.4755969, y: 1.5139983, z: 0}
   m_ShapePathHash: 842048781
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60642
+  m_InstanceId: 77340

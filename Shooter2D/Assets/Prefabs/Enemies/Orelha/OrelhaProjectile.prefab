@@ -97,12 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888523b0f13b3c449ac74673170f142c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  lifetime: 1
-  destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
-  damageCaused: 10
-  ownerId: 0
-  rgbd: {fileID: 2306244708848214753}
+  Speed: 2
+  Lifetime: 2
+  DamageCaused: 5
+  OwnerId: 0
+  _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
+  _rgbd: {fileID: 2306244708848214753}
 --- !u!50 &2306244708848214753
 Rigidbody2D:
   serializedVersion: 4

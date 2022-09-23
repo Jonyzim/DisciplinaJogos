@@ -97,18 +97,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920b70ec207e52744a494a47afd6680e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rof: 10
-  magazine: 60
-  cur_magazine: 0
-  reloadTime: 2
-  spawnTransf: {fileID: 2632225942477895277}
-  magazineSprite: {fileID: 21300000, guid: ce194d6b053f95b4183bbba37fc3516f, type: 3}
-  reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
-  backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
-  interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
-  flashLight: {fileID: 8935347613397548414}
-  bullet: {fileID: 1456941150638956597, guid: 153766331879c3e4598a361d21498145, type: 3}
-  spread: 6
+  CurMagazine: 0
+  Rof: 10
+  SpawnTransf: {fileID: 2632225942477895277}
+  Bullet: {fileID: 1456941150638956597, guid: 153766331879c3e4598a361d21498145, type: 3}
+  Spread: 15
+  _reloadTime: 2
+  _magazine: 60
+  _interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
+  _flashLight: {fileID: 8935347613397548414}
+  _magazineSprite: {fileID: 21300000, guid: ce194d6b053f95b4183bbba37fc3516f, type: 3}
+  _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
+  _backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
 --- !u!1 &5742514778229871706
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 0000000035ed7d82
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 0.9

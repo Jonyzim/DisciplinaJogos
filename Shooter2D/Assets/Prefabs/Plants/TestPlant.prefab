@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6de0f1d2046a1419cb1e98acd00be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthTime: 3
-  plantSprites:
-  - {fileID: 21300000, guid: d0cfaaaffda69074f8ec7164f14c70ea, type: 3}
+  _growthTime: 3
+  _plantSprites:
+  - {fileID: 21300000, guid: 6791c85dc76d22c4a99ade0885cf3b02, type: 3}
+  - {fileID: 21300000, guid: e0d8dd8c90547a947913749ead843ecc, type: 3}
   - {fileID: 21300000, guid: 4b012b0a8da97854899bfcd5c8d7afe7, type: 3}
-  - {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
-  groundSprites:
-  - {fileID: -7063854038651047367, guid: cdbd8419d7f0598489140120bb328d54, type: 3}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  plantRenderer: {fileID: 3008718386912897864}
-  groundRenderer: {fileID: 7362271099119343695}
+  _groundSprites:
+  - {fileID: -46182794297959734, guid: e252fe9b6c983fe4981fe0282c2b8d92, type: 3}
+  - {fileID: -6716480692676460302, guid: e252fe9b6c983fe4981fe0282c2b8d92, type: 3}
+  _plantRenderer: {fileID: 3008718386912897864}
+  _groundRenderer: {fileID: 7362271099119343695}
 --- !u!212 &3008718386912897864
 SpriteRenderer:
   m_ObjectHideFlags: 0

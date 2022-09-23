@@ -506,13 +506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd9eb29e2900a345958d01137c09cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  Id: 0
   MagazineSprite: {fileID: 8600263706453429579}
   BackgroundSprite: {fileID: 8600263706498781128}
   ReloadSprite: {fileID: 8600263705553101867}
   ScoreText: {fileID: 8600263704930022085}
-  score: 0
-  pauseMenu: {fileID: 5803712493821633311}
+  Score: 0
+  _pauseMenu: {fileID: 5803712493821633311}
 --- !u!1 &8600263705553101861
 GameObject:
   m_ObjectHideFlags: 0

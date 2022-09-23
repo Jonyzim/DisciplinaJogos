@@ -39,7 +39,6 @@ public class CinemachineFollowMouse : MonoBehaviour
         _offset = Vector2.Min(_offset, MaxOffsetAmount);
         _offset = Vector2.Max(_offset, -MaxOffsetAmount);
 
-        Debug.Log(_offset);
         CameraOffset.m_Offset = Vector3.Lerp(CameraOffset.m_Offset, _offset * OffsetMultiplier, Time.deltaTime * OffsetSpeed); ;
     }
 }
