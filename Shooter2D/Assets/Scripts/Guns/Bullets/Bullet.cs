@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
         //if(enemy.Damage(transform.position, damageCaused))
         //    AddPlayerScore(10);
         int life = enemy.Life;
-        enemy.Damage(pos, DamageCaused);
+        enemy.Damage(pos, (int)DamageCaused);
         AddPlayerScore(Mathf.Min(life, (int)DamageCaused));
     }
 

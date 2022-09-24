@@ -44,7 +44,15 @@ public class Character : MonoBehaviour
             onInteract(id);
         }
     }
-
+    public void GetDamage(int damage)
+    {
+        Health -= damage;
+        if (Health < 0)
+        {
+            print("Death");
+            //Destroy(gameObject);
+        }
+    }
     //Methods
     public void Fire(Vector2 direction)
     {

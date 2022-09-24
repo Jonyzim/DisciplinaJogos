@@ -120,6 +120,8 @@ public class Player : MonoBehaviour
     }
     public void OnAim(InputAction.CallbackContext context)
     {
+        if (_pawn == null || _cam==null)
+            return;
         Vector2 newDirection;
         if (context.control.device.name == "Mouse")
         {

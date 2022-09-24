@@ -66,8 +66,8 @@ public abstract class Gun : MonoBehaviour
 
         GameObject _bullet = Instantiate(Bullet, SpawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
         Bullet bulletScript = _bullet.GetComponent<Bullet>();
-        bulletScript.SetVariables(_direction, strenght);
         bulletScript.SetPlayer(OwnerId);
+        bulletScript.SetVariables(_direction, strenght);
     }
     public void SwitchFlashlight()
     {
@@ -79,11 +79,9 @@ public abstract class Gun : MonoBehaviour
     public void SetOwner(Character character)
     {
         OwnerId = character.CharacterId;
-        print("Player " + OwnerId + " got a " + gameObject.name);
     }
     public void RemoveOwner(Character character)
     {
-        print("Player " + OwnerId + " dropped a " + gameObject.name);
         OwnerId = -1;
     }
     public void Reload()
