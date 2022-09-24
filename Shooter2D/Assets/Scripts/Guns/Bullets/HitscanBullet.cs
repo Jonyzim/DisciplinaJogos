@@ -12,9 +12,9 @@ public class HitscanBullet : Bullet
     private float _curLifetime;
 
 
-    public override void SetVariables(Vector2 direction, int strenght)
+    public override void SetVariables(Vector2 direction, int strenght, int damage)
     {
-        base.SetVariables(direction, strenght);
+        base.SetVariables(direction, strenght, damage);
         Vector2 position;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Direction, _reach, ~IgnoreLayer);

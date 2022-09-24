@@ -204,17 +204,6 @@
                 },
                 {
                     "name": "",
-                    "id": "dfe59c64-07dd-4823-9813-f6f1142030aa",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d25e56c1-4e58-4fe4-abac-5ef6423838d5",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -252,7 +241,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "ToggleLight",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -1,69 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5355786857523522930
+--- !u!1001 &41094900144877740
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5920281237807834604}
+    m_TransformParent: {fileID: 4675349809066727415}
     m_Modifications:
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380156, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 3369215883412371074, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243846588970380157, guid: 74a55187764b5c941949be10b40937f8, type: 3}
+    - target: {fileID: 7282108179147153252, guid: a8ac012288644014585140d315bb16bb, type: 3}
       propertyPath: m_Name
-      value: BasicPistolCow
+      value: BasicMachineGunPig
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 74a55187764b5c941949be10b40937f8, type: 3}
---- !u!1001 &6113621434153264661
+  m_SourcePrefab: {fileID: 100100000, guid: a8ac012288644014585140d315bb16bb, type: 3}
+--- !u!1001 &5052141339870073870
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: Speed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: Strenght
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 504088863901828089, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -110,12 +122,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 504088863901828090, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_Name
-      value: Cow
+      value: Pig
       objectReference: {fileID: 0}
+    - target: {fileID: 504088864667602001, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5671122d464145349a67e1ff4c264111, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
---- !u!4 &5920281237807834604 stripped
+--- !u!4 &4675349809066727415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 504088863901828089, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
-  m_PrefabInstance: {fileID: 6113621434153264661}
+  m_PrefabInstance: {fileID: 5052141339870073870}
   m_PrefabAsset: {fileID: 0}

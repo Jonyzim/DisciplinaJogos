@@ -6,19 +6,18 @@ public abstract class AutomaticGun : Gun
 {
     //[Header("AutomaticSpecifics")]
 
-    public override void Fire(Vector2 direction, int strenght, int aim)
+    public override void Fire(Vector2 direction, int strenght, float aim)
     {
         if (cd <= 0 && CurMagazine > 0)
         {
             base.Fire(direction, strenght, aim);
+            CurMagazine -= 1;
         }
     }
 
     public override void ReleaseFire()
     {
     }
-
-    protected abstract override void ReloadProps(float time);
 
     // Start is called before the first frame update
     // protected virtual new void Start()

@@ -12,8 +12,8 @@ public class Character : MonoBehaviour
     [Header("Status")]
     [Range(80, 120)] public int Health;
     [Range(80, 120)] public int Strenght;
-    [Range(80, 120)] public int Speed;
     [Range(80, 120)] public int Aim;
+    [Range(80, 120)] public int Speed;
     public int CharacterId => _characterId;
     private int _characterId;
 
@@ -77,7 +77,7 @@ public class Character : MonoBehaviour
 
     public void Move(Vector2 velocity)
     {
-        _body.velocity = velocity * _baseSpeed * (Speed / 100);
+        _body.velocity = velocity * _baseSpeed * ((float)Speed / 100);
     }
     public void ControlRotation(Vector2 direction)
     {

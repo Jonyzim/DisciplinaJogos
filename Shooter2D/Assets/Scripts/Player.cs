@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
-    public static Player[] s_ActivePlayers = new Player[4];
 
     public Character Pawn => _pawn;
     public int PlayerId => _playerId;
+    private static Player[] s_ActivePlayers = new Player[4];
 
 
     [SerializeField] private GameObject _HUDPrefab;
 
     //TEMPORARY
-    [SerializeField] private GameObject _characterPrefab;
+    [SerializeField] private GameObject[] _characterPrefab;
 
     [SerializeField] private Character _pawn;
     private Camera _cam;
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(_playerId);
 
         //TEMPORARY, Change to character selection instead
-        Possess(Instantiate(_characterPrefab).GetComponent<Character>());
+        Possess(Instantiate(_characterPrefab[_playerId-1]).GetComponent<Character>());
     }
     void Update()
     {

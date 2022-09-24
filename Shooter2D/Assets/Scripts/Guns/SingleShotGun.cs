@@ -8,12 +8,14 @@ public abstract class SingleShotGun : Gun
     private bool _fired = false;
 
     //Methods
-    public override void Fire(Vector2 direction, int strenght, int aim)
+    public override void Fire(Vector2 direction, int strenght, float aim)
     {
         if (cd <= 0 && CurMagazine > 0 && !_fired)
         {
-            _fired = true;
             base.Fire(direction, strenght, aim);
+            
+            _fired = true;
+            CurMagazine -= 1;
         }
 
     }
@@ -21,8 +23,6 @@ public abstract class SingleShotGun : Gun
     {
         _fired = false;
     }
-
-    protected abstract override void ReloadProps(float time);
 
     // Start is called before the first frame update
     // protected virtual new void Start()

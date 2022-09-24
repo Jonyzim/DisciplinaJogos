@@ -9,18 +9,19 @@ public abstract class Gun : MonoBehaviour
     [Header("General")]
 
     protected uint CurMagazine;
-
-    [SerializeField] protected float Rof;
     [SerializeField] protected Transform SpawnTransf;
     [SerializeField] protected GameObject Bullet;
-    [SerializeField] protected float Spread;
     protected float cd = 0;
     protected int OwnerId;
-
-    [SerializeField] private float _reloadTime;
-    [SerializeField] private uint _magazine;
     [SerializeField] private GameObject _interactableReference;
     [SerializeField] private Light2D _flashLight;
+
+    [Header("GunStats")]
+    [SerializeField] protected float Rof;
+    [SerializeField] protected float Spread;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _reloadTime;
+    [SerializeField] private uint _magazine;
 
     //Substituir quando equipar arma
     [Header("Sprites")]
@@ -52,11 +53,10 @@ public abstract class Gun : MonoBehaviour
         gameObject.transform.parent = instance.transform;
     }
 
-    public virtual void Fire(Vector2 direction, int strenght, int aim)
+    public virtual void Fire(Vector2 direction, int strenght, float aim)
     {
         FireProps();
         cd = 1 / Rof;
-        CurMagazine -= 1;
         GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
 
         //Calculate new spread based on character Aim stat
@@ -67,7 +67,7 @@ public abstract class Gun : MonoBehaviour
         GameObject _bullet = Instantiate(Bullet, SpawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
         Bullet bulletScript = _bullet.GetComponent<Bullet>();
         bulletScript.SetPlayer(OwnerId);
-        bulletScript.SetVariables(_direction, strenght);
+        bulletScript.SetVariables(_direction, strenght, _damage);
     }
     public void SwitchFlashlight()
     {

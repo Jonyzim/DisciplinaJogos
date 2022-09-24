@@ -7,8 +7,8 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] protected float Speed;
     [SerializeField] protected float Lifetime;
-    [SerializeField] protected float DamageCaused;
     [SerializeField] protected int OwnerId;
+    protected float DamageCaused;
     protected Vector3 Direction;
     [SerializeField] private GameObject _destroyFxPrefab;
 
@@ -18,10 +18,10 @@ public class Bullet : MonoBehaviour
         OwnerId = id;
     }
 
-    public virtual void SetVariables(Vector2 direction, int strenght)
+    public virtual void SetVariables(Vector2 direction, int strenght, int damage)
     {
         Direction = direction;
-        DamageCaused *= ((float)strenght / 100);
+        DamageCaused = damage*((float)strenght / 100);
     }
 
     // IEnumerator DestroyDelay()
