@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using NaughtyAttributes;
 
 [Serializable]
 [CreateAssetMenu(fileName = "GunListManager", menuName = "Shooter2D/GunListManager", order = 0)]
 public class GunListManager : ScriptableObject
 {
-    [SerializeField] private GunEntry[] GunList;
+    [SerializeField]
+    private GunEntry[] GunList;
 
     public GameObject GetRandomWeapon()
     {
@@ -28,6 +30,8 @@ public class GunListManager : ScriptableObject
         GunList[index].isAvailable = true;
     }
 
+
+    [Button]
     public void Save()
     {
         string saveDirectoryPath = Application.persistentDataPath + "/saveData";
@@ -45,6 +49,8 @@ public class GunListManager : ScriptableObject
 
         saveFile.Close();
     }
+
+    [Button]
     public void Load()
     {
         string saveDirectoryPath = Application.persistentDataPath + "/saveData";
@@ -69,17 +75,18 @@ public class GunListManager : ScriptableObject
         Save();
     }
 
-    // Called when editing through inspector
-    private void OnValidate()
-    {
-        Save();
-    }
-
 }
 
 [Serializable]
 public struct GunEntry
 {
+    [ShowAssetPreview]
+    [ValidateInput("HasGun", "Object is not a gun!")]
     public GameObject gunPrefab;
     public bool isAvailable;
+
+    private bool HasGun(GameObject gun)
+    {
+        return gun.GetComponent<Gun>() != null;
+    }
 }

@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: GunListManager
   m_EditorClassIdentifier: 
   GunList:
-  - gunPrefab: {fileID: 0}
+  - gunPrefab: {fileID: 3098353581014689407, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
     isAvailable: 1
-  - gunPrefab: {fileID: 102900000, guid: 6942e1e80e8b54fde9147e843f1bec4f, type: 3}
+  - gunPrefab: {fileID: 1720661398340679343, guid: 792d96dee7a5563428101634b8c56263, type: 3}
     isAvailable: 1
   - gunPrefab: {fileID: 2939160714627083132, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
+    isAvailable: 1
+  - gunPrefab: {fileID: 7774268563185631068, guid: 6350c2055769f9348bfc6a0fc1b87fef, type: 3}
     isAvailable: 1
