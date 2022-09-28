@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "GunListManager", menuName = "Shooter2D/GunListManager", order = 0)]
 public class GunListManager : ScriptableObject
 {
-    private GunEntry[] GunList;
+    [SerializeField] private GunEntry[] GunList;
 
-    public Gun GetRandomWeapon()
+    public GameObject GetRandomWeapon()
     {
         int i;
         // Gerar números até gerar uma arma válida
@@ -17,7 +20,7 @@ public class GunListManager : ScriptableObject
             i = UnityEngine.Random.Range(0, GunList.Length);
         } while (!GunList[i].isAvailable);
 
-        return GunList[i].gun;
+        return GunList[i].gunPrefab;
     }
 
     public void UnlockGun(int index)
@@ -27,18 +30,39 @@ public class GunListManager : ScriptableObject
 
     public void Save()
     {
+        string saveDirectoryPath = Application.persistentDataPath + "/saveData";
+        string saveFilePath = saveDirectoryPath + "weapons.cow";
+        BinaryFormatter bf = new BinaryFormatter();
 
+        if (!Directory.Exists(saveDirectoryPath))
+        {
+            Directory.CreateDirectory(saveDirectoryPath);
+        }
+        FileStream saveFile = File.Create(saveFilePath);
+
+        string json = JsonUtility.ToJson(this);
+        bf.Serialize(saveFile, json);
+
+        saveFile.Close();
     }
-    private void Load()
+    public void Load()
     {
+        string saveDirectoryPath = Application.persistentDataPath + "/saveData";
+        string saveFilePath = saveDirectoryPath + "weapons.cow";
+        BinaryFormatter bf = new BinaryFormatter();
 
+        if (File.Exists(saveFilePath))
+        {
+            FileStream saveFile = File.Open(saveFilePath, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(saveFile), this);
+            saveFile.Close();
+        }
     }
-
 }
 
 [Serializable]
 public struct GunEntry
 {
-    public Gun gun;
+    public GameObject gunPrefab;
     public bool isAvailable;
 }
