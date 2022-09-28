@@ -58,6 +58,23 @@ public class GunListManager : ScriptableObject
             saveFile.Close();
         }
     }
+
+    private void Awake()
+    {
+        Load();
+    }
+
+    private void OnDestroy()
+    {
+        Save();
+    }
+
+    // Called when editing through inspector
+    private void OnValidate()
+    {
+        Save();
+    }
+
 }
 
 [Serializable]

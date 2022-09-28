@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf255c28fc21bbc40abb6289eb7b66c9, type: 3}
   m_Name: GunListManager
   m_EditorClassIdentifier: 
+  GunList:
+  - gunPrefab: {fileID: 0}
+    isAvailable: 1
+  - gunPrefab: {fileID: 102900000, guid: 6942e1e80e8b54fde9147e843f1bec4f, type: 3}
+    isAvailable: 1
+  - gunPrefab: {fileID: 2939160714627083132, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
+    isAvailable: 1

@@ -50,7 +50,7 @@ public class HUDManager : MonoBehaviour
 
         }
     }
-    
+
     private void ChangeMagazine(int id, Sprite magazineSprite, Sprite backgroundSprite)
     {
         if (Id == id)
