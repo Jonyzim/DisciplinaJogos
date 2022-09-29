@@ -1,0 +1,29 @@
+{
+    "EnemyBasic": {
+        "checkpoints": [
+            {
+                "steps": 1872,
+                "file_path": "results\\ppo\\EnemyBasic\\EnemyBasic-1872.onnx",
+                "reward": 0.12769450114241668,
+                "creation_time": 1664413139.2087972,
+                "auxillary_file_paths": [
+                    "results\\ppo\\EnemyBasic\\EnemyBasic-1872.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1872,
+            "file_path": "results\\ppo\\EnemyBasic.onnx",
+            "reward": 0.12769450114241668,
+            "creation_time": 1664413139.2087972,
+            "auxillary_file_paths": [
+                "results\\ppo\\EnemyBasic\\EnemyBasic-1872.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.12.1+cpu"
+    }
+}
