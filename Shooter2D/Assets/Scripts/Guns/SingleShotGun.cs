@@ -10,12 +10,12 @@ public abstract class SingleShotGun : Gun
     //Methods
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
-        if (cd <= 0 && CurMagazine > 0 && !_fired)
+        if (cd <= 0 && CurClip > 0 && !_fired)
         {
             base.Fire(direction, strenght, aim);
-            
+
             _fired = true;
-            CurMagazine -= 1;
+            CurClip -= 1;
         }
 
     }

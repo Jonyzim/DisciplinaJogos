@@ -8,9 +8,9 @@ public abstract class Gun : MonoBehaviour
 {
     [Header("General")]
 
-    protected uint CurMagazine;
     [SerializeField] protected Transform SpawnTransf;
     [SerializeField] protected GameObject Bullet;
+    protected uint CurClip;
     protected float cd = 0;
     protected int OwnerId;
     [SerializeField] private GameObject _interactableReference;
@@ -21,7 +21,8 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected float Spread;
     [SerializeField] private int _damage;
     [SerializeField] private float _reloadTime;
-    [SerializeField] private uint _magazine;
+    [SerializeField] private uint _clip;
+    [SerializeField] private uint _storeAmmunition;
 
     //Substituir quando equipar arma
     [Header("Sprites")]
@@ -29,6 +30,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite _reloadSprite;
     [SerializeField] private Sprite _backgroundSprite;
 
+    private uint _curStoreAmmunition;
     private float _reloadProgress = 0;
 
     //Methods
@@ -40,7 +42,7 @@ public abstract class Gun : MonoBehaviour
         transform.localScale = Vector3.one;
         character.EquippedGun = this;
         GameEvents.s_Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
-        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
     }
     public void Drop(Character character)
     {
@@ -48,7 +50,7 @@ public abstract class Gun : MonoBehaviour
         GameObject instance = Instantiate(_interactableReference, gameObject.transform.position, gameObject.transform.rotation);
 
 
-        instance.GetComponent<GunInteractable>().Gun = gameObject;
+        instance.GetComponent<GunInteractable>().NewGun = gameObject;
 
         gameObject.transform.parent = instance.transform;
     }
@@ -57,7 +59,7 @@ public abstract class Gun : MonoBehaviour
     {
         FireProps();
         cd = 1 / Rof;
-        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
 
         //Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
@@ -84,13 +86,30 @@ public abstract class Gun : MonoBehaviour
     {
         OwnerId = -1;
     }
+
+    /// <summary>
+    /// Zera clip para recarregar balas
+    /// </summary>
     public void Reload()
     {
         //Não recarregar caso munição esteja cheia
-        if(CurMagazine < _magazine){
-            CurMagazine = 0;
+        if (CurClip < _clip)
+        {
+            _curStoreAmmunition += CurClip;
+            CurClip = 0;
         }
     }
+
+    public void RechargeAmmunition()
+    {
+        _curStoreAmmunition = _storeAmmunition - CurClip;
+    }
+
+    public float GetAmmunitionPercentage()
+    {
+        return (float)(_curStoreAmmunition + CurClip) / _storeAmmunition;
+    }
+
     public abstract void ReleaseFire();
     protected abstract void FireProps();
 
@@ -104,19 +123,24 @@ public abstract class Gun : MonoBehaviour
         ReloadProps(_reloadTime);
         _reloadProgress += Time.deltaTime;
         GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+
         if (_reloadProgress > _reloadTime)
         {
             _reloadProgress = 0;
-            CurMagazine = _magazine;
+            CurClip = _clip;
+            _curStoreAmmunition -= _clip;
+
+
             GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
-            GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurMagazine / (float)_magazine);
+            GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
         }
     }
 
     //Unity Methods
     protected virtual void Start()
     {
-        CurMagazine = _magazine;
+        CurClip = _clip;
+        _curStoreAmmunition = _storeAmmunition - CurClip;
 
         //Caso a arma já esteja equipada antes do jogo começar
         Character character = gameObject.GetComponentInParent<Character>();
@@ -129,7 +153,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (CurMagazine == 0 && cd <= 0)
+        if (CurClip == 0 && cd <= 0)
         {
             ReloadUpdate();
         }

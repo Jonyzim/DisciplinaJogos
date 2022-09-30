@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GunInteractable : Interactable
 {
-    [SerializeField] public GameObject Gun;
+    [SerializeField] public GameObject NewGun;
 
     protected override void Interact(int id)
     {
-        Gun gunComponent = Gun.GetComponent<Gun>();
+        Gun gunComponent = NewGun.GetComponent<Gun>();
 
-        if(gunComponent != null){
+        if (gunComponent != null)
+        {
             if (CharacterList[id - 1].EquippedGun != null)
             {
                 CharacterList[id - 1].EquippedGun.Drop(CharacterList[id - 1]);

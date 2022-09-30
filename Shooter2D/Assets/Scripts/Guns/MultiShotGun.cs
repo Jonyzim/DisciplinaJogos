@@ -12,18 +12,20 @@ public abstract class MultiShotGun : Gun
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
 
-        if (cd <= 0 && CurMagazine > 0 && !_fired)
+        if (cd <= 0 && CurClip > 0 && !_fired)
         {
-            for(int i = 0; i < _bulletsSpawned; i++){
+            for (int i = 0; i < _bulletsSpawned; i++)
+            {
                 StartCoroutine(FireLag(direction, strenght, aim, Random.Range(-_bulletLag, _bulletLag)));
             }
 
             _fired = true;
-            CurMagazine -= 1;
+            CurClip -= 1;
         }
     }
 
-    private IEnumerator FireLag(Vector2 direction, int strenght, float aim, float waitTime){
+    private IEnumerator FireLag(Vector2 direction, int strenght, float aim, float waitTime)
+    {
         yield return new WaitForSeconds(waitTime);
         base.Fire(direction, strenght, aim);
     }
