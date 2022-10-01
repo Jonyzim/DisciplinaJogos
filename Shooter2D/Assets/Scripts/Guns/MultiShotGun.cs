@@ -11,7 +11,6 @@ public abstract class MultiShotGun : Gun
 
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
-
         if (cd <= 0 && CurClip > 0 && !_fired)
         {
             for (int i = 0; i < _bulletsSpawned; i++)

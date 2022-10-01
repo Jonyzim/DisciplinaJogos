@@ -30,7 +30,7 @@ public class CinemachineFollowMouse : MonoBehaviour
         {
             _offset = TargetGroup.gameObject.transform.position - _cam.gameObject.transform.position;
         }
-        //TODO add offset for singleplayer controller aiming
+        //TODO: Add offset for singleplayer controller aiming
         else
         {
             _offset = (_cam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - (new Vector3(0.5f, 0.5f, 0f))) * 2;

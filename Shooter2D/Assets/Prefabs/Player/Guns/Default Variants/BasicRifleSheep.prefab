@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: _damage
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 3990382192183887820, guid: 792d96dee7a5563428101634b8c56263, type: 3}
+      propertyPath: _storeAmmunition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5338058484766843147, guid: 792d96dee7a5563428101634b8c56263, type: 3}
       propertyPath: m_RootOrder
       value: 0

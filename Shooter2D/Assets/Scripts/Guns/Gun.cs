@@ -10,9 +10,6 @@ public abstract class Gun : MonoBehaviour
 
     [SerializeField] protected Transform SpawnTransf;
     [SerializeField] protected GameObject Bullet;
-    protected uint CurClip;
-    protected float cd = 0;
-    protected int OwnerId;
     [SerializeField] private GameObject _interactableReference;
     [SerializeField] private Light2D _flashLight;
 
@@ -22,18 +19,23 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private float _reloadTime;
     [SerializeField] private uint _clip;
-    [SerializeField] private uint _storeAmmunition;
 
-    //Substituir quando equipar arma
+    [Tooltip("0 = Infinite bullets")][SerializeField] private uint _storeAmmunition;
+
+    // Substituir quando equipar arma
     [Header("Sprites")]
     [SerializeField] private Sprite _magazineSprite;
     [SerializeField] private Sprite _reloadSprite;
     [SerializeField] private Sprite _backgroundSprite;
 
+    protected uint CurClip;
+    protected float cd = 0;
+    protected int OwnerId;
+
     private uint _curStoreAmmunition;
     private float _reloadProgress = 0;
 
-    //Methods
+    // Methods
     public void Pick(Character character)
     {
         SetOwner(character);
@@ -44,6 +46,7 @@ public abstract class Gun : MonoBehaviour
         GameEvents.s_Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
         GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
     }
+
     public void Drop(Character character)
     {
         RemoveOwner(character);
@@ -61,7 +64,7 @@ public abstract class Gun : MonoBehaviour
         cd = 1 / Rof;
         GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
 
-        //Calculate new spread based on character Aim stat
+        // Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
 
         Vector2 _direction = Quaternion.AngleAxis(-Random.Range(-_spread, _spread), new Vector3(0, 0, 1)) * direction;
@@ -71,6 +74,7 @@ public abstract class Gun : MonoBehaviour
         bulletScript.SetPlayer(OwnerId);
         bulletScript.SetVariables(_direction, strenght, _damage);
     }
+
     public void SwitchFlashlight()
     {
         if (_flashLight != null)
@@ -78,10 +82,12 @@ public abstract class Gun : MonoBehaviour
             _flashLight.enabled = !_flashLight.enabled;
         }
     }
+
     public void SetOwner(Character character)
     {
         OwnerId = character.CharacterId;
     }
+
     public void RemoveOwner(Character character)
     {
         OwnerId = -1;
@@ -102,37 +108,53 @@ public abstract class Gun : MonoBehaviour
 
     public void RechargeAmmunition()
     {
-        _curStoreAmmunition = _storeAmmunition - CurClip;
+        if (_storeAmmunition != 0)
+        {
+            _curStoreAmmunition = _storeAmmunition - CurClip;
+        }
     }
 
     public float GetAmmunitionPercentage()
     {
-        return (float)(_curStoreAmmunition + CurClip) / _storeAmmunition;
+        if (_storeAmmunition != 0)
+        {
+            return (float)(_curStoreAmmunition + CurClip) / _storeAmmunition;
+        }
+        return 1f;
     }
 
     public abstract void ReleaseFire();
+
     protected abstract void FireProps();
-
     protected abstract void ReloadProps(float time);
-
-
-
 
     private void ReloadUpdate()
     {
-        ReloadProps(_reloadTime);
-        _reloadProgress += Time.deltaTime;
-        GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
-
-        if (_reloadProgress > _reloadTime)
+        if (_curStoreAmmunition > 0 || _storeAmmunition == 0)
         {
-            _reloadProgress = 0;
-            CurClip = _clip;
-            _curStoreAmmunition -= _clip;
+            _reloadProgress += Time.deltaTime;
+            GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+
+            if (_reloadProgress > _reloadTime)
+            {
+                ReloadProps(_reloadTime);
+                _reloadProgress = 0;
+                if (_curStoreAmmunition > _clip)
+                {
+                    CurClip = _clip;
+                    _curStoreAmmunition -= _clip;
+
+                }
+                else
+                {
+                    CurClip = _curStoreAmmunition;
+                    _curStoreAmmunition = 0;
+                }
 
 
-            GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
-            GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+                GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
+                GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+            }
         }
     }
 

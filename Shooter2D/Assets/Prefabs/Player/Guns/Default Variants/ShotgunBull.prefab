@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _damage
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7757082452515055251, guid: 6350c2055769f9348bfc6a0fc1b87fef, type: 3}
+      propertyPath: _storeAmmunition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7774268563185631068, guid: 6350c2055769f9348bfc6a0fc1b87fef, type: 3}
       propertyPath: m_Name
       value: ShotgunBull
