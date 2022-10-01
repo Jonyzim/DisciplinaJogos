@@ -10,8 +10,8 @@ public abstract class AutomaticGun : Gun
     {
         if (cd <= 0 && CurClip > 0)
         {
-            base.Fire(direction, strenght, aim);
             CurClip -= 1;
+            base.Fire(direction, strenght, aim);
         }
     }
 

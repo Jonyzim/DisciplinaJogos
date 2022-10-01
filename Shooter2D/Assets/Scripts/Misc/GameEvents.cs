@@ -64,4 +64,13 @@ public class GameEvents : MonoBehaviour
             OnScoreUpdate(id, addScore);
         }
     }
+
+    public event Action<int, float> OnHealthUpdate;
+    public void HealthUpdate(int id, float fillAmount)
+    {
+        if (OnHealthUpdate != null)
+        {
+            OnHealthUpdate(id, fillAmount);
+        }
+    }
 }

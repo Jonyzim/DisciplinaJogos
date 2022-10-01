@@ -10,7 +10,7 @@ public class EnemyBullet : PhysicsBullet
         if (character != null)
         {
             print("Colidiu player");
-            character.GetDamage((int)DamageCaused);
+            character.ChangeHealth((int)DamageCaused);
             DestroyBullet();
         }
     }

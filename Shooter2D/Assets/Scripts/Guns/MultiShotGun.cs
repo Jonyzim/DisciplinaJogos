@@ -7,20 +7,22 @@ public abstract class MultiShotGun : Gun
     [Header("ShotgunSpecifics")]
     [SerializeField] private int _bulletsSpawned;
     [SerializeField] private float _bulletLag;
+
     private bool _fired = false;
 
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
         if (cd <= 0 && CurClip > 0 && !_fired)
         {
+            _fired = true;
+            CurClip -= 1;
+
             for (int i = 0; i < _bulletsSpawned; i++)
             {
                 StartCoroutine(FireLag(direction, strenght, aim, Random.Range(-_bulletLag, _bulletLag)));
             }
-
-            _fired = true;
-            CurClip -= 1;
         }
+
     }
 
     private IEnumerator FireLag(Vector2 direction, int strenght, float aim, float waitTime)

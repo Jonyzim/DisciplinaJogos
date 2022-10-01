@@ -14,6 +14,8 @@ public class HUDManager : MonoBehaviour
     public TMP_Text ScoreText;
     public int Score;
     public static bool s_IsPaused => isPaused;
+
+    [SerializeField] private Image HealthBarSprite;
     [SerializeField] private GameObject _pauseMenu;
     private static bool isPaused = false;
     private bool _thisPlayerPaused = false;
@@ -50,7 +52,7 @@ public class HUDManager : MonoBehaviour
 
         }
     }
-    
+
     private void ChangeMagazine(int id, Sprite magazineSprite, Sprite backgroundSprite)
     {
         if (Id == id)
@@ -64,6 +66,12 @@ public class HUDManager : MonoBehaviour
     {
         if (Id == id)
             MagazineSprite.fillAmount = fillAmount;
+    }
+
+    private void UpdateHealth(int id, float fillAmount)
+    {
+        if (Id == id)
+            HealthBarSprite.fillAmount = fillAmount;
     }
 
     private void UpdateReload(int id, float fillAmount)
@@ -107,6 +115,7 @@ public class HUDManager : MonoBehaviour
         Score = 0;
         GameEvents.s_Instance.OnPickWeapon += ChangeMagazine;
         GameEvents.s_Instance.OnMagazineUpdate += UpdateMagazine;
+        GameEvents.s_Instance.OnHealthUpdate += UpdateHealth;
         GameEvents.s_Instance.OnReloadUpdate += UpdateReload;
         GameEvents.s_Instance.OnScoreUpdate += AddScore;
         GameEvents.s_Instance.OnPause += PauseGame;

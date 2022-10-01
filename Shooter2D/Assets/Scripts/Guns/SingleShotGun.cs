@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class SingleShotGun : Gun
 {
-    //[Header("SingleShotSpecifics")]
+    // Garante apenas um tiro por clique do mouse
     private bool _fired = false;
 
     //Methods
@@ -12,10 +12,10 @@ public abstract class SingleShotGun : Gun
     {
         if (cd <= 0 && CurClip > 0 && !_fired)
         {
-            base.Fire(direction, strenght, aim);
-
             _fired = true;
             CurClip -= 1;
+
+            base.Fire(direction, strenght, aim);
         }
 
     }

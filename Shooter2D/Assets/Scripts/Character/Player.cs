@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
     }
     public void OnAim(InputAction.CallbackContext context)
     {
-        if (_pawn == null || _cam==null)
+        if (_pawn == null || _cam == null)
             return;
         Vector2 newDirection;
         if (context.control.device.name == "Mouse")
@@ -159,16 +159,16 @@ public class Player : MonoBehaviour
         Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(_playerId);
 
         //TEMPORARY, Change to character selection instead
-        Possess(Instantiate(_characterPrefab[_playerId-1]).GetComponent<Character>());
+        Possess(Instantiate(_characterPrefab[_playerId - 1]).GetComponent<Character>());
     }
     void Update()
     {
 
         //Updates camera even with a still mouse
-        if (_isMouse)
-        {
-            _direction = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
-        }
+        // if (_isMouse)
+        // {
+        //     _direction = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
+        // }
         _pawn.ControlRotation(_direction);
     }
     void FixedUpdate()

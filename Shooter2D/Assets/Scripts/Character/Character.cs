@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Classe futuramente abstrata, serão utilizados as classes CowCharacter, PigCharacter e etc
@@ -17,6 +15,7 @@ public class Character : MonoBehaviour
     public int CharacterId => _characterId;
     private int _characterId;
 
+    private int _curHealth;
     private Rigidbody2D _body;
     private float _baseSpeed = 10;
 
@@ -29,7 +28,9 @@ public class Character : MonoBehaviour
         }
         else
             _characterId = 0;
-        if(EquippedGun != null){
+
+        if (EquippedGun != null)
+        {
             EquippedGun.SetOwner(this);
         }
     }
@@ -44,16 +45,21 @@ public class Character : MonoBehaviour
             onInteract(id);
         }
     }
-    public void GetDamage(int damage)
+
+    //Methods
+    public void ChangeHealth(int value)
     {
-        Health -= damage;
-        if (Health < 0)
+        _curHealth -= value;
+        GameEvents.s_Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
+        Debug.Log(_curHealth);
+
+        if (_curHealth <= 0)
         {
-            print("Death");
+            Debug.Log("Death");
             //Destroy(gameObject);
         }
     }
-    //Methods
+
     public void Fire(Vector2 direction)
     {
         EquippedGun.Fire(direction, Strenght, Aim);
@@ -93,7 +99,8 @@ public class Character : MonoBehaviour
             angle = -Vector2.SignedAngle(direction, Vector2.left);
         }
 
-        if(EquippedGun != null){
+        if (EquippedGun != null)
+        {
             EquippedGun.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
@@ -101,6 +108,7 @@ public class Character : MonoBehaviour
     //Unity Methods
     void Start()
     {
+        _curHealth = Health;
         _body = GetComponent<Rigidbody2D>();
     }
 
