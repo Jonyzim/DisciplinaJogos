@@ -13,7 +13,6 @@ public class PhysicsExplosionBullet : Bullet
         _rgbd.AddForce(Direction * Speed, ForceMode2D.Impulse);
     }
 
-
     // TODO: Add Explosion
     private void Explode()
     {
@@ -30,6 +29,12 @@ public class PhysicsExplosionBullet : Bullet
         }
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, _explosionRadius);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
