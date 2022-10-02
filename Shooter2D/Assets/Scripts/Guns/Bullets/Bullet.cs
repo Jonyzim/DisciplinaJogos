@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     public virtual void SetVariables(Vector2 direction, int strenght, int damage)
     {
         Direction = direction;
-        DamageCaused = damage*((float)strenght / 100);
+        DamageCaused = damage * ((float)strenght / 100);
     }
 
     // IEnumerator DestroyDelay()
@@ -41,11 +41,9 @@ public class Bullet : MonoBehaviour
         if (OwnerId != -1)
             GameEvents.s_Instance.ScoreUpdate(OwnerId, n);
     }
+
     protected virtual void DamageOnEnemy(Enemy enemy, Vector3 pos)
     {
-
-        //if(enemy.Damage(transform.position, damageCaused))
-        //    AddPlayerScore(10);
         int life = enemy.Life;
         enemy.Damage(pos, (int)DamageCaused);
         AddPlayerScore(Mathf.Min(life, (int)DamageCaused));

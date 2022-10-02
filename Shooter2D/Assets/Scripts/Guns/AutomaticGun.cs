@@ -18,16 +18,4 @@ public abstract class AutomaticGun : Gun
     public override void ReleaseFire()
     {
     }
-
-    // Start is called before the first frame update
-    // protected virtual new void Start()
-    // {
-    //     base.Start();
-    // }
-
-    // // Update is called once per frame
-    // protected virtual new void Update()
-    // {
-    //     base.Update();
-    // }
 }
