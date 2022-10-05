@@ -73,4 +73,13 @@ public class GameEvents : MonoBehaviour
             OnHealthUpdate(id, fillAmount);
         }
     }
+
+    public event Action<int, bool> OnSetUiMode;
+    public void SetUiMode(int id, bool mode)
+    {
+        if (OnSetUiMode != null)
+        {
+            OnSetUiMode(id, mode);
+        }
+    }
 }

@@ -6,6 +6,7 @@ public class Plant : MonoBehaviour
 {
     public int GrowthTime => _growthTime;
     public int Growth => _growth;
+
     [SerializeField] private int _growthTime;
     [SerializeField] private Sprite[] _plantSprites;
     [SerializeField] private Sprite[] _groundSprites;

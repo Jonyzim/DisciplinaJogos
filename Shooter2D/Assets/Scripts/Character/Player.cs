@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private Vector2 _mousePos;
     private bool _isMouse;
     private int _playerId;
+    private PlayerInput _playerInput;
 
     private bool _isFiring = false;
 
@@ -141,6 +142,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    void SetInputMode(int id, bool mode)
+    {
+        if (id == _playerId)
+        {
+            if (mode)
+            {
+                Debug.Log("UI MODE");
+                _playerInput.SwitchCurrentActionMap("UI");
+                _playerInput.enabled = false;
+            }
+            else
+            {
+                Debug.Log("PLAYER MODE");
+                _playerInput.SwitchCurrentActionMap("Player");
+                _playerInput.enabled = true;
+            }
+
+        }
+    }
+
     //Unity Methods
     void Start()
     {
@@ -156,11 +177,18 @@ public class Player : MonoBehaviour
             }
         }
 
+        _playerInput = GetComponent<PlayerInput>();
+        GameEvents.s_Instance.OnSetUiMode += SetInputMode;
+
+
         Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(_playerId);
 
-        //TEMPORARY, Change to character selection instead
+
+        //TODO: Change to character selection instead
         Possess(Instantiate(_characterPrefab[_playerId - 1]).GetComponent<Character>());
+
     }
+
     void Update()
     {
 
@@ -188,4 +216,5 @@ public class Player : MonoBehaviour
         _pawn.SetPlayerControlling(null);
         s_ActivePlayers[_playerId - 1] = null;
     }
+
 }
