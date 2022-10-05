@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public Character Pawn => _pawn;
     public int PlayerId => _playerId;
     public Canvas PlayerCanvas;
+    public MultiplayerEventSystem PlayerEventSystem;
 
     private static Player[] s_activePlayers = new Player[4];
 
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     private bool _isMouse;
     private int _playerId;
     private PlayerInput _playerInput;
+
 
     private bool _isFiring = false;
 

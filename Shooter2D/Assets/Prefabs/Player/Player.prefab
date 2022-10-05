@@ -229,6 +229,7 @@ MonoBehaviour:
   - {fileID: 1038257187066757836, guid: 18509276e80c5b645a6a53f5c9240180, type: 3}
   - {fileID: 6166942393867221984, guid: a459eaa20b18b8c428c6aefd672fe677, type: 3}
   _pawn: {fileID: 0}
+  multiplayerTest: {fileID: 8520809822957558077}
 --- !u!114 &8589076917191964790
 MonoBehaviour:
   m_ObjectHideFlags: 0

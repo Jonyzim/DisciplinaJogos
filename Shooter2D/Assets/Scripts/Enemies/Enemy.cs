@@ -8,13 +8,16 @@ public abstract class Enemy : MonoBehaviour
 {
     public int Life => (int)_life;
     public bool IsDead => _isDead;
+
     [SerializeField] protected GameObject HitFxPrefab;
     [SerializeField] protected GameObject DeathFxPrefab;
-    private Color _startColor;
-    private Color _damageColor = new Color(1f, 0, 0, 1f);
+
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _fxSpeed = 0.05f;
     [SerializeField] private GameObject _scoreViewPrefab;
+
+    private Color _startColor;
+    private Color _damageColor = new Color(1f, 0, 0, 1f);
     private Transform _scoreCanvas;
     private float _life = 100f;
     private bool _isDead = false;
@@ -31,7 +34,7 @@ public abstract class Enemy : MonoBehaviour
         Vector3 scorePos = transform.position;
         scorePos.y += 1f;
         GameObject score = Instantiate(_scoreViewPrefab, scorePos, Quaternion.identity, _scoreCanvas);
-        
+
         score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
         if (_life <= 0)
         {

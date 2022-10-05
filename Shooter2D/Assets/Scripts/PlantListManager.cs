@@ -22,6 +22,7 @@ public class PlantListManager : ScriptableObject
 public struct PlantEntry
 {
     public string Name;
+
     public string Description;
     public string EffectsDescription;
     public Sprite PreviewImage;

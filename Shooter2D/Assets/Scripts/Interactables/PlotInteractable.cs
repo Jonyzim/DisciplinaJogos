@@ -19,9 +19,9 @@ public class PlotInteractable : Interactable
                 //Seleção de plantas
                 _isLocked = true;
                 _interactingId = id;
-                GameObject popupInstance = Instantiate(PlantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform);
-                GameEvents.s_Instance.SetUiMode(id, true);
-                popupInstance.GetComponent<PlantGridLayoutManager>().OnChoosePlant += SetPlant;
+                PlantGridLayoutManager popupManager = Instantiate(PlantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+                popupManager.OnChoosePlant += SetPlant;
+                popupManager.Initialize(id);
             }
         }
         else
@@ -44,7 +44,6 @@ public class PlotInteractable : Interactable
 
     public void SetPlant(GameObject plantPrefab)
     {
-        GameEvents.s_Instance.SetUiMode(_interactingId, false);
         if (plantPrefab != null)
         {
             GameObject plantObject = Instantiate(plantPrefab, transform);
@@ -55,7 +54,6 @@ public class PlotInteractable : Interactable
 
         _isLocked = false;
         _interactingId = -1;
-
 
     }
 }
