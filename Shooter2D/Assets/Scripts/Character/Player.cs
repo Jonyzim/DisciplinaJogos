@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    public static Player[] s_ActivePlayers => s_activePlayers;
 
     public Character Pawn => _pawn;
     public int PlayerId => _playerId;
-    private static Player[] s_ActivePlayers = new Player[4];
+    public Canvas PlayerCanvas;
+
+    private static Player[] s_activePlayers = new Player[4];
 
 
     [SerializeField] private GameObject _HUDPrefab;
@@ -150,13 +153,11 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("UI MODE");
                 _playerInput.SwitchCurrentActionMap("UI");
-                _playerInput.enabled = false;
             }
             else
             {
                 Debug.Log("PLAYER MODE");
                 _playerInput.SwitchCurrentActionMap("Player");
-                _playerInput.enabled = true;
             }
 
         }
@@ -169,10 +170,10 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if (s_ActivePlayers[i] == null)
+            if (s_activePlayers[i] == null)
             {
                 _playerId = i + 1;
-                s_ActivePlayers[i] = this;
+                s_activePlayers[i] = this;
                 break;
             }
         }
@@ -214,7 +215,7 @@ public class Player : MonoBehaviour
     void OnDestroy()
     {
         _pawn.SetPlayerControlling(null);
-        s_ActivePlayers[_playerId - 1] = null;
+        s_activePlayers[_playerId - 1] = null;
     }
 
 }
