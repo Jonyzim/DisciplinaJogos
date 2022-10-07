@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private Vector2 _movement = new Vector2(0, 0);
     private int _score;
     private Vector2 _mousePos;
-    private bool _isMouse;
+
     private int _playerId;
     private PlayerInput _playerInput;
 
