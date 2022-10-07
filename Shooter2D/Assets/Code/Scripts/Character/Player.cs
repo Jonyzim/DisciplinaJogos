@@ -132,13 +132,11 @@ public class Player : MonoBehaviour
         Vector2 newDirection;
         if (context.control.device.name == "Mouse")
         {
-            _isMouse = true;
             _mousePos = (Vector2)_cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
             newDirection = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
         }
         else
         {
-            _isMouse = false;
             newDirection = context.ReadValue<Vector2>();
         }
 
