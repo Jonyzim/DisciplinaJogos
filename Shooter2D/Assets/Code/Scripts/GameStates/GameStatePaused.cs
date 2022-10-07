@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class GameStateIdle : GameState
+public class GameStatePaused : GameState
 {
+    private GameState _previousGameState;
+
     public override void Start(GameContext context)
     {
-        throw new System.NotImplementedException();
+        _previousGameState = context.CurGameState;
     }
 
     public override void Update(GameContext context)
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    public override void Pause(GameContext context)
+    {
+        context.SwitchState(_previousGameState);
     }
 
 }

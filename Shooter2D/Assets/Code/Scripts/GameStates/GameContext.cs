@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class GameContext : MonoBehaviour
 {
+
+
     public GameStateIdle StateIdle = new GameStateIdle();
-    public GameStateReady StateReady = new GameStateReady();
     public GameStateWave StateWave = new GameStateWave();
+    public GameStatePaused StatePaused = new GameStatePaused();
 
-    private GameState _curGameState;
+    public bool canStartWave;
 
-    public int CurWave;
+    public GameState CurGameState;
 
-    public int RemainingEnemies;
+    public int CurWave = 0;
 
     public int PlayerCredit = 0;
 
+    private void Start()
+    {
+        SwitchState(StateIdle);
+    }
+
     private void Update()
     {
-        _curGameState.Update(this);
+        CurGameState.Update(this);
     }
 
     public void SwitchState(GameState newState)
     {
-        _curGameState = newState;
-        _curGameState.Start(this);
+        newState.Start(this);
+        CurGameState = newState;
     }
+
 }

@@ -38,12 +38,21 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action OnWaveChange;
-    public void WaveChange()
+    public event Action OnWaveBegin;
+    public void WaveBegin()
     {
-        if (OnWaveChange != null)
+        if (OnWaveBegin != null)
         {
-            OnWaveChange();
+            OnWaveBegin();
+        }
+    }
+
+    public event Action OnWaveEnd;
+    public void WaveEnd()
+    {
+        if (OnWaveEnd != null)
+        {
+            OnWaveEnd();
         }
     }
 
