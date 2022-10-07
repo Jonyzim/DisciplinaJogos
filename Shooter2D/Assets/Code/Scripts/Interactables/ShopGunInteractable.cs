@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ShopGunInteractable : GunInteractable
 {
-    GunListManager gunListManager;
+    // TODO: Spawnar balão de texto com dinheiro necessário
+
+    [SerializeField]
+    private GunListManager _gunListManager;
+
     private int _price;
 
     protected override void Interact(int id)
@@ -18,9 +22,19 @@ public class ShopGunInteractable : GunInteractable
     // Unity Methods
     private void Start()
     {
-        GameObject newGun;
-        (newGun, _price) = gunListManager.GetRandomWeapon();
+        SpawnWeapon();
+    }
 
+    public void SpawnWeapon()
+    {
+        GameObject newGun;
+        (newGun, _price) = _gunListManager.GetRandomWeapon();
+
+
+        if (NewGun != null)
+        {
+            Destroy(NewGun.gameObject);
+        }
         NewGun = Instantiate(newGun, gameObject.transform);
     }
 }

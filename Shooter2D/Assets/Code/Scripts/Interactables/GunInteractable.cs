@@ -23,4 +23,5 @@ public class GunInteractable : Interactable
             Destroy(gameObject);
         }
     }
+
 }

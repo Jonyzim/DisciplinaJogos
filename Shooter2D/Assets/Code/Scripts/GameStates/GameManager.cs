@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (_instance != null)
+            if (GameManager._instance == null)
             {
                 Debug.LogError("GameManager does not exist!");
             }
-            return _instance;
+            return GameManager._instance;
 
         }
     }
@@ -33,13 +33,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
+        if (GameManager._instance != null)
         {
             Destroy(this);
         }
         else
         {
-            _instance = this;
+            GameManager._instance = this;
         }
     }
 
@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
         // TODO: Implementar balão dizendo "Créditos insuficientes"
         else
         {
-            Debug.Log("Créditos Insuficients");
             return false;
         }
     }

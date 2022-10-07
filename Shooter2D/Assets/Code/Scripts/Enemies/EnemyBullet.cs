@@ -6,7 +6,7 @@ public class EnemyBullet : PhysicsBullet
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Character character = collision.gameObject.GetComponent<Character>();
+        Character character = collision.GetComponentInParent<Character>();
         if (character != null)
         {
             print("Colidiu player");

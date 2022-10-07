@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using NaughtyAttributes;
 
 [Serializable]
 [CreateAssetMenu(fileName = "GunListManager", menuName = "Shooter2D/GunListManager", order = 0)]
@@ -63,6 +64,7 @@ public class GunListManager : ScriptableObject
 [Serializable]
 public struct GunEntry
 {
+    [ShowAssetPreview]
     public GameObject GunPrefab;
     public int Price;
     public bool IsAvailable;
