@@ -14,7 +14,6 @@ public class PlantGridLayoutManager : MonoBehaviour
     [SerializeField] private PlantListManager _plantListManager;
     [SerializeField] private Sprite _unknownImage;
 
-
     public void Initialize(int id)
     {
         OwnerId = id;
@@ -77,21 +76,5 @@ public class State1 : IBaseState
     public void UpdateFunc()
     {
 
-    }
-}
-
-public class StateManager
-{
-    IBaseState curState;
-    State1 State1 = new State1();
-
-    void Start()
-    {
-        curState = State1;
-    }
-
-    void Update()
-    {
-        curState.UpdateFunc();
     }
 }

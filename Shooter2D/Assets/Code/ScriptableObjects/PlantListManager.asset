@@ -19,14 +19,14 @@ MonoBehaviour:
     PreviewImage: {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
     PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
     IsEnabled: 1
-  - Name: Planta 1
-    Description: Qualquer coisa de teste 1
+  - Name: Planta 2
+    Description: Qualquer coisa de teste 2
     EffectsDescription: STR +25
     PreviewImage: {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
     PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
     IsEnabled: 1
-  - Name: Planta 1
-    Description: Qualquer coisa de teste 1
+  - Name: Planta 3
+    Description: Qualquer coisa de teste 3
     EffectsDescription: STR +50
     PreviewImage: {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
     PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
