@@ -5,25 +5,22 @@ using UnityEngine;
 public class ShopGunInteractable : GunInteractable
 {
     GunListManager gunListManager;
+    private int _price;
 
     protected override void Interact(int id)
     {
-        // TODO: Implementar condição de créditos
-        if (true)
+        if (GameManager.Instance.TryBuy(_price))
         {
-            // Chamar função de consumir os créditos
             base.Interact(id);
-        }
-        // TODO: Implementar balão dizendo "Créditos insuficientes"
-        else
-        {
-
         }
     }
 
     // Unity Methods
     private void Start()
     {
-        NewGun = gunListManager.GetRandomWeapon();
+        GameObject newGun;
+        (newGun, _price) = gunListManager.GetRandomWeapon();
+
+        NewGun = Instantiate(newGun, gameObject.transform);
     }
 }

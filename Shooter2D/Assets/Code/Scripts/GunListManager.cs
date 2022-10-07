@@ -11,21 +11,21 @@ public class GunListManager : ScriptableObject
 {
     [SerializeField] private GunEntry[] GunList;
 
-    public GameObject GetRandomWeapon()
+    public (GameObject, int) GetRandomWeapon()
     {
         int i;
         // Gerar números até gerar uma arma válida
         do
         {
             i = UnityEngine.Random.Range(0, GunList.Length);
-        } while (!GunList[i].isAvailable);
+        } while (!GunList[i].IsAvailable);
 
-        return GunList[i].gunPrefab;
+        return (GunList[i].GunPrefab, GunList[i].Price);
     }
 
     public void UnlockGun(int index)
     {
-        GunList[index].isAvailable = true;
+        GunList[index].IsAvailable = true;
     }
 
     public void Save()
@@ -63,6 +63,7 @@ public class GunListManager : ScriptableObject
 [Serializable]
 public struct GunEntry
 {
-    public GameObject gunPrefab;
-    public bool isAvailable;
+    public GameObject GunPrefab;
+    public int Price;
+    public bool IsAvailable;
 }

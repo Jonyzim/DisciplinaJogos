@@ -6,16 +6,12 @@ public class RechargeAmmunitionInteractable : Interactable
 {
     protected override void Interact(int id)
     {
-        // TODO: Implementar condição de créditos
-        if (true)
-        {
-            // Chamar função de consumir os créditos
-            CharacterList[id].EquippedGun.RechargeAmmunition();
-        }
-        // TODO: Implementar balão dizendo "Créditos insuficientes"
-        else
-        {
+        // TODO: Adicionar constante de preço para cada arma
+        int price = (int)(100 * (1f - CharacterList[id].EquippedGun.GetAmmunitionPercentage()));
 
+        if (GameManager.Instance.TryBuy(price))
+        {
+            CharacterList[id].EquippedGun.RechargeAmmunition();
         }
     }
 }

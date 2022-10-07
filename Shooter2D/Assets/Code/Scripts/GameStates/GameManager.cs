@@ -59,4 +59,18 @@ public class GameManager : MonoBehaviour
         CurGameState = newState;
     }
 
+    public bool TryBuy(int price)
+    {
+        if (PlayerCredit >= price)
+        {
+            PlayerCredit -= price;
+            return true;
+        }
+        // TODO: Implementar balão dizendo "Créditos insuficientes"
+        else
+        {
+            Debug.Log("Créditos Insuficients");
+            return false;
+        }
+    }
 }
