@@ -47,9 +47,14 @@ public class Character : MonoBehaviour
     }
 
     //Methods
-    public void ChangeHealth(int value)
+    public void UpdateHealth(int value = 0)
     {
-        _curHealth -= value;
+        _curHealth += value;
+        if (_curHealth > Health)
+        {
+            _curHealth = Health;
+        }
+
         GameEvents.s_Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
         Debug.Log(_curHealth);
 

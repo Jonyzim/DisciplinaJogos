@@ -10,7 +10,7 @@ public class GiveBuffTemp : MonoBehaviour
     [Button]
     public void GiveBuff()
     {
-        CharRef.AddBuff(new StrenghtBuff(10, 25));
+        CharRef.AddBuff(new FlatBuff(10, 25));
     }
 
 }
