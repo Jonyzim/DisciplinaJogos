@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     public int CharacterId => _characterId;
     private int _characterId;
 
-    private List<Buff> buffList;
+    private List<Buff> buffList = new List<Buff>();
     private int _curHealth;
     private Rigidbody2D _body;
     private float _baseSpeed = 10;
