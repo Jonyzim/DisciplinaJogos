@@ -1,7 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-
-//Classe futuramente abstrata, serão utilizados as classes CowCharacter, PigCharacter e etc
 
 public class Character : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Character : MonoBehaviour
     public int CharacterId => _characterId;
     private int _characterId;
 
+    private List<Buff> buffList;
     private int _curHealth;
     private Rigidbody2D _body;
     private float _baseSpeed = 10;
@@ -105,12 +105,36 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void AddBuff(Buff buff)
+    {
+        buff.Grant(this);
+        buffList.Add(buff);
+    }
+
+    public void RemoveBuff(Buff buff)
+    {
+        buff.Remove(this);
+        buffList.Remove(buff);
+    }
+
     //Unity Methods
     void Start()
     {
         _curHealth = Health;
         _body = GetComponent<Rigidbody2D>();
+
+        Buff.OnRemove += RemoveBuff;
     }
+
+    void Update()
+    {
+        // Atualiza os timers dos buffs
+        foreach (Buff buff in buffList)
+        {
+            buff.Update(Time.deltaTime);
+        }
+    }
+
 
 
 }

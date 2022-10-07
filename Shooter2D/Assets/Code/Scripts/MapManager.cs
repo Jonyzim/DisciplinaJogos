@@ -7,6 +7,7 @@ using NaughtyAttributes;
 
 #if (UNITY_EDITOR)
 using UnityEditor.SceneManagement;
+using UnityEditor;
 #endif
 
 [Serializable]
@@ -25,36 +26,46 @@ public class MapManager : ScriptableObject
     private SceneSetup[] _saveState;
 #endif
 
-
-
-    [Button]
     private void LoadMap()
     {
-        Map? nullableMapToLoad = Map.SearchMap(_mapList, LoadMapName);
+        Map? mapToLoad = Map.SearchMap(_mapList, LoadMapName);
 
-
-        if (nullableMapToLoad != null)
+        if (!mapToLoad.HasValue)
         {
-            Map mapToLoad = (Map)nullableMapToLoad;
-
-            foreach (string sceneName in mapToLoad.ScenesName)
-            {
-#if (UNITY_EDITOR)
-                EditorSceneManager.OpenScene(sceneName, OpenSceneMode.Additive);
-#else
-                SceneManager.
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-#endif
-            }
+            Debug.LogError("Map doesn't exist");
+            return;
         }
 
-
-        Debug.LogError("Map doesn't exist");
+        SceneManager.LoadScene((int)mapToLoad?.ActiveScene, LoadSceneMode.Single);
+        foreach (int sceneName in mapToLoad?.LoadedScenes)
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
 
     }
 
-
+    // Funções exclusivas do editor
 #if (UNITY_EDITOR)
+    [Button("Load Map")]
+    private void LoadEditorMap()
+    {
+        Map? mapToLoad = Map.SearchMap(_mapList, LoadMapName);
+
+        if (!mapToLoad.HasValue)
+        {
+            Debug.LogError("Map doesn't exist");
+            return;
+        }
+
+        // Gets scene path by index as OpenScene() requires it
+        EditorSceneManager.OpenScene(EditorBuildSettings.scenes[(int)mapToLoad?.ActiveScene].path, OpenSceneMode.Single);
+        foreach (int sceneName in mapToLoad?.LoadedScenes)
+        {
+            EditorSceneManager.OpenScene(EditorBuildSettings.scenes[sceneName].path, OpenSceneMode.Additive);
+        }
+
+    }
+
     [Button]
     private void SaveState()
     {
@@ -68,29 +79,4 @@ public class MapManager : ScriptableObject
     }
 #endif
 
-}
-
-[Serializable]
-public struct Map
-{
-    public string MapName;
-
-    [Scene]
-    public string[] ScenesName;
-
-
-
-
-
-    public static Map? SearchMap(Map[] mapList, string mapName)
-    {
-        foreach (Map map in mapList)
-        {
-            if (string.Compare(map.MapName, mapName) == 0)
-            {
-                return map;
-            }
-        }
-        return null;
-    }
 }
