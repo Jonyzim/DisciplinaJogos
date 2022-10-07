@@ -136,7 +136,7 @@ public class Character : MonoBehaviour
         // Atualiza os timers dos buffs
         foreach (Buff buff in buffList)
         {
-            buff.Update(Time.deltaTime);
+            buff.UpdateBuff(Time.deltaTime);
         }
     }
 

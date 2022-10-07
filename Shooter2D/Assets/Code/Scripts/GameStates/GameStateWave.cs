@@ -6,7 +6,7 @@ public class GameStateWave : GameState
 {
     public int RemainingEnemies;
 
-    public override void Start(GameContext context)
+    public override void Start(GameManager context)
     {
         GameEvents.s_Instance.WaveBegin();
 
@@ -16,7 +16,7 @@ public class GameStateWave : GameState
         RemainingEnemies = 10;
     }
 
-    public override void Update(GameContext context)
+    public override void Update(GameManager context)
     {
         if (RemainingEnemies <= 0)
         {

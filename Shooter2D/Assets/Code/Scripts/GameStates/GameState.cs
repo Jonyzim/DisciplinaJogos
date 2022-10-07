@@ -5,10 +5,10 @@ using UnityEngine;
 public abstract class GameState
 {
 
-    public abstract void Start(GameContext context);
-    public abstract void Update(GameContext context);
+    public abstract void Start(GameManager context);
+    public abstract void Update(GameManager context);
 
-    public virtual void Pause(GameContext context)
+    public virtual void Pause(GameManager context)
     {
         context.SwitchState(context.StatePaused);
     }

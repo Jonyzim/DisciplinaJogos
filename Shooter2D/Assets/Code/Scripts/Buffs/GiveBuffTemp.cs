@@ -6,11 +6,12 @@ using NaughtyAttributes;
 public class GiveBuffTemp : MonoBehaviour
 {
     public Character CharRef;
+    public Buff buff;
 
     [Button]
     public void GiveBuff()
     {
-        CharRef.AddBuff(new FlatBuff(10, 25));
+        CharRef.AddBuff(Instantiate(buff));
     }
 
 }

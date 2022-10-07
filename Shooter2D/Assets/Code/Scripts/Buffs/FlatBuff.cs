@@ -1,28 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
+[CreateAssetMenu(fileName = "FlatBuff", menuName = "Shooter2D/Buffs/FlatBuff", order = 0)]
 public class FlatBuff : Buff
 {
+    [Header("Effects")]
+    [SerializeField]
     private int _hpAmount;
+
+    [SerializeField]
     private int _strAmount;
+
+    [SerializeField]
     private int _aimAmount;
+
+    [SerializeField]
     private int _spdAmount;
-
-    public FlatBuff(int hpAmount = 0, int strAmount = 0, int hitAmount = 0, int spdAmount = 0) : base()
-    {
-        _hpAmount = hpAmount;
-        _strAmount = strAmount;
-        _aimAmount = hitAmount;
-        _spdAmount = spdAmount;
-    }
-
-    public FlatBuff(float duration, int hpAmount = 0, int strAmount = 0, int hitAmount = 0, int spdAmount = 0) : base(duration)
-    {
-        _hpAmount = hpAmount;
-        _strAmount = strAmount;
-        _aimAmount = hitAmount;
-        _spdAmount = spdAmount;
-    }
 
     public override void Grant(Character character)
     {

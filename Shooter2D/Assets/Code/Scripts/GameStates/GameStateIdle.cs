@@ -6,13 +6,13 @@ public class GameStateIdle : GameState
 {
     private float _timer;
 
-    public override void Start(GameContext context)
+    public override void Start(GameManager context)
     {
         // TODO: Settar fórmula de tempo entre waves
         _timer = 10;
     }
 
-    public override void Update(GameContext context)
+    public override void Update(GameManager context)
     {
         _timer -= Time.deltaTime;
         if (_timer <= 0)
@@ -26,7 +26,7 @@ public class GameStateIdle : GameState
         }
     }
 
-    public override void Pause(GameContext context)
+    public override void Pause(GameManager context)
     {
         context.SwitchState(context.StatePaused);
     }

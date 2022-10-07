@@ -1,40 +1,44 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using NaughtyAttributes;
 
-public abstract class Buff
+public abstract class Buff : ScriptableObject
 {
-    public static event Action<Buff> OnRemove;
+    [Header("General")]
+    [SerializeField]
+    private bool _canDuplicate;
+
+    [SerializeField]
+    private int uniqueId;
 
     // Adicionar imagens(?)
 
+    [SerializeField]
     private bool _isInfinite;
+
+    [SerializeField]
+    [HideIf("_isInfinite")]
     private float _timer;
 
-    /// <summary>
-    /// Infinite buff constructor
-    /// </summary>
-    public Buff()
-    {
-        _isInfinite = true;
-    }
 
-    public Buff(float duration)
-    {
-        _isInfinite = false;
-        _timer = duration > 0 ? duration : 0;
-    }
+    public static event Action<Buff> OnRemove;
 
-    public void Update(float deltaTime)
+    public void UpdateBuff(float deltaTime)
     {
         if (_isInfinite) return;
 
+
         _timer -= deltaTime;
+
         if (_timer <= 0)
         {
+            Debug.Log("remove buff");
             if (OnRemove != null)
             {
                 OnRemove(this);
+                Destroy(this);
             }
         }
     }
