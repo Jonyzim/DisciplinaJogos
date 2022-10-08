@@ -139,7 +139,7 @@ MonoBehaviour:
   _storeAmmunition: 30
   _magazineSprite: {fileID: 21300000, guid: ca6b72fc9d7dd7c4bb864418069210ae, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
-  _backgroundSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
+  _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
   _bulletsSpawned: 10
   _bulletLag: 0.1
 --- !u!1001 &4248782537147408444
