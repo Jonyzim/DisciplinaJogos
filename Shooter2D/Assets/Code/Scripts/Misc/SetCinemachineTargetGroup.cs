@@ -24,7 +24,7 @@ public class SetCinemachineTargetGroup : MonoBehaviour
         }
         else
         {
-            GameEvents.s_Instance.IsMultiplayer = true;
+            GameEvents.Instance.IsMultiplayer = true;
         }
         _group.AddMember(character.gameObject.transform, 1, 1);
     }

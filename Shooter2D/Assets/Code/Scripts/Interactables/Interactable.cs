@@ -9,7 +9,7 @@ public abstract class Interactable : MonoBehaviour
     protected abstract void Interact(int id);
 
     //Unity Methods
-    void Start()
+    protected virtual void Start()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -20,9 +20,10 @@ public abstract class Interactable : MonoBehaviour
     //?Talvez já esteja funcionando com o multiplayer
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+
         Character _character = other.gameObject.GetComponent<Character>();
-        if(_character != null){
+        if (_character != null)
+        {
             CharacterList.Insert(_character.CharacterId - 1, _character);
             CharacterList[_character.CharacterId - 1].onInteract += Interact;
         }
@@ -31,7 +32,8 @@ public abstract class Interactable : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         Character _character = other.gameObject.GetComponent<Character>();
-        if(_character != null){
+        if (_character != null)
+        {
             _character.onInteract -= Interact;
             CharacterList.RemoveAt(_character.CharacterId - 1);
         }

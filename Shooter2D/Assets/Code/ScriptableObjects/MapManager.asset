@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22745bc7a88396440b9a109b7ae46780, type: 3}
   m_Name: MapManager
   m_EditorClassIdentifier: 
-  _mapList:
+  MapList:
   - MapName: MapaDeTeste
     ActiveScene: 0
     LoadedScenes: 01000000
-  - MapName: TestJony
+  - MapName: MapaJony
     ActiveScene: 3
     LoadedScenes: 01000000
-  LoadMapName: MapaDeTeste
+  LoadMapIndex: 0

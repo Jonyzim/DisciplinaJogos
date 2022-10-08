@@ -10,7 +10,7 @@ namespace NaughtyAttributes.Editor
     [CustomEditor(typeof(UnityEngine.Object), true)]
     public class NaughtyInspector : UnityEditor.Editor
     {
-        private List<SerializedProperty> _serializedProperties = new List<SerializedProperty>();
+        protected List<SerializedProperty> _serializedProperties = new List<SerializedProperty>();
         private IEnumerable<FieldInfo> _nonSerializedFields;
         private IEnumerable<PropertyInfo> _nativeProperties;
         private IEnumerable<MethodInfo> _methods;

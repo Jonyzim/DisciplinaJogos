@@ -113,11 +113,11 @@ public class HUDManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        GameEvents.s_Instance.OnPickWeapon += ChangeMagazine;
-        GameEvents.s_Instance.OnMagazineUpdate += UpdateMagazine;
-        GameEvents.s_Instance.OnHealthUpdate += UpdateHealth;
-        GameEvents.s_Instance.OnReloadUpdate += UpdateReload;
-        GameEvents.s_Instance.OnScoreUpdate += AddScore;
-        GameEvents.s_Instance.OnPause += PauseGame;
+        GameEvents.Instance.OnPickWeapon += ChangeMagazine;
+        GameEvents.Instance.OnMagazineUpdate += UpdateMagazine;
+        GameEvents.Instance.OnHealthUpdate += UpdateHealth;
+        GameEvents.Instance.OnReloadUpdate += UpdateReload;
+        GameEvents.Instance.OnScoreUpdate += AddScore;
+        GameEvents.Instance.OnPause += PauseGame;
     }
 }

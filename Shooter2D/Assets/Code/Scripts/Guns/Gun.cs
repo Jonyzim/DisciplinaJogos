@@ -43,8 +43,8 @@ public abstract class Gun : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         character.EquippedGun = this;
-        GameEvents.s_Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
-        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+        GameEvents.Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
+        GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
     }
 
     public void Drop(Character character)
@@ -62,7 +62,7 @@ public abstract class Gun : MonoBehaviour
     {
         FireProps();
         cd = 1 / Rof;
-        GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+        GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
 
         // Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
@@ -133,7 +133,7 @@ public abstract class Gun : MonoBehaviour
         if (_curStoreAmmunition > 0 || _storeAmmunition == 0)
         {
             _reloadProgress += Time.deltaTime;
-            GameEvents.s_Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
+            GameEvents.Instance.ReloadUpdate(OwnerId, _reloadProgress / _reloadTime);
 
             if (_reloadProgress > _reloadTime)
             {
@@ -152,8 +152,8 @@ public abstract class Gun : MonoBehaviour
                 }
 
 
-                GameEvents.s_Instance.ReloadUpdate(OwnerId, 0);
-                GameEvents.s_Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+                GameEvents.Instance.ReloadUpdate(OwnerId, 0);
+                GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
             }
         }
     }

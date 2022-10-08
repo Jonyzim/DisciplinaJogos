@@ -5,12 +5,31 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents s_Instance;
+    public static GameEvents Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("GameEvents does not exist!");
+            }
+            return _instance;
+
+        }
+    }
     public bool IsMultiplayer;
 
+    private static GameEvents _instance;
     void Awake()
     {
-        s_Instance = this;
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     public event Action<int, Sprite, Sprite> OnPickWeapon;

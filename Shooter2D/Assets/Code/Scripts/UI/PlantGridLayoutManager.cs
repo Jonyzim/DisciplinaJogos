@@ -17,7 +17,7 @@ public class PlantGridLayoutManager : MonoBehaviour
     public void Initialize(int id)
     {
         OwnerId = id;
-        GameEvents.s_Instance.SetUiMode(OwnerId, true);
+        GameEvents.Instance.SetUiMode(OwnerId, true);
 
         // TODO: Por algum motivo ele spawna o dobro de gameObject vazios
         foreach (PlantEntry plant in _plantListManager.PlantList)
@@ -55,7 +55,7 @@ public class PlantGridLayoutManager : MonoBehaviour
         {
             OnChoosePlant(plantPrefab);
         }
-        GameEvents.s_Instance.SetUiMode(OwnerId, false);
+        GameEvents.Instance.SetUiMode(OwnerId, false);
         Destroy(gameObject);
     }
 

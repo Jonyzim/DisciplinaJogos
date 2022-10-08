@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,7 +24,11 @@ public class GameManager : MonoBehaviour
     public GameStateWave StateWave = new GameStateWave();
     public GameStatePaused StatePaused = new GameStatePaused();
 
-    public bool canStartWave;
+    public float WaveTimer;
+
+    public int RemainingEnemies;
+
+    public int CanStartWave;
 
     public GameState CurGameState;
 
@@ -72,4 +77,20 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+
+#if (UNITY_EDITOR)
+    [Button]
+    private void FinishWave()
+    {
+        RemainingEnemies = 0;
+    }
+
+    [Button]
+    private void StartWave()
+    {
+        WaveTimer = 0;
+    }
+
+
+#endif
 }

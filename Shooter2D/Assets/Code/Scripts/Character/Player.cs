@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            GameEvents.s_Instance.Pause(PlayerId);
+            GameEvents.Instance.Pause(PlayerId);
         }
     }
     public void OnFire(InputAction.CallbackContext context)
@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
         }
 
         _playerInput = GetComponent<PlayerInput>();
-        GameEvents.s_Instance.OnSetUiMode += SetInputMode;
+        GameEvents.Instance.OnSetUiMode += SetInputMode;
 
 
         Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(_playerId);

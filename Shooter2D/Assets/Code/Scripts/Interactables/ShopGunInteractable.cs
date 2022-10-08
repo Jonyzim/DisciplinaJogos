@@ -20,8 +20,9 @@ public class ShopGunInteractable : GunInteractable
     }
 
     // Unity Methods
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SpawnWeapon();
     }
 

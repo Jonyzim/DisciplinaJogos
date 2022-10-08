@@ -14,11 +14,10 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "MapManager", menuName = "Shooter2D/MapManager", order = 0)]
 public class MapManager : ScriptableObject
 {
-    [SerializeField]
-    private Map[] _mapList;
+    public Map[] MapList;
 
-    [SerializeField]
-    private string LoadMapName;
+    [HideInInspector]
+    public int LoadMapIndex;
 
     private Scene[] _loadedScenes;
 
@@ -26,9 +25,9 @@ public class MapManager : ScriptableObject
     private SceneSetup[] _saveState;
 #endif
 
-    private void LoadMap()
+    private void LoadMap(string LoadMapName)
     {
-        Map? mapToLoad = Map.SearchMap(_mapList, LoadMapName);
+        Map? mapToLoad = Map.SearchMap(MapList, LoadMapName);
 
         if (!mapToLoad.HasValue)
         {
@@ -49,17 +48,11 @@ public class MapManager : ScriptableObject
     [Button("Load Map")]
     private void LoadEditorMap()
     {
-        Map? mapToLoad = Map.SearchMap(_mapList, LoadMapName);
-
-        if (!mapToLoad.HasValue)
-        {
-            Debug.LogError("Map doesn't exist");
-            return;
-        }
+        Map mapToLoad = MapList[LoadMapIndex];
 
         // Gets scene path by index as OpenScene() requires it
-        EditorSceneManager.OpenScene(EditorBuildSettings.scenes[(int)mapToLoad?.ActiveScene].path, OpenSceneMode.Single);
-        foreach (int sceneName in mapToLoad?.LoadedScenes)
+        EditorSceneManager.OpenScene(EditorBuildSettings.scenes[(int)mapToLoad.ActiveScene].path, OpenSceneMode.Single);
+        foreach (int sceneName in mapToLoad.LoadedScenes)
         {
             EditorSceneManager.OpenScene(EditorBuildSettings.scenes[sceneName].path, OpenSceneMode.Additive);
         }
@@ -78,5 +71,4 @@ public class MapManager : ScriptableObject
         EditorSceneManager.RestoreSceneManagerSetup(_saveState);
     }
 #endif
-
 }

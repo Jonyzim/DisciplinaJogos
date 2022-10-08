@@ -26,7 +26,7 @@ public class CinemachineFollowMouse : MonoBehaviour
     void Update()
     {
 
-        if (GameEvents.s_Instance.IsMultiplayer)
+        if (GameEvents.Instance.IsMultiplayer)
         {
             _offset = TargetGroup.gameObject.transform.position - _cam.gameObject.transform.position;
         }

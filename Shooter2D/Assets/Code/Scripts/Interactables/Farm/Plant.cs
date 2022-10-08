@@ -20,7 +20,7 @@ public class Plant : MonoBehaviour
     {
         _growth = 1;
         _plantRenderer.sprite = _plantSprites[_growth - 1];
-        GameEvents.s_Instance.OnWaveEnd += GrowPlant;
+        GameEvents.Instance.OnWaveEnd += GrowPlant;
         _isWatered = false;
     }
 

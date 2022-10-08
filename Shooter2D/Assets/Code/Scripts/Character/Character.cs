@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
             _curHealth = Health;
         }
 
-        GameEvents.s_Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
+        GameEvents.Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
         Debug.Log(_curHealth);
 
         if (_curHealth <= 0)

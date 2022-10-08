@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class GameStateIdle : GameState
 {
-    private float _timer;
 
     public override void Start(GameManager context)
     {
         // TODO: Settar fórmula de tempo entre waves
-        _timer = 10;
+        context.WaveTimer = 10;
     }
 
     public override void Update(GameManager context)
     {
-        _timer -= Time.deltaTime;
-        if (_timer <= 0)
+        context.WaveTimer -= Time.deltaTime;
+        if (context.WaveTimer <= 0)
         {
-            _timer = 0;
+            context.WaveTimer = 0;
 
-            if (context.canStartWave)
+            if (context.CanStartWave == 0)
             {
                 context.SwitchState(context.StateWave);
             }
