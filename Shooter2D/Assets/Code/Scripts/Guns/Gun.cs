@@ -6,6 +6,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public abstract class Gun : MonoBehaviour
 {
+    public uint BulletCost => _bulletCost;
+
     [Header("General")]
 
     [SerializeField] protected Transform SpawnTransf;
@@ -29,9 +31,10 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite _backgroundSprite;
 
     protected uint CurClip;
-    protected float cd = 0;
+    protected float Cd = 0;
     protected int OwnerId;
 
+    private uint _bulletCost;
     private uint _curStoreAmmunition;
     private float _reloadProgress = 0;
 
@@ -61,7 +64,7 @@ public abstract class Gun : MonoBehaviour
     public virtual void Fire(Vector2 direction, int strenght, float aim)
     {
         FireProps();
-        cd = 1 / Rof;
+        Cd = 1 / Rof;
         GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
 
         // Calculate new spread based on character Aim stat
@@ -175,7 +178,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (CurClip == 0 && cd <= 0)
+        if (CurClip == 0 && Cd <= 0)
         {
             ReloadUpdate();
         }
@@ -183,7 +186,7 @@ public abstract class Gun : MonoBehaviour
         {
             _reloadProgress = 0;
         }
-        cd -= Time.deltaTime;
+        Cd -= Time.deltaTime;
     }
 
 }

@@ -35,79 +35,54 @@ public class GameEvents : MonoBehaviour
     public event Action<int, Sprite, Sprite> OnPickWeapon;
     public void PickWeapon(int id, Sprite magazineSprite, Sprite backgroundSprite)
     {
-        if (OnPickWeapon != null)
-            OnPickWeapon(id, magazineSprite, backgroundSprite);
+        OnPickWeapon?.Invoke(id, magazineSprite, backgroundSprite);
     }
 
     public event Action<int, float> OnMagazineUpdate;
     public void MagazineUpdate(int id, float fillAmount)
     {
-        if (OnMagazineUpdate != null)
-        {
-            OnMagazineUpdate(id, fillAmount);
-        }
+        OnMagazineUpdate?.Invoke(id, fillAmount);
     }
 
     public event Action<int, float> OnReloadUpdate;
     public void ReloadUpdate(int id, float fillAmount)
     {
-        if (OnReloadUpdate != null)
-        {
-            OnReloadUpdate(id, fillAmount);
-        }
+        OnReloadUpdate?.Invoke(id, fillAmount);
     }
 
     public event Action OnWaveBegin;
     public void WaveBegin()
     {
-        if (OnWaveBegin != null)
-        {
-            OnWaveBegin();
-        }
+        OnWaveBegin?.Invoke();
     }
 
     public event Action OnWaveEnd;
     public void WaveEnd()
     {
-        if (OnWaveEnd != null)
-        {
-            OnWaveEnd();
-        }
+        OnWaveEnd?.Invoke();
     }
 
     public event Action<int> OnPause;
     public void Pause(int id)
     {
-        if (OnPause != null)
-        {
-            OnPause(id);
-        }
+        OnPause?.Invoke(id);
     }
 
     public event Action<int, int> OnScoreUpdate;
     public void ScoreUpdate(int id, int addScore)
     {
-        if (OnScoreUpdate != null)
-        {
-            OnScoreUpdate(id, addScore);
-        }
+        OnScoreUpdate?.Invoke(id, addScore);
     }
 
     public event Action<int, float> OnHealthUpdate;
     public void HealthUpdate(int id, float fillAmount)
     {
-        if (OnHealthUpdate != null)
-        {
-            OnHealthUpdate(id, fillAmount);
-        }
+        OnHealthUpdate?.Invoke(id, fillAmount);
     }
 
     public event Action<int, bool> OnSetUiMode;
     public void SetUiMode(int id, bool mode)
     {
-        if (OnSetUiMode != null)
-        {
-            OnSetUiMode(id, mode);
-        }
+        OnSetUiMode?.Invoke(id, mode);
     }
 }

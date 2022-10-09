@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class RechargeAmmunitionInteractable : Interactable
 {
+
     protected override void Interact(int id)
     {
-        // TODO: Adicionar constante de preço para cada arma
-        int price = (int)(100 * (1f - CharacterList[id].EquippedGun.GetAmmunitionPercentage()));
+        uint _priceMod = CharacterList[id - 1].EquippedGun?.BulletCost ?? 0;
+
+        int price = (int)(100 * (1f - (CharacterList[id - 1].EquippedGun?.GetAmmunitionPercentage() ?? 1)));
 
         if (GameManager.Instance.TryBuy(price))
         {

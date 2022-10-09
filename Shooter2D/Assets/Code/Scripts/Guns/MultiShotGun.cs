@@ -12,7 +12,7 @@ public abstract class MultiShotGun : Gun
 
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
-        if (cd <= 0 && CurClip > 0 && !_fired)
+        if (Cd <= 0 && CurClip > 0 && !_fired)
         {
             _fired = true;
             CurClip -= 1;

@@ -22,17 +22,10 @@ public class Character : MonoBehaviour
     //Methods
     public void SetPlayerControlling(Player p)
     {
-        if (p != null)
-        {
-            _characterId = p.PlayerId;
-        }
-        else
-            _characterId = 0;
 
-        if (EquippedGun != null)
-        {
-            EquippedGun.SetOwner(this);
-        }
+        _characterId = p?.PlayerId ?? 0;
+
+        EquippedGun?.SetOwner(this);
     }
 
 
@@ -40,10 +33,7 @@ public class Character : MonoBehaviour
     public event Action<int> onInteract;
     public void Interact(int id)
     {
-        if (onInteract != null)
-        {
-            onInteract(id);
-        }
+        onInteract?.Invoke(id);
     }
 
     //Methods

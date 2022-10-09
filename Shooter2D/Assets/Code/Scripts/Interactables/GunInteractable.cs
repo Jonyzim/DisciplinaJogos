@@ -12,10 +12,7 @@ public class GunInteractable : Interactable
 
         if (gunComponent != null)
         {
-            if (CharacterList[id - 1].EquippedGun != null)
-            {
-                CharacterList[id - 1].EquippedGun.Drop(CharacterList[id - 1]);
-            }
+            CharacterList[id - 1].EquippedGun?.Drop(CharacterList[id - 1]);
 
             gunComponent.Pick(CharacterList[id - 1]);
 

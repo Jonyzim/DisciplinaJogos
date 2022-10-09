@@ -130,11 +130,13 @@ public class Player : MonoBehaviour
         if (_pawn == null || _cam == null)
             return;
         Vector2 newDirection;
+
         if (context.control.device.name == "Mouse")
         {
             _mousePos = (Vector2)_cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
             newDirection = (_mousePos - ((Vector2)_pawn.transform.position)).normalized;
         }
+
         else
         {
             newDirection = context.ReadValue<Vector2>();
@@ -152,12 +154,12 @@ public class Player : MonoBehaviour
         {
             if (mode)
             {
-                Debug.Log("UI MODE");
+                // Debug.Log("UI MODE");
                 _playerInput.SwitchCurrentActionMap("UI");
             }
             else
             {
-                Debug.Log("PLAYER MODE");
+                // Debug.Log("PLAYER MODE");
                 _playerInput.SwitchCurrentActionMap("Player");
             }
 

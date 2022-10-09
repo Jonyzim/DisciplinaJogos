@@ -34,12 +34,9 @@ public abstract class Buff : ScriptableObject
 
         if (_timer <= 0)
         {
-            Debug.Log("remove buff");
-            if (OnRemove != null)
-            {
-                OnRemove(this);
-                Destroy(this);
-            }
+            // Debug.Log("Remove buff");
+            OnRemove?.Invoke(this);
+            Destroy(this);
         }
     }
 
