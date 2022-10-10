@@ -3,21 +3,28 @@ using System.Collections.Generic;
 
 public class GameStatePaused : GameState
 {
+    public GameStatePaused(GameManager context, GameStateFactory factory) : base(context, factory) { }
+
     private GameState _previousGameState;
 
-    public override void Start(GameManager context)
+    public override void StartState()
     {
-        _previousGameState = context.CurGameState;
+        _previousGameState = Context.CurGameState;
     }
 
-    public override void Update(GameManager context)
+    public override void UpdateState()
     {
 
     }
 
-    public override void Pause(GameManager context)
+    public override void ExitState()
     {
-        context.SwitchState(_previousGameState);
+
+    }
+
+    public override void Pause()
+    {
+        Context.SwitchState(_previousGameState);
     }
 
 }

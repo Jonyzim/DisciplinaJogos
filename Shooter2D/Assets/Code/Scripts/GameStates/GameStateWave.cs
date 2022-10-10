@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class GameStateWave : GameState
 {
+    public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory) { }
 
-    public override void Start(GameManager context)
+    public override void StartState()
     {
         GameEvents.Instance.WaveBegin();
 
-        context.CurWave++;
+        Context.CurWave++;
 
         // TODO: Criar fórmula para quantidade de inimigos
-        context.RemainingEnemies = 10;
+        Context.RemainingEnemies = 10;
     }
 
-    public override void Update(GameManager context)
+    public override void UpdateState()
     {
-        if (context.RemainingEnemies <= 0)
+
+        if (Context.RemainingEnemies <= 0)
         {
-            GameEvents.Instance.WaveEnd();
-            context.SwitchState(context.StateIdle);
+            Context.SwitchState(Factory.StateIdle);
         }
+    }
+
+    public override void ExitState()
+    {
+        GameEvents.Instance.WaveEnd();
     }
 
 }

@@ -5,29 +5,37 @@ using UnityEngine;
 public class GameStateIdle : GameState
 {
 
-    public override void Start(GameManager context)
+    public GameStateIdle(GameManager context, GameStateFactory factory) : base(context, factory) { }
+
+    public override void StartState()
     {
         // TODO: Settar fórmula de tempo entre waves
-        context.WaveTimer = 10;
+        Context.WaveTimer = 10;
     }
 
-    public override void Update(GameManager context)
+    public override void UpdateState()
     {
-        context.WaveTimer -= Time.deltaTime;
-        if (context.WaveTimer <= 0)
+        Context.WaveTimer -= Time.deltaTime;
+        if (Context.WaveTimer <= 0)
         {
-            context.WaveTimer = 0;
+            Context.WaveTimer = 0;
 
-            if (context.CanStartWave == 0)
+            if (Context.CanStartWave == 0)
             {
-                context.SwitchState(context.StateWave);
+                Context.SwitchState(Factory.StateWave);
             }
         }
     }
 
-    public override void Pause(GameManager context)
+
+    public override void ExitState()
     {
-        context.SwitchState(context.StatePaused);
+
+    }
+
+    public override void Pause()
+    {
+        Context.SwitchState(Factory.StatePaused);
     }
 
 }

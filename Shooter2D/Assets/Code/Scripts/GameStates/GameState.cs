@@ -4,12 +4,28 @@ using UnityEngine;
 
 public abstract class GameState
 {
+    protected GameManager Context;
+    protected GameStateFactory Factory;
 
-    public abstract void Start(GameManager context);
-    public abstract void Update(GameManager context);
+    public abstract void StartState();
+    public abstract void UpdateState();
+    public abstract void ExitState();
 
-    public virtual void Pause(GameManager context)
+    public GameState(GameManager context, GameStateFactory factory)
     {
-        context.SwitchState(context.StatePaused);
+        Context = context;
+        Factory = factory;
+    }
+
+    public virtual void Pause()
+    {
+        Context.SwitchState(Factory.StatePaused);
+    }
+
+    protected void SwitchState(GameState newState)
+    {
+        Context.CurGameState.ExitState();
+        newState.StartState();
+        Context.CurGameState = newState;
     }
 }

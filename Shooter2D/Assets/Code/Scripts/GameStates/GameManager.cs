@@ -17,12 +17,8 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
     private static GameManager _instance;
-
-
-    public GameStateIdle StateIdle = new GameStateIdle();
-    public GameStateWave StateWave = new GameStateWave();
-    public GameStatePaused StatePaused = new GameStatePaused();
 
     public float WaveTimer;
 
@@ -30,38 +26,47 @@ public class GameManager : MonoBehaviour
 
     public int CanStartWave;
 
-    public GameState CurGameState;
+    public GameState CurGameState
+    {
+        get => _curGameState;
+        set => _curGameState = value;
+    }
 
     public int CurWave = 0;
 
     public int PlayerCredit = 0;
+
+    private GameState _curGameState;
+
+    private GameStateFactory _factory;
 
     private void Awake()
     {
         if (GameManager._instance != null)
         {
             Destroy(this);
+            return;
         }
-        else
-        {
-            GameManager._instance = this;
-        }
+
+        GameManager._instance = this;
+        _factory = new GameStateFactory(this);
     }
 
     private void Start()
     {
-        SwitchState(StateIdle);
+        SwitchState(_factory.StateIdle);
     }
 
     private void Update()
     {
-        CurGameState.Update(this);
+        _curGameState.UpdateState();
     }
 
     public void SwitchState(GameState newState)
     {
-        newState.Start(this);
-        CurGameState = newState;
+        _curGameState.ExitState();
+        newState.StartState();
+        _curGameState = newState;
     }
 
     public bool TryBuy(int price)
