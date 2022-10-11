@@ -17,7 +17,6 @@ public class Character : MonoBehaviour
             else
             {
                 _curHealth = 0;
-                Kill();
             }
             UpdateHealth();
         }
@@ -66,14 +65,12 @@ public class Character : MonoBehaviour
             _curHealth = Health;
         }
 
-        GameEvents.Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
-        Debug.Log(_curHealth);
-
         if (_curHealth <= 0)
         {
-            Debug.Log("Death");
+            _curHealth = 0;
             Kill();
         }
+        GameEvents.Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
     }
 
     public void Fire(Vector2 direction)
@@ -142,7 +139,8 @@ public class Character : MonoBehaviour
 
     private void Kill()
     {
-        InteractableCorpse InteractableCorpse = Instantiate(_interactableCorpsePrefab).GetComponent<InteractableCorpse>();
+        InteractableCorpse InteractableCorpse = Instantiate(_interactableCorpsePrefab, transform.position, transform.rotation)
+                                                    .GetComponent<InteractableCorpse>();
 
         InteractableCorpse.Initialize(this);
 

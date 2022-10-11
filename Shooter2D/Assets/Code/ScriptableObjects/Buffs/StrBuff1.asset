@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d08b112b5edb6b409b56f9ae293bf3a, type: 3}
   m_Name: StrBuff1
   m_EditorClassIdentifier: 
-  _canDuplicate: 1
-  uniqueId: 0
+  _uniqueId: 0
   _isInfinite: 0
   _timer: 5
   _hpAmount: 0

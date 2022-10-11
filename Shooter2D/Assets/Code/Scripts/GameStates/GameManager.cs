@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchState(GameState newState)
     {
-        _curGameState.ExitState();
+        _curGameState?.ExitState();
         newState.StartState();
         _curGameState = newState;
     }

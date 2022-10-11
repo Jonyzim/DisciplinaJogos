@@ -12,10 +12,15 @@ public class InteractableCorpse : Interactable
         Corpse.transform.parent = transform;
     }
 
+
+    // TODO: Add execution time
     protected override void Interact(int id)
     {
-        Corpse.CurHealth = 20;
         Corpse.gameObject.SetActive(true);
+        Corpse.transform.parent = null;
+        Corpse.CurHealth = 20;
+
+        Destroy(gameObject);
     }
 
 
