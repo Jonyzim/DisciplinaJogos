@@ -41,6 +41,11 @@ public class Player : MonoBehaviour
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetButtonDown("Dash"))
+        {
+            StartCoroutine(pawn.Dash(movement.x, movement.y));
+        }
     }
 
     void FixedUpdate()

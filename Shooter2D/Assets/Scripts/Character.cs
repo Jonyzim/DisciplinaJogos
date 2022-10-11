@@ -9,11 +9,19 @@ public class Character : MonoBehaviour
 {
     private int _character_id = 0;
     public int character_id
+    
     {
         get { return _character_id; }
     }
+    //Dash
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashCooldown = 3f;
+    [SerializeField] private TrailRenderer trail;
 
     [SerializeField] float speed;
+    [SerializeField] private float dashPower;
+    [SerializeField] private float dashTime = 0.1f;
     Camera cam;
     [SerializeField] public Gun gun;
     private Vector3 direction;
@@ -78,4 +86,20 @@ public class Character : MonoBehaviour
         gun.transform.rotation = lookRotation;
     }
 
+
+    public IEnumerator Dash(float x, float y){
+        canDash = false;
+        isDashing = true;
+        float originalSpeed = speed;
+        speed = dashPower;
+        // transform.position += new Vector3(x,y,0) * dashPower;
+        trail.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        trail.emitting = false;
+        isDashing = false;
+        speed = originalSpeed;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+
+    }
 }
