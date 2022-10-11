@@ -6,12 +6,11 @@ using NaughtyAttributes;
 
 public abstract class Buff : ScriptableObject
 {
+    public int UniqueId => _uniqueId;
+
     [Header("General")]
     [SerializeField]
-    private bool _canDuplicate;
-
-    [SerializeField]
-    private int uniqueId;
+    private int _uniqueId;
 
     // Adicionar imagens(?)
 

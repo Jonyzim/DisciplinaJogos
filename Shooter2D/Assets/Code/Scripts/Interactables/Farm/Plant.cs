@@ -12,6 +12,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private Sprite[] _groundSprites;
     [SerializeField] private SpriteRenderer _plantRenderer;
     [SerializeField] private SpriteRenderer _groundRenderer;
+    [SerializeField] private Buff _buff;
     private bool _isWatered;
     private int _growth;
 
@@ -42,9 +43,9 @@ public class Plant : MonoBehaviour
         _isWatered = true;
     }
 
-    public void Use(int id)
+    public void Use(Character character)
     {
-
+        character.AddBuff(Instantiate(_buff));
         Destroy(gameObject);
     }
 }

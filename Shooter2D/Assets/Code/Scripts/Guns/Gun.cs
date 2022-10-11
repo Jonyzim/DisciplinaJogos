@@ -56,7 +56,7 @@ public abstract class Gun : MonoBehaviour
         GameObject instance = Instantiate(_interactableReference, gameObject.transform.position, gameObject.transform.rotation);
 
 
-        instance.GetComponent<GunInteractable>().NewGun = gameObject;
+        instance.GetComponent<InteractableGun>().NewGun = gameObject;
 
         gameObject.transform.parent = instance.transform;
     }

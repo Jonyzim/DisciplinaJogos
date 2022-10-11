@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlotInteractable : Interactable
+public class InteractablePlot : Interactable
 {
     [SerializeField] private SpriteRenderer _defaultRenderer;
-    [SerializeField] private GameObject PlantSelectionPopup;
+    [SerializeField] private GameObject _plantSelectionPopup;
+
     private Plant _plant;
     private bool _isLocked = false;
     private int _interactingId = -1;
@@ -20,7 +21,7 @@ public class PlotInteractable : Interactable
                 //Seleção de plantas
                 _isLocked = true;
                 _interactingId = id;
-                PlantGridLayoutManager popupManager = Instantiate(PlantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+                PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
                 popupManager.OnChoosePlant += SetPlant;
                 popupManager.Initialize(id);
             }
@@ -35,7 +36,7 @@ public class PlotInteractable : Interactable
 
             else
             {
-                _plant.Use(id);
+                _plant.Use(CharacterList[id - 1]);
                 _defaultRenderer.enabled = true;
                 _plant = null;
             }

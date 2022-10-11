@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RechargeAmmunitionInteractable : Interactable
+public class InteractableShopRecharge : Interactable
 {
 
     protected override void Interact(int id)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopGunInteractable : GunInteractable
+public class InteractableShopGun : InteractableGun
 {
     // TODO: Spawnar balão de texto com dinheiro necessário
 

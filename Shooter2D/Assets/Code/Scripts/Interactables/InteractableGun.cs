@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunInteractable : Interactable
+public class InteractableGun : Interactable
 {
     [SerializeField] public GameObject NewGun;
 

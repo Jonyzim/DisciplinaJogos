@@ -5,6 +5,23 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public Gun EquippedGun;
+    public int CurHealth
+    {
+        get => _curHealth;
+        set
+        {
+            if (value > 0)
+            {
+                _curHealth = value < Health ? value : Health;
+            }
+            else
+            {
+                _curHealth = 0;
+                Kill();
+            }
+            UpdateHealth();
+        }
+    }
 
     [Header("Status")]
     [Range(80, 120)] public int Health;
@@ -14,7 +31,11 @@ public class Character : MonoBehaviour
     public int CharacterId => _characterId;
     private int _characterId;
 
-    private List<Buff> buffList = new List<Buff>();
+    [Header("References")]
+    [SerializeField]
+    private GameObject _interactableCorpsePrefab;
+
+    private Dictionary<int, Buff> buffList = new Dictionary<int, Buff>();
     private int _curHealth;
     private Rigidbody2D _body;
     private float _baseSpeed = 10;
@@ -51,7 +72,7 @@ public class Character : MonoBehaviour
         if (_curHealth <= 0)
         {
             Debug.Log("Death");
-            //Destroy(gameObject);
+            Kill();
         }
     }
 
@@ -100,19 +121,35 @@ public class Character : MonoBehaviour
         }
     }
 
+
     public void AddBuff(Buff buff)
     {
-        buff.Grant(this);
-        buffList.Add(buff);
+        if (!buffList.ContainsKey(buff.UniqueId))
+        {
+            buff.Grant(this);
+            buffList.Add(buff.UniqueId, buff);
+            return;
+        }
+
+        Destroy(buff);
     }
 
     public void RemoveBuff(Buff buff)
     {
         buff.Remove(this);
-        buffList.Remove(buff);
+        buffList.Remove(buff.UniqueId);
     }
 
-    //Unity Methods
+    private void Kill()
+    {
+        InteractableCorpse InteractableCorpse = Instantiate(_interactableCorpsePrefab).GetComponent<InteractableCorpse>();
+
+        InteractableCorpse.Initialize(this);
+
+        gameObject.SetActive(false);
+    }
+
+    //------------------------------------ Unity Methods --------------------------------------------
     void Start()
     {
         _curHealth = Health;
@@ -124,9 +161,9 @@ public class Character : MonoBehaviour
     void Update()
     {
         // Atualiza os timers dos buffs
-        foreach (Buff buff in buffList)
+        foreach (KeyValuePair<int, Buff> buff in buffList)
         {
-            buff.UpdateBuff(Time.deltaTime);
+            buff.Value.UpdateBuff(Time.deltaTime);
         }
     }
 
