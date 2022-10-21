@@ -161,6 +161,9 @@ public class Character : MonoBehaviour
 
     public IEnumerator Dash(Vector2 direction)
     {
+        if (canDash == false)
+            yield break;
+
         canDash = false;
         isDashing = true;
 
@@ -171,6 +174,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         trail.emitting = false;
         isDashing = false;
+
         Speed = originalSpeed;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
