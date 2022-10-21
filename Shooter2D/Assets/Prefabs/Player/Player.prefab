@@ -407,6 +407,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b63bc70f-6cd0-492d-8573-9d86039133ed
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8589076917191964784}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd69ee59-9d68-4b08-98da-591a98fb02d4
+    m_ActionName: Player/Dash[/Keyboard/shift,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player

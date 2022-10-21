@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     {
         _movement = context.ReadValue<Vector2>();
     }
+
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -145,6 +146,14 @@ public class Player : MonoBehaviour
         if (newDirection != Vector2.zero)
         {
             _direction = newDirection;
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            StartCoroutine(_pawn.Dash(_movement));
         }
     }
 

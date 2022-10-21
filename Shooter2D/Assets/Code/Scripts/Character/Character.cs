@@ -1,9 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    //Dash
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashCooldown = 3f;
+    [SerializeField] private TrailRenderer trail;
+
+    [SerializeField] private float dashPower;
+    [SerializeField] private float dashTime = 0.1f;
+    //endDash
+
+
     public Gun EquippedGun;
     public int CurHealth
     {
@@ -147,10 +159,28 @@ public class Character : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public IEnumerator Dash(Vector2 direction)
+    {
+        canDash = false;
+        isDashing = true;
+
+        int originalSpeed = Speed;
+        Speed = (int)(Speed * dashPower);
+
+        trail.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        trail.emitting = false;
+        isDashing = false;
+        Speed = originalSpeed;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
     //------------------------------------ Unity Methods --------------------------------------------
     void Start()
     {
         _curHealth = Health;
+        trail.emitting = false;
         _body = GetComponent<Rigidbody2D>();
 
         Buff.OnRemove += RemoveBuff;
