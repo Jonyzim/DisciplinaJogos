@@ -184,7 +184,6 @@ public class Character : MonoBehaviour
     void Start()
     {
         _curHealth = Health;
-        trail.emitting = false;
         _body = GetComponent<Rigidbody2D>();
 
         Buff.OnRemove += RemoveBuff;
