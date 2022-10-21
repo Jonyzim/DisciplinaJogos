@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5237925306751759620, guid: f930970b20824d44d8811d520dc492d3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6298054822120385473, guid: f930970b20824d44d8811d520dc492d3, type: 3}
       propertyPath: m_Name
       value: BasicRifleSheep
@@ -129,16 +133,28 @@ PrefabInstance:
       value: Sheep
       objectReference: {fileID: 0}
     - target: {fileID: 504088864667602001, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eb4ce65af26910748bb0355c1e2cd065, type: 3}
+    - target: {fileID: 504088864667602001, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 504088864667602001, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_Color.g
-      value: 0.93927246
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 504088864667602001, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_Color.r
-      value: 0.3443396
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366329795102322527, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880620579163550923, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
