@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     {
         int n = _enemyPrefabs.Count;
         int randomId = Random.Range(0, n);
-        Instantiate(_enemyPrefabs[randomId], transform.position, Quaternion.identity);
+        Instantiate(_enemyPrefabs[randomId], transform.position, Quaternion.identity,transform);
     }
 
     //Unity Methods
