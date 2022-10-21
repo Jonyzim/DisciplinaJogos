@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22745bc7a88396440b9a109b7ae46780, type: 3}
-  m_Name: MapManager
+  m_Script: {fileID: 11500000, guid: 9d08b112b5edb6b409b56f9ae293bf3a, type: 3}
+  m_Name: SpdBuff
   m_EditorClassIdentifier: 
-  MapList:
-  - MapName: MapaDeTeste
-    ActiveScene: 1
-    LoadedScenes: 02000000
-  - MapName: MapaJony
-    ActiveScene: 4
-    LoadedScenes: 02000000
-  LoadMapIndex: 0
+  _uniqueId: 0
+  _isInfinite: 0
+  _timer: 0
+  _hpAmount: 0
+  _strAmount: 0
+  _aimAmount: 0
+  _spdAmount: 50

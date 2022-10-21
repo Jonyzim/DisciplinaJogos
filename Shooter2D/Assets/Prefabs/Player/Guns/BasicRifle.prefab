@@ -152,6 +152,10 @@ PrefabInstance:
       value: FlashLight
       objectReference: {fileID: 0}
     - target: {fileID: 5481029631707308117, guid: 16ac5cb19e3d73e48972b42c3518eae8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481029631707308117, guid: 16ac5cb19e3d73e48972b42c3518eae8, type: 3}
       propertyPath: m_Intensity
       value: 0.7
       objectReference: {fileID: 0}
@@ -212,7 +216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3532165717052783444}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 

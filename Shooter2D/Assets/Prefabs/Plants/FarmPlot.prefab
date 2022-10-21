@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultRenderer: {fileID: 8505358314903055160}
-  PlantSelectionPopup: {fileID: 8847933786509121587, guid: b7f9ae9708a8225499d6501342a116ba, type: 3}
+  _plantSelectionPopup: {fileID: 8847933786509121587, guid: b7f9ae9708a8225499d6501342a116ba, type: 3}
 --- !u!212 &8505358314903055160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -7063854038651047367, guid: cdbd8419d7f0598489140120bb328d54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

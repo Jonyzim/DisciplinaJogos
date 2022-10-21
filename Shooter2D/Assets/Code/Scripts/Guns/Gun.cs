@@ -41,6 +41,7 @@ public abstract class Gun : MonoBehaviour
     // Methods
     public void Pick(Character character)
     {
+        _flashLight.enabled = true;
         SetOwner(character);
         transform.parent = character.gameObject.transform;
         transform.localPosition = Vector3.zero;
@@ -52,6 +53,7 @@ public abstract class Gun : MonoBehaviour
 
     public void Drop(Character character)
     {
+        _flashLight.enabled = false;
         RemoveOwner(character);
         GameObject instance = Instantiate(_interactableReference, gameObject.transform.position, gameObject.transform.rotation);
 

@@ -25,7 +25,7 @@ public class MapManager : ScriptableObject
     private SceneSetup[] _saveState;
 #endif
 
-    private void LoadMap(string LoadMapName)
+    public void LoadMap(string LoadMapName)
     {
         Map? mapToLoad = Map.SearchMap(MapList, LoadMapName);
 

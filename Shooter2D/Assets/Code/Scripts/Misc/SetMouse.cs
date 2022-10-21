@@ -11,6 +11,5 @@ public class SetMouse : MonoBehaviour
     void Start()
     {
         Cursor.SetCursor(CursorTexture, HotSpot, CursorMode);
-        Screen.SetResolution(426, 240, true);
     }
 }
