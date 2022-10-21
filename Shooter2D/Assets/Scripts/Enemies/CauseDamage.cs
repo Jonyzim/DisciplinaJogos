@@ -19,7 +19,7 @@ public class CauseDamage : MonoBehaviour
             Character character = collision.gameObject.GetComponent<Character>();
             if (character != null)
             {
-                character.ChangeHealth(damage);
+                character.UpdateHealth(-damage);
                 StartCoroutine(DamageDelay());
             }
         }
@@ -32,7 +32,7 @@ public class CauseDamage : MonoBehaviour
             Character character = collision.gameObject.GetComponent<Character>();
             if (character != null)
             {
-                character.ChangeHealth(damage);
+                character.UpdateHealth(-damage);
                 StartCoroutine(DamageDelay());
             }
         }
