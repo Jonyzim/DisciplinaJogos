@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBullet : PhysicsBullet
 {
-    [SerializeField] float DamageCaused;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Character character = collision.GetComponentInParent<Character>();
