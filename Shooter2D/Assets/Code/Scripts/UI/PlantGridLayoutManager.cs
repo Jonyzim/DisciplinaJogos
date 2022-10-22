@@ -13,6 +13,7 @@ public class PlantGridLayoutManager : MonoBehaviour
     [SerializeField] private GridLayoutGroup _plantGridLayout;
     [SerializeField] private PlantListManager _plantListManager;
     [SerializeField] private Sprite _unknownImage;
+    [SerializeField] private GameObject plantObject;
 
     public void Initialize(int id)
     {
@@ -22,11 +23,11 @@ public class PlantGridLayoutManager : MonoBehaviour
         // TODO: Por algum motivo ele spawna o dobro de gameObject vazios
         foreach (PlantEntry plant in _plantListManager.PlantList)
         {
-            GameObject newPlantEntry = Instantiate(new GameObject(), _plantGridLayout.transform);
+            GameObject newPlantEntry = Instantiate(plantObject, _plantGridLayout.transform);
 
 
-            Image newImage = newPlantEntry.AddComponent<Image>();
-            PlantSelectionButton newButton = newPlantEntry.AddComponent<PlantSelectionButton>();
+            Image newImage = newPlantEntry.GetComponent<Image>();
+            PlantSelectionButton newButton = newPlantEntry.GetComponent<PlantSelectionButton>();
 
             // Planta desbloqueada ou não
             if (plant.IsEnabled)
@@ -42,7 +43,7 @@ public class PlantGridLayoutManager : MonoBehaviour
             // Selecionar a primeira planta na UI
             if (Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.currentSelectedGameObject == null)
             {
-                ChangePlantDisplay(plant);
+                ChangePlantDisplay(newPlantEntry,plant);
                 Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.SetSelectedGameObject(newPlantEntry);
             }
 
@@ -61,9 +62,13 @@ public class PlantGridLayoutManager : MonoBehaviour
         GameEvents.Instance.SetUiMode(OwnerId, false);
         Destroy(gameObject);
     }
-
-    public void ChangePlantDisplay(PlantEntry plantInfo)
+   private GameObject lastSelected=null;
+    public void ChangePlantDisplay(GameObject buttonObj,PlantEntry plantInfo)
     {
+        if (lastSelected != null)
+            lastSelected.SetActive(false);
+        lastSelected = buttonObj.transform.GetChild(0).gameObject;
+        lastSelected.SetActive(true);
         _effectsText.text = plantInfo.EffectsDescription;
     }
 }

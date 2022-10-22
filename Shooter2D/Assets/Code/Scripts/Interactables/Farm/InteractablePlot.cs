@@ -6,6 +6,7 @@ public class InteractablePlot : Interactable
 {
     [SerializeField] private SpriteRenderer _defaultRenderer;
     [SerializeField] private GameObject _plantSelectionPopup;
+    [SerializeField] private Transform canvas;
 
     private Plant _plant;
     private bool _isLocked = false;
@@ -21,7 +22,9 @@ public class InteractablePlot : Interactable
                 //Seleção de plantas
                 _isLocked = true;
                 _interactingId = id;
-                PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+                //PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+                PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, canvas).GetComponent<PlantGridLayoutManager>();
+                Player.s_ActivePlayers[id - 1].PlayerEventSystem.playerRoot = canvas.gameObject;
                 popupManager.OnChoosePlant += SetPlant;
                 popupManager.Initialize(id);
             }

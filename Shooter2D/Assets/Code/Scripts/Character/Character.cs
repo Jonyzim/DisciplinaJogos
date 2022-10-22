@@ -49,6 +49,11 @@ public class Character : MonoBehaviour
     private Dictionary<int, Buff> buffList = new Dictionary<int, Buff>();
     private int _curHealth;
     private Rigidbody2D _body;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float _fxSpeed;
+    [SerializeField] private Color _startColor;
+    [SerializeField] private Color _damageColor;
+
     private float _baseSpeed = 10;
 
     //Methods
@@ -68,10 +73,34 @@ public class Character : MonoBehaviour
         onInteract?.Invoke(id);
     }
 
+    private IEnumerator ChangeColorFx(Color initial, Color final)
+    {
+        float t = 0;
+        while (t <= 1f)
+        {
+            _spriteRenderer.color = Color.Lerp(initial, final, t);
+            t += _fxSpeed;
+
+            yield return new WaitForEndOfFrame();
+        }
+        _spriteRenderer.color = Color.Lerp(initial, final, 1f);
+    }
+
+    public IEnumerator DamageFx()
+    {
+        yield return StartCoroutine(ChangeColorFx(_startColor, _damageColor));
+        yield return StartCoroutine(ChangeColorFx(_damageColor, _startColor));
+    }
+
     //Methods
+    Coroutine damageFx=null;
     public void UpdateHealth(int value = 0)
     {
         _curHealth += value;
+        print(value);
+        if (damageFx != null)
+            StopCoroutine(damageFx);
+        damageFx=StartCoroutine(DamageFx());
         if (_curHealth > Health)
         {
             _curHealth = Health;

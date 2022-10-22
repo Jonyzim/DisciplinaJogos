@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadMap: {fileID: 11400000, guid: d66a13d673b89914580155908ec32506, type: 2}
-  maptoload: MapaDeTeste
+  maptoload: MapaJony
 --- !u!4 &807713753
 Transform:
   m_ObjectHideFlags: 0

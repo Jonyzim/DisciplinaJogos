@@ -58,6 +58,10 @@ MonoBehaviour:
   Aim: 100
   Speed: 100
   _interactableCorpsePrefab: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
+  _spriteRenderer: {fileID: 504088864667602001}
+  _fxSpeed: 0.1
+  _startColor: {r: 1, g: 1, b: 1, a: 1}
+  _damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &4318612108955275971
 BoxCollider2D:
   m_ObjectHideFlags: 0

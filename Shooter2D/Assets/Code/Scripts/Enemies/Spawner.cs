@@ -92,6 +92,7 @@ public class Spawner : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
+        if(Camera.main!=null)
         Gizmos.DrawWireSphere(Camera.main.transform.position, _spawnRadius);
     }
 }
