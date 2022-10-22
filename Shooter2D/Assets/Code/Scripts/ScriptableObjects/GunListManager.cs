@@ -29,9 +29,10 @@ public class GunListManager : ScriptableObject
         GunList[index].IsAvailable = true;
     }
 
+    [Button]
     public void Save()
     {
-        string saveDirectoryPath = Application.persistentDataPath + "/saveData";
+        string saveDirectoryPath = Application.persistentDataPath + "/saveData/";
         string saveFilePath = saveDirectoryPath + "weapons.cow";
         BinaryFormatter bf = new BinaryFormatter();
 
@@ -46,9 +47,10 @@ public class GunListManager : ScriptableObject
 
         saveFile.Close();
     }
+    [Button]
     public void Load()
     {
-        string saveDirectoryPath = Application.persistentDataPath + "/saveData";
+        string saveDirectoryPath = Application.persistentDataPath + "/saveData/";
         string saveFilePath = saveDirectoryPath + "weapons.cow";
         BinaryFormatter bf = new BinaryFormatter();
 
