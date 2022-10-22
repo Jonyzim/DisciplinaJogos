@@ -969,7 +969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1292018639}
   mapManager: {fileID: 11400000, guid: d66a13d673b89914580155908ec32506, type: 2}
-  startMap: 
+  startMap: MapaJony
   endlessMap: MapaDeTeste
 --- !u!1 &1278226188
 GameObject:
@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333548244559, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333548244560, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_Color.a
