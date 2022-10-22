@@ -9,8 +9,7 @@ public class GameStateIdle : GameState
 
     public override void StartState()
     {
-        // TODO: Settar fórmula de tempo entre waves
-        Context.WaveTimer = 10;
+        Context.WaveTimer = Context.WaveTime;
     }
 
     public override void UpdateState()

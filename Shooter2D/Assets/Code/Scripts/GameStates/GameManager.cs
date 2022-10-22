@@ -20,10 +20,15 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
+    public float WaveTime;
+
+    [HideInInspector]
     public float WaveTimer;
 
+    [HideInInspector]
     public int RemainingEnemies;
 
+    [HideInInspector]
     public int CanStartWave;
 
     public GameState CurGameState
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
         set => _curGameState = value;
     }
 
+    [HideInInspector]
     public int CurWave = 0;
 
     public int PlayerCredit = 0;

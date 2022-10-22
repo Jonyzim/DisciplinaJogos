@@ -21,7 +21,6 @@ public class Spawner : MonoBehaviour
         {
             if (_curSpawned < _maxConcurrentSpawns)
             {
-                Debug.Log("Spawned");
                 _curSpawned++;
 
                 int n = _enemyPrefabs.Count;

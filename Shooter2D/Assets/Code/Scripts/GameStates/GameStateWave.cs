@@ -10,8 +10,7 @@ public class GameStateWave : GameState
     {
         Context.CurWave++;
 
-        // TODO: Criar fórmula para quantidade de inimigos
-        Context.RemainingEnemies = 10;
+        Context.RemainingEnemies = 3 * Context.CurWave;
 
         GameEvents.Instance.WaveBegin();
     }
