@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 504088863901828088}
   - component: {fileID: 4318612108955275971}
   - component: {fileID: 1151180865157066789}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Character
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504088864667602002}
   - component: {fileID: 504088864667602001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4366329795102322527}
   - component: {fileID: 2128861584891070048}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HurtBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6880620579163550923}
   - component: {fileID: 7885339119060818914}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DashTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
