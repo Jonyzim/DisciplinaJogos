@@ -338,9 +338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffset: {fileID: 136475179}
   TargetGroup: {fileID: 1860314055}
-  OffsetMultiplier: 0
-  OffsetSpeed: 0
-  MaxOffsetAmount: {x: 0, y: 0}
+  OffsetMultiplier: 7
+  OffsetSpeed: 2
+  MaxOffsetAmount: {x: 0.5, y: 0.5}
 --- !u!114 &136475179
 MonoBehaviour:
   m_ObjectHideFlags: 0

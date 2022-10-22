@@ -6,19 +6,44 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
     [SerializeField] private float _spawnRate;
-    [SerializeField] private int _spawnCount;
+
+    [SerializeField] private int _maxConcurrentSpawns;
+    private int _curSpawned;
+
+    public void SubtractSpawned()
+    {
+        _curSpawned--;
+    }
+
     private void SpawnRandom()
     {
-        int n = _enemyPrefabs.Count;
-        int randomId = Random.Range(0, n);
-        Instantiate(_enemyPrefabs[randomId], transform.position, Quaternion.identity,transform);
+        if ((GameManager.Instance.RemainingEnemies - _curSpawned) > 0)
+        {
+            if (_curSpawned < _maxConcurrentSpawns)
+            {
+                Debug.Log("Spawned");
+                _curSpawned++;
+
+                int n = _enemyPrefabs.Count;
+                int randomId = Random.Range(0, n);
+                GameObject enemy = Instantiate(_enemyPrefabs[randomId], transform.position, Quaternion.identity, transform);
+
+                CountEnemiesRemaining count = enemy.AddComponent<CountEnemiesRemaining>();
+                count.ParentSpawner = this;
+            }
+        }
     }
+
+
 
     //Unity Methods
     private void Start()
     {
-        for (int i = 0; i < _spawnCount; i++)
-            SpawnRandom();
-        //InvokeRepeating("SpawnRandom", 0.5f, spawnRate);
+        _curSpawned = 0;
+    }
+
+    private void Update()
+    {
+        SpawnRandom();
     }
 }

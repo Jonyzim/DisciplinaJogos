@@ -8,12 +8,12 @@ public class GameStateWave : GameState
 
     public override void StartState()
     {
-        GameEvents.Instance.WaveBegin();
-
         Context.CurWave++;
 
         // TODO: Criar fórmula para quantidade de inimigos
         Context.RemainingEnemies = 10;
+
+        GameEvents.Instance.WaveBegin();
     }
 
     public override void UpdateState()
