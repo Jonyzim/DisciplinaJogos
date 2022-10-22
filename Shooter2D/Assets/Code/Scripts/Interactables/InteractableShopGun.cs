@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractableShopGun : InteractableGun
 {
@@ -8,7 +9,8 @@ public class InteractableShopGun : InteractableGun
 
     [SerializeField]
     private GunListManager _gunListManager;
-
+    [SerializeField]
+    private TMP_Text priceText;
     private int _price;
 
     protected override void Interact(int id)
@@ -30,7 +32,7 @@ public class InteractableShopGun : InteractableGun
     {
         GameObject newGun;
         (newGun, _price) = _gunListManager.GetRandomWeapon();
-
+        priceText.text = _price.ToString();
 
         if (NewGun != null)
         {

@@ -24,12 +24,6 @@ public class PlantGridLayoutManager : MonoBehaviour
         {
             GameObject newPlantEntry = Instantiate(new GameObject(), _plantGridLayout.transform);
 
-            // Selecionar a primeira planta na UI
-            if (Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.currentSelectedGameObject == null)
-            {
-                ChangePlantDisplay(plant);
-                Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.SetSelectedGameObject(newPlantEntry);
-            }
 
             Image newImage = newPlantEntry.AddComponent<Image>();
             PlantSelectionButton newButton = newPlantEntry.AddComponent<PlantSelectionButton>();
@@ -44,6 +38,15 @@ public class PlantGridLayoutManager : MonoBehaviour
             {
                 newImage.sprite = _unknownImage;
             }
+
+            // Selecionar a primeira planta na UI
+            if (Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.currentSelectedGameObject == null)
+            {
+                ChangePlantDisplay(plant);
+                Player.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.SetSelectedGameObject(newPlantEntry);
+            }
+
+
         }
     }
 

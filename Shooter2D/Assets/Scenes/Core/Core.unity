@@ -338,9 +338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffset: {fileID: 136475179}
   TargetGroup: {fileID: 1860314055}
-  OffsetMultiplier: 2
-  OffsetSpeed: 5
-  MaxOffsetAmount: {x: 3, y: 2}
+  OffsetMultiplier: 0
+  OffsetSpeed: 0
+  MaxOffsetAmount: {x: 0, y: 0}
 --- !u!114 &136475179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,9 +567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c4adfc2cfc0fd4891a9c9446c57bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CursorTexture: {fileID: 2800000, guid: 3b669b549b73a5b4d93542d9164882e4, type: 3}
+  CursorTexture: {fileID: 0}
   CursorMode: 0
-  HotSpot: {x: 16, y: 0}
+  HotSpot: {x: 0, y: 0}
 --- !u!4 &627755570
 Transform:
   m_ObjectHideFlags: 0
