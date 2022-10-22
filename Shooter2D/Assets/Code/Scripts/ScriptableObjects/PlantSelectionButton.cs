@@ -26,6 +26,6 @@ public class PlantSelectionButton : Button, ISelectHandler, IPointerEnterHandler
     public override void OnSelect(BaseEventData eventData)
     {
         // TODO: Fix reference later
-        GetComponentInParent<PlantGridLayoutManager>().ChangePlantDisplay(PlantInfo);
+        GetComponentInParent<PlantGridLayoutManager>().ChangePlantDisplay(gameObject,PlantInfo);
     }
 }

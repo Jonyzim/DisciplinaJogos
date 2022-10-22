@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyBullet : PhysicsBullet
 {
+    [SerializeField] float DamageCaused;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Character character = collision.GetComponentInParent<Character>();
         if (character != null)
         {
-            print("Colidiu player");
+            //print("Colidiu player");
             character.UpdateHealth(-(int)DamageCaused);
             DestroyBullet();
         }

@@ -71,7 +71,10 @@ public class HUDManager : MonoBehaviour
     private void UpdateHealth(int id, float fillAmount)
     {
         if (Id == id)
+        {
             HealthBarSprite.fillAmount = fillAmount;
+
+        }
     }
 
     private void UpdateReload(int id, float fillAmount)
