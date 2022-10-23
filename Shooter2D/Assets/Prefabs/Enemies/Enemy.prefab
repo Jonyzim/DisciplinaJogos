@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoiseIntensity: 0.1
+  NoiseIntensity: 0.5
   NoiseSmoothness: 1
   Seeker: {fileID: 2782954769245714593}
   DetectionRadius: 13
@@ -147,7 +147,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36574
+  m_InstanceId: 38774
 --- !u!50 &6371102700354100447
 Rigidbody2D:
   serializedVersion: 4
@@ -182,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18}
+  m_Offset: {x: -0.03465092, y: 0.3807714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -193,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.73, y: 0.36}
+  m_Size: {x: 0.79930186, y: 0.7615428}
   m_EdgeRadius: 0
 --- !u!114 &2782954769245714593
 MonoBehaviour:

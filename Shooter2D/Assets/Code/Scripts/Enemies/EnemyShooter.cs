@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileShooter : MonoBehaviour
+public class EnemyShooter : Enemy
 {
     [SerializeField] private int _bulletDamage;
     [SerializeField] private List<Transform> _spawnPos;
@@ -10,7 +10,7 @@ public class ProjectileShooter : MonoBehaviour
 
     [SerializeField] private GameObject _projectilePrefab;
 
-    public void Shoot(int x)
+    public override void Attack()
     {
         int i = 0;
         foreach (Transform transf in _spawnPos)

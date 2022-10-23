@@ -6,7 +6,16 @@ public class EnemyBullet : PhysicsBullet
 {
     // TODO: Tirar depencia de bullet...
     // Overriding PhysicsBullet
-    private void OnCollisionEnter2D(Collision2D collision) { }
+    // Hack para não ter que refazer a parte de hitbox do player
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Character character = collision.gameObject.GetComponent<Character>();
+        if (character != null)
+        {
+            character.UpdateHealth(-(int)DamageCaused);
+        }
+        DestroyBullet();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

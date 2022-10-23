@@ -104,7 +104,7 @@ public abstract class Enemy : MonoBehaviour
     {
         direction += (PerlinNoiseDirection() * NoiseIntensity);
         Vector2 movement = direction * Speed;
-        _rigidBody.velocity = movement;
+        _rigidBody.velocity = Vector3.Lerp(movement, _rigidBody.velocity, 0.5f);
     }
 
     protected virtual void Death()
