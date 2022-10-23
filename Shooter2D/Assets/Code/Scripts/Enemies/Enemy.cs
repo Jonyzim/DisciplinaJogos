@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Constants;
 using TMPro;
+using Pathfinding;
 
 // Follows camera and try to find players in radius A >
 // Gets Player transform >
@@ -18,6 +19,7 @@ public abstract class Enemy : MonoBehaviour
         set => _curAttackTimer = value;
     }
 
+    public Seeker Seeker;
     public float DetectionRadius;
     public float HoverDistance;
     public float ResetDistance;
@@ -49,6 +51,7 @@ public abstract class Enemy : MonoBehaviour
     private Transform _scoreCanvas;
     private float _life = 100f;
     private bool _isDead = false;
+
 
     //Methods
     public abstract void Attack();
