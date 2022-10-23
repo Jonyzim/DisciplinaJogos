@@ -13,6 +13,8 @@ using Pathfinding;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public float NoiseIntensity;
+    public float NoiseSmoothness;
     public float CurAttackTimer
     {
         get => _curAttackTimer;
@@ -21,10 +23,11 @@ public abstract class Enemy : MonoBehaviour
 
     public Seeker Seeker;
     public float DetectionRadius;
-    public float HoverDistance;
+    public float MinHoverDistance;
+    public float MaxHoverDistance;
     public float ResetDistance;
-    public float AttackDelay;
     public float Speed;
+    public float AttackDelay;
     public LayerMask CharacterLayer;
 
     public GameObject Target;
@@ -51,6 +54,9 @@ public abstract class Enemy : MonoBehaviour
     private Transform _scoreCanvas;
     private float _life = 100f;
     private bool _isDead = false;
+    private float _movementSeedX;
+    private float _movementSeedY;
+
 
 
     //Methods
@@ -96,6 +102,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Movement(Vector2 direction)
     {
+        direction += (PerlinNoiseDirection() * NoiseIntensity);
         Vector2 movement = direction * Speed;
         _rigidBody.velocity = movement;
     }
@@ -114,6 +121,17 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected Vector2 PerlinNoiseDirection()
+    {
+        Vector2 vector = new Vector2();
+        float time = Time.fixedTime;
+        vector.x = (Mathf.PerlinNoise(time / NoiseSmoothness, _movementSeedX) - 0.5f) * 2f;
+        vector.y = (Mathf.PerlinNoise(time / NoiseSmoothness, _movementSeedY) - 0.5f) * 2f;
+        Debug.Log(time);
+
+        return Vector3.Normalize(vector);
+    }
+
     private IEnumerator ChangeColorFx(Color initial, Color final)
     {
         float t = 0;
@@ -127,10 +145,11 @@ public abstract class Enemy : MonoBehaviour
         _spriteRenderer.color = Color.Lerp(initial, final, 1f);
     }
 
-
     protected virtual void Awake()
     {
         _factory = new EnemyStateFactory(this);
+        _movementSeedX = Random.Range(0f, 10f);
+        _movementSeedY = Random.Range(0f, 10f);
     }
 
     //Unity Functions
@@ -150,7 +169,9 @@ public abstract class Enemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, HoverDistance);
+        Gizmos.DrawWireSphere(transform.position, MinHoverDistance);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, MaxHoverDistance);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, ResetDistance);
         Gizmos.color = Color.blue;

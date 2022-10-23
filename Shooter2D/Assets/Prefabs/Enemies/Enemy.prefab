@@ -101,12 +101,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NoiseIntensity: 0.1
+  NoiseSmoothness: 1
   Seeker: {fileID: 2782954769245714593}
-  DetectionRadius: 10
-  HoverDistance: 3
-  ResetDistance: 13
-  AttackDelay: 5
+  DetectionRadius: 13
+  MinHoverDistance: 3
+  MaxHoverDistance: 8
+  ResetDistance: 15
   Speed: 3
+  AttackDelay: 5
   CharacterLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -144,7 +147,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60626
+  m_InstanceId: 36574
 --- !u!50 &6371102700354100447
 Rigidbody2D:
   serializedVersion: 4

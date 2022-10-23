@@ -27,13 +27,20 @@ public class EnemyStateEngaged : EnemyState
         if (distanceToTarget > Context.ResetDistance)
             Context.SwitchState(Factory.StateSearch);
 
-        if (distanceToTarget > Context.HoverDistance)
+        if (distanceToTarget > Context.MaxHoverDistance)
         {
             FollowPath(targetPos);
         }
-        else
+        else if (distanceToTarget < Context.MinHoverDistance)
         {
             Retreat(targetPos);
+        }
+        else
+        {
+            float oldIntensity = Context.NoiseIntensity;
+            Context.NoiseIntensity = 1;
+            Context.Movement(Vector2.zero);
+            Context.NoiseIntensity = oldIntensity;
         }
 
     }
