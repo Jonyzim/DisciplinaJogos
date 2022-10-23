@@ -19,9 +19,9 @@ TagManager:
   - SpawnPoints
   - Character
   - Enemy
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - CharacterBullet
+  - EnemyHitboxes
   - 
   - 
   - 

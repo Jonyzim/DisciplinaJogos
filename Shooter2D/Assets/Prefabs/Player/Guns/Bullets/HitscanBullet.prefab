@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 103765377898331211}
   - component: {fileID: 4456270057534475060}
   - component: {fileID: 5677293881409326658}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4871,7 +4871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7195877210658619698}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6703335560827485326}
   - component: {fileID: 6872658898029491784}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HitscanBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4939,11 +4939,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 150
   Lifetime: 1
-  DamageCaused: 35
   OwnerId: 0
   _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
   _reach: 30
   IgnoreLayer:
     serializedVersion: 2
-    m_Bits: 196
+    m_Bits: 2020
   _particles: {fileID: 6449976476276772354}

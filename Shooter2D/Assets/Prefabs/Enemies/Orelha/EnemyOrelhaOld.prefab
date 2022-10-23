@@ -76,8 +76,9 @@ GameObject:
   - component: {fileID: 3946848180864773160}
   - component: {fileID: 3946848180864773163}
   - component: {fileID: 8116768894450462483}
+  - component: {fileID: 7275047659157966243}
   m_Layer: 0
-  m_Name: EnemyOrelha
+  m_Name: EnemyOrelhaOld
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,13 +163,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Seeker: {fileID: 0}
+  DetectionRadius: 0
+  HoverDistance: 0
+  ResetDistance: 0
+  AttackDelay: 0
+  Speed: 0
+  CharacterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Target: {fileID: 0}
   HitFxPrefab: {fileID: 5179699964768657960, guid: ef50e7115620c6a419e5a9c10bfceb48, type: 3}
   DeathFxPrefab: {fileID: 9155610215595514981, guid: 71c5d40763d47524eb73296682d7f446, type: 3}
   _spriteRenderer: {fileID: 3946848180864773164}
   _fxSpeed: 0.05
   _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
-  _speed: {x: 0.1, y: 0, z: 0}
-  _randomSpeed: 0
+  _rigidBody: {fileID: 0}
 --- !u!70 &5562582582260338957
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,3 +275,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!114 &7275047659157966243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946848180864773165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1

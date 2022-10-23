@@ -23,7 +23,7 @@ public class HitscanBullet : Bullet
         {
             position = hitInfo.point;
 
-            Enemy enemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
+            Enemy enemy = hitInfo.collider.gameObject.GetComponentInParent<Enemy>();
             if (enemy != null && !enemy.IsDead)
             {
                 DamageOnEnemy(enemy, position);

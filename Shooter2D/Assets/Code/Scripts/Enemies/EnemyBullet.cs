@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyBullet : PhysicsBullet
 {
+    // TODO: Tirar depencia de bullet...
+    // Overriding PhysicsBullet
+    private void OnCollisionEnter2D(Collision2D collision) { }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Character character = collision.GetComponentInParent<Character>();

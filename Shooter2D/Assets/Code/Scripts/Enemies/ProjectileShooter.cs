@@ -10,7 +10,7 @@ public class ProjectileShooter : MonoBehaviour
 
     [SerializeField] private GameObject _projectilePrefab;
 
-    public void Shoot()
+    public void Shoot(int x)
     {
         int i = 0;
         foreach (Transform transf in _spawnPos)

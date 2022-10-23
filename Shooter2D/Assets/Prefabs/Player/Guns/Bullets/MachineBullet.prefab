@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2806869754087728481}
   - component: {fileID: 3532206035116839835}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 771456433294062208}
   - component: {fileID: 2742247130830106684}
   - component: {fileID: 764459423577976922}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: MachineBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3266229933730320360}
   - component: {fileID: 4939986462413527272}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2697124188063697444}
   - component: {fileID: 1628040748234195573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

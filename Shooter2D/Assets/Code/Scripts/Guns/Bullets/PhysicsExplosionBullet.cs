@@ -6,6 +6,7 @@ public class PhysicsExplosionBullet : Bullet
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private Rigidbody2D _rgbd;
+    [SerializeField] private LayerMask _ignoreLayer;
 
     public override void SetVariables(Vector2 direction, int strenght, int damage)
     {
@@ -17,11 +18,11 @@ public class PhysicsExplosionBullet : Bullet
     private void Explode()
     {
         Vector3 pos = gameObject.transform.position;
-        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius);
+        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, ~_ignoreLayer);
 
         foreach (Collider2D enemyCollider in enemiesHit)
         {
-            Enemy enemy = enemyCollider.GetComponent<Enemy>();
+            Enemy enemy = enemyCollider.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
                 DamageOnEnemy(enemy, null);

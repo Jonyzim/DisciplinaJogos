@@ -249,7 +249,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &343763321
 PrefabInstance:
@@ -469,7 +469,7 @@ Transform:
   m_Children:
   - {fileID: 1369491706}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &521142956
 PrefabInstance:
@@ -7024,12 +7024,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
-      propertyPath: _spawnDelay
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
+      propertyPath: _spawnDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnRadius
-      value: 40
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: SpawnLayer.m_Bits
@@ -7045,7 +7049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _enemyPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnPoints.Array.data[0]
@@ -7059,6 +7063,10 @@ PrefabInstance:
       propertyPath: _enemyPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 4152129265690600296, guid: bb5320da8ab9e3e47a5a59895651bbe9, type: 3}
+    - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
+      propertyPath: _enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3985792614583299562, guid: 8e067e4d7bf26c846bcb2c075cadd391, type: 3}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _enemyPrefabs.Array.data[2]
       value: 
@@ -7835,7 +7843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901006980651322950, guid: 9882fcdc3d7bc7d4fac3b54ea714596d, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7901006980651322950, guid: 9882fcdc3d7bc7d4fac3b54ea714596d, type: 3}
       propertyPath: m_LocalPosition.x

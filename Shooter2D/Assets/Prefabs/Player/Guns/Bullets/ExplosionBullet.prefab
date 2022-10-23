@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2101130424844190641}
   - component: {fileID: 3031331591556351553}
   - component: {fileID: 8863992805741504416}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ExplosionBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8146470324968057257}
   - component: {fileID: 6601555074037439234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7141933282314751376}
   - component: {fileID: 4705360612784708773}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1277395673
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 0.1
   m_Parameters:
