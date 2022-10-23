@@ -24,7 +24,7 @@ public class PhysicsExplosionBullet : Bullet
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                DamageOnEnemy(enemy, pos);
+                DamageOnEnemy(enemy, null);
             }
         }
     }

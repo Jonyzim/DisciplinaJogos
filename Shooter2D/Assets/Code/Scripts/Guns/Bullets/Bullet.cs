@@ -42,10 +42,10 @@ public class Bullet : MonoBehaviour
             GameEvents.Instance.ScoreUpdate(OwnerId, n);
     }
 
-    protected virtual void DamageOnEnemy(Enemy enemy, Vector3 pos)
+    protected virtual void DamageOnEnemy(Enemy enemy, Vector3? pos)
     {
         int life = enemy.Life;
-        enemy.Damage(pos, (int)DamageCaused);
+        enemy.TakeDamage(pos, (int)DamageCaused);
         AddPlayerScore(Mathf.Min(life, (int)DamageCaused));
     }
 

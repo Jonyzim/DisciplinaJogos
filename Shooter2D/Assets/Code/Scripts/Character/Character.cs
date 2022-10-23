@@ -93,14 +93,14 @@ public class Character : MonoBehaviour
     }
 
     //Methods
-    Coroutine damageFx=null;
+    Coroutine damageFx = null;
     public void UpdateHealth(int value = 0)
     {
         _curHealth += value;
         print(value);
         if (damageFx != null)
             StopCoroutine(damageFx);
-        damageFx=StartCoroutine(DamageFx());
+        damageFx = StartCoroutine(DamageFx());
         if (_curHealth > Health)
         {
             _curHealth = Health;

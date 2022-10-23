@@ -4,8 +4,34 @@ using UnityEngine;
 using static Constants;
 using TMPro;
 
+// Follows camera and try to find players in radius A >
+// Gets Player transform >
+// Maintains distance X + random movement noise >
+// If distance higher than Y go to Follows camera >
+// If not Attack every Z seconds
+
 public abstract class Enemy : MonoBehaviour
 {
+    public float CurAttackTimer
+    {
+        get => _curAttackTimer;
+        set => _curAttackTimer = value;
+    }
+
+    public float DetectionRadius;
+    public float HoverDistance;
+    public float ResetDistance;
+    public float AttackDelay;
+    public float Speed;
+    public LayerMask CharacterLayer;
+
+    public GameObject Target;
+
+
+    private EnemyState _curEnemyState;
+    private EnemyStateFactory _factory;
+
+
     public int Life => (int)_life;
     public bool IsDead => _isDead;
 
@@ -15,7 +41,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _fxSpeed = 0.05f;
     [SerializeField] private GameObject _scoreViewPrefab;
+    [SerializeField] private Rigidbody2D _rigidBody;
 
+    private float _curAttackTimer;
     private Color _startColor;
     private Color _damageColor = new Color(1f, 0, 0, 1f);
     private Transform _scoreCanvas;
@@ -23,11 +51,22 @@ public abstract class Enemy : MonoBehaviour
     private bool _isDead = false;
 
     //Methods
-    public virtual bool Damage(Vector3 pos, float damage)
+    public abstract void Attack();
+
+    public void SwitchState(EnemyState newState)
+    {
+        _curEnemyState?.ExitState();
+        newState.StartState();
+        _curEnemyState = newState;
+    }
+
+    public virtual bool TakeDamage(Vector3? pos, float damage)
     {
         if (_isDead) return false;
 
-        Instantiate(HitFxPrefab, pos, Quaternion.identity);
+        Vector3 position = pos ?? transform.position;
+
+        Instantiate(HitFxPrefab, position, Quaternion.identity);
         StartCoroutine(DamageFx());
         float damageCaused = Mathf.Min(_life, damage);
         _life -= damage;
@@ -36,6 +75,7 @@ public abstract class Enemy : MonoBehaviour
         GameObject score = Instantiate(_scoreViewPrefab, scorePos, Quaternion.identity, _scoreCanvas);
 
         score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
+
         if (_life <= 0)
         {
             Death();
@@ -51,7 +91,11 @@ public abstract class Enemy : MonoBehaviour
         yield return StartCoroutine(ChangeColorFx(_damageColor, _startColor));
     }
 
-    protected abstract void Movement();
+    public virtual void Movement(Vector2 direction)
+    {
+        Vector2 movement = direction * Speed;
+        _rigidBody.velocity = movement;
+    }
 
     protected virtual void Death()
     {
@@ -80,11 +124,33 @@ public abstract class Enemy : MonoBehaviour
         _spriteRenderer.color = Color.Lerp(initial, final, 1f);
     }
 
+
+    protected virtual void Awake()
+    {
+        _factory = new EnemyStateFactory(this);
+    }
+
     //Unity Functions
     protected virtual void Start()
     {
+        SwitchState(_factory.StateSearch);
+
         _startColor = _spriteRenderer.color;
         _scoreCanvas = GameObject.FindGameObjectWithTag("ScoreCanvas").transform;
     }
 
+    protected virtual void FixedUpdate()
+    {
+        _curEnemyState.UpdateState();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, HoverDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, ResetDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, DetectionRadius);
+    }
 }

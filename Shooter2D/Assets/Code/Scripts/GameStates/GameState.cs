@@ -21,11 +21,4 @@ public abstract class GameState
     {
         Context.SwitchState(Factory.StatePaused);
     }
-
-    protected void SwitchState(GameState newState)
-    {
-        Context.CurGameState.ExitState();
-        newState.StartState();
-        Context.CurGameState = newState;
-    }
 }
