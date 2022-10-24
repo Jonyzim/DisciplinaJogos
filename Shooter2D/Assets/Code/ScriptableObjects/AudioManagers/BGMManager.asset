@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549fd2cf3b333e1498bd26b9659e0e6b, type: 3}
-  m_Name: AudioManager
+  m_Name: BGMManager
   m_EditorClassIdentifier: 
   SoundList:
   - identifier: Teste
