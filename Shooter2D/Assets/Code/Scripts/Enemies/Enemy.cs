@@ -127,7 +127,6 @@ public abstract class Enemy : MonoBehaviour
         float time = Time.fixedTime;
         vector.x = (Mathf.PerlinNoise(time / NoiseSmoothness, _movementSeedX) - 0.5f) * 2f;
         vector.y = (Mathf.PerlinNoise(time / NoiseSmoothness, _movementSeedY) - 0.5f) * 2f;
-        Debug.Log(time);
 
         return Vector3.Normalize(vector);
     }

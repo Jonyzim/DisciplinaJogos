@@ -24,6 +24,9 @@ public abstract class Gun : MonoBehaviour
 
     [Tooltip("0 = Infinite bullets")][SerializeField] private uint _storeAmmunition;
 
+    [Header("VFX")]
+    [SerializeField] private Sound _shotVFX;
+
     // Substituir quando equipar arma
     [Header("Sprites")]
     [SerializeField] private Sprite _magazineSprite;
