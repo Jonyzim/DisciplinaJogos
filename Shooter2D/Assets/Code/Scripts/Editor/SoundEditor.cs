@@ -10,23 +10,26 @@ public class SoundEditor : PropertyDrawer
 {
     private Audio.AudioManager _audioManager;
 
+    SerializedProperty idProperty;
+    SerializedProperty managerProperty;
+
     private int _choiceIndex = 0;
     private int _managerChoiceIndex = 0;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.BeginProperty(position, label, property);
-        position = EditorGUI.PrefixLabel(position, label);
-        // int indent = EditorGUI.indentLevel;
-        // EditorGUI.indentLevel = 0;
+        position = EditorGUI.PrefixLabel(position, label); ;
+        idProperty = property.FindPropertyRelative(nameof(Sound.Id));
+        managerProperty = property.FindPropertyRelative(nameof(Sound.Manager));
 
-        DrawAudioManagerDropdown(position, property, label);
-        DrawSoundDropdown(position, property, label);
+        DrawAudioManagerDropdown(position);
+        DrawSoundDropdown(position, ref property);
 
         EditorGUI.EndProperty();
     }
 
-    private void DrawAudioManagerDropdown(Rect position, SerializedProperty property, GUIContent label)
+    private void DrawAudioManagerDropdown(Rect position)
     {
         List<Audio.AudioManager> audioManagers = GetAllInstances<Audio.AudioManager>();
 
@@ -43,25 +46,21 @@ public class SoundEditor : PropertyDrawer
         _audioManager = audioManagers[_managerChoiceIndex];
     }
 
-    private void DrawSoundDropdown(Rect position, SerializedProperty property, GUIContent label)
+    private void DrawSoundDropdown(Rect position, ref SerializedProperty property)
     {
-        SerializedProperty soundId = property.FindPropertyRelative("Id");
-        SerializedProperty manager = property.FindPropertyRelative("_manager");
-
         string[] _choices = new string[_audioManager.SoundList.Length];
 
         for (int i = 0; i < _audioManager.SoundList.Length; i++)
         {
             _choices[i] = _audioManager.SoundList[i].identifier;
         }
-        // GUIContent soundLabel = new GUIContent("test");
+
         Rect newRect = new Rect(position.x + (position.width / 2 + 5), position.y, (position.width / 2 - 5), position.height);
 
-        // position = EditorGUI.PrefixLabel(position, soundLabel);
         _choiceIndex = EditorGUI.Popup(newRect, _choiceIndex, _choices);
 
-        soundId.intValue = _choiceIndex;
-        // manager.objectReferenceValue = _audioManager;
+        idProperty.intValue = _choiceIndex;
+        managerProperty.objectReferenceValue = _audioManager;
     }
 
     public static List<T> GetAllInstances<T>() where T : ScriptableObject

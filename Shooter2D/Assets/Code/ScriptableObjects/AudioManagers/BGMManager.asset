@@ -15,7 +15,6 @@ MonoBehaviour:
   SoundList:
   - identifier: Teste
     clip: {fileID: 0}
-  - identifier: Teste2
+  - identifier: 3
     clip: {fileID: 0}
-  - identifier: Teste3
-    clip: {fileID: 0}
+  _defaultSource: {fileID: 0}

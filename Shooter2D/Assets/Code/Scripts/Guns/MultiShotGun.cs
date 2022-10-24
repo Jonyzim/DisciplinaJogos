@@ -14,6 +14,7 @@ public abstract class MultiShotGun : Gun
     {
         if (Cd <= 0 && CurClip > 0 && !_fired)
         {
+            Debug.Log(ShotVFX.Id);
             _fired = true;
             CurClip -= 1;
 

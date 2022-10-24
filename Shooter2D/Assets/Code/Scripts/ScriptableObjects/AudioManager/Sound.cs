@@ -4,19 +4,17 @@ using UnityEngine;
 [Serializable]
 public class Sound
 {
-    public int Id;
+    [SerializeField] public int Id;
 
-    public Audio.AudioManager Manager { set => _manager = value; }
-
-    private Audio.AudioManager _manager;
+    [SerializeField] public Audio.AudioManager Manager;
 
     public void Play(AudioSource source)
     {
-        _manager.PlaySound(Id, source);
+        Manager.PlaySound(Id, source);
     }
 
     public void Play()
     {
-        _manager.PlaySound(Id);
+        Manager.PlaySound(Id);
     }
 }

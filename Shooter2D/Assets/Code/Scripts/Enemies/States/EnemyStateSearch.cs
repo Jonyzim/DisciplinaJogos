@@ -8,7 +8,7 @@ public class EnemyStateSearch : EnemyState
 
     public override void StartState()
     {
-        Debug.Log("Moving towards camera");
+
     }
 
     public override void UpdateState()

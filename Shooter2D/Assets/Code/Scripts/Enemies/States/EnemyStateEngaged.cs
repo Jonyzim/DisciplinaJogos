@@ -9,7 +9,7 @@ public class EnemyStateEngaged : EnemyState
 
     public override void StartState()
     {
-        Debug.Log("Engaging");
+
     }
 
     public override void UpdateState()
