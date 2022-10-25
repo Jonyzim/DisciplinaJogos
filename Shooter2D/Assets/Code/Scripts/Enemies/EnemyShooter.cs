@@ -10,8 +10,7 @@ public class EnemyShooter : Enemy
 
     [SerializeField] private GameObject _projectilePrefab;
 
-    public override void Attack()
-    {
+    public void Shoot(){
         int i = 0;
         foreach (Transform transf in _spawnPos)
         {
@@ -21,5 +20,18 @@ public class EnemyShooter : Enemy
                 bullet.SetVariables(_direction[i], 100, _bulletDamage);
             i++;
         }
+    }
+
+    public override void Attack()
+    {
+        // int i = 0;
+        // foreach (Transform transf in _spawnPos)
+        // {
+        //     GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
+        //     PhysicsBullet bullet = obj.GetComponent<PhysicsBullet>();
+        //     if (bullet != null)
+        //         bullet.SetVariables(_direction[i], 100, _bulletDamage);
+        //     i++;
+        // }
     }
 }
