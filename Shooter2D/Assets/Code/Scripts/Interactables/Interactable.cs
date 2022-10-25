@@ -4,17 +4,14 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected List<Character> CharacterList = new List<Character>(4);
+    private int _flagEnter;
+    private int _flagExit;
 
-    protected abstract void Interact(int id);
+    public abstract void Interact(Character character);
 
     //Unity Methods
     protected virtual void Start()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            CharacterList.Add(null);
-        }
     }
 
     //?Talvez já esteja funcionando com o multiplayer
@@ -24,8 +21,7 @@ public abstract class Interactable : MonoBehaviour
         Character _character = other.gameObject.GetComponent<Character>();
         if (_character != null)
         {
-            CharacterList.Insert(_character.CharacterId - 1, _character);
-            CharacterList[_character.CharacterId - 1].onInteract += Interact;
+            _character.AddInteractable(this);
         }
     }
 
@@ -34,8 +30,18 @@ public abstract class Interactable : MonoBehaviour
         Character _character = other.gameObject.GetComponent<Character>();
         if (_character != null)
         {
-            _character.onInteract -= Interact;
-            CharacterList.RemoveAt(_character.CharacterId - 1);
+            _character.RemoveInteractable(this);
         }
+    }
+
+
+    public abstract void Enter();
+    public abstract void Exit();
+
+    protected virtual void DestroyThis(Character character)
+    {
+        character.RemoveInteractable(this);
+        Destroy(this.gameObject);
+
     }
 }

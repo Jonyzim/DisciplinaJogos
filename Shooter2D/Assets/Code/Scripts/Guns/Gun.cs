@@ -95,7 +95,7 @@ public abstract class Gun : MonoBehaviour
 
     public void SetOwner(Character character)
     {
-        OwnerId = character.CharacterId;
+        OwnerId = character.OwnerId;
     }
 
     public void RemoveOwner(Character character)

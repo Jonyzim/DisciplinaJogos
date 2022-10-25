@@ -6,19 +6,28 @@ public class InteractableGun : Interactable
 {
     [SerializeField] public GameObject NewGun;
 
-    protected override void Interact(int id)
+    public override void Interact(Character character)
     {
         Gun gunComponent = NewGun.GetComponent<Gun>();
 
         if (gunComponent != null)
         {
-            CharacterList[id - 1].EquippedGun?.Drop(CharacterList[id - 1]);
+            character.EquippedGun?.Drop(character);
 
-            gunComponent.Pick(CharacterList[id - 1]);
+            gunComponent.Pick(character);
 
 
-            Destroy(gameObject);
+            DestroyThis(character);
         }
     }
 
+    public override void Enter()
+    {
+
+    }
+
+    public override void Exit()
+    {
+
+    }
 }

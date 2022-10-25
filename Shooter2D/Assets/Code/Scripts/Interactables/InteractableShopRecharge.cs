@@ -5,10 +5,10 @@ using UnityEngine;
 public class InteractableShopRecharge : Interactable
 {
 
-    protected override void Interact(int id)
+    public override void Interact(Character character)
     {
-        uint _priceMod = CharacterList[id - 1].EquippedGun?.BulletCost ?? 0;
-        float? percentage = CharacterList[id - 1].EquippedGun?.GetAmmunitionPercentage();
+        uint _priceMod = character.EquippedGun?.BulletCost ?? 0;
+        float? percentage = character.EquippedGun?.GetAmmunitionPercentage();
 
         if (percentage == 1)
             return;
@@ -18,7 +18,19 @@ public class InteractableShopRecharge : Interactable
 
         if (GameManager.Instance.TryBuy(price))
         {
-            CharacterList[id - 1].EquippedGun.RechargeAmmunition();
+            character.EquippedGun.RechargeAmmunition();
         }
+
     }
+
+    public override void Enter()
+    {
+
+    }
+
+    public override void Exit()
+    {
+
+    }
+
 }

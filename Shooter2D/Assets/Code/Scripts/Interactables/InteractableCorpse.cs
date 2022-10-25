@@ -14,15 +14,24 @@ public class InteractableCorpse : Interactable
 
 
     // TODO: Add execution time
-    protected override void Interact(int id)
+    public override void Interact(Character character)
     {
         Corpse.gameObject.SetActive(true);
         Corpse.transform.parent = null;
         Corpse.CurHealth = 20;
 
-        Destroy(gameObject);
+        DestroyThis(character);
     }
 
+    public override void Enter()
+    {
+
+    }
+
+    public override void Exit()
+    {
+
+    }
 
 
 }

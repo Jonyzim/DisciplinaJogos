@@ -391,6 +391,7 @@ MonoBehaviour:
   NewGun: {fileID: 0}
   _gunListManager: {fileID: 11400000, guid: 05e764b8907ca0d42b713200c7c185ae, type: 2}
   priceText: {fileID: 7024802601656303214}
+  _textBox: {fileID: 7618236882875465829}
 --- !u!58 &7789210059659897898
 CircleCollider2D:
   m_ObjectHideFlags: 0

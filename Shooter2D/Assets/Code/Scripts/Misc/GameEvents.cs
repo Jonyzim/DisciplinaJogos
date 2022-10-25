@@ -17,9 +17,11 @@ public class GameEvents : MonoBehaviour
 
         }
     }
+
     public bool IsMultiplayer;
 
     private static GameEvents _instance;
+
     void Awake()
     {
         if (_instance != null)

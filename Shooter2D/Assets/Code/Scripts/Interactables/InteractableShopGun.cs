@@ -9,15 +9,19 @@ public class InteractableShopGun : InteractableGun
 
     [SerializeField]
     private GunListManager _gunListManager;
+
     [SerializeField]
     private TMP_Text priceText;
+
     private int _price;
 
-    protected override void Interact(int id)
+    [SerializeField] private GameObject _textBox;
+
+    public override void Interact(Character character)
     {
         if (GameManager.Instance.TryBuy(_price))
         {
-            base.Interact(id);
+            base.Interact(character);
         }
     }
 
@@ -26,6 +30,7 @@ public class InteractableShopGun : InteractableGun
     {
         base.Start();
         SpawnWeapon();
+        _textBox.SetActive(false);
     }
 
     public void SpawnWeapon()
@@ -40,4 +45,18 @@ public class InteractableShopGun : InteractableGun
         }
         NewGun = Instantiate(newGun, gameObject.transform);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _textBox.SetActive(true);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        _textBox.SetActive(false);
+    }
+
+
 }

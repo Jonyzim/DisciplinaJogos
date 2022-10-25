@@ -39,20 +39,22 @@ public class Character : MonoBehaviour
     [Range(80, 120)] public int Strenght;
     [Range(80, 120)] public int Aim;
     [Range(80, 120)] public int Speed;
-    public int CharacterId => _characterId;
-    private int _characterId;
+    public int OwnerId => _ownerId;
+    private int _ownerId;
 
     [Header("References")]
     [SerializeField]
     private GameObject _interactableCorpsePrefab;
-
-    private Dictionary<int, Buff> buffList = new Dictionary<int, Buff>();
-    private int _curHealth;
-    private Rigidbody2D _body;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _fxSpeed;
     [SerializeField] private Color _startColor;
     [SerializeField] private Color _damageColor;
+
+    private Dictionary<int, Buff> buffList = new Dictionary<int, Buff>();
+    private int _curHealth;
+    private Rigidbody2D _body;
+
+    private List<Interactable> _interactableList = new List<Interactable>();
 
     private float _baseSpeed = 10;
 
@@ -60,17 +62,16 @@ public class Character : MonoBehaviour
     public void SetPlayerControlling(Player p)
     {
 
-        _characterId = p?.PlayerId ?? 0;
+        _ownerId = p?.PlayerId ?? 0;
 
         EquippedGun?.SetOwner(this);
     }
 
 
-    //Custom Events
-    public event Action<int> onInteract;
     public void Interact(int id)
     {
-        onInteract?.Invoke(id);
+        if (_interactableList.Count != 0)
+            _interactableList[0].Interact(this);
     }
 
     private IEnumerator ChangeColorFx(Color initial, Color final)
@@ -111,7 +112,7 @@ public class Character : MonoBehaviour
             _curHealth = 0;
             Kill();
         }
-        GameEvents.Instance.HealthUpdate(_characterId, ((float)_curHealth / (float)Health));
+        GameEvents.Instance.HealthUpdate(_ownerId, ((float)_curHealth / (float)Health));
     }
 
     public void Fire(Vector2 direction)
@@ -209,6 +210,43 @@ public class Character : MonoBehaviour
         canDash = true;
     }
 
+    public void AddInteractable(Interactable interactable)
+    {
+        interactable.Enter();
+        _interactableList.Add(interactable);
+        UpdateInteractableList();
+    }
+
+    public void RemoveInteractable(Interactable interactable)
+    {
+        interactable.Exit();
+        _interactableList.Remove(interactable);
+        UpdateInteractableList();
+    }
+
+    private void UpdateInteractableList()
+    {
+        if (_interactableList.Count != 0)
+        {
+            var oldInteractable1 = _interactableList[0];
+            _interactableList.Sort((x, y) => InteractableCompare(x, y));
+
+            if (oldInteractable1 != _interactableList[0])
+            {
+                oldInteractable1.Exit();
+                _interactableList[0].Enter();
+            }
+
+        }
+    }
+
+    private int InteractableCompare(Interactable x, Interactable y)
+    {
+        float distanceX = Vector3.Distance(x.transform.position, transform.position);
+        float distanceY = Vector3.Distance(y.transform.position, transform.position);
+        return distanceX.CompareTo(distanceY);
+    }
+
     //------------------------------------ Unity Methods --------------------------------------------
     void Start()
     {
@@ -225,6 +263,7 @@ public class Character : MonoBehaviour
         {
             buff.Value.UpdateBuff(Time.deltaTime);
         }
+        UpdateInteractableList();
     }
 
 

@@ -13,7 +13,7 @@ public class InteractablePlot : Interactable
     private int _interactingId = -1;
 
     // TODO: Quando no teclado não rega(?)
-    protected override void Interact(int id)
+    public override void Interact(Character character)
     {
         if (_plant == null)
         {
@@ -21,12 +21,14 @@ public class InteractablePlot : Interactable
             {
                 //Seleção de plantas
                 _isLocked = true;
-                _interactingId = id;
+                _interactingId = character.OwnerId;
+
                 //PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+
                 PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, canvas).GetComponent<PlantGridLayoutManager>();
-                Player.s_ActivePlayers[id - 1].PlayerEventSystem.playerRoot = canvas.gameObject;
+                Player.s_ActivePlayers[_interactingId - 1].PlayerEventSystem.playerRoot = canvas.gameObject;
                 popupManager.OnChoosePlant += SetPlant;
-                popupManager.Initialize(id);
+                popupManager.Initialize(_interactingId);
             }
         }
         else
@@ -39,7 +41,7 @@ public class InteractablePlot : Interactable
 
             else
             {
-                _plant.Use(CharacterList[id - 1]);
+                _plant.Use(character);
                 _defaultRenderer.enabled = true;
                 _plant = null;
             }
@@ -59,5 +61,17 @@ public class InteractablePlot : Interactable
         _isLocked = false;
         _interactingId = -1;
 
+    }
+
+    public override void Enter()
+    {
+        Debug.Log("ENTER");
+        _defaultRenderer.material.SetInt("_UseOutline", 1);
+    }
+
+    public override void Exit()
+    {
+        Debug.Log("EXIT");
+        _defaultRenderer.material.SetInt("_UseOutline", 0);
     }
 }
