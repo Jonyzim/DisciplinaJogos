@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549fd2cf3b333e1498bd26b9659e0e6b, type: 3}
-  m_Name: VFXManager
+  m_Name: SFXManager
   m_EditorClassIdentifier: 
-  SoundList: []
+  SoundList:
+  - identifier: Laser
+    clip: {fileID: 8300000, guid: 686d7a3f7ae1d784fbec9acd95e4fe6a, type: 3}
   _defaultSource: {fileID: 0}

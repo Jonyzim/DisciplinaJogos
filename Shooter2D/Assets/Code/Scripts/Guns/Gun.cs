@@ -25,7 +25,7 @@ public abstract class Gun : MonoBehaviour
     [Tooltip("0 = Infinite bullets")][SerializeField] private uint _storeAmmunition;
 
     [Header("VFX")]
-    [SerializeField] protected Sound ShotVFX;
+    [SerializeField] protected Sound ShotSFX;
 
     // Substituir quando equipar arma
     [Header("Sprites")]
@@ -71,6 +71,7 @@ public abstract class Gun : MonoBehaviour
         FireProps();
         Cd = 1 / Rof;
         GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+        ShotSFX.Play();
 
         // Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);

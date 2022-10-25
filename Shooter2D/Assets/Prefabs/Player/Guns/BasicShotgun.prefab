@@ -137,8 +137,8 @@ MonoBehaviour:
   _reloadTime: 2
   _clip: 2
   _storeAmmunition: 30
-  ShotVFX:
-    Id: 1
+  ShotSFX:
+    Id: 0
     Manager: {fileID: 11400000, guid: 1470dc594f7bd3a40b898a19027d2bec, type: 2}
   _magazineSprite: {fileID: 21300000, guid: ca6b72fc9d7dd7c4bb864418069210ae, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
