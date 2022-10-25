@@ -67,12 +67,11 @@ public abstract class Gun : MonoBehaviour
         gameObject.transform.parent = instance.transform;
     }
 
-    public virtual void Fire(Vector2 direction, int strenght, float aim)
+    public virtual Bullet Fire(Vector2 direction, int strenght, float aim)
     {
         FireProps();
         Cd = 1 / Rof;
         GameEvents.Instance.MagazineUpdate(OwnerId, (float)_curClip / (float)_clip);
-        ShotSFX.Play();
 
         // Calculate new spread based on character Aim stat
         float _spread = aim > 100 ? (Spread * (100 / ((aim * 2) - 100))) : (Spread + 100 - aim);
@@ -83,6 +82,7 @@ public abstract class Gun : MonoBehaviour
         Bullet bulletScript = _bullet.GetComponent<Bullet>();
         bulletScript.SetPlayer(OwnerId);
         bulletScript.SetVariables(_direction, strenght, _damage);
+        return bulletScript;
     }
 
     public void SwitchFlashlight()
@@ -136,7 +136,11 @@ public abstract class Gun : MonoBehaviour
 
     public abstract void ReleaseFire();
 
-    protected abstract void FireProps();
+    protected virtual void FireProps()
+    {
+        ShotSFX.Play();
+    }
+
     protected abstract void ReloadProps(float time);
 
     private void ReloadUpdate()

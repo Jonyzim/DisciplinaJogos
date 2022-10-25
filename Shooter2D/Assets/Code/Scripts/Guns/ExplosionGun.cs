@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SingleShotGun : Gun
+public class ExplosionGun : Gun
 {
+    [Header("Explosion Variables")]
+    [SerializeField] int _explosionDamage;
+    [SerializeField] int _explosionRadius;
+
     // Garante apenas um tiro por clique do mouse
     private bool _fired = false;
 
@@ -15,7 +19,9 @@ public abstract class SingleShotGun : Gun
             _fired = true;
             _curClip -= 1;
 
-            return base.Fire(direction, strenght, aim);
+            PhysicsExplosionBullet bulletScript = (PhysicsExplosionBullet)base.Fire(direction, strenght, aim);
+            bulletScript.SetExplosionVariables(_explosionDamage, _explosionRadius);
+            return bulletScript;
         }
         return null;
 
@@ -25,15 +31,9 @@ public abstract class SingleShotGun : Gun
         _fired = false;
     }
 
-    // Start is called before the first frame update
-    // protected virtual new void Start()
-    // {
-    //     base.Start();
-    // }
+    protected override void ReloadProps(float time)
+    {
 
-    // Update is called once per frame
-    // protected virtual new void Update()
-    // {
-    //     base.Update();
-    // }
+    }
+
 }

@@ -16,6 +16,7 @@ public class PhysicsBullet : Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Colisões com trigger não rodam essa parte
+        Debug.Log(collision.collider.gameObject.name);
         DestroyBullet();
     }
 

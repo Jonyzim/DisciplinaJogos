@@ -24,13 +24,7 @@ public class Bullet : MonoBehaviour
         DamageCaused = damage * ((float)strenght / 100);
     }
 
-    // IEnumerator DestroyDelay()
-    // {
-    //     yield return new WaitForSeconds(lifetime);
-    //     DestroyBullet();
-    // }
-
-    public void DestroyBullet(float timer = 0)
+    public virtual void DestroyBullet(float timer = 0)
     {
         Instantiate(_destroyFxPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject, timer);
@@ -49,10 +43,17 @@ public class Bullet : MonoBehaviour
         AddPlayerScore(Mathf.Min(life, (int)DamageCaused));
     }
 
+
+    protected virtual void DamageOnEnemy(Enemy enemy, Vector3? pos, float damage)
+    {
+        int life = enemy.Life;
+        enemy.TakeDamage(pos, (int)damage);
+        AddPlayerScore(Mathf.Min(life, (int)damage));
+    }
+
     //Unity Methods
     protected virtual void Start()
     {
-        //StartCoroutine(DestroyDelay());
         DestroyBullet(Lifetime);
     }
 }

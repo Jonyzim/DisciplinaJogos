@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8863992805741504416}
   m_Layer: 10
   m_Name: ExplosionBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,12 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7333be9325899d4fb0618a2928ef4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  Lifetime: 3
+  Speed: 15
+  Lifetime: 2
   OwnerId: 0
   _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
-  _explosionRadius: 5
   _rgbd: {fileID: 8863992805741504416}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &3031331591556351553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77,7 +79,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02}
+  m_Size: {x: 0.05, y: 0.05}
   m_EdgeRadius: 0
 --- !u!50 &8863992805741504416
 Rigidbody2D:
@@ -98,8 +100,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1423585105183612281
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5338058484766843147}
   - component: {fileID: 591926768312445034}
-  - component: {fileID: 3990382192183887820}
+  - component: {fileID: 8951753988080299091}
   m_Layer: 0
   m_Name: GrenadeLauncher
   m_TagString: Untagged
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3990382192183887820
+--- !u!114 &8951753988080299091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1720661398340679343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d970ac062c2b4b4da00b6560315817d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ff4624374587b7408abef58a619e832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTransf: {fileID: 3836404283466456182}
@@ -133,7 +133,7 @@ MonoBehaviour:
   _flashLight: {fileID: 9012900671052290817}
   Rof: 1
   Spread: 5
-  _damage: 50
+  _damage: 10
   _reloadTime: 2.5
   _clip: 4
   _maxAmmo: 12
@@ -143,6 +143,8 @@ MonoBehaviour:
   _magazineSprite: {fileID: 21300000, guid: ca6b72fc9d7dd7c4bb864418069210ae, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
+  _explosionDamage: 50
+  _explosionRadius: 5
 --- !u!1001 &3532165717052783444
 PrefabInstance:
   m_ObjectHideFlags: 0

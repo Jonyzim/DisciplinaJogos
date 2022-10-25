@@ -2,55 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicsExplosionBullet : Bullet
+public class PhysicsExplosionBullet : PhysicsBullet
 {
-    [SerializeField] private float _explosionRadius;
-    [SerializeField] private Rigidbody2D _rgbd;
-    [SerializeField] private LayerMask _ignoreLayer;
+    [Header("Explosion Variables")]
+    private int _explosionRadius;
+    private int _explosionDamage;
+    [SerializeField] private LayerMask _enemyLayer;
 
-    public override void SetVariables(Vector2 direction, int strenght, int damage)
+    public void SetExplosionVariables(int explosionDamage, int explosionRadius)
     {
-        base.SetVariables(direction, strenght, damage);
-        _rgbd.AddForce(Direction * Speed, ForceMode2D.Impulse);
+        _explosionDamage = explosionDamage;
+        _explosionRadius = explosionRadius;
     }
 
-    // TODO: Add Explosion
+    // TODO: Add Explosion VFX
     private void Explode()
     {
         Vector3 pos = gameObject.transform.position;
-        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, ~_ignoreLayer);
+        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, _enemyLayer);
 
         foreach (Collider2D enemyCollider in enemiesHit)
         {
             Enemy enemy = enemyCollider.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
-                DamageOnEnemy(enemy, null);
+                DamageOnEnemy(enemy, null, _explosionDamage);
             }
         }
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(gameObject.transform.position, _explosionRadius);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void DestroyBullet(float timer = 0)
     {
         Explode();
-        DestroyBullet();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if (enemy != null && !enemy.IsDead)
-        {
-            Explode();
-            DestroyBullet();
-        }
+        base.DestroyBullet(timer);
     }
 
 }
