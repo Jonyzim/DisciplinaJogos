@@ -5,6 +5,8 @@ using UnityEngine;
 public class InteractableShopRecharge : Interactable
 {
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     public override void Interact(Character character)
     {
         uint _priceMod = character.EquippedGun?.BulletCost ?? 0;
@@ -25,12 +27,12 @@ public class InteractableShopRecharge : Interactable
 
     public override void Enter()
     {
-
+        spriteRenderer.material.SetInt("_UseOutline", 1);
     }
 
     public override void Exit()
     {
-
+        spriteRenderer.material.SetInt("_UseOutline", 0);
     }
 
 }

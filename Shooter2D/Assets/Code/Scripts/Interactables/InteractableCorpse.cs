@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractableCorpse : Interactable
 {
     public Character Corpse;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public void Initialize(Character character)
     {
@@ -31,7 +31,7 @@ public class InteractableCorpse : Interactable
 
     public override void Exit()
     {
-        spriteRenderer.material.SetInt("_UseOutline", 1);
+        spriteRenderer.material.SetInt("_UseOutline", 0);
     }
 
 
