@@ -9,7 +9,7 @@ public class InteractableShopRecharge : Interactable
     {
         uint _priceMod = CharacterList[id - 1].EquippedGun?.BulletCost ?? 0;
         float? percentage = CharacterList[id - 1].EquippedGun?.GetAmmunitionPercentage();
-        Debug.Log(percentage);
+
         if (percentage == 1)
             return;
 
