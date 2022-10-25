@@ -65,13 +65,11 @@ public class InteractablePlot : Interactable
 
     public override void Enter()
     {
-        Debug.Log("ENTER");
         _defaultRenderer.material.SetInt("_UseOutline", 1);
     }
 
     public override void Exit()
     {
-        Debug.Log("EXIT");
         _defaultRenderer.material.SetInt("_UseOutline", 0);
     }
 }

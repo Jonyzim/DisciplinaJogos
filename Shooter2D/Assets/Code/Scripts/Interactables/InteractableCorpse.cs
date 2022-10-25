@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableCorpse : Interactable
 {
     public Character Corpse;
+    private SpriteRenderer spriteRenderer;
 
     public void Initialize(Character character)
     {
@@ -25,12 +26,12 @@ public class InteractableCorpse : Interactable
 
     public override void Enter()
     {
-
+        spriteRenderer.material.SetInt("_UseOutline", 1);
     }
 
     public override void Exit()
     {
-
+        spriteRenderer.material.SetInt("_UseOutline", 1);
     }
 
 

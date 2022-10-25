@@ -23,11 +23,11 @@ public class InteractableGun : Interactable
 
     public override void Enter()
     {
-
+        NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 1);
     }
 
     public override void Exit()
     {
-
+        NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 0);
     }
 }
