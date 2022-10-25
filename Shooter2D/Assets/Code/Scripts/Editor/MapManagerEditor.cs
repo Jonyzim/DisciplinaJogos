@@ -39,7 +39,6 @@ namespace NaughtyAttributes.Editor
         private void DrawMapDropdown()
         {
 
-
             MapManager mapManager = (MapManager)target;
 
             string[] _choices = new string[mapManager.MapList.Length];
