@@ -8,7 +8,6 @@ using NaughtyAttributes;
 namespace NaughtyAttributes.Editor
 {
 
-
     [CustomEditor(typeof(MapManager))]
     public class MapManagerEditor : NaughtyAttributes.Editor.NaughtyInspector
     {

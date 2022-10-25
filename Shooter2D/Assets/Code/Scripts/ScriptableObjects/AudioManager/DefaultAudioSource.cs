@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
-namespace Audio
+namespace MyAudio
 {
     public class DefaultAudioSource : MonoBehaviour
     {
-        public AudioManager audioManager;
+        public AudioManager AudioManager;
+        public bool Loop;
+        public AudioMixerGroup MixerGroup;
 
         private void Awake()
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();
-            audioManager.DefaultSource = source;
+            source.outputAudioMixerGroup = MixerGroup;
+            AudioManager.DefaultSource = source;
+
         }
 
     }

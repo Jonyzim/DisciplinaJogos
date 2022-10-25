@@ -19,4 +19,7 @@ MonoBehaviour:
   - MapName: MapaJony
     ActiveScene: 3
     LoadedScenes: 02000000
+  - MapName: MenuPrincipal
+    ActiveScene: 0
+    LoadedScenes: 
   LoadMapIndex: 0

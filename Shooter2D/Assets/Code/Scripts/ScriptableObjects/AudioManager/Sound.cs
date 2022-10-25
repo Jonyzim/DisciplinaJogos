@@ -6,7 +6,7 @@ public class Sound
 {
     [SerializeField] public int Id;
 
-    [SerializeField] public Audio.AudioManager Manager;
+    [SerializeField] public MyAudio.AudioManager Manager;
 
     public void Play(AudioSource source)
     {
@@ -16,5 +16,10 @@ public class Sound
     public void Play()
     {
         Manager.PlaySound(Id);
+    }
+
+    public void PlayLoop()
+    {
+        Manager.PlayLoop(Id);
     }
 }

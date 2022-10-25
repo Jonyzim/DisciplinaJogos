@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549fd2cf3b333e1498bd26b9659e0e6b, type: 3}
   m_Name: VFXManager
   m_EditorClassIdentifier: 
-  SoundList:
-  - identifier: test2
-    clip: {fileID: 0}
-  - identifier: Testt
-    clip: {fileID: 0}
+  SoundList: []
   _defaultSource: {fileID: 0}

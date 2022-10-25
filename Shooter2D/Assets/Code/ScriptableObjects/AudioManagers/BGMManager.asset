@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BGMManager
   m_EditorClassIdentifier: 
   SoundList:
-  - identifier: Teste
-    clip: {fileID: 0}
-  - identifier: 3
-    clip: {fileID: 0}
+  - identifier: Milky_Way_One
+    clip: {fileID: 8300000, guid: cfebb0ce8f769f74788e5d5c10e595e8, type: 3}
+  - identifier: Milky_Way_Gameplay
+    clip: {fileID: 8300000, guid: 932061982f295f3478fa8946f644d68a, type: 3}
   _defaultSource: {fileID: 0}

@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace Audio
+namespace MyAudio
 {
 
     [Serializable]
@@ -38,6 +38,15 @@ namespace Audio
             if (_defaultSource == null)
                 Debug.LogError("No default audio source set!");
             _defaultSource.PlayOneShot(SoundList[id].clip);
+        }
+
+        public void PlayLoop(int id)
+        {
+            if (_defaultSource == null)
+                Debug.LogError("No default audio source set!");
+            _defaultSource.clip = SoundList[id].clip;
+            _defaultSource.loop = true;
+            _defaultSource.Play();
         }
 
         [Serializable]

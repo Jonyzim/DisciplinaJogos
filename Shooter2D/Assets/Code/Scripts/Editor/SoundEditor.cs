@@ -8,7 +8,7 @@ using NaughtyAttributes;
 [CustomPropertyDrawer(typeof(Sound))]
 public class SoundEditor : PropertyDrawer
 {
-    [SerializeField] private Audio.AudioManager _audioManager;
+    [SerializeField] private MyAudio.AudioManager _audioManager;
 
     private SerializedProperty idProperty;
     private SerializedProperty managerProperty;
@@ -32,10 +32,14 @@ public class SoundEditor : PropertyDrawer
 
     private void DrawAudioManagerDropdown(Rect position)
     {
-        List<Audio.AudioManager> audioManagers = GetAllInstances<Audio.AudioManager>();
+        List<MyAudio.AudioManager> audioManagers = GetAllInstances<MyAudio.AudioManager>();
 
         string[] _choices = new string[audioManagers.Count];
-        string managerName = ((Audio.AudioManager)managerProperty.objectReferenceValue).name;
+        string managerName = "";
+        if (((MyAudio.AudioManager)managerProperty.objectReferenceValue) != null)
+        {
+            managerName = ((MyAudio.AudioManager)managerProperty.objectReferenceValue).name;
+        }
 
         for (int i = 0; i < audioManagers.Count; i++)
         {
