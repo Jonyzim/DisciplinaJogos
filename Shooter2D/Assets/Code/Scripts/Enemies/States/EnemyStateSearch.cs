@@ -1,27 +1,40 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStateSearch : EnemyState
 {
+    private Pathfinding.Path path;
+    private Vector2 _direction;
+    private const float timer = 0.13f;
+    private float _curTimer;
+
     public EnemyStateSearch(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
+
 
     public override void StartState()
     {
-
+        OnFindPath += SetPath;
+        _curTimer = timer;
     }
 
     public override void UpdateState()
     {
-
-        FollowPath();
-        SearchCharacters();
+        _curTimer -= Time.deltaTime;
+        Context.Movement(_direction);
+        if (_curTimer <= 0)
+        {
+            FollowPath();
+            SearchCharacters();
+            _curTimer = timer;
+        }
 
     }
 
     public override void ExitState()
     {
-
+        OnFindPath -= SetPath;
     }
 
     private void FollowPath()
@@ -30,11 +43,19 @@ public class EnemyStateSearch : EnemyState
         Vector2 pos = Context.gameObject.transform.position;
         Vector2 camPos = Camera.main.transform.position;
 
-        Pathfinding.Path path = Context.Seeker.StartPath(pos, camPos);
-        path.BlockUntilCalculated();
-        Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+        Context.Seeker.StartPath(pos, camPos, OnFindPath);
 
-        Context.Movement(direction);
+        if (path != null)
+        {
+            _direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+        }
+    }
+
+    private event Pathfinding.OnPathDelegate OnFindPath;
+
+    private void SetPath(Pathfinding.Path p)
+    {
+        path = p;
     }
 
     private void SearchCharacters()

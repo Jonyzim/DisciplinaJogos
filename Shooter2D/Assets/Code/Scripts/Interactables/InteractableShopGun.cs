@@ -5,8 +5,6 @@ using TMPro;
 
 public class InteractableShopGun : InteractableGun
 {
-    // TODO: Spawnar balão de texto com dinheiro necessário
-
     [SerializeField]
     private GunListManager _gunListManager;
 
@@ -15,7 +13,9 @@ public class InteractableShopGun : InteractableGun
 
     private int _price;
 
-    [SerializeField] private GameObject _textBox;
+    [SerializeField] private GameObject _priceBox;
+    [SerializeField] private GameObject _iconBox;
+
 
     public override void Interact(Character character)
     {
@@ -30,7 +30,8 @@ public class InteractableShopGun : InteractableGun
     {
         base.Start();
         SpawnWeapon();
-        _textBox.SetActive(false);
+        _priceBox.SetActive(false);
+        _iconBox.SetActive(true);
     }
 
     public void SpawnWeapon()
@@ -49,13 +50,15 @@ public class InteractableShopGun : InteractableGun
     public override void Enter()
     {
         base.Enter();
-        _textBox.SetActive(true);
+        _priceBox.SetActive(true);
+        _iconBox.SetActive(false);
     }
 
     public override void Exit()
     {
         base.Exit();
-        _textBox.SetActive(false);
+        _priceBox.SetActive(false);
+        _iconBox.SetActive(true);
     }
 
 

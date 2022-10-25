@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class EnemyStateEngaged : EnemyState
 {
+    private Pathfinding.Path path;
+
     public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
+
 
     public override void StartState()
     {
-
+        OnFindPath += test;
     }
 
     public override void UpdateState()
@@ -47,7 +50,7 @@ public class EnemyStateEngaged : EnemyState
 
     public override void ExitState()
     {
-
+        OnFindPath -= test;
     }
 
     private void FollowPath(Vector2 targetPos)
@@ -56,11 +59,20 @@ public class EnemyStateEngaged : EnemyState
         Vector2 pos = Context.gameObject.transform.position;
 
 
-        Pathfinding.Path path = Context.Seeker.StartPath(pos, targetPos);
-        path.BlockUntilCalculated();
-        Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+        Context.Seeker.StartPath(pos, targetPos, OnFindPath);
 
-        Context.Movement(direction);
+        if (path != null)
+        {
+            Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+            Context.Movement(direction);
+        }
+    }
+
+    private event Pathfinding.OnPathDelegate OnFindPath;
+
+    private void test(Pathfinding.Path p)
+    {
+        path = p;
     }
 
     private void Retreat(Vector2 targetPos)
