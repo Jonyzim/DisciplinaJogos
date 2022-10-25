@@ -8,9 +8,9 @@ public abstract class AutomaticGun : Gun
 
     public override void Fire(Vector2 direction, int strenght, float aim)
     {
-        if (Cd <= 0 && CurClip > 0)
+        if (Cd <= 0 && _curClip > 0)
         {
-            CurClip -= 1;
+            _curClip -= 1;
             base.Fire(direction, strenght, aim);
         }
     }

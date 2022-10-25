@@ -33,7 +33,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] private Sprite _reloadSprite;
     [SerializeField] private Sprite _backgroundSprite;
 
-    protected uint CurClip;
+    protected uint _curClip;
     protected float Cd = 0;
     protected int OwnerId;
 
@@ -51,7 +51,7 @@ public abstract class Gun : MonoBehaviour
         transform.localScale = Vector3.one;
         character.EquippedGun = this;
         GameEvents.Instance.PickWeapon(OwnerId, _magazineSprite, _backgroundSprite);
-        GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+        GameEvents.Instance.MagazineUpdate(OwnerId, (float)_curClip / (float)_clip);
         GameEvents.Instance.AmmoUpdate(OwnerId, _curAmmo, _maxAmmo);
     }
 
@@ -71,7 +71,7 @@ public abstract class Gun : MonoBehaviour
     {
         FireProps();
         Cd = 1 / Rof;
-        GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+        GameEvents.Instance.MagazineUpdate(OwnerId, (float)_curClip / (float)_clip);
         ShotSFX.Play();
 
         // Calculate new spread based on character Aim stat
@@ -109,10 +109,10 @@ public abstract class Gun : MonoBehaviour
     public void Reload()
     {
         //Não recarregar caso munição esteja cheia
-        if (CurClip < _clip)
+        if (_curClip < _clip)
         {
-            _curAmmo += CurClip;
-            CurClip = 0;
+            _curAmmo += _curClip;
+            _curClip = 0;
         }
     }
 
@@ -120,7 +120,7 @@ public abstract class Gun : MonoBehaviour
     {
         if (_maxAmmo != 0)
         {
-            _curAmmo = _maxAmmo - CurClip;
+            _curAmmo = _maxAmmo - _curClip;
             GameEvents.Instance.AmmoUpdate(OwnerId, _curAmmo, _maxAmmo);
         }
     }
@@ -129,7 +129,7 @@ public abstract class Gun : MonoBehaviour
     {
         if (_maxAmmo != 0)
         {
-            return (float)(_curAmmo + CurClip) / _maxAmmo;
+            return (float)(_curAmmo + _curClip) / _maxAmmo;
         }
         return 1f;
     }
@@ -152,19 +152,19 @@ public abstract class Gun : MonoBehaviour
                 _reloadProgress = 0;
                 if (_curAmmo > _clip)
                 {
-                    CurClip = _clip;
+                    _curClip = _clip;
                     _curAmmo -= _clip;
 
                 }
                 else
                 {
-                    CurClip = _curAmmo;
+                    _curClip = _curAmmo;
                     _curAmmo = 0;
                 }
 
 
                 GameEvents.Instance.ReloadUpdate(OwnerId, 0);
-                GameEvents.Instance.MagazineUpdate(OwnerId, (float)CurClip / (float)_clip);
+                GameEvents.Instance.MagazineUpdate(OwnerId, (float)_curClip / (float)_clip);
                 GameEvents.Instance.AmmoUpdate(OwnerId, _curAmmo, _maxAmmo);
             }
         }
@@ -173,8 +173,8 @@ public abstract class Gun : MonoBehaviour
     //Unity Methods
     protected virtual void Start()
     {
-        CurClip = _clip;
-        _curAmmo = _maxAmmo - CurClip;
+        _curClip = _clip;
+        _curAmmo = _maxAmmo - _curClip;
 
         //Caso a arma já esteja equipada antes do jogo começar
         Character character = gameObject.GetComponentInParent<Character>();
@@ -187,7 +187,7 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (CurClip == 0 && Cd <= 0)
+        if (_curClip == 0 && Cd <= 0)
         {
             ReloadUpdate();
         }
