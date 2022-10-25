@@ -8,10 +8,11 @@ using TMPro;
 public class HUDManager : MonoBehaviour
 {
     public int Id;
-    public Image MagazineSprite;
+    public Image ClipSprite;
     public Image BackgroundSprite;
     public Image ReloadSprite;
     public TMP_Text ScoreText;
+    public TMP_Text AmmoText;
     public int Score;
     public static bool s_IsPaused => isPaused;
 
@@ -53,19 +54,19 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void ChangeMagazine(int id, Sprite magazineSprite, Sprite backgroundSprite)
+    private void ChangeClip(int id, Sprite magazineSprite, Sprite backgroundSprite)
     {
         if (Id == id)
         {
-            MagazineSprite.sprite = magazineSprite;
+            ClipSprite.sprite = magazineSprite;
             BackgroundSprite.sprite = backgroundSprite;
         }
     }
 
-    private void UpdateMagazine(int id, float fillAmount)
+    private void UpdateClip(int id, float fillAmount)
     {
         if (Id == id)
-            MagazineSprite.fillAmount = fillAmount;
+            ClipSprite.fillAmount = fillAmount;
     }
 
     private void UpdateHealth(int id, float fillAmount)
@@ -82,6 +83,25 @@ public class HUDManager : MonoBehaviour
         if (Id == id)
             ReloadSprite.fillAmount = fillAmount;
     }
+
+    private void UpdateAmmo(int id, uint curAmmo, uint maxAmmo)
+    {
+        if (Id == id)
+        {
+            string text;
+            if (maxAmmo > 0)
+            {
+                text = $"{curAmmo} / {maxAmmo}";
+            }
+            else
+                text = "";
+
+            AmmoText.text = text;
+
+        }
+
+    }
+
     private void PauseGame(int id)
     {
         if (Id == id)
@@ -102,6 +122,7 @@ public class HUDManager : MonoBehaviour
             }
         }
     }
+
     private void AddScore(int id, int n)
     {
         if (Id == id)
@@ -116,10 +137,11 @@ public class HUDManager : MonoBehaviour
     void Start()
     {
         Score = 0;
-        GameEvents.Instance.OnPickWeapon += ChangeMagazine;
-        GameEvents.Instance.OnMagazineUpdate += UpdateMagazine;
+        GameEvents.Instance.OnPickWeapon += ChangeClip;
+        GameEvents.Instance.OnClipUpdate += UpdateClip;
         GameEvents.Instance.OnHealthUpdate += UpdateHealth;
         GameEvents.Instance.OnReloadUpdate += UpdateReload;
+        GameEvents.Instance.OnAmmoUpdate += UpdateAmmo;
         GameEvents.Instance.OnScoreUpdate += AddScore;
         GameEvents.Instance.OnPause += PauseGame;
     }

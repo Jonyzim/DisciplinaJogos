@@ -136,7 +136,7 @@ MonoBehaviour:
   _damage: 10
   _reloadTime: 2
   _clip: 2
-  _storeAmmunition: 30
+  _maxAmmo: 30
   ShotSFX:
     Id: 0
     Manager: {fileID: 11400000, guid: 1470dc594f7bd3a40b898a19027d2bec, type: 2}

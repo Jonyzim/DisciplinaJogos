@@ -38,10 +38,10 @@ public class GameEvents : MonoBehaviour
         OnPickWeapon?.Invoke(id, magazineSprite, backgroundSprite);
     }
 
-    public event Action<int, float> OnMagazineUpdate;
+    public event Action<int, float> OnClipUpdate;
     public void MagazineUpdate(int id, float fillAmount)
     {
-        OnMagazineUpdate?.Invoke(id, fillAmount);
+        OnClipUpdate?.Invoke(id, fillAmount);
     }
 
     public event Action<int, float> OnReloadUpdate;
@@ -84,5 +84,11 @@ public class GameEvents : MonoBehaviour
     public void SetUiMode(int id, bool mode)
     {
         OnSetUiMode?.Invoke(id, mode);
+    }
+
+    public event Action<int, uint, uint> OnAmmoUpdate;
+    public void AmmoUpdate(int id, uint curAmmo, uint maxAmmo)
+    {
+        OnAmmoUpdate?.Invoke(id, curAmmo, maxAmmo);
     }
 }
