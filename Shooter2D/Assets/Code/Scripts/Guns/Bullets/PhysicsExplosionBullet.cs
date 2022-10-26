@@ -31,11 +31,9 @@ public class PhysicsExplosionBullet : PhysicsBullet
         }
     }
 
-
-    public override void DestroyBullet(float timer = 0)
+    private void OnDestroy()
     {
         Explode();
-        base.DestroyBullet(timer);
     }
 
 }

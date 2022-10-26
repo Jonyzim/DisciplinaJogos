@@ -5,7 +5,7 @@ using static Constants;
 
 public class PhysicsBullet : Bullet
 {
-    [SerializeField] private Rigidbody2D _rgbd;
+    [SerializeField] protected Rigidbody2D _rgbd;
 
 
     public override void SetVariables(Vector2 direction, int strenght, int damage)
@@ -16,7 +16,6 @@ public class PhysicsBullet : Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Colisões com trigger não rodam essa parte
-        Debug.Log(collision.collider.gameObject.name);
         DestroyBullet();
     }
 
