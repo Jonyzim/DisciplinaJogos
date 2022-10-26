@@ -395,9 +395,9 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -405,14 +405,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
+--- !u!114 &519420029
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,9 +681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f360417d90b4602409241106e19a9741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMToPlay:
-    Id: 1
-    Manager: {fileID: 11400000, guid: 389d316f496950944bba1eea17f6c895, type: 2}
+  BgmEvent:
+    Guid:
+      Data1: -1497961125
+      Data2: 1260330372
+      Data3: 1740795034
+      Data4: -324688050
+    Path: event:/BGM/MilkyWayPunksGameplay
 --- !u!4 &899901288
 Transform:
   m_ObjectHideFlags: 0
@@ -686,12 +695,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899901286}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1059222157}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1059222156
 GameObject:
@@ -702,8 +711,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1059222157}
-  - component: {fileID: 1059222158}
-  - component: {fileID: 1059222159}
   m_Layer: 0
   m_Name: CameraSetup
   m_TagString: Untagged
@@ -725,39 +732,10 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 136475177}
   - {fileID: 1860314056}
+  - {fileID: 899901288}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1059222158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059222156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a53f164e8d58a42855c3d3360fb377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioManager: {fileID: 11400000, guid: 389d316f496950944bba1eea17f6c895, type: 2}
-  Loop: 1
-  MixerGroup: {fileID: -7827476955612365313, guid: 0c9c0c04ebaaf78449accf116ace5075, type: 2}
---- !u!114 &1059222159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059222156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a53f164e8d58a42855c3d3360fb377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioManager: {fileID: 11400000, guid: 1470dc594f7bd3a40b898a19027d2bec, type: 2}
-  Loop: 0
-  MixerGroup: {fileID: -7176922802657024179, guid: 0c9c0c04ebaaf78449accf116ace5075, type: 2}
 --- !u!1 &1643813361
 GameObject:
   m_ObjectHideFlags: 0

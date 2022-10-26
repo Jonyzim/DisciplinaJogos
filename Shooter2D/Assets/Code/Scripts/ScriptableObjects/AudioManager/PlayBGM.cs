@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 
 // Temporary Script
 public class PlayBGM : MonoBehaviour
 {
-    [SerializeField] private Sound BGMToPlay;
+    [SerializeField] private EventReference BgmEvent;
+    private FMOD.Studio.EventInstance bgmInstance;
 
     private void Start()
     {
-        BGMToPlay.PlayLoop();
+        bgmInstance = RuntimeManager.CreateInstance(BgmEvent);
+        bgmInstance.start();
+        RuntimeManager.AttachInstanceToGameObject(bgmInstance, GetComponent<Transform>());
     }
 
 }
