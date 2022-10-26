@@ -28,3 +28,9 @@ MonoBehaviour:
   - GunPrefab: {fileID: 1720661398340679343, guid: b4d9c314dd342bf4f9f605dd2be48222, type: 3}
     Price: 35
     IsAvailable: 1
+  - GunPrefab: {fileID: 1720661398340679343, guid: dcc681fce23244d49a18e42211b03080, type: 3}
+    Price: 35
+    IsAvailable: 1
+  - GunPrefab: {fileID: 1720661398340679343, guid: e08e1eda3afdd3d45ac112b8be35a6f0, type: 3}
+    Price: 35
+    IsAvailable: 1
