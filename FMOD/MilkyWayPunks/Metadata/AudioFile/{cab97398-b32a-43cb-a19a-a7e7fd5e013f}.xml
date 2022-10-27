@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{cab97398-b32a-43cb-a19a-a7e7fd5e013f}">
+		<property name="assetPath">
+			<value>BGM/Milky Way Punks gameplay.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>116.58448979591837</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8374a2ab-1b2c-425c-bfa9-1e3f39751e77}</destination>
+		</relationship>
+	</object>
+</objects>
