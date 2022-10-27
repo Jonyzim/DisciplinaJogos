@@ -10,6 +10,9 @@ namespace MWP
 {
     public class Character : MonoBehaviour
     {
+        const float _baseSpeed = 10;
+
+
         //Dash
         private bool canDash = true;
         private bool isDashing;
@@ -61,7 +64,6 @@ namespace MWP
 
         private List<Interactable> _interactableList = new List<Interactable>();
 
-        private float _baseSpeed = 10;
 
         //Methods
         public void SetPlayerControlling(PlayerController p)
@@ -143,8 +145,9 @@ namespace MWP
 
         public void Move(Vector2 velocity)
         {
-            _body.velocity = velocity * _baseSpeed * ((float)Speed / 100);
+            _body.velocity = velocity * _baseSpeed * ((float)Speed / 100f);
         }
+
         public void ControlRotation(Vector2 direction)
         {
             float angle;

@@ -228,6 +228,7 @@ namespace MWP
                 _pawn.ReleaseFire();
             }
         }
+
         void OnDestroy()
         {
             _pawn.SetPlayerControlling(null);

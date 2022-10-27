@@ -17,6 +17,8 @@ namespace MWP.Enemies
     public abstract class Enemy : MonoBehaviour
     {
         public float NoiseIntensity;
+        [HideInInspector]
+        public bool IsHovering = false;
         public float NoiseSmoothness;
         public float CurAttackTimer
         {
@@ -103,11 +105,12 @@ namespace MWP.Enemies
             yield return StartCoroutine(ChangeColorFx(_damageColor, _startColor));
         }
 
-        public virtual void Movement(Vector2 direction)
+        public virtual void Move(Vector2 direction, bool randomMovement = false)
         {
-            direction += PerlinNoiseDirection() * NoiseIntensity;
+            float intensity = randomMovement ? 1f : NoiseIntensity;
+            direction += PerlinNoiseDirection() * intensity;
             Vector2 movement = direction * Speed;
-            _rigidBody.velocity = Vector3.Lerp(movement, _rigidBody.velocity, 0.5f);
+            _rigidBody.velocity = Vector2.Lerp(movement, _rigidBody.velocity, 0.5f);
         }
 
         protected virtual void Death()

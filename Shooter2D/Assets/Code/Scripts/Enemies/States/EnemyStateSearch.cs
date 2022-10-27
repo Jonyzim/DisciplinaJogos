@@ -6,7 +6,6 @@ namespace MWP.Enemies.States
     {
         private Pathfinding.Path path;
         private Vector2 _direction;
-        private const float timer = 0.13f;
         private float _curTimer;
 
         public EnemyStateSearch(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
@@ -15,19 +14,19 @@ namespace MWP.Enemies.States
         public override void StartState()
         {
             OnFindPath += SetPath;
-            _curTimer = timer;
+            _curTimer = _astarTimer;
         }
 
         public override void UpdateState()
         {
             _curTimer -= Time.deltaTime;
-            Context.Movement(_direction);
             if (_curTimer <= 0)
             {
                 FollowPath();
                 SearchCharacters();
-                _curTimer = timer;
+                _curTimer = _astarTimer;
             }
+            Context.Move(_direction);
 
         }
 

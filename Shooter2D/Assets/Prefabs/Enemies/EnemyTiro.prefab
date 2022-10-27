@@ -135,13 +135,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoiseIntensity: 0.1
+  IsHovering: 0
   NoiseSmoothness: 1
   Seeker: {fileID: 2904883661755102755}
   DetectionRadius: 13
   MinHoverDistance: 5
   MaxHoverDistance: 10
   ResetDistance: 15
-  Speed: 2
+  Speed: 3
   AttackDelay: 2
   CharacterLayer:
     serializedVersion: 2

@@ -2,6 +2,7 @@ namespace MWP.Enemies.States
 {
     public abstract class EnemyState
     {
+        protected const float _astarTimer = 0.21f;
         protected Enemy Context;
         protected EnemyStateFactory Factory;
 

@@ -5,18 +5,23 @@ namespace MWP.Enemies.States
     public class EnemyStateEngaged : EnemyState
     {
         private Pathfinding.Path path;
+        private Vector2 _direction;
+        private float _curTimer;
 
         public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
 
 
         public override void StartState()
         {
-            OnFindPath += test;
+            OnFindPath += SetPath;
+            _curTimer = _astarTimer;
         }
 
         public override void UpdateState()
         {
+            _curTimer -= Time.deltaTime;
             Context.CurAttackTimer -= Time.fixedDeltaTime;
+
             if (Context.CurAttackTimer <= 0)
             {
                 Context.Attack();
@@ -26,30 +31,42 @@ namespace MWP.Enemies.States
 
             Vector2 targetPos = Context.Target.transform.position;
             float distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
+
             if (distanceToTarget > Context.ResetDistance)
+            {
+                Context.IsHovering = false;
                 Context.SwitchState(Factory.StateSearch);
+
+            }
 
             if (distanceToTarget > Context.MaxHoverDistance)
             {
-                FollowPath(targetPos);
+                if (_curTimer <= 0)
+                {
+                    FollowPath(targetPos);
+                    Context.IsHovering = false;
+                    _curTimer = _astarTimer;
+                }
             }
             else if (distanceToTarget < Context.MinHoverDistance)
             {
                 Retreat(targetPos);
+                Context.IsHovering = false;
             }
             else
             {
                 float oldIntensity = Context.NoiseIntensity;
-                Context.NoiseIntensity = 1;
-                Context.Movement(Vector2.zero);
-                Context.NoiseIntensity = oldIntensity;
+                _direction = Vector2.zero;
+                Context.IsHovering = true;
             }
+
+            Context.Move(_direction, Context.IsHovering);
 
         }
 
         public override void ExitState()
         {
-            OnFindPath -= test;
+            OnFindPath -= SetPath;
         }
 
         private void FollowPath(Vector2 targetPos)
@@ -63,13 +80,13 @@ namespace MWP.Enemies.States
             if (path != null)
             {
                 Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
-                Context.Movement(direction);
+                _direction = direction;
             }
         }
 
         private event Pathfinding.OnPathDelegate OnFindPath;
 
-        private void test(Pathfinding.Path p)
+        private void SetPath(Pathfinding.Path p)
         {
             path = p;
         }
@@ -79,7 +96,7 @@ namespace MWP.Enemies.States
             Vector2 pos = Context.gameObject.transform.position;
             Vector2 direction = Vector3.Normalize(pos - targetPos);
 
-            Context.Movement(direction);
+            _direction = direction;
         }
     }
 }
