@@ -25,7 +25,7 @@ public abstract class Gun : MonoBehaviour
     [Tooltip("0 = Infinite bullets")][SerializeField] private uint _maxAmmo;
 
     [Header("VFX")]
-    [SerializeField] protected Sound ShotSFX;
+    [SerializeField] protected FMODUnity.EventReference ShotSfxEvent;
 
     // Substituir quando equipar arma
     [Header("Sprites")]
@@ -138,7 +138,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void FireProps()
     {
-        ShotSFX.Play();
+        FMODUnity.RuntimeManager.PlayOneShot(ShotSfxEvent, transform.position);
     }
 
     protected abstract void ReloadProps(float time);

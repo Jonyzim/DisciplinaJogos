@@ -15,7 +15,7 @@ public abstract class MultiShotGun : Gun
         if (Cd <= 0 && _curClip > 0 && !_fired)
         {
             _fired = true;
-            ShotSFX.Play();
+            FMODUnity.RuntimeManager.PlayOneShot(ShotSfxEvent, transform.position);
             _curClip -= 1;
 
             for (int i = 0; i < _bulletsSpawned; i++)
