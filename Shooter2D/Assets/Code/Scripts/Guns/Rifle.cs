@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Rifle : SingleShotGun
 {
-    protected override void FireProps()
-    {
-        //Inserir animação, sons e etc do tiro
-    }
 
     protected override void ReloadProps(float time)
     {

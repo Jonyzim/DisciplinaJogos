@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class BasicMachineGun : AutomaticGun
 {
-    protected override void FireProps()
-    {
-        //Inserir animação, sons e etc do tiro
-    }
     protected override void ReloadProps(float time)
     {
         //Inserir animação, sons e etc do reload

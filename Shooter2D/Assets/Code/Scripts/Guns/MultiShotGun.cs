@@ -33,11 +33,6 @@ public abstract class MultiShotGun : Gun
         base.Fire(direction, strenght, aim);
     }
 
-    protected override void FireProps()
-    {
-
-    }
-
     public override void ReleaseFire()
     {
         _fired = false;

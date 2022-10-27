@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using NaughtyAttributes;
-
+/* !DEPRECATED
 [CustomPropertyDrawer(typeof(Sound))]
 public class SoundEditor : PropertyDrawer
 {
@@ -87,3 +87,4 @@ public class SoundEditor : PropertyDrawer
         return base.GetPropertyHeight(property, label);
     }
 }
+*/

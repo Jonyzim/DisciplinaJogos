@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-
+/* !DEPRECATED
 namespace MyAudio
 {
     public class DefaultAudioSource : MonoBehaviour
@@ -21,3 +21,4 @@ namespace MyAudio
 
     }
 }
+*/

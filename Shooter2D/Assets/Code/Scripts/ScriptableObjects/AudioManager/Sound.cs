@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+/* !DEPRECATED
 [Serializable]
 public class Sound
 {
@@ -23,3 +23,4 @@ public class Sound
         Manager.PlayLoop(Id);
     }
 }
+*/

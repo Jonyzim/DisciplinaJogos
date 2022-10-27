@@ -555,9 +555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f360417d90b4602409241106e19a9741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMToPlay:
-    Id: 0
-    Manager: {fileID: 11400000, guid: 389d316f496950944bba1eea17f6c895, type: 2}
+  BgmEvent:
+    Guid:
+      Data1: 596285973
+      Data2: 1082055943
+      Data3: -1816422225
+      Data4: 1440257663
+    Path: event:/BGM/MilkyWayPunksMenu
 --- !u!4 &1072141983
 Transform:
   m_ObjectHideFlags: 0

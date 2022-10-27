@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using NaughtyAttributes;
-
+/* !DEPRECATED
 namespace MyAudio
 {
 
@@ -58,3 +58,4 @@ namespace MyAudio
 
     }
 }
+*/

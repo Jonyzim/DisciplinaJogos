@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/* DEPRECATED
 public class GunRotation : MonoBehaviour
 {
     // Camera cam;
@@ -42,4 +42,4 @@ public class GunRotation : MonoBehaviour
     //     lookRotation = Quaternion.Euler(0, 0, angle);
     //     gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     // }
-}
+}*/
