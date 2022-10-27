@@ -15,11 +15,14 @@ MonoBehaviour:
   MapList:
   - MapName: MapaDeTeste
     ActiveScene: 1
-    LoadedScenes: 02000000
+    LoadedScenes: 03000000
   - MapName: MapaJony
-    ActiveScene: 3
-    LoadedScenes: 02000000
+    ActiveScene: 4
+    LoadedScenes: 03000000
   - MapName: MenuPrincipal
     ActiveScene: 0
     LoadedScenes: 
+  - MapName: SpaceShip
+    ActiveScene: 2
+    LoadedScenes: 03000000
   LoadMapIndex: 0
