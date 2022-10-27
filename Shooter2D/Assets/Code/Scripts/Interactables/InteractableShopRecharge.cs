@@ -1,38 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using MWP.GameStates;
 using UnityEngine;
 
-public class InteractableShopRecharge : Interactable
+namespace MWP.Interactables
 {
-
-    [SerializeField] private SpriteRenderer spriteRenderer;
-
-    public override void Interact(Character character)
+    public class InteractableShopRecharge : Interactable
     {
-        uint _priceMod = character.EquippedGun?.BulletCost ?? 0;
-        float? percentage = character.EquippedGun?.GetAmmunitionPercentage();
 
-        if (percentage == 1)
-            return;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
-        int price = (int)(100 * (1f - (percentage ?? 1)));
-
-
-        if (GameManager.Instance.TryBuy(price))
+        public override void Interact(Character character)
         {
-            character.EquippedGun.RechargeAmmunition();
+            uint _priceMod = character.EquippedGun?.BulletCost ?? 0;
+            float? percentage = character.EquippedGun?.GetAmmunitionPercentage();
+
+            if (percentage == 1)
+                return;
+
+            int price = (int)(100 * (1f - (percentage ?? 1)));
+
+
+            if (GameManager.Instance.TryBuy(price))
+            {
+                character.EquippedGun.RechargeAmmunition();
+            }
+
+        }
+
+        public override void Enter()
+        {
+            spriteRenderer.material.SetInt("_UseOutline", 1);
+        }
+
+        public override void Exit()
+        {
+            spriteRenderer.material.SetInt("_UseOutline", 0);
         }
 
     }
-
-    public override void Enter()
-    {
-        spriteRenderer.material.SetInt("_UseOutline", 1);
-    }
-
-    public override void Exit()
-    {
-        spriteRenderer.material.SetInt("_UseOutline", 0);
-    }
-
 }

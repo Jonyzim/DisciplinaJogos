@@ -1,9 +1,6 @@
-using System.Collections.Generic;
+using MWP.ScriptableObjects;
 using System.Linq;
-using System.Reflection;
 using UnityEditor;
-using UnityEngine;
-using NaughtyAttributes;
 
 namespace NaughtyAttributes.Editor
 {

@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using MWP.Guns;
 using UnityEngine;
 
-public class InteractableGun : Interactable
+namespace MWP.Interactables
 {
-    [SerializeField] public GameObject NewGun;
-
-    public override void Interact(Character character)
+    public class InteractableGun : Interactable
     {
-        Gun gunComponent = NewGun.GetComponent<Gun>();
+        [SerializeField] public GameObject NewGun;
 
-        if (gunComponent != null)
+        public override void Interact(Character character)
         {
-            character.EquippedGun?.Drop(character);
+            Gun gunComponent = NewGun.GetComponent<Gun>();
 
-            gunComponent.Pick(character);
+            if (gunComponent != null)
+            {
+                character.EquippedGun?.Drop(character);
+
+                gunComponent.Pick(character);
 
 
-            DestroyThis(character);
+                DestroyThis(character);
+            }
         }
-    }
 
-    public override void Enter()
-    {
-        NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 1);
-    }
+        public override void Enter()
+        {
+            NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 1);
+        }
 
-    public override void Exit()
-    {
-        NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 0);
+        public override void Exit()
+        {
+            NewGun.GetComponent<SpriteRenderer>().material.SetInt("_UseOutline", 0);
+        }
     }
 }

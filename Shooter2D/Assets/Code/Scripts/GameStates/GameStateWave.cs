@@ -1,32 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using MWP.Misc;
 
-public class GameStateWave : GameState
+namespace MWP.GameStates
 {
-    public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory) { }
-
-    public override void StartState()
+    public class GameStateWave : GameState
     {
-        Context.CurWave++;
+        public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory) { }
 
-        Context.RemainingEnemies = 3 * Context.CurWave;
-
-        GameEvents.Instance.WaveBegin();
-    }
-
-    public override void UpdateState()
-    {
-
-        if (Context.RemainingEnemies <= 0)
+        public override void StartState()
         {
-            Context.SwitchState(Factory.StateIdle);
+            Context.CurWave++;
+
+            Context.RemainingEnemies = 3 * Context.CurWave;
+
+            GameEvents.Instance.WaveBegin();
         }
-    }
 
-    public override void ExitState()
-    {
-        GameEvents.Instance.WaveEnd();
-    }
+        public override void UpdateState()
+        {
 
+            if (Context.RemainingEnemies <= 0)
+            {
+                Context.SwitchState(Factory.StateIdle);
+            }
+        }
+
+        public override void ExitState()
+        {
+            GameEvents.Instance.WaveEnd();
+        }
+
+    }
 }

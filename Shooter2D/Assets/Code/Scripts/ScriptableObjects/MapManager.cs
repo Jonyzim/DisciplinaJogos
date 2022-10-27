@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
@@ -10,65 +8,69 @@ using UnityEditor.SceneManagement;
 using UnityEditor;
 #endif
 
-[Serializable]
-[CreateAssetMenu(fileName = "MapManager", menuName = "Shooter2D/MapManager", order = 0)]
-public class MapManager : ScriptableObject
+namespace MWP.ScriptableObjects
 {
-    public Map[] MapList;
 
-    [HideInInspector]
-    public int LoadMapIndex;
+    [Serializable]
+    [CreateAssetMenu(fileName = "MapManager", menuName = "Shooter2D/MapManager", order = 0)]
+    public class MapManager : ScriptableObject
+    {
+        public Map[] MapList;
 
-    private Scene[] _loadedScenes;
+        [HideInInspector]
+        public int LoadMapIndex;
+
+        private Scene[] _loadedScenes;
 
 #if (UNITY_EDITOR)
-    private SceneSetup[] _saveState;
+        private SceneSetup[] _saveState;
 #endif
 
-    public void LoadMap(string LoadMapName)
-    {
-        Map? mapToLoad = Map.SearchMap(MapList, LoadMapName);
-
-        if (!mapToLoad.HasValue)
+        public void LoadMap(string LoadMapName)
         {
-            Debug.LogError("Map doesn't exist");
-            return;
+            Map? mapToLoad = Map.SearchMap(MapList, LoadMapName);
+
+            if (!mapToLoad.HasValue)
+            {
+                Debug.LogError("Map doesn't exist");
+                return;
+            }
+
+            SceneManager.LoadScene((int)mapToLoad?.ActiveScene, LoadSceneMode.Single);
+            foreach (int sceneName in mapToLoad?.LoadedScenes)
+            {
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            }
+
         }
 
-        SceneManager.LoadScene((int)mapToLoad?.ActiveScene, LoadSceneMode.Single);
-        foreach (int sceneName in mapToLoad?.LoadedScenes)
-        {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-        }
-
-    }
-
-    // Funções exclusivas do editor
+        // Funções exclusivas do editor
 #if (UNITY_EDITOR)
-    [Button("Load Map")]
-    private void LoadEditorMap()
-    {
-        Map mapToLoad = MapList[LoadMapIndex];
-
-        // Gets scene path by index as OpenScene() requires it
-        EditorSceneManager.OpenScene(EditorBuildSettings.scenes[(int)mapToLoad.ActiveScene].path, OpenSceneMode.Single);
-        foreach (int sceneName in mapToLoad.LoadedScenes)
+        [Button("Load Map")]
+        private void LoadEditorMap()
         {
-            EditorSceneManager.OpenScene(EditorBuildSettings.scenes[sceneName].path, OpenSceneMode.Additive);
+            Map mapToLoad = MapList[LoadMapIndex];
+
+            // Gets scene path by index as OpenScene() requires it
+            EditorSceneManager.OpenScene(EditorBuildSettings.scenes[(int)mapToLoad.ActiveScene].path, OpenSceneMode.Single);
+            foreach (int sceneName in mapToLoad.LoadedScenes)
+            {
+                EditorSceneManager.OpenScene(EditorBuildSettings.scenes[sceneName].path, OpenSceneMode.Additive);
+            }
+
         }
 
-    }
+        [Button]
+        private void SaveState()
+        {
+            _saveState = EditorSceneManager.GetSceneManagerSetup();
+        }
 
-    [Button]
-    private void SaveState()
-    {
-        _saveState = EditorSceneManager.GetSceneManagerSetup();
-    }
-
-    [Button]
-    private void LoadState()
-    {
-        EditorSceneManager.RestoreSceneManagerSetup(_saveState);
-    }
+        [Button]
+        private void LoadState()
+        {
+            EditorSceneManager.RestoreSceneManagerSetup(_saveState);
+        }
 #endif
+    }
 }

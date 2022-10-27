@@ -1,36 +1,39 @@
 using System.Collections.Generic;
 
-public class EnemyStateFactory
+namespace MWP.Enemies.States
 {
-
-    private Enemy _context;
-    private Dictionary<string, EnemyState> _cache;
-
-    public EnemyStateFactory(Enemy context)
+    public class EnemyStateFactory
     {
-        _context = context;
 
-        _cache = new Dictionary<string, EnemyState>
+        private Enemy _context;
+        private Dictionary<string, EnemyState> _cache;
+
+        public EnemyStateFactory(Enemy context)
+        {
+            _context = context;
+
+            _cache = new Dictionary<string, EnemyState>
         {
             {"SearchState", null},
             {"EngagedState", null},
         };
 
-    }
-
-    public EnemyState StateSearch
-    {
-        get
-        {
-            return _cache["SearchState"] ??= new EnemyStateSearch(_context, this);
         }
-    }
 
-    public EnemyState StateEngaged
-    {
-        get
+        public EnemyState StateSearch
         {
-            return _cache["EngagedState"] ??= new EnemyStateEngaged(_context, this);
+            get
+            {
+                return _cache["SearchState"] ??= new EnemyStateSearch(_context, this);
+            }
+        }
+
+        public EnemyState StateEngaged
+        {
+            get
+            {
+                return _cache["EngagedState"] ??= new EnemyStateEngaged(_context, this);
+            }
         }
     }
 }

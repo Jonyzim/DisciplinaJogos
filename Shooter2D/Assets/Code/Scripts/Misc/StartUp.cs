@@ -1,36 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using MWP.ScriptableObjects;
 using UnityEngine;
 
-public class StartUp : MonoBehaviour
+namespace MWP.Misc
 {
-    [SerializeField] private GunListManager gunManager;
-    [SerializeField] private PlantListManager plantManager;
-
-    private static bool _initialized = false;
-
-
-    private void Awake()
+    public class StartUp : MonoBehaviour
     {
-        if (!_initialized)
-        {
-            LoadValues();
+        [SerializeField] private GunListManager gunManager;
+        [SerializeField] private PlantListManager plantManager;
 
-            _initialized = true;
-            DontDestroyOnLoad(gameObject);
+        private static bool _initialized = false;
+
+
+        private void Awake()
+        {
+            if (!_initialized)
+            {
+                LoadValues();
+
+                _initialized = true;
+                DontDestroyOnLoad(gameObject);
+            }
+
+        }
+
+        private void LoadValues()
+        {
+            gunManager.Load();
+            //plantManager.Load();
+        }
+
+        private void OnApplicationQuit()
+        {
+
+            gunManager.Save();
+            //plantManager.Save();
         }
 
     }
-
-    private void LoadValues()
-    {
-        gunManager.Load();
-    }
-
-    private void OnApplicationQuit()
-    {
-
-        gunManager.Save();
-    }
-
 }

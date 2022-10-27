@@ -1,75 +1,77 @@
-using System.Collections;
-using System.Collections.Generic;
+using MWP.UI;
 using UnityEngine;
 
-public class InteractablePlot : Interactable
+namespace MWP.Interactables.Farm
 {
-    [SerializeField] private SpriteRenderer _defaultRenderer;
-    [SerializeField] private GameObject _plantSelectionPopup;
-    [SerializeField] private Transform canvas;
-
-    private Plant _plant;
-    private bool _isLocked = false;
-    private int _interactingId = -1;
-
-    // TODO: Quando no teclado não rega(?)
-    public override void Interact(Character character)
+    public class InteractablePlot : Interactable
     {
-        if (_plant == null)
+        [SerializeField] private SpriteRenderer _defaultRenderer;
+        [SerializeField] private GameObject _plantSelectionPopup;
+        [SerializeField] private Transform canvas;
+
+        private Plant _plant;
+        private bool _isLocked = false;
+        private int _interactingId = -1;
+
+        // TODO: Quando no teclado não rega(?)
+        public override void Interact(Character character)
         {
-            if (!_isLocked)
+            if (_plant == null)
             {
-                //Seleção de plantas
-                _isLocked = true;
-                _interactingId = character.OwnerId;
+                if (!_isLocked)
+                {
+                    //Seleção de plantas
+                    _isLocked = true;
+                    _interactingId = character.OwnerId;
 
-                //PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
+                    //PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
 
-                PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, canvas).GetComponent<PlantGridLayoutManager>();
-                Player.s_ActivePlayers[_interactingId - 1].PlayerEventSystem.playerRoot = canvas.gameObject;
-                popupManager.OnChoosePlant += SetPlant;
-                popupManager.Initialize(_interactingId);
+                    PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, canvas).GetComponent<PlantGridLayoutManager>();
+                    PlayerController.s_ActivePlayers[_interactingId - 1].PlayerEventSystem.playerRoot = canvas.gameObject;
+                    popupManager.OnChoosePlant += SetPlant;
+                    popupManager.Initialize(_interactingId);
+                }
             }
-        }
-        else
-        {
-            //Caso a planta não esteja madura
-            if (_plant.Growth < _plant.GrowthTime)
-            {
-                _plant.waterPlant();
-            }
-
             else
             {
-                _plant.Use(character);
-                _defaultRenderer.enabled = true;
-                _plant = null;
+                //Caso a planta não esteja madura
+                if (_plant.Growth < _plant.GrowthTime)
+                {
+                    _plant.waterPlant();
+                }
+
+                else
+                {
+                    _plant.Use(character);
+                    _defaultRenderer.enabled = true;
+                    _plant = null;
+                }
             }
         }
-    }
 
-    public void SetPlant(GameObject plantPrefab)
-    {
-        if (plantPrefab != null)
+        public void SetPlant(GameObject plantPrefab)
         {
-            GameObject plantObject = Instantiate(plantPrefab, transform);
-            _plant = plantObject.GetComponent<Plant>();
+            if (plantPrefab != null)
+            {
+                GameObject plantObject = Instantiate(plantPrefab, transform);
+                _plant = plantObject.GetComponent<Plant>();
 
-            _defaultRenderer.enabled = false;
+                _defaultRenderer.enabled = false;
+            }
+
+            _isLocked = false;
+            _interactingId = -1;
+
         }
 
-        _isLocked = false;
-        _interactingId = -1;
+        public override void Enter()
+        {
+            _defaultRenderer.material.SetInt("_UseOutline", 1);
+        }
 
-    }
-
-    public override void Enter()
-    {
-        _defaultRenderer.material.SetInt("_UseOutline", 1);
-    }
-
-    public override void Exit()
-    {
-        _defaultRenderer.material.SetInt("_UseOutline", 0);
+        public override void Exit()
+        {
+            _defaultRenderer.material.SetInt("_UseOutline", 0);
+        }
     }
 }

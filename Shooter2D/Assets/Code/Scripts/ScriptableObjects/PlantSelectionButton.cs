@@ -1,31 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using MWP.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PlantSelectionButton : Button, ISelectHandler, IPointerEnterHandler
+namespace MWP.ScriptableObjects
 {
-    public PlantEntry PlantInfo;
-
-    public override void OnSubmit(BaseEventData eventData)
+    public class PlantSelectionButton : Button, ISelectHandler, IPointerEnterHandler
     {
-        GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
-    }
+        public PlantEntry PlantInfo;
 
-    public override void OnPointerClick(PointerEventData eventData)
-    {
-        GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
-    }
+        public override void OnSubmit(BaseEventData eventData)
+        {
+            GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
+        }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        Select();
-    }
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
+        }
 
-    public override void OnSelect(BaseEventData eventData)
-    {
-        // TODO: Fix reference later
-        GetComponentInParent<PlantGridLayoutManager>().ChangePlantDisplay(gameObject,PlantInfo);
+        public override void OnPointerEnter(PointerEventData eventData)
+        {
+            Select();
+        }
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            // TODO: Fix reference later
+            GetComponentInParent<PlantGridLayoutManager>().ChangePlantDisplay(gameObject, PlantInfo);
+        }
     }
 }

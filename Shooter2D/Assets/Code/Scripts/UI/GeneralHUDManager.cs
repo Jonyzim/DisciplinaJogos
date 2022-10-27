@@ -1,55 +1,57 @@
+using MWP.GameStates;
+using MWP.Misc;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-public class GeneralHUDManager : MonoBehaviour
+namespace MWP.UI
 {
-    [SerializeField]
-    private TMP_Text _waveText;
-
-    [SerializeField]
-    private TMP_Text _playerCreditText;
-
-    [SerializeField]
-    private TMP_Text _waveTimerText;
-
-    [SerializeField]
-    private TMP_Text _enemiesRemainingText;
-
-    private TimeSpan _waveTimeSpan;
-
-    private void Start()
+    public class GeneralHUDManager : MonoBehaviour
     {
-        GameEvents.Instance.OnWaveBegin += HideWaveUI;
-        GameEvents.Instance.OnWaveEnd += ShowWaveUI;
-        ShowWaveUI();
-    }
+        [SerializeField]
+        private TMP_Text _waveText;
 
-    private void ShowWaveUI()
-    {
-        _waveTimerText.enabled = true;
-        _enemiesRemainingText.enabled = false;
-    }
+        [SerializeField]
+        private TMP_Text _playerCreditText;
 
-    private void HideWaveUI()
-    {
-        _waveTimerText.enabled = false;
-        _enemiesRemainingText.enabled = true;
-    }
+        [SerializeField]
+        private TMP_Text _waveTimerText;
 
-    private void Update()
-    {
-        _waveText.text = GameManager.Instance.CurWave.ToString();
+        [SerializeField]
+        private TMP_Text _enemiesRemainingText;
 
-        _playerCreditText.text = GameManager.Instance.PlayerCredit.ToString().PadLeft(5, '0');
+        private TimeSpan _waveTimeSpan;
 
-        _waveTimeSpan = TimeSpan.FromSeconds(GameManager.Instance.WaveTimer);
+        private void Start()
+        {
+            GameEvents.Instance.OnWaveBegin += HideWaveUI;
+            GameEvents.Instance.OnWaveEnd += ShowWaveUI;
+            ShowWaveUI();
+        }
 
-        _waveTimerText.text = _waveTimeSpan.ToString(@"mm\:ss");
+        private void ShowWaveUI()
+        {
+            _waveTimerText.enabled = true;
+            _enemiesRemainingText.enabled = false;
+        }
 
-        _enemiesRemainingText.text = GameManager.Instance.RemainingEnemies.ToString();
+        private void HideWaveUI()
+        {
+            _waveTimerText.enabled = false;
+            _enemiesRemainingText.enabled = true;
+        }
+
+        private void Update()
+        {
+            _waveText.text = GameManager.Instance.CurWave.ToString();
+
+            _playerCreditText.text = GameManager.Instance.PlayerCredit.ToString().PadLeft(5, '0');
+
+            _waveTimeSpan = TimeSpan.FromSeconds(GameManager.Instance.WaveTimer);
+
+            _waveTimerText.text = _waveTimeSpan.ToString(@"mm\:ss");
+
+            _enemiesRemainingText.text = GameManager.Instance.RemainingEnemies.ToString();
+        }
     }
 }

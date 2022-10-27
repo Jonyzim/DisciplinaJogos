@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -917,7 +916,7 @@ namespace FMODUnity
         }
 
         // The platforms which inherit their property values from this platform.
-        internal List<string> ChildIdentifiers { get { return childIdentifiers; } } 
+        internal List<string> ChildIdentifiers { get { return childIdentifiers; } }
 #endif
 
         // Checks whether this platform inherits from the given platform, so we can avoid creating

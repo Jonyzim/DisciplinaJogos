@@ -81,8 +81,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2229748432435996058}
-  - component: {fileID: 771456433294062208}
-  - component: {fileID: 2742247130830106684}
+  - component: {fileID: 5773562266083200714}
+  - component: {fileID: 634233592468180693}
   - component: {fileID: 764459423577976922}
   m_Layer: 10
   m_Name: MachineBullet
@@ -108,7 +108,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &771456433294062208
+--- !u!114 &5773562266083200714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1456941150638956597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d0fedc3f31dc540ab325f0d51adfd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 82e2e6e9e877b9945b6a5821a4afa68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 35
@@ -125,8 +125,8 @@ MonoBehaviour:
   OwnerId: 0
   _destroyFxPrefab: {fileID: 1642056454190993419, guid: 6cff46e8ba061a34f93c54a2b7ea44bd, type: 3}
   _rgbd: {fileID: 764459423577976922}
---- !u!61 &2742247130830106684
-BoxCollider2D:
+--- !u!58 &634233592468180693
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -139,18 +139,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.125, y: 0.125}
-    newSize: {x: 0.02, y: 0.02}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.05}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!50 &764459423577976922
 Rigidbody2D:
   serializedVersion: 4

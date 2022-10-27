@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoDestroy : MonoBehaviour
+namespace MWP.Misc
 {
-    public void DestroyThis()
+    public class AutoDestroy : MonoBehaviour
     {
-        Destroy(gameObject);
+        public void DestroyThis()
+        {
+            Destroy(gameObject);
+        }
     }
 }

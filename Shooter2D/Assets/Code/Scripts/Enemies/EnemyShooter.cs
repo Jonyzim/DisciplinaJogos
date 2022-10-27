@@ -1,37 +1,41 @@
-using System.Collections;
+using MWP.Guns.Bullets;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooter : Enemy
+namespace MWP.Enemies
 {
-    [SerializeField] private int _bulletDamage;
-    [SerializeField] private List<Transform> _spawnPos;
-    [SerializeField] private List<Vector3> _direction;
-
-    [SerializeField] private GameObject _projectilePrefab;
-
-    public void Shoot(){
-        int i = 0;
-        foreach (Transform transf in _spawnPos)
-        {
-            GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
-            PhysicsBullet bullet = obj.GetComponent<PhysicsBullet>();
-            if (bullet != null)
-                bullet.SetVariables(_direction[i], 100, _bulletDamage);
-            i++;
-        }
-    }
-
-    public override void Attack()
+    public class EnemyShooter : Enemy
     {
-        // int i = 0;
-        // foreach (Transform transf in _spawnPos)
-        // {
-        //     GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
-        //     PhysicsBullet bullet = obj.GetComponent<PhysicsBullet>();
-        //     if (bullet != null)
-        //         bullet.SetVariables(_direction[i], 100, _bulletDamage);
-        //     i++;
-        // }
+        [SerializeField] private int _bulletDamage;
+        [SerializeField] private List<Transform> _spawnPos;
+        [SerializeField] private List<Vector3> _direction;
+
+        [SerializeField] private GameObject _projectilePrefab;
+
+        public void Shoot()
+        {
+            int i = 0;
+            foreach (Transform transf in _spawnPos)
+            {
+                GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
+                BulletPhysics bullet = obj.GetComponent<BulletPhysics>();
+                if (bullet != null)
+                    bullet.SetVariables(_direction[i], 100, _bulletDamage);
+                i++;
+            }
+        }
+
+        public override void Attack()
+        {
+            // int i = 0;
+            // foreach (Transform transf in _spawnPos)
+            // {
+            //     GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
+            //     PhysicsBullet bullet = obj.GetComponent<PhysicsBullet>();
+            //     if (bullet != null)
+            //         bullet.SetVariables(_direction[i], 100, _bulletDamage);
+            //     i++;
+            // }
+        }
     }
 }

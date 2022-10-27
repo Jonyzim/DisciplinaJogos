@@ -1,31 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine;
 
-public class SetCinemachineTargetGroup : MonoBehaviour
+namespace MWP.Misc
 {
-    public static SetCinemachineTargetGroup s_Instance => s_instance;
-    private static SetCinemachineTargetGroup s_instance;
-    [SerializeField] private CinemachineVirtualCamera _vcam;
-    [SerializeField] private CinemachineTargetGroup _group;
-
-    void Awake()
+    public class SetCinemachineTargetGroup : MonoBehaviour
     {
-        s_instance = this;
-    }
+        public static SetCinemachineTargetGroup s_Instance => s_instance;
+        private static SetCinemachineTargetGroup s_instance;
+        [SerializeField] private CinemachineVirtualCamera _vcam;
+        [SerializeField] private CinemachineTargetGroup _group;
 
-    public void AddCharacter(Character character)
-    {
-        if (_vcam.m_Follow == null)
+        void Awake()
         {
-            _vcam.m_Follow = character.gameObject.transform;
+            s_instance = this;
         }
-        else
+
+        public void AddCharacter(Character character)
         {
-            GameEvents.Instance.IsMultiplayer = true;
+            if (_vcam.m_Follow == null)
+            {
+                _vcam.m_Follow = character.gameObject.transform;
+            }
+            else
+            {
+                GameEvents.Instance.IsMultiplayer = true;
+            }
+            _group.AddMember(character.gameObject.transform, 1, 1);
         }
-        _group.AddMember(character.gameObject.transform, 1, 1);
     }
 }

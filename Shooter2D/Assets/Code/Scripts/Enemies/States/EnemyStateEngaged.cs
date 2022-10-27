@@ -1,85 +1,85 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-public class EnemyStateEngaged : EnemyState
+namespace MWP.Enemies.States
 {
-    private Pathfinding.Path path;
-
-    public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
-
-
-    public override void StartState()
+    public class EnemyStateEngaged : EnemyState
     {
-        OnFindPath += test;
-    }
+        private Pathfinding.Path path;
 
-    public override void UpdateState()
-    {
-        Context.CurAttackTimer -= Time.fixedDeltaTime;
-        if (Context.CurAttackTimer <= 0)
+        public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
+
+
+        public override void StartState()
         {
-            Context.Attack();
-            Context.CurAttackTimer = Context.AttackDelay;
+            OnFindPath += test;
         }
 
-
-        Vector2 targetPos = Context.Target.transform.position;
-        float distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
-        if (distanceToTarget > Context.ResetDistance)
-            Context.SwitchState(Factory.StateSearch);
-
-        if (distanceToTarget > Context.MaxHoverDistance)
+        public override void UpdateState()
         {
-            FollowPath(targetPos);
+            Context.CurAttackTimer -= Time.fixedDeltaTime;
+            if (Context.CurAttackTimer <= 0)
+            {
+                Context.Attack();
+                Context.CurAttackTimer = Context.AttackDelay;
+            }
+
+
+            Vector2 targetPos = Context.Target.transform.position;
+            float distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
+            if (distanceToTarget > Context.ResetDistance)
+                Context.SwitchState(Factory.StateSearch);
+
+            if (distanceToTarget > Context.MaxHoverDistance)
+            {
+                FollowPath(targetPos);
+            }
+            else if (distanceToTarget < Context.MinHoverDistance)
+            {
+                Retreat(targetPos);
+            }
+            else
+            {
+                float oldIntensity = Context.NoiseIntensity;
+                Context.NoiseIntensity = 1;
+                Context.Movement(Vector2.zero);
+                Context.NoiseIntensity = oldIntensity;
+            }
+
         }
-        else if (distanceToTarget < Context.MinHoverDistance)
+
+        public override void ExitState()
         {
-            Retreat(targetPos);
-        }
-        else
-        {
-            float oldIntensity = Context.NoiseIntensity;
-            Context.NoiseIntensity = 1;
-            Context.Movement(Vector2.zero);
-            Context.NoiseIntensity = oldIntensity;
+            OnFindPath -= test;
         }
 
-    }
-
-    public override void ExitState()
-    {
-        OnFindPath -= test;
-    }
-
-    private void FollowPath(Vector2 targetPos)
-    {
-        // Moving towards target
-        Vector2 pos = Context.gameObject.transform.position;
-
-
-        Context.Seeker.StartPath(pos, targetPos, OnFindPath);
-
-        if (path != null)
+        private void FollowPath(Vector2 targetPos)
         {
-            Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+            // Moving towards target
+            Vector2 pos = Context.gameObject.transform.position;
+
+
+            Context.Seeker.StartPath(pos, targetPos, OnFindPath);
+
+            if (path != null)
+            {
+                Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
+                Context.Movement(direction);
+            }
+        }
+
+        private event Pathfinding.OnPathDelegate OnFindPath;
+
+        private void test(Pathfinding.Path p)
+        {
+            path = p;
+        }
+
+        private void Retreat(Vector2 targetPos)
+        {
+            Vector2 pos = Context.gameObject.transform.position;
+            Vector2 direction = Vector3.Normalize(pos - targetPos);
+
             Context.Movement(direction);
         }
-    }
-
-    private event Pathfinding.OnPathDelegate OnFindPath;
-
-    private void test(Pathfinding.Path p)
-    {
-        path = p;
-    }
-
-    private void Retreat(Vector2 targetPos)
-    {
-        Vector2 pos = Context.gameObject.transform.position;
-        Vector2 direction = Vector3.Normalize(pos - targetPos);
-
-        Context.Movement(direction);
     }
 }

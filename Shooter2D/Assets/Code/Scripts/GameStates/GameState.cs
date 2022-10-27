@@ -1,24 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class GameState
+namespace MWP.GameStates
 {
-    protected GameManager Context;
-    protected GameStateFactory Factory;
-
-    public abstract void StartState();
-    public abstract void UpdateState();
-    public abstract void ExitState();
-
-    public GameState(GameManager context, GameStateFactory factory)
+    public abstract class GameState
     {
-        Context = context;
-        Factory = factory;
-    }
+        protected GameManager Context;
+        protected GameStateFactory Factory;
 
-    public virtual void Pause()
-    {
-        Context.SwitchState(Factory.StatePaused);
+        public abstract void StartState();
+        public abstract void UpdateState();
+        public abstract void ExitState();
+
+        public GameState(GameManager context, GameStateFactory factory)
+        {
+            Context = context;
+            Factory = factory;
+        }
+
+        public virtual void Pause()
+        {
+            Context.SwitchState(Factory.StatePaused);
+        }
     }
 }

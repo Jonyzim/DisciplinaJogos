@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class EnemyState
+namespace MWP.Enemies.States
 {
-    protected Enemy Context;
-    protected EnemyStateFactory Factory;
-
-    public abstract void StartState();
-    public abstract void UpdateState();
-    public abstract void ExitState();
-
-    public EnemyState(Enemy context, EnemyStateFactory factory)
+    public abstract class EnemyState
     {
-        Context = context;
-        Factory = factory;
+        protected Enemy Context;
+        protected EnemyStateFactory Factory;
+
+        public abstract void StartState();
+        public abstract void UpdateState();
+        public abstract void ExitState();
+
+        public EnemyState(Enemy context, EnemyStateFactory factory)
+        {
+            Context = context;
+            Factory = factory;
+        }
     }
 }

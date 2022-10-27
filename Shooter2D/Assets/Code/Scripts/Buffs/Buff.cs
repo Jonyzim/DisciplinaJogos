@@ -1,46 +1,47 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using NaughtyAttributes;
+using System;
+using UnityEngine;
 
-public abstract class Buff : ScriptableObject
+namespace MWP.Buffs
 {
-    public int UniqueId => _uniqueId;
-
-    [Header("General")]
-    [SerializeField]
-    private int _uniqueId;
-
-    // Adicionar imagens(?)
-
-    [SerializeField]
-    private bool _isInfinite;
-
-    [SerializeField]
-    [HideIf("_isInfinite")]
-    private float _timer;
-
-
-    public static event Action<Buff> OnRemove;
-
-    public void UpdateBuff(float deltaTime)
+    public abstract class Buff : ScriptableObject
     {
-        if (_isInfinite) return;
+        public int UniqueId => _uniqueId;
+
+        [Header("General")]
+        [SerializeField]
+        private int _uniqueId;
+
+        // Adicionar imagens(?)
+
+        [SerializeField]
+        private bool _isInfinite;
+
+        [SerializeField]
+        [HideIf("_isInfinite")]
+        private float _timer;
 
 
-        _timer -= deltaTime;
+        public static event Action<Buff> OnRemove;
 
-        if (_timer <= 0)
+        public void UpdateBuff(float deltaTime)
         {
-            // Debug.Log("Remove buff");
-            OnRemove?.Invoke(this);
-            Destroy(this);
+            if (_isInfinite) return;
+
+
+            _timer -= deltaTime;
+
+            if (_timer <= 0)
+            {
+                // Debug.Log("Remove buff");
+                OnRemove?.Invoke(this);
+                Destroy(this);
+            }
         }
+
+
+        public abstract void Grant(Character character);
+
+        public abstract void Remove(Character character);
     }
-
-
-    public abstract void Grant(Character character);
-
-    public abstract void Remove(Character character);
 }

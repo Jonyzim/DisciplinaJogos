@@ -1,30 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-
-public class GameStatePaused : GameState
+namespace MWP.GameStates
 {
-    public GameStatePaused(GameManager context, GameStateFactory factory) : base(context, factory) { }
-
-    private GameState _previousGameState;
-
-    public override void StartState()
+    public class GameStatePaused : GameState
     {
-        _previousGameState = Context.CurGameState;
+        public GameStatePaused(GameManager context, GameStateFactory factory) : base(context, factory) { }
+
+        private GameState _previousGameState;
+
+        public override void StartState()
+        {
+            _previousGameState = Context.CurGameState;
+        }
+
+        public override void UpdateState()
+        {
+
+        }
+
+        public override void ExitState()
+        {
+
+        }
+
+        public override void Pause()
+        {
+            Context.SwitchState(_previousGameState);
+        }
+
     }
-
-    public override void UpdateState()
-    {
-
-    }
-
-    public override void ExitState()
-    {
-
-    }
-
-    public override void Pause()
-    {
-        Context.SwitchState(_previousGameState);
-    }
-
 }

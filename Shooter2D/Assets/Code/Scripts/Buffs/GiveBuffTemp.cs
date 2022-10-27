@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine;
 
-public class GiveBuffTemp : MonoBehaviour
+namespace MWP.Buffs
 {
-    public Character CharRef;
-    public Buff buff;
-
-    [Button]
-    public void GiveBuff()
+    public class GiveBuffTemp : MonoBehaviour
     {
-        CharRef.AddBuff(Instantiate(buff));
-    }
+        public Character CharRef;
+        public Buff buff;
 
+        [Button]
+        public void GiveBuff()
+        {
+            CharRef.AddBuff(Instantiate(buff));
+        }
+
+    }
 }

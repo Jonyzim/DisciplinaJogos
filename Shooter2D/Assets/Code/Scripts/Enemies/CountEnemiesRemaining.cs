@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using MWP.GameStates;
 using UnityEngine;
 
-public class CountEnemiesRemaining : MonoBehaviour
+namespace MWP.Enemies
 {
-    public Spawner ParentSpawner
+    public class CountEnemiesRemaining : MonoBehaviour
     {
-        set => _parentSpawner = value;
+        public SpawnerEnemy ParentSpawner
+        {
+            set => _parentSpawner = value;
+        }
+
+        private SpawnerEnemy _parentSpawner;
+
+        private void OnDestroy()
+        {
+            _parentSpawner.SubtractSpawned();
+            GameManager.Instance.RemainingEnemies--;
+        }
+
     }
-
-    private Spawner _parentSpawner;
-
-    private void OnDestroy()
-    {
-        _parentSpawner.SubtractSpawned();
-        GameManager.Instance.RemainingEnemies--;
-    }
-
 }

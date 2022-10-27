@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static Constants;
 
+/* DEPRECATED
 public class SetMouse : MonoBehaviour
 {
     public Texture2D CursorTexture;
@@ -13,3 +10,4 @@ public class SetMouse : MonoBehaviour
         Cursor.SetCursor(CursorTexture, HotSpot, CursorMode);
     }
 }
+*/
