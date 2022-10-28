@@ -4,22 +4,17 @@ namespace MWP.Enemies.States
 {
     public class EnemyStateEngaged : EnemyState
     {
-        private Pathfinding.Path path;
-        private Vector2 _direction;
-        private float _curTimer;
-
         public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
 
 
         public override void StartState()
         {
-            OnFindPath += SetPath;
-            _curTimer = _astarTimer;
+            base.StartState();
         }
 
         public override void UpdateState()
         {
-            _curTimer -= Time.deltaTime;
+            base.UpdateState();
             Context.CurAttackTimer -= Time.fixedDeltaTime;
 
             if (Context.CurAttackTimer <= 0)
@@ -66,29 +61,7 @@ namespace MWP.Enemies.States
 
         public override void ExitState()
         {
-            OnFindPath -= SetPath;
-        }
-
-        private void FollowPath(Vector2 targetPos)
-        {
-            // Moving towards target
-            Vector2 pos = Context.gameObject.transform.position;
-
-
-            Context.Seeker.StartPath(pos, targetPos, OnFindPath);
-
-            if (path != null)
-            {
-                Vector2 direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
-                _direction = direction;
-            }
-        }
-
-        private event Pathfinding.OnPathDelegate OnFindPath;
-
-        private void SetPath(Pathfinding.Path p)
-        {
-            path = p;
+            base.ExitState();
         }
 
         private void Retreat(Vector2 targetPos)

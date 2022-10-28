@@ -110,7 +110,7 @@ namespace MWP.Enemies
             float intensity = randomMovement ? 1f : NoiseIntensity;
             direction += PerlinNoiseDirection() * intensity;
             Vector2 movement = direction * Speed;
-            _rigidBody.velocity = Vector2.Lerp(movement, _rigidBody.velocity, 0.5f);
+            _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, movement, 0.4f);
         }
 
         protected virtual void Death()

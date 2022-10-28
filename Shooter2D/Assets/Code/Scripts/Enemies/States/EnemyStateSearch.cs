@@ -4,57 +4,30 @@ namespace MWP.Enemies.States
 {
     public class EnemyStateSearch : EnemyState
     {
-        private Pathfinding.Path path;
-        private Vector2 _direction;
-        private float _curTimer;
 
         public EnemyStateSearch(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
 
 
         public override void StartState()
         {
-            OnFindPath += SetPath;
-            _curTimer = _astarTimer;
+            base.StartState();
         }
 
         public override void UpdateState()
         {
-            _curTimer -= Time.deltaTime;
-            if (_curTimer <= 0)
-            {
-                FollowPath();
-                SearchCharacters();
-                _curTimer = _astarTimer;
-            }
-            Context.Move(_direction);
+            base.UpdateState();
 
+            FollowPath(Camera.main.transform.position);
+            SearchCharacters();
+
+            Context.Move(_direction);
         }
 
         public override void ExitState()
         {
-            OnFindPath -= SetPath;
+            base.ExitState();
         }
 
-        private void FollowPath()
-        {
-            // Moving towards camera
-            Vector2 pos = Context.gameObject.transform.position;
-            Vector2 camPos = Camera.main.transform.position;
-
-            Context.Seeker.StartPath(pos, camPos, OnFindPath);
-
-            if (path != null)
-            {
-                _direction = Vector3.Normalize((Vector2)path.vectorPath[1] - pos);
-            }
-        }
-
-        private event Pathfinding.OnPathDelegate OnFindPath;
-
-        private void SetPath(Pathfinding.Path p)
-        {
-            path = p;
-        }
 
         private void SearchCharacters()
         {
