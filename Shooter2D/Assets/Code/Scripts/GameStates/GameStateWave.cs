@@ -4,7 +4,6 @@ namespace MWP.GameStates
 {
     public class GameStateWave : GameState
     {
-        public const int WaveMultiplier = 10;
 
         public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory) { }
 
@@ -12,7 +11,7 @@ namespace MWP.GameStates
         {
             Context.CurWave++;
 
-            Context.RemainingEnemies = WaveMultiplier * Context.CurWave;
+            Context.RemainingEnemies = GameManager.WaveMultiplier * Context.CurWave;
 
             GameEvents.Instance.WaveBegin();
         }

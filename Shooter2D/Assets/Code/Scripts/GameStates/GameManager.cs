@@ -5,6 +5,8 @@ namespace MWP.GameStates
 {
     public class GameManager : MonoBehaviour
     {
+        public const int WaveMultiplier = 30;
+
         public static GameManager Instance
         {
             get
