@@ -5,14 +5,16 @@ namespace MWP.Enemies
 {
     public class CountEnemiesRemaining : MonoBehaviour
     {
-        public SpawnerEnemy ParentSpawner
-        {
-            set => _parentSpawner = value;
-        }
-
         private SpawnerEnemy _parentSpawner;
 
-        private void OnDestroy()
+        public void SetValues(SpawnerEnemy parentSpawner, Enemy enemy)
+        {
+            enemy.OnDeath += Count;
+            _parentSpawner = parentSpawner;
+
+        }
+
+        private void Count()
         {
             _parentSpawner.SubtractSpawned();
             GameManager.Instance.RemainingEnemies--;

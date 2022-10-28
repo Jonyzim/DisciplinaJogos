@@ -36,11 +36,12 @@ namespace MWP.Enemies.States
 
             if (distanceToTarget > Context.MaxHoverDistance)
             {
-                if (_curTimer <= 0)
+                FollowPath();
+                if (_curAstarTimer <= 0)
                 {
-                    FollowPath(targetPos);
+                    CalculatePath(targetPos);
                     Context.IsHovering = false;
-                    _curTimer = _astarTimer;
+                    _curAstarTimer = Enemy.ASTAR_TIMER;
                 }
             }
             else if (distanceToTarget < Context.MinHoverDistance)

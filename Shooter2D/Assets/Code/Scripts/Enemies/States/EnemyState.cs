@@ -4,9 +4,8 @@ namespace MWP.Enemies.States
 {
     public abstract class EnemyState
     {
-        protected const float _astarTimer = 0.53f;
-        protected const float _minNodeDistance = 0.1f;
-        protected float _curTimer;
+
+        protected float _curAstarTimer;
         protected Pathfinding.Path path;
         protected Vector2 _direction;
         protected int i;
@@ -21,7 +20,7 @@ namespace MWP.Enemies.States
         }
         public virtual void UpdateState()
         {
-            _curTimer -= Time.deltaTime;
+            _curAstarTimer -= Time.deltaTime;
         }
         public virtual void ExitState()
         {
@@ -34,29 +33,29 @@ namespace MWP.Enemies.States
             Factory = factory;
         }
 
-        protected void FollowPath(Vector2 destination)
+        protected void FollowPath()
         {
             // Moving towards camera
             Vector2 pos = Context.gameObject.transform.position;
-            Vector2 camPos = destination;
-
-            if (_curTimer <= 0)
-            {
-                Context.Seeker.StartPath(pos, camPos, OnFindPath);
-                _curTimer = _astarTimer;
-            }
 
             if (path != null)
             {
                 Vector2 distance = (Vector2)path.vectorPath[i] - pos;
-                if (distance.magnitude <= _minNodeDistance)
+                if (distance.magnitude <= Enemy.MIN_NODE_DISTANCE)
                 {
-                    i++;
+                    if (i < path.vectorPath.Count - 1)
+                        i++;
                     distance = (Vector2)path.vectorPath[i] - pos;
                 }
 
                 _direction = Vector3.Normalize(distance);
             }
+        }
+
+        protected void CalculatePath(Vector2 destination)
+        {
+            Vector2 pos = Context.gameObject.transform.position;
+            Context.Seeker.StartPath(pos, destination, OnFindPath);
         }
 
         private event Pathfinding.OnPathDelegate OnFindPath;

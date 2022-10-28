@@ -105,7 +105,6 @@ namespace MWP
         public void UpdateHealth(int value = 0)
         {
             _curHealth += value;
-            print(value);
             if (damageFx != null)
                 StopCoroutine(damageFx);
             damageFx = StartCoroutine(DamageFx());

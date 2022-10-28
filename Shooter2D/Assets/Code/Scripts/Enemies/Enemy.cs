@@ -16,6 +16,9 @@ namespace MWP.Enemies
 
     public abstract class Enemy : MonoBehaviour
     {
+        public const float ASTAR_TIMER = 0.53f;
+        public const float MIN_NODE_DISTANCE = 0.2f;
+
         public float NoiseIntensity;
         [HideInInspector]
         public bool IsHovering = false;
@@ -63,6 +66,7 @@ namespace MWP.Enemies
         private float _movementSeedY;
 
 
+        public event System.Action OnDeath;
 
         //Methods
         public abstract void Attack();
@@ -118,6 +122,7 @@ namespace MWP.Enemies
             Vector3 pos = transform.position;
             pos.y += 1f;
             Instantiate(DeathFxPrefab, pos, Quaternion.identity);
+            OnDeath?.Invoke();
             Destroy(gameObject, 0.1f);
 
             MonoBehaviour[] scripts = gameObject.GetComponents<MonoBehaviour>();

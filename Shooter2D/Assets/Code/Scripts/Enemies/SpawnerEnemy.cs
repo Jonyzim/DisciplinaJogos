@@ -46,7 +46,7 @@ namespace MWP.Enemies
                     GameObject enemy = Instantiate(_enemyPrefabs[randomId], _spawnPoints[randomPos], Quaternion.identity, transform);
 
                     CountEnemiesRemaining count = enemy.AddComponent<CountEnemiesRemaining>();
-                    count.ParentSpawner = this;
+                    count.SetValues(this, enemy.GetComponent<Enemy>());
 
                     _curSpawned++;
                 }

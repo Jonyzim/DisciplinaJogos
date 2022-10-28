@@ -16,11 +16,18 @@ namespace MWP.Enemies.States
         public override void UpdateState()
         {
             base.UpdateState();
+            _curAstarTimer -= Time.deltaTime;
 
-            FollowPath(Camera.main.transform.position);
-            SearchCharacters();
+            FollowPath();
+            if (_curAstarTimer <= 0)
+            {
+                CalculatePath(Camera.main.transform.position);
+                SearchCharacters();
+                _curAstarTimer = Enemy.ASTAR_TIMER;
+            }
 
             Context.Move(_direction);
+
         }
 
         public override void ExitState()
