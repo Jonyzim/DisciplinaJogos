@@ -1,5 +1,4 @@
 using System;
-using MWP.Character;
 using MWP.Misc;
 using MWP.ScriptableObjects;
 using TMPro;

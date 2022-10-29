@@ -1,21 +1,22 @@
+using System;
 using MWP.Buffs;
 using MWP.Misc;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace MWP.Interactables.Farm
+namespace MWP.Interactables
 {
     public class Plant : MonoBehaviour
     {
         [FormerlySerializedAs("_growthTime")] [SerializeField] private int growthTime;
         [FormerlySerializedAs("_plantSprites")] [SerializeField] private Sprite[] plantSprites;
-        [FormerlySerializedAs("_groundSprites")] [SerializeField] private Sprite[] groundSprites;
         [FormerlySerializedAs("_plantRenderer")] [SerializeField] private SpriteRenderer plantRenderer;
-        [FormerlySerializedAs("_groundRenderer")] [SerializeField] private SpriteRenderer groundRenderer;
         [FormerlySerializedAs("_buff")] [SerializeField] private Buff buff;
         private bool _isWatered;
         public int GrowthTime => growthTime;
         public int Growth { get; private set; }
+
+        public bool IsFullyGrown => Growth >= growthTime;
 
 
         private void Start()
@@ -28,25 +29,37 @@ namespace MWP.Interactables.Farm
 
         private void GrowPlant()
         {
-            if (Growth < GrowthTime && _isWatered)
-            {
-                _isWatered = false;
-                groundRenderer.sprite = groundSprites[0];
-                Growth += 1;
-                plantRenderer.sprite = plantSprites[Growth - 1];
-            }
+            if (Growth >= GrowthTime || !_isWatered) return;
+            
+            _isWatered = false;
+            Growth += 1;
+            plantRenderer.sprite = plantSprites[Growth - 1];
         }
 
         public void WaterPlant()
         {
-            groundRenderer.sprite = groundSprites[1];
             _isWatered = true;
         }
 
-        public void Use(Character.Character character)
+        public void Use(Character character)
         {
             character.AddBuff(Instantiate(buff));
             Destroy(gameObject);
+        }
+
+        public void Glow()
+        {
+            plantRenderer.material.SetInt(Interactable.UseOutline, 1);
+        }
+        
+        public void UnGlow()
+        {
+            plantRenderer.material.SetInt(Interactable.UseOutline, 0);
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.Instance.OnWaveEnd -= GrowPlant;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace MWP.Interactables
         }
 
 
-        public override void Interact(Character.Character character)
+        public override void Interact(Character character)
         {
             if (GameManager.Instance.TryBuy(_price)) base.Interact(character);
         }

@@ -8,7 +8,7 @@ namespace MWP.Interactables
     {
         [FormerlySerializedAs("NewGun")] [SerializeField] public GameObject newGun;
 
-        public override void Interact(Character.Character character)
+        public override void Interact(Character character)
         {
             var gunComponent = newGun.GetComponent<Gun>();
 

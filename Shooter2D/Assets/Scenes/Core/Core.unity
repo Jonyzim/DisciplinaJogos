@@ -336,11 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d7c2fd3a162524795ec9e55041d584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraOffset: {fileID: 136475179}
-  TargetGroup: {fileID: 1860314055}
-  OffsetMultiplier: 7
-  OffsetSpeed: 2
-  MaxOffsetAmount: {x: 0.5, y: 0.5}
+  cameraOffset: {fileID: 136475179}
+  targetGroup: {fileID: 1860314055}
+  offsetMultiplier: 7
+  offsetSpeed: 2
+  maxOffsetAmount: {x: 0.5, y: 0.5}
 --- !u!114 &136475179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f360417d90b4602409241106e19a9741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BgmEvent:
+  bgmEvent:
     Guid:
       Data1: -1497961125
       Data2: 1260330372
@@ -827,7 +827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnDelay
-      value: 0.05
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnRadius
@@ -839,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _maxConcurrentSpawns
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnPoints.Array.size
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e35f84be8ab643bdf3de9985c6883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMultiplayer: 0
+  isMultiplayer: 0
 --- !u!4 &1674840770
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,8 +1296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d6eb244f1a897419320b780f9f2c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vcam: {fileID: 136475176}
-  _group: {fileID: 1860314055}
+  vcam: {fileID: 136475176}
+  group: {fileID: 1860314055}
 --- !u!114 &1860314055
 MonoBehaviour:
   m_ObjectHideFlags: 0

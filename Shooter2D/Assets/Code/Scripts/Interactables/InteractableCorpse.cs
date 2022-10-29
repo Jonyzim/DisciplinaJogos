@@ -3,14 +3,14 @@ using UnityEngine.Serialization;
 
 namespace MWP.Interactables
 {
-    [RequireComponent(typeof(Character.Character))]
+    [RequireComponent(typeof(Character))]
     public class InteractableCorpse : Interactable
     {
-        [FormerlySerializedAs("Corpse")] public Character.Character corpse;
+        [FormerlySerializedAs("Corpse")] public Character corpse;
         [SerializeField] private SpriteRenderer spriteRenderer;
         
 
-        public void Initialize(Character.Character character)
+        public void Initialize(Character character)
         {
             corpse = character;
             corpse.transform.parent = transform;
@@ -18,7 +18,7 @@ namespace MWP.Interactables
 
 
         // TODO: Add execution time
-        public override void Interact(Character.Character character)
+        public override void Interact(Character character)
         {
             corpse.gameObject.SetActive(true);
             corpse.transform.parent = null;

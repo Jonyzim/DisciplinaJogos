@@ -10,14 +10,14 @@ namespace MWP.Enemies
         // Hack para não ter que refazer a parte de hitbox do player
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            var character = collision.gameObject.GetComponent<Character.Character>();
+            var character = collision.gameObject.GetComponent<Character>();
             if (character != null) character.UpdateHealth(-(int)DamageCaused);
             DestroyBullet();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            var character = collision.GetComponentInParent<Character.Character>();
+            var character = collision.GetComponentInParent<Character>();
             
             if (character == null) return;
             character.UpdateHealth(-(int)DamageCaused);

@@ -36,8 +36,8 @@ namespace MWP.Buffs
         }
 
 
-        public abstract void Grant(Character.Character character);
+        public abstract void Grant(Character character);
 
-        public abstract void Remove(Character.Character character);
+        public abstract void Remove(Character character);
     }
 }

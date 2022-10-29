@@ -48,7 +48,7 @@ namespace MWP.Guns
             _curAmmo = _maxAmmo - _curClip;
 
             //Caso a arma já esteja equipada antes do jogo começar
-            var character = gameObject.GetComponentInParent<Character.Character>();
+            var character = gameObject.GetComponentInParent<Character>();
             if (character != null) Pick(character);
         }
 
@@ -62,7 +62,7 @@ namespace MWP.Guns
         }
 
         // Methods
-        public void Pick(Character.Character character)
+        public void Pick(Character character)
         {
             _flashLight.enabled = true;
             SetOwner(character);
@@ -76,7 +76,7 @@ namespace MWP.Guns
             GameEvents.Instance.AmmoUpdate(_ownerId, _curAmmo, _maxAmmo);
         }
 
-        public void Drop(Character.Character character)
+        public void Drop(Character character)
         {
             _flashLight.enabled = false;
             RemoveOwner(character);
@@ -113,12 +113,12 @@ namespace MWP.Guns
             if (_flashLight != null) _flashLight.enabled = !_flashLight.enabled;
         }
 
-        public void SetOwner(Character.Character character)
+        public void SetOwner(Character character)
         {
             _ownerId = character.OwnerId;
         }
 
-        public void RemoveOwner(Character.Character character)
+        public void RemoveOwner(Character character)
         {
             _ownerId = -1;
         }

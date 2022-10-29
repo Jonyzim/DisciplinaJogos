@@ -7,7 +7,7 @@ using MWP.Misc;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace MWP.Character
+namespace MWP
 {
     public class Character : MonoBehaviour
     {

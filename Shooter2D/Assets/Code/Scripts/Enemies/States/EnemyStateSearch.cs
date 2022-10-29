@@ -36,8 +36,7 @@ namespace MWP.Enemies.States
             Vector2 pos = Context.gameObject.transform.position;
 
             // Checking for targets
-            var charactersHit = new Collider2D[1];
-            var size = Physics2D.OverlapCircleNonAlloc(pos, Context.DetectionRadius, charactersHit, Context.CharacterLayer);
+            var charactersHit = Physics2D.OverlapCircleAll(pos, Context.DetectionRadius, Context.CharacterLayer);
 
             if (charactersHit.Length <= 0) return;
             var minDistance = float.PositiveInfinity;

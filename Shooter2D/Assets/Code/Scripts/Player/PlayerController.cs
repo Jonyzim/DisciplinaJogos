@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.Serialization;
 
-namespace MWP.Character
+namespace MWP
 {
     public class PlayerController : MonoBehaviour
     {

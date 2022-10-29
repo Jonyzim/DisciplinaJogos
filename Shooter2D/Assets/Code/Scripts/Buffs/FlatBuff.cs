@@ -13,7 +13,7 @@ namespace MWP.Buffs
 
         [SerializeField] private int _spdAmount;
 
-        public override void Grant(Character.Character character)
+        public override void Grant(Character character)
         {
             character.health += _hpAmount;
             character.UpdateHealth(_hpAmount);
@@ -23,7 +23,7 @@ namespace MWP.Buffs
             character.speed += _spdAmount;
         }
 
-        public override void Remove(Character.Character character)
+        public override void Remove(Character character)
         {
             character.health -= _hpAmount;
             character.UpdateHealth();

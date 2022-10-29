@@ -1,5 +1,4 @@
 using Cinemachine;
-using MWP.Character;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;

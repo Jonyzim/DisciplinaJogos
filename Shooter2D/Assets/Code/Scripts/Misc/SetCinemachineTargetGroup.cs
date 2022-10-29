@@ -15,7 +15,7 @@ namespace MWP.Misc
             SInstance = this;
         }
 
-        public void AddCharacter(Character.Character character)
+        public void AddCharacter(Character character)
         {
             if (vcam.m_Follow == null)
                 vcam.m_Follow = character.gameObject.transform;

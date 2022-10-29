@@ -7,7 +7,7 @@ namespace MWP.Interactables
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
 
-        public override void Interact(Character.Character character)
+        public override void Interact(Character character)
         {
             var _priceMod = character.equippedGun?.BulletCost ?? 0;
             var percentage = character.equippedGun?.GetAmmunitionPercentage();
