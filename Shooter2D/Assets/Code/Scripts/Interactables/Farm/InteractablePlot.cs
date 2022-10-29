@@ -63,8 +63,6 @@ namespace MWP.Interactables
             {
                 var plantObject = Instantiate(plantPrefab, transform);
                 _plant = plantObject.GetComponent<Plant>();
-
-                defaultRenderer.enabled = false;
             }
 
             _isLocked = false;

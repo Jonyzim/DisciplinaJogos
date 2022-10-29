@@ -5,7 +5,7 @@ namespace MWP.GameStates
 {
     public class GameManager : MonoBehaviour
     {
-        public const int WaveMultiplier = 3;
+        public const int WaveMultiplier = 2;
 
         private static GameManager _instance;
 
@@ -32,7 +32,7 @@ namespace MWP.GameStates
             }
         }
 
-        public GameState CurGameState { get; set; }
+        public GameState CurGameState { get; private set; }
 
         private void Awake()
         {
@@ -65,14 +65,13 @@ namespace MWP.GameStates
 
         public bool TryBuy(int price)
         {
-            if (PlayerCredit >= price)
-            {
-                PlayerCredit -= price;
-                return true;
-            }
+            if (PlayerCredit < price) return false;
             // TODO: Implementar balão dizendo "Créditos insuficientes"
+            
+            PlayerCredit -= price;
+            return true;
+            
 
-            return false;
         }
 
 #if (UNITY_EDITOR)

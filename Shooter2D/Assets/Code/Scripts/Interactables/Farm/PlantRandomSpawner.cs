@@ -54,7 +54,7 @@ namespace MWP.Interactables
             
             // Creating Plant
             var plantPrefab = plantListManager.GetRandomPlant();
-            _plantInstance = Instantiate(plantPrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Plant>();
+            _plantInstance = Instantiate(plantPrefab, transform.position, Quaternion.identity, transform).GetComponent<Plant>();
             _hasPlant = true;
 
         }
