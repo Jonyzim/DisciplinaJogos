@@ -7,9 +7,10 @@ using Random = UnityEngine.Random;
 
 namespace MWP.Interactables
 {
+    [DisallowMultipleComponent]
     public class PlantRandomSpawner : Interactable
     {
-        private const float SpawnChance = 1.0f;
+        private const float SpawnChance = 0.2f;
         private Plant _plantInstance;
         private bool _hasPlant = false;
         [SerializeField] private PlantListManager plantListManager;

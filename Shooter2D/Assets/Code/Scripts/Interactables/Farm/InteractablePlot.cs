@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 namespace MWP.Interactables
 {
+    [DisallowMultipleComponent]
     public class InteractablePlot : Interactable
     {
         [SerializeField] private SpriteRenderer defaultRenderer;

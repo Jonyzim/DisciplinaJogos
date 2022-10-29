@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 namespace MWP
 {
+    [DisallowMultipleComponent]
     public class PlayerController : MonoBehaviour
     {
         [FormerlySerializedAs("PlayerCanvas")] public Canvas playerCanvas;

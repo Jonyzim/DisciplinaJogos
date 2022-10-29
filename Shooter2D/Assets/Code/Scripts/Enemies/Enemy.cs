@@ -15,7 +15,7 @@ namespace MWP.Enemies
     // If distance higher than Y go to Follows camera >
     // If not Attack every Z seconds
 
-
+    [DisallowMultipleComponent]
     public abstract class Enemy : MonoBehaviour
     {
         public const float AstarTimer = 0.53f;

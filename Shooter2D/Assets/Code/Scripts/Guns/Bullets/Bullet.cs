@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MWP.Guns.Bullets
 {
+    [DisallowMultipleComponent]
     public class Bullet : MonoBehaviour
     {
         [SerializeField] protected float Speed;

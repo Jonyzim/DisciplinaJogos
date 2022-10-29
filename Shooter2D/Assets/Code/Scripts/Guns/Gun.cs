@@ -7,6 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 namespace MWP.Guns
 {
+    [DisallowMultipleComponent]
     public abstract class Gun : MonoBehaviour
     {
         [Header("General")] [SerializeField] protected Transform SpawnTransf;

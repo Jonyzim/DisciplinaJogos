@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MWP.Enemies
 {
+    [DisallowMultipleComponent]
     public class SpawnerEnemy : MonoBehaviour
     {
         [SerializeField] private List<GameObject> _enemyPrefabs;

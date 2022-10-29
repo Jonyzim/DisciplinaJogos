@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 namespace MWP.Interactables
 {
+    [DisallowMultipleComponent]
     public class Plant : MonoBehaviour
     {
         [FormerlySerializedAs("_growthTime")] [SerializeField] private int growthTime;

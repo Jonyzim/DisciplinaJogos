@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace MWP.Enemies
 {
+    [DisallowMultipleComponent]
     public class CountEnemiesRemaining : MonoBehaviour
     {
         private SpawnerEnemy _parentSpawner;

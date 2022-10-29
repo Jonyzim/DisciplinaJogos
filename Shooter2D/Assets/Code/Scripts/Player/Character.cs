@@ -9,6 +9,7 @@ using UnityEngine.Serialization;
 
 namespace MWP
 {
+    [DisallowMultipleComponent]
     public class Character : MonoBehaviour
     {
         private const float BaseSpeed = 10;
