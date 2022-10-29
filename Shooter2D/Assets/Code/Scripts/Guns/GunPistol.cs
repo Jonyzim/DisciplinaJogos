@@ -2,7 +2,6 @@ namespace MWP.Guns
 {
     public class GunPistol : GunSingleShot
     {
-
         protected override void ReloadProps(float time)
         {
             //Inserir animação, sons e etc do reload

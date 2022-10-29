@@ -19,7 +19,6 @@ namespace MWP.UI
         }
 
 
-
         public void StoryMode()
         {
             mapManager.LoadMap(startMap);

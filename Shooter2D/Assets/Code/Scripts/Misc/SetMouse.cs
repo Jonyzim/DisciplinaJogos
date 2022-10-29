@@ -1,4 +1,3 @@
-
 /* DEPRECATED
 public class SetMouse : MonoBehaviour
 {
@@ -11,3 +10,4 @@ public class SetMouse : MonoBehaviour
     }
 }
 */
+

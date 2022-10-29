@@ -2,7 +2,6 @@ namespace MWP.Guns
 {
     public class GunShotgun : GunMultiShot
     {
-
         protected override void ReloadProps(float time)
         {
             //Inserir animação, sons e etc do reload
@@ -19,6 +18,5 @@ namespace MWP.Guns
         // {
         //     base.Update();
         // }
-
     }
 }

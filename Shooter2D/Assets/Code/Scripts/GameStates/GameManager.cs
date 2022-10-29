@@ -7,46 +7,32 @@ namespace MWP.GameStates
     {
         public const int WaveMultiplier = 60;
 
-        public static GameManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    Debug.LogError("GameManager does not exist!");
-                }
-                return _instance;
-
-            }
-        }
-
         private static GameManager _instance;
 
         public float WaveTime;
 
-        [HideInInspector]
-        public float WaveTimer;
+        [HideInInspector] public float WaveTimer;
 
-        [HideInInspector]
-        public int RemainingEnemies;
+        [HideInInspector] public int RemainingEnemies;
 
-        [HideInInspector]
-        public int CanStartWave;
+        [HideInInspector] public int CanStartWave;
 
-        public GameState CurGameState
-        {
-            get => _curGameState;
-            set => _curGameState = value;
-        }
+        [HideInInspector] public int CurWave;
 
-        [HideInInspector]
-        public int CurWave = 0;
-
-        public int PlayerCredit = 0;
-
-        private GameState _curGameState;
+        public int PlayerCredit;
 
         private GameStateFactory _factory;
+
+        public static GameManager Instance
+        {
+            get
+            {
+                if (_instance == null) Debug.LogError("GameManager does not exist!");
+                return _instance;
+            }
+        }
+
+        public GameState CurGameState { get; set; }
 
         private void Awake()
         {
@@ -67,14 +53,14 @@ namespace MWP.GameStates
 
         private void Update()
         {
-            _curGameState.UpdateState();
+            CurGameState.UpdateState();
         }
 
         public void SwitchState(GameState newState)
         {
-            _curGameState?.ExitState();
+            CurGameState?.ExitState();
             newState.StartState();
-            _curGameState = newState;
+            CurGameState = newState;
         }
 
         public bool TryBuy(int price)
@@ -85,10 +71,8 @@ namespace MWP.GameStates
                 return true;
             }
             // TODO: Implementar balão dizendo "Créditos insuficientes"
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
 #if (UNITY_EDITOR)

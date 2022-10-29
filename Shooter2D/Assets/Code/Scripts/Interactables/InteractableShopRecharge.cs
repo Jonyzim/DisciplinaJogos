@@ -5,36 +5,30 @@ namespace MWP.Interactables
 {
     public class InteractableShopRecharge : Interactable
     {
-
         [SerializeField] private SpriteRenderer spriteRenderer;
 
-        public override void Interact(Character character)
+        public override void Interact(Character.Character character)
         {
-            uint _priceMod = character.EquippedGun?.BulletCost ?? 0;
-            float? percentage = character.EquippedGun?.GetAmmunitionPercentage();
+            var _priceMod = character.equippedGun?.BulletCost ?? 0;
+            var percentage = character.equippedGun?.GetAmmunitionPercentage();
 
-            if (percentage == 1)
+            if (percentage == 1f)
                 return;
 
-            int price = (int)(100 * (1f - (percentage ?? 1)));
+            var price = (int)(100 * (1f - (percentage ?? 1)));
 
 
-            if (GameManager.Instance.TryBuy(price))
-            {
-                character.EquippedGun.RechargeAmmunition();
-            }
-
+            if (GameManager.Instance.TryBuy(price)) character.equippedGun.RechargeAmmunition();
         }
 
         public override void Enter()
         {
-            spriteRenderer.material.SetInt("_UseOutline", 1);
+            spriteRenderer.material.SetInt(UseOutline, 1);
         }
 
         public override void Exit()
         {
-            spriteRenderer.material.SetInt("_UseOutline", 0);
+            spriteRenderer.material.SetInt(UseOutline, 0);
         }
-
     }
 }

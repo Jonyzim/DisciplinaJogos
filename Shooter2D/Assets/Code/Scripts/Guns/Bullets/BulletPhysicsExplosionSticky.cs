@@ -1,3 +1,4 @@
+using MWP.Enemies;
 using UnityEngine;
 
 namespace MWP.Guns.Bullets
@@ -13,12 +14,8 @@ namespace MWP.Guns.Bullets
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-
-            Enemies.Enemy enemy = collision.gameObject.GetComponentInParent<Enemies.Enemy>();
-            if (enemy != null && !enemy.IsDead)
-            {
-                Stick(enemy.gameObject);
-            }
+            var enemy = collision.gameObject.GetComponentInParent<Enemy>();
+            if (enemy != null && !enemy.IsDead) Stick(enemy.gameObject);
         }
 
         private void Stick(GameObject toStick)
@@ -30,6 +27,5 @@ namespace MWP.Guns.Bullets
                 gameObject.transform.parent = toStick.transform;
             }
         }
-
     }
 }

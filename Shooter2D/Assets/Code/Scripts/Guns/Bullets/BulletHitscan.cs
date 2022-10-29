@@ -1,33 +1,30 @@
+using MWP.Enemies;
 using UnityEngine;
 
 namespace MWP.Guns.Bullets
 {
     public class BulletHitscan : Bullet
     {
-
         [SerializeField] private float _reach;
         [SerializeField] private LayerMask _hitLayer;
         [SerializeField] private GameObject _particles;
-        private Color _lineColor;
         private float _curLifetime;
+        private Color _lineColor;
 
 
-        public override void SetVariables(Vector2 direction, int strenght, int damage)
+        public override void SetVariables(Vector2 direction, int strength, int damage)
         {
-            base.SetVariables(direction, strenght, damage);
+            base.SetVariables(direction, strength, damage);
             Vector2 position;
 
-            RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Direction, _reach, _hitLayer);
+            var hitInfo = Physics2D.Raycast(transform.position, Direction, _reach, _hitLayer);
 
             if (hitInfo.collider != null)
             {
                 position = hitInfo.point;
 
-                Enemies.Enemy enemy = hitInfo.collider.gameObject.GetComponentInParent<Enemies.Enemy>();
-                if (enemy != null && !enemy.IsDead)
-                {
-                    DamageOnEnemy(enemy, position);
-                }
+                var enemy = hitInfo.collider.gameObject.GetComponentInParent<Enemy>();
+                if (enemy != null && !enemy.IsDead) DamageOnEnemy(enemy, position);
             }
             else
             {
@@ -43,10 +40,10 @@ namespace MWP.Guns.Bullets
         {
             _particles.transform.localScale = new Vector3(Vector3.Distance(transform.position, position), 1, 1);
             _particles.transform.SetParent(null, true);
-            _particles.gameObject.transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, Direction));
+            _particles.gameObject.transform.rotation =
+                Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, Direction));
 
             Destroy(_particles.gameObject, 2);
         }
-
     }
 }

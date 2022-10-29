@@ -1,47 +1,43 @@
-using NaughtyAttributes;
 using System;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MWP.Buffs
 {
     public abstract class Buff : ScriptableObject
     {
-        public int UniqueId => _uniqueId;
-
-        [Header("General")]
-        [SerializeField]
-        private int _uniqueId;
+        [FormerlySerializedAs("_uniqueId")] [Header("General")] [SerializeField] private int uniqueId;
 
         // Adicionar imagens(?)
 
-        [SerializeField]
-        private bool _isInfinite;
+        [FormerlySerializedAs("_isInfinite")] [SerializeField] private bool isInfinite;
 
-        [SerializeField]
-        [HideIf("_isInfinite")]
-        private float _timer;
+        [FormerlySerializedAs("_timer")] [SerializeField] [HideIf("_isInfinite")]
+        private float timer;
+
+        public int UniqueId => uniqueId;
 
 
         public static event Action<Buff> OnRemove;
 
         public void UpdateBuff(float deltaTime)
         {
-            if (_isInfinite) return;
+            if (isInfinite) return;
 
 
-            _timer -= deltaTime;
+            timer -= deltaTime;
 
-            if (_timer <= 0)
-            {
-                // Debug.Log("Remove buff");
-                OnRemove?.Invoke(this);
-                Destroy(this);
-            }
+            if (!(timer <= 0)) return;
+            
+            // Debug.Log("Remove buff");
+            OnRemove?.Invoke(this);
+            Destroy(this);
         }
 
 
-        public abstract void Grant(Character character);
+        public abstract void Grant(Character.Character character);
 
-        public abstract void Remove(Character character);
+        public abstract void Remove(Character.Character character);
     }
 }

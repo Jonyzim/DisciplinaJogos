@@ -1,18 +1,20 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MWP.ScriptableObjects.Audio
 {
     public class PlayBGM : MonoBehaviour
     {
-        [SerializeField] private FMODUnity.EventReference BgmEvent;
-        private FMOD.Studio.EventInstance bgmInstance;
+        [FormerlySerializedAs("BgmEvent")] [SerializeField] private EventReference bgmEvent;
+        private EventInstance _bgmInstance;
 
         private void Start()
         {
-            bgmInstance = FMODUnity.RuntimeManager.CreateInstance(BgmEvent);
-            bgmInstance.start();
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(bgmInstance, transform);
+            _bgmInstance = RuntimeManager.CreateInstance(bgmEvent);
+            _bgmInstance.start();
+            RuntimeManager.AttachInstanceToGameObject(_bgmInstance, transform);
         }
-
     }
 }

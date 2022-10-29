@@ -1,10 +1,11 @@
-using MWP.Guns.Bullets;
 using UnityEngine;
 
-public class BulletLaser : BulletHitscan
+namespace MWP.Guns.Bullets
 {
-    protected override void SpawnParticles(Vector2 position)
+    public class BulletLaser : BulletHitscan
     {
-
+        protected override void SpawnParticles(Vector2 position)
+        {
+        }
     }
 }

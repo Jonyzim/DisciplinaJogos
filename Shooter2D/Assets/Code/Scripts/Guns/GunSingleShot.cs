@@ -6,21 +6,22 @@ namespace MWP.Guns
     public abstract class GunSingleShot : Gun
     {
         // Garante apenas um tiro por clique do mouse
-        private bool _fired = false;
+        private bool _fired;
 
         //Methods
-        public override Bullet Fire(Vector2 direction, int strenght, float aim)
+        public override Bullet Fire(Vector2 direction, int strength, float aim)
         {
             if (Cd <= 0 && _curClip > 0 && !_fired)
             {
                 _fired = true;
                 _curClip -= 1;
 
-                return base.Fire(direction, strenght, aim);
+                return base.Fire(direction, strength, aim);
             }
-            return null;
 
+            return null;
         }
+
         public override void ReleaseFire()
         {
             _fired = false;

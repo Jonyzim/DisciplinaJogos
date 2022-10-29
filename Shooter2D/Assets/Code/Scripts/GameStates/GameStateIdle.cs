@@ -4,8 +4,9 @@ namespace MWP.GameStates
 {
     public class GameStateIdle : GameState
     {
-
-        public GameStateIdle(GameManager context, GameStateFactory factory) : base(context, factory) { }
+        public GameStateIdle(GameManager context, GameStateFactory factory) : base(context, factory)
+        {
+        }
 
         public override void StartState()
         {
@@ -19,23 +20,18 @@ namespace MWP.GameStates
             {
                 Context.WaveTimer = 0;
 
-                if (Context.CanStartWave == 0)
-                {
-                    Context.SwitchState(Factory.StateWave);
-                }
+                if (Context.CanStartWave == 0) Context.SwitchState(Factory.StateWave);
             }
         }
 
 
         public override void ExitState()
         {
-
         }
 
         public override void Pause()
         {
             Context.SwitchState(Factory.StatePaused);
         }
-
     }
 }

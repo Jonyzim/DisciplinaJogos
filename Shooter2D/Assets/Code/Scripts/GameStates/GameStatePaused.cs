@@ -2,9 +2,11 @@ namespace MWP.GameStates
 {
     public class GameStatePaused : GameState
     {
-        public GameStatePaused(GameManager context, GameStateFactory factory) : base(context, factory) { }
-
         private GameState _previousGameState;
+
+        public GameStatePaused(GameManager context, GameStateFactory factory) : base(context, factory)
+        {
+        }
 
         public override void StartState()
         {
@@ -13,18 +15,15 @@ namespace MWP.GameStates
 
         public override void UpdateState()
         {
-
         }
 
         public override void ExitState()
         {
-
         }
 
         public override void Pause()
         {
             Context.SwitchState(_previousGameState);
         }
-
     }
 }

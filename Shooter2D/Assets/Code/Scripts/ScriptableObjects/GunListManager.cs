@@ -1,13 +1,12 @@
-using NaughtyAttributes;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using NaughtyAttributes;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 namespace MWP.ScriptableObjects
 {
-
     [Serializable]
     [CreateAssetMenu(fileName = "GunListManager", menuName = "Shooter2D/GunListManager", order = 0)]
     public class GunListManager : ScriptableObject
@@ -20,7 +19,7 @@ namespace MWP.ScriptableObjects
             // Gerar números até gerar uma arma válida
             do
             {
-                i = UnityEngine.Random.Range(0, GunList.Length);
+                i = Random.Range(0, GunList.Length);
             } while (!GunList[i].IsAvailable);
 
             return (GunList[i].GunPrefab, GunList[i].Price);
@@ -34,31 +33,29 @@ namespace MWP.ScriptableObjects
         [Button]
         public void Save()
         {
-            string saveDirectoryPath = Application.persistentDataPath + "/saveData/";
-            string saveFilePath = saveDirectoryPath + "weapons.cow";
-            BinaryFormatter bf = new BinaryFormatter();
+            var saveDirectoryPath = Application.persistentDataPath + "/saveData/";
+            var saveFilePath = saveDirectoryPath + "weapons.cow";
+            var bf = new BinaryFormatter();
 
-            if (!Directory.Exists(saveDirectoryPath))
-            {
-                Directory.CreateDirectory(saveDirectoryPath);
-            }
-            FileStream saveFile = File.Create(saveFilePath);
+            if (!Directory.Exists(saveDirectoryPath)) Directory.CreateDirectory(saveDirectoryPath);
+            var saveFile = File.Create(saveFilePath);
 
-            string json = JsonUtility.ToJson(this);
+            var json = JsonUtility.ToJson(this);
             bf.Serialize(saveFile, json);
 
             saveFile.Close();
         }
+
         [Button]
         public void Load()
         {
-            string saveDirectoryPath = Application.persistentDataPath + "/saveData/";
-            string saveFilePath = saveDirectoryPath + "weapons.cow";
-            BinaryFormatter bf = new BinaryFormatter();
+            var saveDirectoryPath = Application.persistentDataPath + "/saveData/";
+            var saveFilePath = saveDirectoryPath + "weapons.cow";
+            var bf = new BinaryFormatter();
 
             if (File.Exists(saveFilePath))
             {
-                FileStream saveFile = File.Open(saveFilePath, FileMode.Open);
+                var saveFile = File.Open(saveFilePath, FileMode.Open);
                 JsonUtility.FromJsonOverwrite((string)bf.Deserialize(saveFile), this);
                 saveFile.Close();
             }

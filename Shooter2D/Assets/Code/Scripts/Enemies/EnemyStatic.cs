@@ -2,7 +2,6 @@ namespace MWP.Enemies
 {
     public class EnemyStatic : Enemy
     {
-
         // [SerializeField] private Vector3 _speed = new Vector3(0.1f, 0, 0);
         // [SerializeField] private bool _randomSpeed = false;
 
@@ -29,7 +28,6 @@ namespace MWP.Enemies
 
         public override void Attack()
         {
-
         }
     }
 }

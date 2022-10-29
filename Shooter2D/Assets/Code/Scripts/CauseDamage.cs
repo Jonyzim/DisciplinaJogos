@@ -7,7 +7,8 @@ namespace MWP
     {
         [SerializeField] private int damage;
         private bool canCauseDamage = true;
-        IEnumerator DamageDelay()
+
+        private IEnumerator DamageDelay()
         {
             canCauseDamage = false;
             yield return new WaitForSeconds(0.2f);

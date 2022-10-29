@@ -5,22 +5,24 @@ namespace MWP.Misc
 {
     public class StartUp : MonoBehaviour
     {
+        private static bool _initialized;
         [SerializeField] private GunListManager gunManager;
         [SerializeField] private PlantListManager plantManager;
-
-        private static bool _initialized = false;
 
 
         private void Awake()
         {
-            if (!_initialized)
-            {
-                LoadValues();
+            if (_initialized) return;
+            
+            LoadValues();
+            _initialized = true;
+            DontDestroyOnLoad(gameObject);
+        }
 
-                _initialized = true;
-                DontDestroyOnLoad(gameObject);
-            }
-
+        private void OnApplicationQuit()
+        {
+            gunManager.Save();
+            //plantManager.Save();
         }
 
         private void LoadValues()
@@ -28,13 +30,5 @@ namespace MWP.Misc
             gunManager.Load();
             //plantManager.Load();
         }
-
-        private void OnApplicationQuit()
-        {
-
-            gunManager.Save();
-            //plantManager.Save();
-        }
-
     }
 }

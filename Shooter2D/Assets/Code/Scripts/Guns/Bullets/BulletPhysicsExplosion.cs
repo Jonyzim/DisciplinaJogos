@@ -1,13 +1,19 @@
+using MWP.Enemies;
 using UnityEngine;
 
 namespace MWP.Guns.Bullets
 {
     public class BulletPhysicsExplosion : BulletPhysics
     {
-        [Header("Explosion Variables")]
-        private int _explosionRadius;
-        private int _explosionDamage;
         [SerializeField] private LayerMask _enemyLayer;
+        private int _explosionDamage;
+
+        [Header("Explosion Variables")] private int _explosionRadius;
+
+        private void OnDestroy()
+        {
+            Explode();
+        }
 
         public void SetExplosionVariables(int explosionDamage, int explosionRadius)
         {
@@ -18,23 +24,14 @@ namespace MWP.Guns.Bullets
         // TODO: Add Explosion VFX
         private void Explode()
         {
-            Vector3 pos = gameObject.transform.position;
-            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, _enemyLayer);
+            var pos = gameObject.transform.position;
+            var enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, _enemyLayer);
 
-            foreach (Collider2D enemyCollider in enemiesHit)
+            foreach (var enemyCollider in enemiesHit)
             {
-                Enemies.Enemy enemy = enemyCollider.GetComponentInParent<Enemies.Enemy>();
-                if (enemy != null)
-                {
-                    DamageOnEnemy(enemy, null, _explosionDamage);
-                }
+                var enemy = enemyCollider.GetComponentInParent<Enemy>();
+                if (enemy != null) DamageOnEnemy(enemy, null, _explosionDamage);
             }
         }
-
-        private void OnDestroy()
-        {
-            Explode();
-        }
-
     }
 }

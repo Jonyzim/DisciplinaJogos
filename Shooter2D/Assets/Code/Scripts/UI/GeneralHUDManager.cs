@@ -1,6 +1,6 @@
+using System;
 using MWP.GameStates;
 using MWP.Misc;
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,17 +8,13 @@ namespace MWP.UI
 {
     public class GeneralHUDManager : MonoBehaviour
     {
-        [SerializeField]
-        private TMP_Text _waveText;
+        [SerializeField] private TMP_Text _waveText;
 
-        [SerializeField]
-        private TMP_Text _playerCreditText;
+        [SerializeField] private TMP_Text _playerCreditText;
 
-        [SerializeField]
-        private TMP_Text _waveTimerText;
+        [SerializeField] private TMP_Text _waveTimerText;
 
-        [SerializeField]
-        private TMP_Text _enemiesRemainingText;
+        [SerializeField] private TMP_Text _enemiesRemainingText;
 
         private TimeSpan _waveTimeSpan;
 
@@ -27,18 +23,6 @@ namespace MWP.UI
             GameEvents.Instance.OnWaveBegin += HideWaveUI;
             GameEvents.Instance.OnWaveEnd += ShowWaveUI;
             ShowWaveUI();
-        }
-
-        private void ShowWaveUI()
-        {
-            _waveTimerText.enabled = true;
-            _enemiesRemainingText.enabled = false;
-        }
-
-        private void HideWaveUI()
-        {
-            _waveTimerText.enabled = false;
-            _enemiesRemainingText.enabled = true;
         }
 
         private void Update()
@@ -52,6 +36,18 @@ namespace MWP.UI
             _waveTimerText.text = _waveTimeSpan.ToString(@"mm\:ss");
 
             _enemiesRemainingText.text = GameManager.Instance.RemainingEnemies.ToString();
+        }
+
+        private void ShowWaveUI()
+        {
+            _waveTimerText.enabled = true;
+            _enemiesRemainingText.enabled = false;
+        }
+
+        private void HideWaveUI()
+        {
+            _waveTimerText.enabled = false;
+            _enemiesRemainingText.enabled = true;
         }
     }
 }

@@ -1,39 +1,40 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MWP.Interactables
 {
+    [RequireComponent(typeof(Character.Character))]
     public class InteractableCorpse : Interactable
     {
-        public Character Corpse;
+        [FormerlySerializedAs("Corpse")] public Character.Character corpse;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        
 
-        public void Initialize(Character character)
+        public void Initialize(Character.Character character)
         {
-            Corpse = character;
-            Corpse.transform.parent = transform;
+            corpse = character;
+            corpse.transform.parent = transform;
         }
 
 
         // TODO: Add execution time
-        public override void Interact(Character character)
+        public override void Interact(Character.Character character)
         {
-            Corpse.gameObject.SetActive(true);
-            Corpse.transform.parent = null;
-            Corpse.CurHealth = 20;
+            corpse.gameObject.SetActive(true);
+            corpse.transform.parent = null;
+            corpse.CurHealth = 20;
 
             DestroyThis(character);
         }
 
         public override void Enter()
         {
-            spriteRenderer.material.SetInt("_UseOutline", 1);
+            spriteRenderer.material.SetInt(UseOutline, 1);
         }
 
         public override void Exit()
         {
-            spriteRenderer.material.SetInt("_UseOutline", 0);
+            spriteRenderer.material.SetInt(UseOutline, 0);
         }
-
-
     }
 }

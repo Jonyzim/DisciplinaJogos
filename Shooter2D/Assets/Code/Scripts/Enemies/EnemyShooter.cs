@@ -1,5 +1,5 @@
-using MWP.Guns.Bullets;
 using System.Collections.Generic;
+using MWP.Guns.Bullets;
 using UnityEngine;
 
 namespace MWP.Enemies
@@ -14,11 +14,11 @@ namespace MWP.Enemies
 
         public void Shoot()
         {
-            int i = 0;
-            foreach (Transform transf in _spawnPos)
+            var i = 0;
+            foreach (var transf in _spawnPos)
             {
-                GameObject obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
-                BulletPhysics bullet = obj.GetComponent<BulletPhysics>();
+                var obj = Instantiate(_projectilePrefab, transf.position, Quaternion.identity);
+                var bullet = obj.GetComponent<BulletPhysics>();
                 if (bullet != null)
                     bullet.SetVariables(_direction[i], 100, _bulletDamage);
                 i++;

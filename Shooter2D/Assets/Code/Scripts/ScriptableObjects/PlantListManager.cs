@@ -8,10 +8,5 @@ namespace MWP.ScriptableObjects
     public class PlantListManager : ScriptableObject
     {
         public PlantEntry[] PlantList;
-
-
-
-
-
     }
 }

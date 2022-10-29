@@ -1,36 +1,38 @@
+using Pathfinding;
 using UnityEngine;
 
 namespace MWP.Enemies.States
 {
     public abstract class EnemyState
     {
+        protected float CurAstarTimer;
+        protected Vector2 Direction;
 
-        protected float _curAstarTimer;
-        protected Pathfinding.Path path;
-        protected Vector2 _direction;
-        protected int i;
+        protected readonly Enemy Context;
+        protected readonly EnemyStateFactory Factory;
+        private int _i;
+        private Path _path;
 
-        protected Enemy Context;
-        protected EnemyStateFactory Factory;
+        protected EnemyState(Enemy context, EnemyStateFactory factory)
+        {
+            Context = context;
+            Factory = factory;
+        }
 
         public virtual void StartState()
         {
             OnFindPath += SetPath;
-            i = 1;
+            _i = 1;
         }
+
         public virtual void UpdateState()
         {
-            _curAstarTimer -= Time.deltaTime;
+            CurAstarTimer -= Time.deltaTime;
         }
+
         public virtual void ExitState()
         {
             OnFindPath -= SetPath;
-        }
-
-        public EnemyState(Enemy context, EnemyStateFactory factory)
-        {
-            Context = context;
-            Factory = factory;
         }
 
         protected void FollowPath()
@@ -38,17 +40,17 @@ namespace MWP.Enemies.States
             // Moving towards camera
             Vector2 pos = Context.gameObject.transform.position;
 
-            if (path != null)
+            if (_path != null)
             {
-                Vector2 distance = (Vector2)path.vectorPath[i] - pos;
-                if (distance.magnitude <= Enemy.MIN_NODE_DISTANCE)
+                var distance = (Vector2)_path.vectorPath[_i] - pos;
+                if (distance.magnitude <= Enemy.MinNodeDistance)
                 {
-                    if (i < path.vectorPath.Count - 1)
-                        i++;
-                    distance = (Vector2)path.vectorPath[i] - pos;
+                    if (_i < _path.vectorPath.Count - 1)
+                        _i++;
+                    distance = (Vector2)_path.vectorPath[_i] - pos;
                 }
 
-                _direction = Vector3.Normalize(distance);
+                Direction = Vector3.Normalize(distance);
             }
         }
 
@@ -58,12 +60,12 @@ namespace MWP.Enemies.States
             Context.Seeker.StartPath(pos, destination, OnFindPath);
         }
 
-        private event Pathfinding.OnPathDelegate OnFindPath;
+        private event OnPathDelegate OnFindPath;
 
-        protected void SetPath(Pathfinding.Path p)
+        private void SetPath(Path p)
         {
-            path = p;
-            i = 1;
+            _path = p;
+            _i = 1;
         }
     }
 }

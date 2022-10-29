@@ -5,7 +5,7 @@ namespace MWP.Buffs
 {
     public class GiveBuffTemp : MonoBehaviour
     {
-        public Character CharRef;
+        public Character.Character CharRef;
         public Buff buff;
 
         [Button]
@@ -13,6 +13,5 @@ namespace MWP.Buffs
         {
             CharRef.AddBuff(Instantiate(buff));
         }
-
     }
 }

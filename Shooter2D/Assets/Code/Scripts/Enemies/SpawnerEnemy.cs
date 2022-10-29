@@ -1,5 +1,5 @@
-using MWP.GameStates;
 using System.Collections.Generic;
+using MWP.GameStates;
 using UnityEngine;
 
 namespace MWP.Enemies
@@ -10,8 +10,6 @@ namespace MWP.Enemies
 
         public LayerMask SpawnLayer;
 
-        private List<Vector3> _spawnPoints;
-
         [SerializeField] private float _spawnRadius;
 
         [SerializeField] private float _spawnDelay;
@@ -19,64 +17,16 @@ namespace MWP.Enemies
         [SerializeField] private int _maxConcurrentSpawns;
 
         private int _curSpawned;
+
+        private List<Vector3> _spawnPoints;
         private float _spawnTimer;
-
-        public void SubtractSpawned()
-        {
-            _curSpawned--;
-        }
-
-        private void SpawnRandom()
-        {
-            if (GameManager.Instance.RemainingEnemies - _curSpawned > 0)
-            {
-
-                if (_curSpawned < _maxConcurrentSpawns)
-                {
-                    _spawnPoints = GetSpawnPoints();
-                    if (_spawnPoints.Count == 0)
-                        return;
-
-                    int nEnemy = _enemyPrefabs.Count;
-                    int randomId = Random.Range(0, nEnemy);
-
-                    int nPos = _spawnPoints.Count;
-                    int randomPos = Random.Range(0, nPos);
-
-                    GameObject enemy = Instantiate(_enemyPrefabs[randomId], _spawnPoints[randomPos], Quaternion.identity, transform);
-
-                    CountEnemiesRemaining count = enemy.AddComponent<CountEnemiesRemaining>();
-                    count.SetValues(this, enemy.GetComponent<Enemy>());
-
-                    _curSpawned++;
-                }
-            }
-        }
-
-        private List<Vector3> GetSpawnPoints()
-        {
-            List<Vector3> spawnPoints = new List<Vector3>();
-            Vector3 camPos = Camera.main.transform.position;
-            Collider2D[] spawnsHit = Physics2D.OverlapCircleAll(camPos, _spawnRadius, SpawnLayer);
-
-            foreach (Collider2D spawnCollider in spawnsHit)
-            {
-                Vector3 positionViewport = Camera.main.WorldToViewportPoint(spawnCollider.transform.position);
-
-
-                // If not inside camera view
-                if (!(positionViewport.x >= 0 && positionViewport.y >= 0 && positionViewport.x <= 1 && positionViewport.y <= 1))
-                    spawnPoints.Add(spawnCollider.transform.position);
-            }
-
-            return spawnPoints;
-        }
-
+        private Camera _camera;
 
 
         //Unity Methods
         private void Start()
         {
+            _camera = Camera.main;
             _curSpawned = 0;
         }
 
@@ -96,6 +46,56 @@ namespace MWP.Enemies
             Gizmos.color = Color.green;
             if (Camera.main != null)
                 Gizmos.DrawWireSphere(Camera.main.transform.position, _spawnRadius);
+        }
+
+        public void SubtractSpawned()
+        {
+            _curSpawned--;
+        }
+
+        private void SpawnRandom()
+        {
+            if (GameManager.Instance.RemainingEnemies - _curSpawned > 0)
+                if (_curSpawned < _maxConcurrentSpawns)
+                {
+                    _spawnPoints = GetSpawnPoints();
+                    if (_spawnPoints.Count == 0)
+                        return;
+
+                    var nEnemy = _enemyPrefabs.Count;
+                    var randomId = Random.Range(0, nEnemy);
+
+                    var nPos = _spawnPoints.Count;
+                    var randomPos = Random.Range(0, nPos);
+
+                    var enemy = Instantiate(_enemyPrefabs[randomId], _spawnPoints[randomPos], Quaternion.identity,
+                        transform);
+
+                    var count = enemy.AddComponent<CountEnemiesRemaining>();
+                    count.SetValues(this, enemy.GetComponent<Enemy>());
+
+                    _curSpawned++;
+                }
+        }
+
+        private List<Vector3> GetSpawnPoints()
+        {
+            var spawnPoints = new List<Vector3>();
+            var camPos = _camera.transform.position;
+            var spawnsHit = Physics2D.OverlapCircleAll(camPos, _spawnRadius, SpawnLayer);
+
+            foreach (var spawnCollider in spawnsHit)
+            {
+                var positionViewport = _camera.WorldToViewportPoint(spawnCollider.transform.position);
+
+
+                // If not inside camera view
+                if (!(positionViewport.x >= 0 && positionViewport.y >= 0 && positionViewport.x <= 1 &&
+                      positionViewport.y <= 1))
+                    spawnPoints.Add(spawnCollider.transform.position);
+            }
+
+            return spawnPoints;
         }
     }
 }

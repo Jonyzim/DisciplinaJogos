@@ -1,6 +1,7 @@
+using System;
+using MWP.Character;
 using MWP.Misc;
 using MWP.ScriptableObjects;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ namespace MWP.UI
         [SerializeField] private PlantListManager _plantListManager;
         [SerializeField] private Sprite _unknownImage;
         [SerializeField] private GameObject plantObject;
+        private GameObject lastSelected;
 
         public void Initialize(int id)
         {
@@ -23,13 +25,13 @@ namespace MWP.UI
             GameEvents.Instance.SetUiMode(OwnerId, true);
 
             // TODO: Por algum motivo ele spawna o dobro de gameObject vazios
-            foreach (PlantEntry plant in _plantListManager.PlantList)
+            foreach (var plant in _plantListManager.PlantList)
             {
-                GameObject newPlantEntry = Instantiate(plantObject, _plantGridLayout.transform);
+                var newPlantEntry = Instantiate(plantObject, _plantGridLayout.transform);
 
 
-                Image newImage = newPlantEntry.GetComponent<Image>();
-                PlantSelectionButton newButton = newPlantEntry.GetComponent<PlantSelectionButton>();
+                var newImage = newPlantEntry.GetComponent<Image>();
+                var newButton = newPlantEntry.GetComponent<PlantSelectionButton>();
 
                 // Planta desbloqueada ou não
                 if (plant.IsEnabled)
@@ -43,28 +45,25 @@ namespace MWP.UI
                 }
 
                 // Selecionar a primeira planta na UI
-                if (PlayerController.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.currentSelectedGameObject == null)
+                if (PlayerController.SActivePlayers[OwnerId - 1].PlayerEventSystem.currentSelectedGameObject == null)
                 {
                     ChangePlantDisplay(newPlantEntry, plant);
-                    PlayerController.s_ActivePlayers[OwnerId - 1].PlayerEventSystem.SetSelectedGameObject(newPlantEntry);
+                    PlayerController.SActivePlayers[OwnerId - 1].PlayerEventSystem
+                        .SetSelectedGameObject(newPlantEntry);
                 }
-
-
             }
         }
 
 
         public event Action<GameObject> OnChoosePlant;
+
         public void ChoosePlant(GameObject plantPrefab)
         {
-            if (OnChoosePlant != null)
-            {
-                OnChoosePlant(plantPrefab);
-            }
+            if (OnChoosePlant != null) OnChoosePlant(plantPrefab);
             GameEvents.Instance.SetUiMode(OwnerId, false);
             Destroy(gameObject);
         }
-        private GameObject lastSelected = null;
+
         public void ChangePlantDisplay(GameObject buttonObj, PlantEntry plantInfo)
         {
             if (lastSelected != null)

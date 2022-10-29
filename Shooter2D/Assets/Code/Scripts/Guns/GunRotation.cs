@@ -1,4 +1,3 @@
-
 /* DEPRECATED
 public class GunRotation : MonoBehaviour
 {
@@ -40,3 +39,4 @@ public class GunRotation : MonoBehaviour
     //     gun.transform.rotation = Quaternion.Slerp(gun.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     // }
 }*/
+

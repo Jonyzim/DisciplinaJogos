@@ -1,7 +1,5 @@
-using NaughtyAttributes;
 using System;
-using UnityEngine.SceneManagement;
-
+using NaughtyAttributes;
 
 namespace MWP.ScriptableObjects
 {
@@ -10,24 +8,16 @@ namespace MWP.ScriptableObjects
     {
         public string MapName;
 
-        [Scene]
-        public int ActiveScene;
+        [Scene] public int ActiveScene;
 
-        [Scene]
-        public int[] LoadedScenes;
-
-
+        [Scene] public int[] LoadedScenes;
 
 
         public static Map? SearchMap(Map[] mapList, string mapName)
         {
-            foreach (Map map in mapList)
-            {
+            foreach (var map in mapList)
                 if (string.Compare(map.MapName, mapName) == 0)
-                {
                     return map;
-                }
-            }
             return null;
         }
     }

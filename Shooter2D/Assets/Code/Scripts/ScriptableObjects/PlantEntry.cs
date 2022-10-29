@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace MWP.ScriptableObjects
 {
-
     [Serializable]
     public struct PlantEntry
     {
@@ -15,6 +14,5 @@ namespace MWP.ScriptableObjects
 
         public GameObject PlantPrefab;
         public bool IsEnabled;
-
     }
 }

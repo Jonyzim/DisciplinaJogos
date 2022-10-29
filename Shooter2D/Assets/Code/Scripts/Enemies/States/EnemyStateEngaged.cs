@@ -4,13 +4,10 @@ namespace MWP.Enemies.States
 {
     public class EnemyStateEngaged : EnemyState
     {
-        public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
-
-
-        public override void StartState()
+        public EnemyStateEngaged(Enemy context, EnemyStateFactory factory) : base(context, factory)
         {
-            base.StartState();
         }
+
 
         public override void UpdateState()
         {
@@ -25,44 +22,37 @@ namespace MWP.Enemies.States
 
 
             Vector2 targetPos = Context.Target.transform.position;
-            float distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
+            var distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
 
             if (distanceToTarget > Context.ResetDistance)
             {
-                Context.IsHovering = false;
+                Context.isHovering = false;
                 Context.SwitchState(Factory.StateSearch);
-
             }
 
             if (distanceToTarget > Context.MaxHoverDistance)
             {
                 FollowPath();
-                if (_curAstarTimer <= 0)
+                if (CurAstarTimer <= 0)
                 {
                     CalculatePath(targetPos);
-                    Context.IsHovering = false;
-                    _curAstarTimer = Enemy.ASTAR_TIMER;
+                    Context.isHovering = false;
+                    CurAstarTimer = Enemy.AstarTimer;
                 }
             }
             else if (distanceToTarget < Context.MinHoverDistance)
             {
                 Retreat(targetPos);
-                Context.IsHovering = false;
+                Context.isHovering = false;
             }
             else
             {
-                float oldIntensity = Context.NoiseIntensity;
-                _direction = Vector2.zero;
-                Context.IsHovering = true;
+                var oldIntensity = Context.noiseIntensity;
+                Direction = Vector2.zero;
+                Context.isHovering = true;
             }
 
-            Context.Move(_direction, Context.IsHovering);
-
-        }
-
-        public override void ExitState()
-        {
-            base.ExitState();
+            Context.Move(Direction, Context.isHovering);
         }
 
         private void Retreat(Vector2 targetPos)
@@ -70,7 +60,7 @@ namespace MWP.Enemies.States
             Vector2 pos = Context.gameObject.transform.position;
             Vector2 direction = Vector3.Normalize(pos - targetPos);
 
-            _direction = direction;
+            Direction = direction;
         }
     }
 }

@@ -11,7 +11,6 @@ namespace MWP.Enemies
         {
             enemy.OnDeath += Count;
             _parentSpawner = parentSpawner;
-
         }
 
         private void Count()
@@ -19,6 +18,5 @@ namespace MWP.Enemies
             _parentSpawner.SubtractSpawned();
             GameManager.Instance.RemainingEnemies--;
         }
-
     }
 }

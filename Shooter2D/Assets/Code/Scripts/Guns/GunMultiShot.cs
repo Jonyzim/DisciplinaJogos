@@ -1,44 +1,44 @@
-using MWP.Guns.Bullets;
 using System.Collections;
+using FMODUnity;
+using MWP.Guns.Bullets;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MWP.Guns
 {
     public abstract class GunMultiShot : Gun
     {
-        [Header("ShotgunSpecifics")]
-        [SerializeField] private int _bulletsSpawned;
-        [SerializeField] private float _bulletLag;
+        [FormerlySerializedAs("_bulletsSpawned")] [Header("ShotgunSpecifics")] [SerializeField]
+        private int bulletsSpawned;
 
-        private bool _fired = false;
+        [FormerlySerializedAs("_bulletLag")] [SerializeField] private float bulletLag;
 
-        public override Bullet Fire(Vector2 direction, int strenght, float aim)
+        private bool _fired;
+
+        public override Bullet Fire(Vector2 direction, int strength, float aim)
         {
             if (Cd <= 0 && _curClip > 0 && !_fired)
             {
                 _fired = true;
-                FMODUnity.RuntimeManager.PlayOneShot(ShotSfxEvent, transform.position);
+                RuntimeManager.PlayOneShot(ShotSfxEvent, transform.position);
                 _curClip -= 1;
 
-                for (int i = 0; i < _bulletsSpawned; i++)
-                {
-                    StartCoroutine(FireLag(direction, strenght, aim, Random.Range(-_bulletLag, _bulletLag)));
-                }
+                for (var i = 0; i < bulletsSpawned; i++)
+                    StartCoroutine(FireLag(direction, strength, aim, Random.Range(-bulletLag, bulletLag)));
             }
 
             return null;
         }
 
-        private IEnumerator FireLag(Vector2 direction, int strenght, float aim, float waitTime)
+        private IEnumerator FireLag(Vector2 direction, int strength, float aim, float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
-            base.Fire(direction, strenght, aim);
+            base.Fire(direction, strength, aim);
         }
 
         public override void ReleaseFire()
         {
             _fired = false;
         }
-
     }
 }

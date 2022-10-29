@@ -4,8 +4,9 @@ namespace MWP.GameStates
 {
     public class GameStateWave : GameState
     {
-
-        public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory) { }
+        public GameStateWave(GameManager context, GameStateFactory factory) : base(context, factory)
+        {
+        }
 
         public override void StartState()
         {
@@ -18,17 +19,12 @@ namespace MWP.GameStates
 
         public override void UpdateState()
         {
-
-            if (Context.RemainingEnemies <= 0)
-            {
-                Context.SwitchState(Factory.StateIdle);
-            }
+            if (Context.RemainingEnemies <= 0) Context.SwitchState(Factory.StateIdle);
         }
 
         public override void ExitState()
         {
             GameEvents.Instance.WaveEnd();
         }
-
     }
 }

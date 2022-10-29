@@ -4,10 +4,10 @@ namespace MWP.UI
 {
     public class FloatingText : MonoBehaviour
     {
-        private float _f;
-        private Vector2 _originalPos;
         [SerializeField] private float loopTime;
         [SerializeField] private float radius;
+        private float _f;
+        private Vector2 _originalPos;
 
         private void Start()
         {
@@ -19,6 +19,5 @@ namespace MWP.UI
             _f += Time.deltaTime;
             transform.localPosition = new Vector2(_originalPos.x, _originalPos.y + Mathf.Sin(_f / loopTime) * radius);
         }
-
     }
 }

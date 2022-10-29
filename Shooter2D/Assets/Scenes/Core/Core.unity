@@ -839,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _maxConcurrentSpawns
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 492836983140652069, guid: 12d01039b0df0834ca6981af65ecd746, type: 3}
       propertyPath: _spawnPoints.Array.size

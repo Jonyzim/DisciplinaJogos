@@ -2,18 +2,18 @@ namespace MWP.GameStates
 {
     public abstract class GameState
     {
-        protected GameManager Context;
-        protected GameStateFactory Factory;
+        protected readonly GameManager Context;
+        protected readonly GameStateFactory Factory;
 
-        public abstract void StartState();
-        public abstract void UpdateState();
-        public abstract void ExitState();
-
-        public GameState(GameManager context, GameStateFactory factory)
+        protected GameState(GameManager context, GameStateFactory factory)
         {
             Context = context;
             Factory = factory;
         }
+
+        public abstract void StartState();
+        public abstract void UpdateState();
+        public abstract void ExitState();
 
         public virtual void Pause()
         {

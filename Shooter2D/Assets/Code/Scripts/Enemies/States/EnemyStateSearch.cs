@@ -4,8 +4,9 @@ namespace MWP.Enemies.States
 {
     public class EnemyStateSearch : EnemyState
     {
-
-        public EnemyStateSearch(Enemy context, EnemyStateFactory factory) : base(context, factory) { }
+        public EnemyStateSearch(Enemy context, EnemyStateFactory factory) : base(context, factory)
+        {
+        }
 
 
         public override void StartState()
@@ -16,23 +17,17 @@ namespace MWP.Enemies.States
         public override void UpdateState()
         {
             base.UpdateState();
-            _curAstarTimer -= Time.deltaTime;
+            CurAstarTimer -= Time.deltaTime;
 
             FollowPath();
-            if (_curAstarTimer <= 0)
+            if (CurAstarTimer <= 0)
             {
                 CalculatePath(Camera.main.transform.position);
                 SearchCharacters();
-                _curAstarTimer = Enemy.ASTAR_TIMER;
+                CurAstarTimer = Enemy.AstarTimer;
             }
 
-            Context.Move(_direction);
-
-        }
-
-        public override void ExitState()
-        {
-            base.ExitState();
+            Context.Move(Direction);
         }
 
 
@@ -41,24 +36,21 @@ namespace MWP.Enemies.States
             Vector2 pos = Context.gameObject.transform.position;
 
             // Checking for targets
-            Collider2D[] charactersHit = Physics2D.OverlapCircleAll(pos, Context.DetectionRadius, Context.CharacterLayer);
+            var charactersHit = new Collider2D[1];
+            var size = Physics2D.OverlapCircleNonAlloc(pos, Context.DetectionRadius, charactersHit, Context.CharacterLayer);
 
-            if (charactersHit.Length > 0)
+            if (charactersHit.Length <= 0) return;
+            var minDistance = float.PositiveInfinity;
+            foreach (var characterCollider in charactersHit)
             {
-                float minDistance = float.PositiveInfinity;
-                foreach (Collider2D characterCollider in charactersHit)
-                {
-                    float distanceToCharacter = Vector2.Distance(pos, characterCollider.transform.position);
+                var distanceToCharacter = Vector2.Distance(pos, characterCollider.transform.position);
 
-                    if (distanceToCharacter < minDistance)
-                    {
-                        Context.Target = characterCollider.gameObject;
-                        minDistance = distanceToCharacter;
-                    }
-                }
-                Context.SwitchState(Factory.StateEngaged);
+                if (!(distanceToCharacter < minDistance)) continue;
+                Context.Target = characterCollider.gameObject;
+                minDistance = distanceToCharacter;
             }
-        }
 
+            Context.SwitchState(Factory.StateEngaged);
+        }
     }
 }
