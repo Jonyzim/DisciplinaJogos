@@ -3,7 +3,6 @@ using UnityEngine.Serialization;
 
 namespace MWP.Interactables
 {
-    [RequireComponent(typeof(Character))]
     public class InteractableCorpse : Interactable
     {
         [FormerlySerializedAs("Corpse")] public Character corpse;
