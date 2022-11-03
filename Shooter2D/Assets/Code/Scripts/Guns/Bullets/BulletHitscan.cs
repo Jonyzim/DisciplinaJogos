@@ -7,7 +7,7 @@ namespace MWP.Guns.Bullets
     {
         [SerializeField] private float _reach;
         [SerializeField] private LayerMask _hitLayer;
-        [SerializeField] private GameObject _particles;
+        [SerializeField] protected GameObject _particles;
         private float _curLifetime;
         private Color _lineColor;
 

@@ -26,7 +26,7 @@ namespace MWP.Guns
         [Tooltip("0 = Infinite bullets")] [SerializeField]
         private uint _maxAmmo;
 
-        [Header("VFX")] [SerializeField] protected EventReference ShotSfxEvent;
+        [Header("SFX")] [SerializeField] protected EventReference ShotSfxEvent;
 
         // Substituir quando equipar arma
         [Header("Sprites")] [SerializeField] private Sprite _magazineSprite;
@@ -79,6 +79,7 @@ namespace MWP.Guns
 
         public void Drop(Character character)
         {
+            ReleaseFire();
             _flashLight.enabled = false;
             RemoveOwner(character);
             var instance = Instantiate(_interactableReference, gameObject.transform.position,
@@ -105,6 +106,7 @@ namespace MWP.Guns
             var bullet = Instantiate(Bullet, SpawnTransf.transform.position, Quaternion.Euler(0, 0, 0));
             var bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.SetPlayer(_ownerId);
+            bulletScript.SetGun(this);
             bulletScript.SetVariables(direction, strength, _damage);
             return bulletScript;
         }
@@ -141,6 +143,7 @@ namespace MWP.Guns
         {
             if (_maxAmmo == 0) return;
             _curAmmo = _maxAmmo - _curClip;
+            ReleaseFire();
             GameEvents.Instance.AmmoUpdate(_ownerId, _curAmmo, _maxAmmo);
         }
 
@@ -162,9 +165,10 @@ namespace MWP.Guns
         private void ReloadUpdate()
         {
             if (_curAmmo <= 0 && _maxAmmo != 0) return;
+            if(_reloadProgress==0)
+                ReleaseFire();
             _reloadProgress += Time.deltaTime;
             GameEvents.Instance.ReloadUpdate(_ownerId, _reloadProgress / _reloadTime);
-
             if (!(_reloadProgress > _reloadTime)) return;
             ReloadProps(_reloadTime);
             _reloadProgress = 0;

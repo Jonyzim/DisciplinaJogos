@@ -104,8 +104,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e0d8dd8c90547a947913749ead843ecc, type: 3}
-  m_Color: {r: 0.9150943, g: 0.43596473, b: 0.4406081, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4343e72d60a85b14ebcbed5632a1b142, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
   _magazineSprite: {fileID: 21300000, guid: ca6b72fc9d7dd7c4bb864418069210ae, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
-  _explosionDamage: 50
-  _explosionRadius: 5
+  explosionDamage: 50
+  explosionRadius: 5
 --- !u!1001 &3532165717052783444
 PrefabInstance:
   m_ObjectHideFlags: 0

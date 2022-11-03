@@ -74,8 +74,6 @@ namespace MWP
             _pawn.Move(_movement);
             if (_isFiring)
                 _pawn.Fire(_direction);
-            else
-                _pawn.ReleaseFire();
         }
 
         private void OnDestroy()
@@ -109,7 +107,11 @@ namespace MWP
         {
             if (context.performed)
                 _isFiring = true;
-            else if (context.canceled) _isFiring = false;
+            else if (context.canceled)
+            {
+                _isFiring = false;
+                _pawn.ReleaseFire();
+            }
         }
 
         public void OnReload(InputAction.CallbackContext context)

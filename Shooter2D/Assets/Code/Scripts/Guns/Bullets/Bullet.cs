@@ -9,6 +9,7 @@ namespace MWP.Guns.Bullets
     {
         [SerializeField] protected float Speed;
         [SerializeField] protected float Lifetime;
+        protected Gun _gun;
         [SerializeField] protected int OwnerId;
         [SerializeField] private GameObject _destroyFxPrefab;
         protected float DamageCaused;
@@ -26,6 +27,10 @@ namespace MWP.Guns.Bullets
             OwnerId = id;
         }
 
+        public void SetGun(Gun gun)
+        {
+            _gun = gun;
+        }
         public virtual void SetVariables(Vector2 direction, int strength, int damage)
         {
             Direction = direction;

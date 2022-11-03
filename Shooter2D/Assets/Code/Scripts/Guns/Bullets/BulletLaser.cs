@@ -6,6 +6,8 @@ namespace MWP.Guns.Bullets
     {
         protected override void SpawnParticles(Vector2 position)
         {
+            GunLaser gunLaser = (GunLaser)_gun;
+            gunLaser.SetLinePos(1, (Vector3)position);
         }
     }
 }

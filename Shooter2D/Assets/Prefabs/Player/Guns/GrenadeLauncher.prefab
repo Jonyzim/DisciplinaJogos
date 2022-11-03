@@ -104,8 +104,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e0d8dd8c90547a947913749ead843ecc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.5719805, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 09014b979db92dc4d8187a34c90905e6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnTransf: {fileID: 3836404283466456182}
   Bullet: {fileID: 261622795415673878, guid: 4c0fe311d1d53f7468017d33c210a04f, type: 3}
-  _interactableReference: {fileID: 0}
+  _interactableReference: {fileID: 807771574852445243, guid: cdf7822bfa678b647b09349162c113e2, type: 3}
   _flashLight: {fileID: 9012900671052290817}
   Rof: 1
   Spread: 5

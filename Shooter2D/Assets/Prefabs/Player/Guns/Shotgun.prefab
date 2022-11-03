@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7171539945105601806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 0.017, z: 0}
+  m_LocalPosition: {x: 1.022, y: -0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8998131200247621793}
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fbca17e9c655ec24e8fd150d7e4237c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27bbfb7e6f3ba3c4ca5c510dfa9a84cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
   _magazineSprite: {fileID: 21300000, guid: ca6b72fc9d7dd7c4bb864418069210ae, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
-  _bulletsSpawned: 10
-  _bulletLag: 0.1
+  bulletsSpawned: 10
+  bulletLag: 0.1
 --- !u!1001 &4248782537147408444
 PrefabInstance:
   m_ObjectHideFlags: 0
