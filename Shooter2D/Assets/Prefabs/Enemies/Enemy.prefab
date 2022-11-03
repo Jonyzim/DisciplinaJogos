@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7373799879527116971}
   - component: {fileID: 2782954769245714593}
   - component: {fileID: 1521681566283715081}
+  - component: {fileID: 2691148463424046939}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -101,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40532490c69c74240ba7181f0931e10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoiseIntensity: 0.5
-  IsHovering: 0
-  NoiseSmoothness: 1
+  noiseIntensity: 0.5
+  isHovering: 0
+  noiseSmoothness: 1
   Seeker: {fileID: 2782954769245714593}
   DetectionRadius: 13
   MinHoverDistance: 3
@@ -121,6 +122,7 @@ MonoBehaviour:
   _fxSpeed: 0.05
   _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
   _rigidBody: {fileID: 6371102700354100447}
+  _damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &6672506089872805760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +150,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1240
+  m_InstanceId: 59806
 --- !u!50 &6371102700354100447
 Rigidbody2D:
   serializedVersion: 4
@@ -237,6 +239,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!95 &2691148463424046939
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152129265690600296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd4c9d90cda75b94a8a9fcc79f80fbb5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5427198624453057568
 GameObject:
   m_ObjectHideFlags: 0
