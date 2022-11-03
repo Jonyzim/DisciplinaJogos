@@ -1,11 +1,13 @@
 
 using MWP.Guns.Bullets;
 using UnityEngine;
+using FMODUnity;
 namespace MWP.Guns
 {
     public class GunLaser : GunAutomatic
     {
         [SerializeField] private LineRenderer _line;
+        [SerializeField] StudioEventEmitter eventEmitter;
         public override Bullet Fire(Vector2 direction, int strength, float aim)
         {
             if (!(Cd <= 0) || _curClip <= 0) return null;
@@ -24,7 +26,14 @@ namespace MWP.Guns
 
         public override void ReleaseFire()
         {
+            if (eventEmitter.IsPlaying())
+                eventEmitter.Stop();
             _line.gameObject.SetActive(false);
+        }
+        protected override void FireProps()
+        {
+            if(!eventEmitter.IsPlaying())
+                eventEmitter.Play();
         }
         protected override void ReloadProps(float time)
         {

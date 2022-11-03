@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6166765806460756415}
   - component: {fileID: 8863992805741504416}
   - component: {fileID: 4825336553255135551}
+  - component: {fileID: 4491713834922092112}
   m_Layer: 10
   m_Name: BulletExplosionSticky
   m_TagString: Bullet
@@ -145,6 +146,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4491713834922092112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261622795415673878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 974890694
+      Data2: 1207819953
+      Data3: -256456273
+      Data4: -671694166
+    Path: event:/Weapons/BombTimer
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1423585105183612281
 GameObject:
   m_ObjectHideFlags: 0

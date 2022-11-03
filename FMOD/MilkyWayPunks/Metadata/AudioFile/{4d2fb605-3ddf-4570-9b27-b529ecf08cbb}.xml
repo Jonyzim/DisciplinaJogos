@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4d2fb605-3ddf-4570-9b27-b529ecf08cbb}">
+		<property name="assetPath">
+			<value>SFX/enemySquash.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1519999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8374a2ab-1b2c-425c-bfa9-1e3f39751e77}</destination>
+		</relationship>
+	</object>
+</objects>

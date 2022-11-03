@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441586149769239506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.703, y: 0.017, z: 0}
+  m_LocalPosition: {x: 1.212, y: 0.017, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5338058484766843147}
@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 5338058484766843147}
   - component: {fileID: 591926768312445034}
   - component: {fileID: 5075956996704786940}
+  - component: {fileID: 4329968133655531399}
   m_Layer: 0
   m_Name: LaserGun
   m_TagString: Untagged
@@ -136,19 +137,50 @@ MonoBehaviour:
   Spread: 0
   _damage: 4
   _reloadTime: 1
-  _clip: 100
-  _maxAmmo: 600
+  _clip: 200
+  _maxAmmo: 1000
   ShotSfxEvent:
     Guid:
-      Data1: -1485291083
-      Data2: 1194794321
-      Data3: -633163855
-      Data4: -1805537097
-    Path: event:/Weapons/LaserShot
+      Data1: 2067605159
+      Data2: 1202595538
+      Data3: 573753231
+      Data4: 140134722
+    Path: event:/Weapons/LaserRay
   _magazineSprite: {fileID: 21300000, guid: ce194d6b053f95b4183bbba37fc3516f, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
   _line: {fileID: 1459680362010201944}
+  eventEmitter: {fileID: 4329968133655531399}
+--- !u!114 &4329968133655531399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720661398340679343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2067605159
+      Data2: 1202595538
+      Data3: 573753231
+      Data4: 140134722
+    Path: event:/Weapons/LaserRay
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7968640742159880089
 GameObject:
   m_ObjectHideFlags: 0
