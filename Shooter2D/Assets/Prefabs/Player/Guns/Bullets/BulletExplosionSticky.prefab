@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8863992805741504416}
   - component: {fileID: 4825336553255135551}
   - component: {fileID: 4491713834922092112}
+  - component: {fileID: 8329573900590722137}
   m_Layer: 10
   m_Name: BulletExplosionSticky
   m_TagString: Bullet
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 261622795415673878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 7141933282314751376}
   - {fileID: 8146470324968057257}
@@ -71,9 +72,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.08138182}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.31861818
 --- !u!50 &8863992805741504416
 Rigidbody2D:
   serializedVersion: 4
@@ -134,8 +135,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -6939314882972976036, guid: 0a0c23cfe6204b54ba7f9cff82352d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,6 +177,25 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!95 &8329573900590722137
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261622795415673878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28c0921fdcaff9e4ea11b9a1a32028d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1423585105183612281
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8146470324968057257
 Transform:
   m_ObjectHideFlags: 0
@@ -320,7 +340,7 @@ TrailRenderer:
   m_SortingLayerID: -1277395673
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
