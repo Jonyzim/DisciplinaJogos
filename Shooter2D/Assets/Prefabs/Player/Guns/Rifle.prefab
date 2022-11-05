@@ -139,11 +139,11 @@ MonoBehaviour:
   _maxAmmo: 40
   ShotSfxEvent:
     Guid:
-      Data1: -1485291083
-      Data2: 1194794321
-      Data3: -633163855
-      Data4: -1805537097
-    Path: event:/Weapons/LaserShot
+      Data1: -1399544256
+      Data2: 1078658161
+      Data3: -751035756
+      Data4: -1947980850
+    Path: event:/Weapons/SniperShot
   _magazineSprite: {fileID: 21300000, guid: ce194d6b053f95b4183bbba37fc3516f, type: 3}
   _reloadSprite: {fileID: 21300000, guid: 3af2a65a4a14b7347a664132731d4b12, type: 3}
   _backgroundSprite: {fileID: 21300000, guid: eabb29c03ff08eb4a86a3886a6831dc1, type: 3}
