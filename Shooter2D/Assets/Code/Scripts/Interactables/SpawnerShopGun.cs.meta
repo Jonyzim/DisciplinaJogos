@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b67d909e1dda41c1ab90121ff3aa17e3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shopGunPrefab: {fileID: 7774268563185631068, guid: 6350c2055769f9348bfc6a0fc1b87fef, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

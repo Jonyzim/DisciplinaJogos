@@ -32,7 +32,7 @@ namespace MWP.Interactables
             if (GameManager.Instance.TryBuy(_price)) base.Interact(character);
         }
 
-        public void SpawnWeapon()
+        private void SpawnWeapon()
         {
             GameObject randomGun;
             (randomGun, _price) = gunListManager.GetRandomWeapon();
