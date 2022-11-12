@@ -40,15 +40,18 @@ namespace MWP.Interactables
             else
             {
                 //Caso a planta não esteja madura
-                if (_plant.Growth < _plant.GrowthTime && !_isWatered)
+                if (_plant.Growth < _plant.GrowthTime)
                 {
-                    _plant.WaterPlant();
-                    defaultRenderer.sprite = groundSprites[1];
-                    _isWatered = true;
-                    defaultRenderer.material.SetInt(UseOutline, 0);
+                    if (!_isWatered)
+                    {
+                        _plant.WaterPlant();
+                        defaultRenderer.sprite = groundSprites[1];
+                        _isWatered = true;
+                        defaultRenderer.material.SetInt(UseOutline, 0);
+                    }
                 }
 
-                else
+                else 
                 {
                     _plant.Use(character);
                     _plant = null;
