@@ -133,7 +133,7 @@ namespace MWP
                 Kill();
             }
 
-            GameEvents.Instance.HealthUpdate(OwnerId, _curHealth / (float)health);
+            GameEvents.Instance.HealthUpdate(OwnerId, (_curHealth / (float)health));
         }
 
         public void Fire(Vector2 direction)
