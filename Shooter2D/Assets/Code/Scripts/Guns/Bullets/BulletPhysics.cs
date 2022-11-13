@@ -28,6 +28,9 @@ namespace MWP.Guns.Bullets
         {
             base.SetVariables(direction, strength, damage);
             _rgbd.AddForce(Direction * Speed, ForceMode2D.Impulse);
+            float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         }
     }
 }

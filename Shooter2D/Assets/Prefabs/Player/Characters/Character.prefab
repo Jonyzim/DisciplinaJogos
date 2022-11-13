@@ -52,16 +52,17 @@ MonoBehaviour:
   trail: {fileID: 7885339119060818914}
   dashPower: 5
   dashTime: 0.1
-  EquippedGun: {fileID: 0}
-  Health: 100
-  Strenght: 100
-  Aim: 100
-  Speed: 100
-  _interactableCorpsePrefab: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
-  _spriteRenderer: {fileID: 504088864667602001}
-  _fxSpeed: 0.1
-  _startColor: {r: 1, g: 1, b: 1, a: 1}
-  _damageColor: {r: 1, g: 0, b: 0, a: 1}
+  equippedGun: {fileID: 0}
+  health: 100
+  strength: 100
+  aim: 100
+  speed: 100
+  interactableCorpsePrefab: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
+  spriteRenderer: {fileID: 504088864667602001}
+  animator: {fileID: 2626590838529693321}
+  fxSpeed: 0.1
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &4318612108955275971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504088864667602002}
   - component: {fileID: 504088864667602001}
+  - component: {fileID: 2626590838529693321}
   m_Layer: 7
   m_Name: body
   m_TagString: Untagged
@@ -191,6 +193,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &2626590838529693321
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504088864667602003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 655834ea515d0e84eac6a62aa1de168a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5762517024328712885
 GameObject:
   m_ObjectHideFlags: 0

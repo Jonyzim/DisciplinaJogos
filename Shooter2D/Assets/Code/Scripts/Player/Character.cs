@@ -34,6 +34,7 @@ namespace MWP
         private GameObject interactableCorpsePrefab;
 
         [FormerlySerializedAs("_spriteRenderer")] [SerializeField] private SpriteRenderer spriteRenderer;
+        [FormerlySerializedAs("_Animator")] [SerializeField] private Animator animator;
         [FormerlySerializedAs("_fxSpeed")] [SerializeField] private float fxSpeed;
         [FormerlySerializedAs("_startColor")] [SerializeField] private Color startColor;
         [FormerlySerializedAs("_damageColor")] [SerializeField] private Color damageColor;
@@ -160,6 +161,8 @@ namespace MWP
         public void Move(Vector2 velocity)
         {
             var bodyVelocity = velocity * (BaseSpeed * (speed / 100f));
+            if(animator!=null)
+            animator.SetBool("isWalking", bodyVelocity.magnitude > 0.01f);
             _body.velocity = bodyVelocity;
         }
 
