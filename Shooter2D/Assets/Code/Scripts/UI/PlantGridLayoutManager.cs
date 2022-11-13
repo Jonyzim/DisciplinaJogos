@@ -11,6 +11,7 @@ namespace MWP.UI
     {
         public int OwnerId;
 
+        [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text _effectsText;
         [SerializeField] private GridLayoutGroup _plantGridLayout;
         [SerializeField] private PlantListManager _plantListManager;
@@ -69,6 +70,8 @@ namespace MWP.UI
                 lastSelected.SetActive(false);
             lastSelected = buttonObj.transform.GetChild(0).gameObject;
             lastSelected.SetActive(true);
+            
+            nameText.text = plantInfo.Name;
             _effectsText.text = plantInfo.EffectsDescription;
         }
     }

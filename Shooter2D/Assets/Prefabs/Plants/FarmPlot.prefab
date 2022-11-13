@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultRenderer: {fileID: 8505358314903055160}
-  plantSelectionPopup: {fileID: 1839650468514909087, guid: b798c343198538d47be790db95923f4c, type: 3}
+  plantSelectionPopup: {fileID: 8847933786509121587, guid: b7f9ae9708a8225499d6501342a116ba, type: 3}
   canvas: {fileID: 872304789}
   groundSprites:
   - {fileID: 21300000, guid: 6f88a620fe6f52b42a3e87bbe8db8200, type: 3}
