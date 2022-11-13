@@ -8,7 +8,10 @@ namespace MWP.Guns.Bullets
         [SerializeField] private LayerMask _enemyLayer;
         private int _explosionDamage;
         [SerializeField] private GameObject explosionFx;
-        [Header("Explosion Variables")] private int _explosionRadius;
+        [Header("Explosion Variables")] 
+        [SerializeField] private int _explosionRadius;
+        [SerializeField] private int _explosionHitCount;
+        
 
         private void OnDestroy()
         {
@@ -27,8 +30,11 @@ namespace MWP.Guns.Bullets
             var pos = gameObject.transform.position;
             var enemiesHit = Physics2D.OverlapCircleAll(pos, _explosionRadius, _enemyLayer);
             Instantiate(explosionFx, pos, Quaternion.identity);
+            
+            int i = 0;
             foreach (var enemyCollider in enemiesHit)
             {
+                if (++i > _explosionHitCount) break;
                 var enemy = enemyCollider.GetComponentInParent<Enemy>();
                 if (enemy != null) DamageOnEnemy(enemy, null, _explosionDamage);
             }
