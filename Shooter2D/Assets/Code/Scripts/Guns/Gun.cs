@@ -40,7 +40,7 @@ namespace MWP.Guns
         private float _reloadProgress;
         protected float Cd;
         private int _ownerId;
-        public uint BulletCost { get; }
+        public uint bulletCost;
 
         //Unity Methods
         protected virtual void Start()

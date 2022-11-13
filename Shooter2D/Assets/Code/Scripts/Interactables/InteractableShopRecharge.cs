@@ -9,13 +9,13 @@ namespace MWP.Interactables
 
         public override void Interact(Character character)
         {
-            var _priceMod = character.equippedGun?.BulletCost ?? 0;
+            var priceMod = character.equippedGun?.bulletCost ?? 0;
             var percentage = character.equippedGun?.GetAmmunitionPercentage();
 
             if (percentage == 1f)
                 return;
 
-            var price = (int)(100 * (1f - (percentage ?? 1)));
+            var price = (int)(priceMod * (1f - (percentage ?? 1)));
 
 
             if (GameManager.Instance.TryBuy(price)) character.equippedGun.RechargeAmmunition();

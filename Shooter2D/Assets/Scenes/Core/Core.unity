@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d3aac0b973b7a478d870515700ab5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveTime: 20
+  WaveTime: 0
   WaveTimer: 0
   RemainingEnemies: 0
   CanStartWave: 0
@@ -1438,7 +1438,7 @@ PrefabInstance:
     - target: {fileID: 6695927463173181521, guid: 417bd9eece3153b4ea442f45cf139605, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 519420031}
     - target: {fileID: 6695927463173181521, guid: 417bd9eece3153b4ea442f45cf139605, type: 3}
       propertyPath: m_SortingLayerID
       value: 0
