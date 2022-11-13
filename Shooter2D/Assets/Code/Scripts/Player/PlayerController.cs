@@ -154,6 +154,11 @@ namespace MWP
             if (context.performed) StartCoroutine(_pawn.Dash(_movement));
         }
 
+        public void OnDropWeapon(InputAction.CallbackContext context)
+        {
+            if(context.performed) _pawn.DropWeapon();
+        }
+
         private void SetInputMode(int id, bool mode)
         {
             if (id != PlayerId) return;

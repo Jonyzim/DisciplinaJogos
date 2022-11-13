@@ -53,6 +53,7 @@ MonoBehaviour:
   dashPower: 5
   dashTime: 0.1
   equippedGun: {fileID: 0}
+  _defaultGun: {fileID: 0}
   health: 100
   strength: 100
   aim: 100

@@ -13,16 +13,16 @@ namespace MWP
     public class Character : MonoBehaviour
     {
         private const float BaseSpeed = 10;
-        [SerializeField] private float dashCooldown = 3f;
+        [SerializeField] private float dashCooldown;
         [SerializeField] private TrailRenderer trail;
 
         [SerializeField] private float dashPower;
 
         [SerializeField] private float dashTime = 0.1f;
-        //endDash
 
 
         [FormerlySerializedAs("EquippedGun")] public Gun equippedGun;
+        [SerializeField] private GameObject _defaultGun;
 
         [FormerlySerializedAs("Health")] [Header("Status")] [Range(80, 120)] public int health;
 
@@ -40,10 +40,12 @@ namespace MWP
         [FormerlySerializedAs("_damageColor")] [SerializeField] private Color damageColor;
         private Rigidbody2D _body;
         private int _curHealth;
+        private bool _hasDefaultWeapon = true;
 
         private readonly List<Interactable> _interactableList = new List<Interactable>();
 
         private readonly Dictionary<int, Buff> _buffList = new Dictionary<int, Buff>();
+        
 
 
         //Dash
@@ -73,6 +75,9 @@ namespace MWP
         {
             _curHealth = health;
             _body = GetComponent<Rigidbody2D>();
+            
+            var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
+            gunInstance.Pick(this);
 
             Buff.OnRemove += RemoveBuff;
         }
@@ -84,6 +89,21 @@ namespace MWP
             UpdateInteractableList();
         }
 
+        public void PickWeapon(Gun gun, bool defaultFlag)
+        {
+            equippedGun = gun;
+            _hasDefaultWeapon = defaultFlag;
+        }
+
+        public void DropWeapon()
+        {
+            if (_hasDefaultWeapon) return;
+            
+            equippedGun.Drop(this);
+            var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
+            gunInstance.Pick(this, true);
+            _hasDefaultWeapon = true;
+        }
 
         //Methods
         public void SetPlayerControlling(PlayerController p)

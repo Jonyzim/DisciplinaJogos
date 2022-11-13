@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098353581014689407, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
       propertyPath: m_Name
-      value: BasicPistolCow
+      value: PistolCow
       objectReference: {fileID: 0}
     - target: {fileID: 8779821647893196902, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
       propertyPath: _damage
@@ -62,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 8779821647893196902, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
       propertyPath: _storeAmmunition
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779821647893196902, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
+      propertyPath: _interactableReference
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
