@@ -63,15 +63,18 @@ namespace MWP.Guns
         }
 
         // Methods
-        public void Pick(Character character)
+        public void Pick(Character character, bool defaultFlag = false)
         {
             _flashLight.enabled = true;
             SetOwner(character);
             var transf = transform;
+            
+            character.PickWeapon(this, defaultFlag);
+            
             transf.parent = character.gameObject.transform;
             transf.localPosition = Vector3.zero;
             transf.localScale = Vector3.one;
-            character.equippedGun = this;
+            
             GameEvents.Instance.PickWeapon(_ownerId, _magazineSprite, _backgroundSprite);
             GameEvents.Instance.MagazineUpdate(_ownerId, _curClip / (float)_clip);
             GameEvents.Instance.AmmoUpdate(_ownerId, _curAmmo, _maxAmmo);
@@ -82,13 +85,21 @@ namespace MWP.Guns
             ReleaseFire();
             _flashLight.enabled = false;
             RemoveOwner(character);
-            var instance = Instantiate(_interactableReference, gameObject.transform.position,
-                gameObject.transform.rotation);
+            if (_interactableReference != null)
+            {
+                var instance = Instantiate(_interactableReference, gameObject.transform.position,
+                    gameObject.transform.rotation);
 
 
-            instance.GetComponent<InteractableGun>().newGun = gameObject;
+                instance.GetComponent<InteractableGun>().newGun = gameObject;
 
-            gameObject.transform.parent = instance.transform;
+                gameObject.transform.parent = instance.transform;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            
         }
 
         public virtual Bullet Fire(Vector2 direction, int strength, float aim)

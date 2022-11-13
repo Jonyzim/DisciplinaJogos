@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1432a94351c5a46b7eb2d597e541a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCanvas: {fileID: 8568309532539082461}
+  playerCanvas: {fileID: 8568309532539082461}
   PlayerEventSystem: {fileID: 8520809822957558077}
   _HUDPrefab: {fileID: 8600263705661354210, guid: ae61558f8b8aca544a3a4667afa6a6c1, type: 3}
   _characterPrefab:
@@ -423,6 +423,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bd69ee59-9d68-4b08-98da-591a98fb02d4
     m_ActionName: Player/Dash[/Keyboard/shift,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8589076917191964784}
+        m_TargetAssemblyTypeName: MWP.PlayerController, Assembly-CSharp
+        m_MethodName: OnDropWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 471433f4-aa44-4606-95cd-4f456d9405b8
+    m_ActionName: Player/DropWeapon[/Keyboard/h]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player

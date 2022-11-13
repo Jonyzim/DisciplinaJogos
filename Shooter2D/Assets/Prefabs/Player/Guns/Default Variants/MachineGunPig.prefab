@@ -15,9 +15,13 @@ PrefabInstance:
       propertyPath: _storeAmmunition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2120147107106221729, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
+      propertyPath: _interactableReference
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2939160714627083132, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
       propertyPath: m_Name
-      value: BasicMachineGunPig
+      value: MachineGunPig
       objectReference: {fileID: 0}
     - target: {fileID: 7135700896935887514, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
       propertyPath: m_RootOrder
