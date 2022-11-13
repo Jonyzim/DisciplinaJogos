@@ -1,3 +1,4 @@
+using MWP.Misc;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -33,6 +34,10 @@ namespace MWP.GameStates
         }
 
         public GameState CurGameState { get; private set; }
+        
+        public int creditBaseGain;
+
+        public int creditWaveMultiplayer;
 
         private void Awake()
         {
@@ -72,6 +77,11 @@ namespace MWP.GameStates
             return true;
             
 
+        }
+
+        private void AddCredit(int credit)
+        {
+            PlayerCredit += credit;
         }
 
 #if (UNITY_EDITOR)

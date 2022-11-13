@@ -15,7 +15,7 @@ namespace MWP.Buffs
 
         public override void Grant(Character character)
         {
-            character.health += _hpAmount;
+            character.health += character.health;
             character.UpdateHealth(_hpAmount);
 
             character.strength += _strAmount;

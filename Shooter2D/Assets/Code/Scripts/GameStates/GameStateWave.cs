@@ -24,6 +24,7 @@ namespace MWP.GameStates
 
         public override void ExitState()
         {
+            Context.PlayerCredit += (Context.CurWave * Context.creditWaveMultiplayer) + Context.creditBaseGain;
             GameEvents.Instance.WaveEnd();
         }
     }

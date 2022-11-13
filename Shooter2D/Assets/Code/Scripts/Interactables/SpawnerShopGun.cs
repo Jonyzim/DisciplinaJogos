@@ -23,5 +23,10 @@ namespace MWP.Interactables
             _gunInstance = Instantiate(shopGunPrefab, transform);
             _gunInstance.transform.localPosition = Vector3.zero;
         }
+
+        private void OnDestroy()
+        {
+            GameEvents.Instance.OnWaveEnd -= SpawnGun;
+        }
     }
 }
