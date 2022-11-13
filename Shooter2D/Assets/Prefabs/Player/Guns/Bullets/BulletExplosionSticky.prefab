@@ -59,6 +59,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   explosionFx: {fileID: 5907475208971951868, guid: a4f704f14e2a98a4e833623eed598b47, type: 3}
+  _explosionRadius: 2
+  _explosionHitCount: 5
 --- !u!58 &6166765806460756415
 CircleCollider2D:
   m_ObjectHideFlags: 0

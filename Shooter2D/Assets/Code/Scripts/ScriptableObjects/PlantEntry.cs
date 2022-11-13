@@ -1,4 +1,5 @@
 ﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace MWP.ScriptableObjects
@@ -10,8 +11,10 @@ namespace MWP.ScriptableObjects
 
         public string Description;
         public string EffectsDescription;
+        [ShowAssetPreview()]
         public Sprite PreviewImage;
-
+        
+        [ShowAssetPreview()]
         public GameObject PlantPrefab;
         public bool IsEnabled;
     }

@@ -1199,6 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d3aac0b973b7a478d870515700ab5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveMultiplier: 20
   WaveTime: 30
   WaveTimer: 0
   RemainingEnemies: 0

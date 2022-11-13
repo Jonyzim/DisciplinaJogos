@@ -9,8 +9,10 @@ namespace MWP.Interactables
         
         public override void Interact(Character character)
         {
+            if (character.CurHealth == character.health) return;
             character.UpdateHealth(healAmount);
             Destroy(gameObject);
+
         }
 
         public override void Enter()

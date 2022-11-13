@@ -12,7 +12,7 @@ namespace MWP.GameStates
         {
             Context.CurWave++;
 
-            Context.RemainingEnemies = GameManager.WaveMultiplier * Context.CurWave;
+            Context.RemainingEnemies = Context.WaveMultiplier * Context.CurWave;
 
             GameEvents.Instance.WaveBegin();
         }
