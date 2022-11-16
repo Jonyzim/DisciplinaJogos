@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using MWP.Enemies.States;
+using MWP.GameStates;
 using Pathfinding;
 using TMPro;
 using UnityEngine;
@@ -50,7 +51,8 @@ namespace MWP.Enemies
         private EnemyState _curEnemyState;
         [SerializeField] private Color _damageColor = Color.red;
         private EnemyStateFactory _factory;
-        private float _life = 100f;
+        
+        [SerializeField] private float _life = 100f;
         private float _movementSeedX;
         private float _movementSeedY;
         private Transform _scoreCanvas;
@@ -73,7 +75,7 @@ namespace MWP.Enemies
         protected virtual void Start()
         {
             SwitchState(_factory.StateSearch);
-
+            _life *= GameManager.Instance.HpMultiplier;
             _startColor = _spriteRenderer.color;
             _scoreCanvas = GameObject.FindGameObjectWithTag("ScoreCanvas").transform;
         }

@@ -1,3 +1,4 @@
+using MWP.GameStates;
 using MWP.Misc;
 using MWP.UI;
 using UnityEngine;
@@ -10,6 +11,20 @@ namespace MWP
     [DisallowMultipleComponent]
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController[] SActivePlayers { get; } = new PlayerController[4];
+        public static int SActivePlayersCount
+        {
+            get => _sActivePlayersCount;
+            private set
+            {
+                // Could use an event
+                GameManager.Instance.HpMultiplier = value;
+                _sActivePlayersCount = value;
+            }
+        }
+
+        private static int _sActivePlayersCount = 0;
+        
         [FormerlySerializedAs("PlayerCanvas")] public Canvas playerCanvas;
         public MultiplayerEventSystem PlayerEventSystem;
 
@@ -30,7 +45,6 @@ namespace MWP
 
         private PlayerInput _playerInput;
         private int _score;
-        public static PlayerController[] SActivePlayers { get; } = new PlayerController[4];
 
         public Character Pawn => _pawn;
         public int PlayerId { get; private set; }
@@ -45,8 +59,10 @@ namespace MWP
                 {
                     PlayerId = i + 1;
                     SActivePlayers[i] = this;
+                    SActivePlayersCount++;
                     break;
                 }
+            
 
             _playerInput = GetComponent<PlayerInput>();
             GameEvents.Instance.OnSetUiMode += SetInputMode;
@@ -80,6 +96,7 @@ namespace MWP
         {
             _pawn.SetPlayerControlling(null);
             SActivePlayers[PlayerId - 1] = null;
+            SActivePlayersCount--;
         }
 
 

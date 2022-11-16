@@ -6,6 +6,36 @@ namespace MWP.GameStates
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance
+        {
+            get
+            {
+                if (_instance == null) Debug.LogError("GameManager does not exist!");
+                return _instance;
+            }
+        }
+
+        public float HpMultiplier
+        {
+            get => _hpMultiplier;
+            set
+            {
+                _hpMultiplier = value switch
+                {
+                    0 => 1.0f,
+                    1 => 1.0f,
+                    2 => 1.5f,
+                    3 => 2.0f,
+                    4 => 2.5f,
+                    _ => _hpMultiplier
+                };
+
+                ;
+            }
+        }
+        
+        private float _hpMultiplier = 1.0f;
+    
         public int WaveMultiplier = 2;
 
         private static GameManager _instance;
@@ -23,15 +53,6 @@ namespace MWP.GameStates
         public int PlayerCredit;
 
         private GameStateFactory _factory;
-
-        public static GameManager Instance
-        {
-            get
-            {
-                if (_instance == null) Debug.LogError("GameManager does not exist!");
-                return _instance;
-            }
-        }
 
         public GameState CurGameState { get; private set; }
         
