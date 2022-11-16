@@ -31,12 +31,12 @@ MonoBehaviour:
     PreviewImage: {fileID: 5929551374071277255, guid: b0afa0929e5a2ae4b89cf64ec88c329d, type: 3}
     PlantPrefab: {fileID: 4724920955751877498, guid: 03700ba5beda72046a1574d2e99242df, type: 3}
     IsEnabled: 1
-  - Name: Planta 4
+  - Name: "Boc\xE3o"
     Description: Qualquer coisa de teste 1
     EffectsDescription: STR +50
-    PreviewImage: {fileID: 21300000, guid: adb46c868711f1a4a94002bbb5a0767a, type: 3}
-    PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
-    IsEnabled: 0
+    PreviewImage: {fileID: 2002830940033880219, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
+    PlantPrefab: {fileID: 4940103148996634650, guid: 0cfe22698f44b484a9411d21ad1ca87a, type: 3}
+    IsEnabled: 1
   - Name: Planta 5
     Description: Qualquer coisa de teste 1
     EffectsDescription: STR +50

@@ -134,15 +134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70da8f64df4e14944a7a1d2122b51852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoiseIntensity: 0.1
-  IsHovering: 0
-  NoiseSmoothness: 1
+  noiseIntensity: 0.1
+  isHovering: 0
+  noiseSmoothness: 1
   Seeker: {fileID: 2904883661755102755}
   DetectionRadius: 13
   MinHoverDistance: 5
   MaxHoverDistance: 10
   ResetDistance: 15
-  Speed: 3
+  Speed: 5
   AttackDelay: 2
   CharacterLayer:
     serializedVersion: 2
@@ -154,6 +154,7 @@ MonoBehaviour:
   _fxSpeed: 0.05
   _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
   _rigidBody: {fileID: 6243544841356202589}
+  _damageColor: {r: 1, g: 0, b: 0, a: 1}
   _bulletDamage: 10
   _spawnPos:
   - {fileID: 7731906834980180063}
@@ -189,7 +190,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41956
+  m_InstanceId: 42224
 --- !u!50 &6243544841356202589
 Rigidbody2D:
   serializedVersion: 4
