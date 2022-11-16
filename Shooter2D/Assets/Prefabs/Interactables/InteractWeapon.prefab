@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 807771574852445241}
   - component: {fileID: 807771574852445242}
   - component: {fileID: 5263623023686907175}
+  - component: {fileID: 5342517864684887417}
   m_Layer: 2
   m_Name: InteractWeapon
   m_TagString: Untagged
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98887fb3f70c5c0429a6f4f65093085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gun: {fileID: 0}
+  newGun: {fileID: 0}
 --- !u!58 &5263623023686907175
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -61,3 +62,17 @@ CircleCollider2D:
   m_Offset: {x: 0.3, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
+--- !u!114 &5342517864684887417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807771574852445243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1297adde7b6fca49a8338fa71012332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 30
+  playAtStart: 1

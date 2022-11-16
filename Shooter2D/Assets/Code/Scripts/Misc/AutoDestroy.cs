@@ -1,12 +1,25 @@
+using System;
 using UnityEngine;
 
 namespace MWP.Misc
 {
     public class AutoDestroy : MonoBehaviour
     {
-        public void DestroyThis()
+        [SerializeField]
+        private float timeToDestroy;
+
+        [SerializeField]
+        private bool playAtStart;
+
+        private void Start()
         {
-            Destroy(gameObject);
+            if (!playAtStart) return;
+            DestroyThis();
+        }
+
+        private void DestroyThis()
+        {
+            Destroy(gameObject, timeToDestroy);
         }
     }
 }
