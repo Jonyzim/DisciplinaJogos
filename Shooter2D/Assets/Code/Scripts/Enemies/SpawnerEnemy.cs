@@ -1,13 +1,19 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using MWP.GameStates;
+using MWP.Misc;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MWP.Enemies
 {
     [DisallowMultipleComponent]
     public class SpawnerEnemy : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> _enemyPrefabs;
+        private List<GameObject> _enemyPrefabs;
+
+        [SerializeField] private List<EnemyToSpawn> enemiesToSpawn;
 
         public LayerMask SpawnLayer;
 
@@ -24,11 +30,17 @@ namespace MWP.Enemies
         private Camera _camera;
 
 
+        private void Awake()
+        {
+            _enemyPrefabs = new List<GameObject>();
+        }
+
         //Unity Methods
         private void Start()
         {
             _camera = Camera.main;
             _curSpawned = 0;
+            GameEvents.Instance.OnWaveBegin += UpdateEnemyList;
         }
 
         private void Update()
@@ -56,27 +68,28 @@ namespace MWP.Enemies
 
         private void SpawnRandom()
         {
-            if (GameManager.Instance.RemainingEnemies - _curSpawned > 0)
-                if (_curSpawned < _maxConcurrentSpawns)
-                {
-                    _spawnPoints = GetSpawnPoints();
-                    if (_spawnPoints.Count == 0)
-                        return;
+            if (GameManager.Instance.RemainingEnemies - _curSpawned <= 0) return;
+            
+            if (_curSpawned < _maxConcurrentSpawns)
+            {
+                _spawnPoints = GetSpawnPoints();
+                if (_spawnPoints.Count == 0)
+                    return;
 
-                    var nEnemy = _enemyPrefabs.Count;
-                    var randomId = Random.Range(0, nEnemy);
+                var nEnemy = _enemyPrefabs.Count;
+                var randomId = Random.Range(0, nEnemy);
 
-                    var nPos = _spawnPoints.Count;
-                    var randomPos = Random.Range(0, nPos);
+                var nPos = _spawnPoints.Count;
+                var randomPos = Random.Range(0, nPos);
 
-                    var enemy = Instantiate(_enemyPrefabs[randomId], _spawnPoints[randomPos], Quaternion.identity,
-                        transform);
+                var enemy = Instantiate(_enemyPrefabs[randomId], _spawnPoints[randomPos], Quaternion.identity,
+                    transform);
 
-                    var count = enemy.AddComponent<CountEnemiesRemaining>();
-                    count.SetValues(this, enemy.GetComponent<Enemy>());
+                var count = enemy.AddComponent<CountEnemiesRemaining>();
+                count.SetValues(this, enemy.GetComponent<Enemy>());
 
-                    _curSpawned++;
-                }
+                _curSpawned++;
+            }
         }
 
         private List<Vector3> GetSpawnPoints()
@@ -97,6 +110,31 @@ namespace MWP.Enemies
             }
 
             return spawnPoints;
+        }
+
+        private void UpdateEnemyList()
+        {
+            var removeList = new List<EnemyToSpawn>();
+            foreach (var enemyToSpawn in enemiesToSpawn)
+            {
+                if (enemyToSpawn.spawnWave != GameManager.Instance.CurWave) continue;
+                
+                _enemyPrefabs.Add(enemyToSpawn.enemyPrefab);
+                removeList.Add(enemyToSpawn);
+            }
+            
+            foreach(var enemyToRemove in removeList)
+            {
+                enemiesToSpawn.Remove(enemyToRemove);
+            }
+            
+        }
+        
+        [Serializable]
+        private struct EnemyToSpawn
+        {
+            public GameObject enemyPrefab;
+            public int spawnWave;
         }
     }
 }
