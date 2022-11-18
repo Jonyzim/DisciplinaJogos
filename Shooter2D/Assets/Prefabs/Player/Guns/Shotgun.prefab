@@ -134,7 +134,7 @@ MonoBehaviour:
   Rof: 1.4
   Spread: 20
   _damage: 10
-  _reloadTime: 2
+  _reloadTime: 1
   _clip: 2
   _maxAmmo: 30
   ShotSfxEvent:
