@@ -60,7 +60,7 @@ MonoBehaviour:
   speed: 100
   interactableCorpsePrefab: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
   spriteRenderer: {fileID: 504088864667602001}
-  animator: {fileID: 2626590838529693321}
+  animator: {fileID: 0}
   fxSpeed: 0.1
   startColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
@@ -121,7 +121,6 @@ GameObject:
   m_Component:
   - component: {fileID: 504088864667602002}
   - component: {fileID: 504088864667602001}
-  - component: {fileID: 2626590838529693321}
   m_Layer: 7
   m_Name: body
   m_TagString: Untagged
@@ -194,25 +193,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!95 &2626590838529693321
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504088864667602003}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 655834ea515d0e84eac6a62aa1de168a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5762517024328712885
 GameObject:
   m_ObjectHideFlags: 0
