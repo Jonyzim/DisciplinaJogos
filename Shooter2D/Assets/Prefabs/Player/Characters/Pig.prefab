@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: _defaultGun
       value: 
       objectReference: {fileID: 7282108179147153252, guid: a8ac012288644014585140d315bb16bb, type: 3}
+    - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: interactableCorpsePrefab
+      value: 
+      objectReference: {fileID: 2166771036542900181, guid: 6faf522edd7659a48b60adc89d23bf8c, type: 3}
     - target: {fileID: 504088863901828089, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: m_RootOrder
       value: 0
