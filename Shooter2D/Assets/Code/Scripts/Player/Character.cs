@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MWP.Buffs;
@@ -45,13 +46,12 @@ namespace MWP
         private readonly List<Interactable> _interactableList = new List<Interactable>();
 
         private readonly Dictionary<int, Buff> _buffList = new Dictionary<int, Buff>();
+
+        private bool _canMove;
+
         
-
-
-        //Dash
         private bool _canDash = true;
-
-        //Methods
+        
         private Coroutine _damageFx;
         private bool _isDashing;
 
@@ -80,6 +80,7 @@ namespace MWP
             gunInstance.Pick(this);
 
             Buff.OnRemove += RemoveBuff;
+            EnableMovement();
         }
 
         private void Update()
@@ -159,6 +160,7 @@ namespace MWP
 
         public void Fire(Vector2 direction)
         {
+            if (!_canMove) return;
             equippedGun.Fire(direction, strength, aim);
         }
 
@@ -180,6 +182,7 @@ namespace MWP
 
         public void Move(Vector2 velocity)
         {
+            if (!_canMove) return;
             var bodyVelocity = velocity * (BaseSpeed * (speed / 100f));
             if(animator!=null)
             animator.SetBool("isWalking", bodyVelocity.magnitude > 0.01f);
@@ -188,6 +191,8 @@ namespace MWP
 
         public void ControlRotation(Vector2 direction)
         {
+            if (!_canMove) return;
+            
             float angle;
             if (direction.x > 0) // virado pra direita
             {
@@ -265,6 +270,17 @@ namespace MWP
             interactable.Exit();
             _interactableList.Remove(interactable);
             UpdateInteractableList();
+        }
+
+        public void DisableMovement()
+        {
+            _canMove = false;
+            ReleaseFire();
+        }
+
+        public void EnableMovement()
+        {
+            _canMove = true;
         }
 
         private void UpdateInteractableList()

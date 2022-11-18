@@ -5,7 +5,7 @@ namespace MWP.Interactables
     public abstract class Interactable : MonoBehaviour
     {
         public static readonly int UseOutline = Shader.PropertyToID("_UseOutline");
-        
+
         //Unity Methods
         protected virtual void Start()
         {
