@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 3144236226717994073}
+    - target: {fileID: 504088863901828088, guid: 083db0159aacf864da15ebed05ca058f, type: 3}
       propertyPath: _defaultGun
       value: 
       objectReference: {fileID: 7243846588970380157, guid: 74a55187764b5c941949be10b40937f8, type: 3}
