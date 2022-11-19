@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace MWP.Interactables
 {
@@ -8,16 +9,18 @@ namespace MWP.Interactables
     {
         [FormerlySerializedAs("Corpse")] public Character corpse;
         [SerializeField] private SpriteRenderer spriteRenderer;
-        private const float TimeToRevive = 5.0f;
+        private const float TimeToRevive = 3.0f;
         private float _curTimer;
         private bool _isInteracting;
         private Character _interactingCharacter;
+        [SerializeField] private Image reviveWheelImage;
         
 
         public void Initialize(Character character)
         {
             corpse = character;
             corpse.transform.parent = transform;
+            reviveWheelImage.fillAmount = 0;
         }
 
 
@@ -64,6 +67,8 @@ namespace MWP.Interactables
 
         private void Update()
         {
+            reviveWheelImage.fillAmount = _curTimer / TimeToRevive;
+            
             if (!_isInteracting) return;
             
             _curTimer += Time.deltaTime;
