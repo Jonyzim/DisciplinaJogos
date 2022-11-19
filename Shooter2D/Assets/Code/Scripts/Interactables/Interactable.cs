@@ -6,6 +6,8 @@ namespace MWP.Interactables
     {
         public static readonly int UseOutline = Shader.PropertyToID("_UseOutline");
 
+        private int _triggerCount = 0;
+        
         //Unity Methods
         protected virtual void Start()
         {
@@ -27,8 +29,23 @@ namespace MWP.Interactables
         public abstract void Interact(Character character);
 
 
-        public abstract void Enter();
-        public abstract void Exit();
+        public virtual void Enter()
+        {
+            _triggerCount++;
+            if (_triggerCount > 1)
+            {
+                return;
+            }
+        }
+
+        public virtual void Exit()
+        {
+            _triggerCount--;
+            if (_triggerCount > 0)
+            {
+                return;
+            }
+        }
 
         protected virtual void DestroyThis(Character character)
         {

@@ -81,6 +81,7 @@ namespace MWP.Interactables
 
         public override void Enter()
         {
+            base.Enter();
             if (_plant != null && _plant.IsFullyGrown)
             {
                 _plant.Glow();
@@ -94,6 +95,7 @@ namespace MWP.Interactables
 
         public override void Exit()
         {
+            base.Exit();
             if (_plant != null && _plant.IsFullyGrown)
             {
                 _plant.UnGlow();

@@ -26,6 +26,7 @@ namespace MWP.Interactables
 
         public override void Enter()
         {
+            base.Enter();
             if (_plantInstance == null) return;
             if (_plantInstance.IsFullyGrown)
             {
@@ -36,6 +37,7 @@ namespace MWP.Interactables
 
         public override void Exit()
         {
+            base.Exit();
             if (_plantInstance == null) return;
             if (_plantInstance.IsFullyGrown)
             {

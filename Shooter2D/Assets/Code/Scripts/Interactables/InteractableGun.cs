@@ -21,11 +21,13 @@ namespace MWP.Interactables
 
         public override void Enter()
         {
+            base.Enter();
             newGun.GetComponent<SpriteRenderer>().material.SetInt(UseOutline, 1);
         }
 
         public override void Exit()
         {
+            base.Exit();
             newGun.GetComponent<SpriteRenderer>().material.SetInt(UseOutline, 0);
         }
     }

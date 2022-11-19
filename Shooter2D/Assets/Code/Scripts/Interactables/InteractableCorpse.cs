@@ -57,11 +57,13 @@ namespace MWP.Interactables
 
         public override void Enter()
         {
+            base.Enter();
             spriteRenderer.material.SetInt(UseOutline, 1);
         }
 
         public override void Exit()
         {
+            base.Exit();
             spriteRenderer.material.SetInt(UseOutline, 0);
         }
 
