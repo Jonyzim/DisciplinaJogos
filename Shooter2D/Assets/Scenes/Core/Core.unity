@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveMultiplier: 2
-  WaveTime: 15
+  WaveTime: 5
   WaveTimer: 0
   RemainingEnemies: 0
   CanStartWave: 0
