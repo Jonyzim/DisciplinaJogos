@@ -16,6 +16,10 @@ PrefabInstance:
       value: -320876
       objectReference: {fileID: 0}
     - target: {fileID: 3067518553725361490, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}
+      propertyPath: AttackDelay
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067518553725361490, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}
       propertyPath: _bulletDamage
       value: 40
       objectReference: {fileID: 0}
@@ -77,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7896280902895642943, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}
       propertyPath: m_Name
-      value: EnemyTiroCabecudo2x
+      value: EnemyTiroCabecudo2x Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}

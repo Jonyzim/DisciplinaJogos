@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 991689593206066307, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
+      propertyPath: AttackDelay
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 991689593206066307, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
       propertyPath: _bulletDamage
       value: 40
       objectReference: {fileID: 0}
@@ -69,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387442135610702062, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
       propertyPath: m_Name
-      value: EnemyTiroFour2x
+      value: EnemyTiroFour2x Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5387442135610702063, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
       propertyPath: m_Color.b

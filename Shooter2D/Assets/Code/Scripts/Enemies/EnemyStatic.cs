@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace MWP.Enemies
@@ -14,6 +15,14 @@ namespace MWP.Enemies
 
         public override void Attack()
         {
+            StartCoroutine(nameof(Explode));
+        }
+
+        private IEnumerator Explode()
+        {
+            var oldSpeed = Speed;
+            Speed = 0;
+            yield return new WaitForSeconds(1);
             var pos = gameObject.transform.position;
             var charactersHit = Physics2D.OverlapCircleAll(pos, attackRange, characterLayer);
             Instantiate(explosionFx, pos, Quaternion.identity);
@@ -23,6 +32,8 @@ namespace MWP.Enemies
                 var character = characterCollider.GetComponentInParent<Character>();
                 if (character != null) character.UpdateHealth(-damage);
             }
+
+            Speed = oldSpeed;
         }
     }
 }

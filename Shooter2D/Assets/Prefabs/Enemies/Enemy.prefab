@@ -110,7 +110,7 @@ MonoBehaviour:
   MaxHoverDistance: 4
   ResetDistance: 15
   Speed: 7
-  AttackDelay: 5
+  AttackDelay: 3
   CharacterLayer:
     serializedVersion: 2
     m_Bits: 128

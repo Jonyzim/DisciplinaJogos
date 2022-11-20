@@ -8,6 +8,11 @@ namespace MWP.Enemies.States
         {
         }
 
+        public override void StartState()
+        {
+            base.StartState();
+            Context.CurAttackTimer = Context.AttackDelay;
+        }
 
         public override void UpdateState()
         {
