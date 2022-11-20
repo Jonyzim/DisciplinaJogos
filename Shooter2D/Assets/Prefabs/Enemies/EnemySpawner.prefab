@@ -53,7 +53,23 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 5387442135610702062, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
     spawnWave: 5
   - enemyPrefab: {fileID: 7896280902895642943, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}
-    spawnWave: 6
+    spawnWave: 7
+  - enemyPrefab: {fileID: 945628911882657531, guid: 5bffc222688ea5c41bab6adf4e8eeb42, type: 3}
+    spawnWave: 8
+  - enemyPrefab: {fileID: 1854797661421364182, guid: 29aac8e773e16934a8b247e70fa94b85, type: 3}
+    spawnWave: 9
+  - enemyPrefab: {fileID: 5879365473068418143, guid: 313b673d9860d564ca9bccab23bb5a3d, type: 3}
+    spawnWave: 10
+  - enemyPrefab: {fileID: 7993158550111455421, guid: 92efe486b81d90e489cfa54877449f13, type: 3}
+    spawnWave: 12
+  - enemyPrefab: {fileID: 8199770463623198534, guid: dfaf149726a821c49b36e1e4aa296e00, type: 3}
+    spawnWave: 13
+  - enemyPrefab: {fileID: 3775771232728096300, guid: a363fac0a810a4e4c803e8371dddf847, type: 3}
+    spawnWave: 14
+  - enemyPrefab: {fileID: 4580111994510790705, guid: e6e254477b1fa254591ac9852529db60, type: 3}
+    spawnWave: 15
+  - enemyPrefab: {fileID: 3456306037462329300, guid: 7e1d21608c7031f4a88269be9a905f1a, type: 3}
+    spawnWave: 17
   SpawnLayer:
     serializedVersion: 2
     m_Bits: 64
