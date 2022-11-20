@@ -1,33 +1,28 @@
+using UnityEngine;
+
 namespace MWP.Enemies
 {
     public class EnemyStatic : Enemy
     {
-        // [SerializeField] private Vector3 _speed = new Vector3(0.1f, 0, 0);
-        // [SerializeField] private bool _randomSpeed = false;
+        [SerializeField] private float attackRange;
 
-        // //Unity Methods
-        // protected void OnTriggerEnter2D(Collider2D collision)
-        // {
-        //     // base.OnTriggerEnter2D(collision);
-        //     if (collision.CompareTag("Wall"))
-        //     {
-        //         _speed = -_speed;
-        //     }
-        // }
+        [SerializeField] private LayerMask characterLayer;
+        [SerializeField] private GameObject explosionFx;
 
-        // protected override void Start()
-        // {
-        //     base.Start();
-        //     if (_randomSpeed)
-        //     {
-        //         float _x = Random.Range(-0.02f, 0.02f);
-        //         float _y = Random.Range(-0.02f, 0.02f);
-        //         _speed = new Vector3(_x, _y, 0);
-        //     }
-        // }
+        [SerializeField] private int damage;
+        
 
         public override void Attack()
         {
+            var pos = gameObject.transform.position;
+            var charactersHit = Physics2D.OverlapCircleAll(pos, attackRange, characterLayer);
+            Instantiate(explosionFx, pos, Quaternion.identity);
+            
+            foreach (var characterCollider in charactersHit)
+            {
+                var character = characterCollider.GetComponentInParent<Character>();
+                if (character != null) character.UpdateHealth(-damage);
+            }
         }
     }
 }
