@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace MWP.ScriptableObjects
 {
-    public class PlantSelectionButton : Button, ISelectHandler, IPointerEnterHandler
+    public class PlantSelectionButton : Button
     {
         public PlantEntry PlantInfo;
 

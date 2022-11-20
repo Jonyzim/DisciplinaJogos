@@ -15,6 +15,7 @@ MonoBehaviour:
   uniqueId: 1
   isInfinite: 0
   timer: 120
+  Owner: {fileID: 0}
   _hpAmount: 0
   _strAmount: 0
   _aimAmount: 0
