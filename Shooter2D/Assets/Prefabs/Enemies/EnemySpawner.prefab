@@ -48,6 +48,12 @@ MonoBehaviour:
     spawnWave: 1
   - enemyPrefab: {fileID: 3985792614583299562, guid: 8e067e4d7bf26c846bcb2c075cadd391, type: 3}
     spawnWave: 2
+  - enemyPrefab: {fileID: 5037750512632393701, guid: c2bb0b2f911acf14884b609b37386ad5, type: 3}
+    spawnWave: 3
+  - enemyPrefab: {fileID: 5387442135610702062, guid: 89c7427a5fa180b4bad2bc6e6db29316, type: 3}
+    spawnWave: 5
+  - enemyPrefab: {fileID: 7896280902895642943, guid: fbfba1e439f5f2940bdccbff6ceac2c7, type: 3}
+    spawnWave: 6
   SpawnLayer:
     serializedVersion: 2
     m_Bits: 64
