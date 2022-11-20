@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6942611892731161075}
   - component: {fileID: 6942611892731161074}
   - component: {fileID: 6942611892731161077}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlantSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 2
   isInfinite: 0
-  timer: 0
+  timer: 120
   _hpAmount: 50
   _strAmount: 0
   _aimAmount: 0

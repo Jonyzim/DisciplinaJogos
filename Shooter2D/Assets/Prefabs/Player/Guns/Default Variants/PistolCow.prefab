@@ -60,6 +60,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8779821647893196902, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
+      propertyPath: _maxAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779821647893196902, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
       propertyPath: _storeAmmunition
       value: 0
       objectReference: {fileID: 0}

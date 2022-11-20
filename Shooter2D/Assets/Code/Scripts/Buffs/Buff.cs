@@ -13,7 +13,7 @@ namespace MWP.Buffs
 
         [FormerlySerializedAs("_isInfinite")] [SerializeField] private bool isInfinite;
 
-        [FormerlySerializedAs("_timer")] [SerializeField] [HideIf("_isInfinite")]
+        [FormerlySerializedAs("_timer")] [SerializeField]
         private float timer;
 
         public int UniqueId => uniqueId;

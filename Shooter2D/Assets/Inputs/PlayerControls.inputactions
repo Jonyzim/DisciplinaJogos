@@ -190,7 +190,7 @@
                 {
                     "name": "",
                     "id": "7e852e32-a9df-47a5-9df8-d3d77f34b205",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -311,7 +311,18 @@
                 {
                     "name": "",
                     "id": "be33d590-2e6e-47a3-b41c-e4cbc6d0bd08",
-                    "path": "<Keyboard>/h",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e462b4df-058e-4de3-82d4-6dd99fe878eb",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -498,6 +509,17 @@
                     "name": "",
                     "id": "2acf1ddf-4561-4dfc-b4c9-cdd27953b402",
                     "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da3c4f48-018e-4cdc-8338-18fd1b907f86",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

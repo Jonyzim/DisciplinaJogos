@@ -24,9 +24,9 @@ namespace MWP.GameStates
                 {
                     0 => 1.0f,
                     1 => 1.0f,
-                    2 => 1.5f,
-                    3 => 2.0f,
-                    4 => 2.5f,
+                    2 => 1.0f,
+                    3 => 1.2f,
+                    4 => 1.4f,
                     _ => _hpMultiplier
                 };
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d08b112b5edb6b409b56f9ae293bf3a, type: 3}
   m_Name: RageBuff1
   m_EditorClassIdentifier: 
-  uniqueId: 0
+  uniqueId: 3
   isInfinite: 0
-  timer: 0
+  timer: 120
   _hpAmount: -50
   _strAmount: 50
   _aimAmount: 0

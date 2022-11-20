@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d08b112b5edb6b409b56f9ae293bf3a, type: 3}
   m_Name: SpdBuff
   m_EditorClassIdentifier: 
-  _uniqueId: 1
-  _isInfinite: 0
-  _timer: 0
+  uniqueId: 1
+  isInfinite: 0
+  timer: 120
   _hpAmount: 0
   _strAmount: 0
   _aimAmount: 0
