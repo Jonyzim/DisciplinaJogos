@@ -156,7 +156,7 @@ MonoBehaviour:
   _rigidBody: {fileID: 6243544841356202589}
   _damageColor: {r: 1, g: 0, b: 0, a: 1}
   _life: 100
-  _bulletDamage: 60
+  _bulletDamage: 20
   _spawnPos:
   - {fileID: 7731906834980180063}
   - {fileID: 3748086707159983543}
@@ -191,7 +191,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: 42224
+  m_InstanceId: 57698
 --- !u!50 &6243544841356202589
 Rigidbody2D:
   serializedVersion: 4

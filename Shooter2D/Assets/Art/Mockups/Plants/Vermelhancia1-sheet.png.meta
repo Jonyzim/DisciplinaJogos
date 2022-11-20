@@ -118,9 +118,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.029411765}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -136,12 +136,12 @@ TextureImporter:
       name: Vermelhancia1-sheet_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 0
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 33
+        height: 34
+      alignment: 9
+      pivot: {x: 0.4848485, y: 0.029411765}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,12 +157,12 @@ TextureImporter:
       name: Vermelhancia1-sheet_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 0
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 34
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.029411765}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
