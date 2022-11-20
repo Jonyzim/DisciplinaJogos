@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{21d8ac39-48f0-48e2-a1fb-4d5678913451}">
+		<property name="assetPath">
+			<value>SFX/fart.aiff</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.54222916666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8374a2ab-1b2c-425c-bfa9-1e3f39751e77}</destination>
+		</relationship>
+	</object>
+</objects>

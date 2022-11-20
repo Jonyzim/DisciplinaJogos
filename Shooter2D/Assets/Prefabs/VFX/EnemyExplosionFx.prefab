@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2380291610955612093
 Transform:
   m_ObjectHideFlags: 0
@@ -46,11 +46,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 231119067
-      Data2: 1143607116
-      Data3: 347298196
-      Data4: 1337022340
-    Path: event:/Weapons/Explosion
+      Data1: -1886503564
+      Data2: 1168901776
+      Data3: -1614017113
+      Data4: 2102873154
+    Path: event:/Enemies/EnemyFart
   Event: 
   PlayEvent: 1
   StopEvent: 2
