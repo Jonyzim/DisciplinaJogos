@@ -15,7 +15,7 @@ MonoBehaviour:
   uniqueId: 0
   isInfinite: 0
   timer: 0
-  _hpAmount: 0
-  _strAmount: 0
+  _hpAmount: -50
+  _strAmount: 50
   _aimAmount: 0
   _spdAmount: 0
