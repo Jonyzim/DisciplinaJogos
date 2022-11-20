@@ -219,6 +219,7 @@ namespace MWP
 
         public void AddBuff(Buff buff)
         {
+            buff.Owner = this;
             if (!_buffList.ContainsKey(buff.UniqueId))
             {
                 buff.Grant();

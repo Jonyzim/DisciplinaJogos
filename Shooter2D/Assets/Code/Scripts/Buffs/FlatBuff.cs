@@ -15,7 +15,7 @@ namespace MWP.Buffs
 
         public override void Grant()
         {
-            Owner.health += Owner.health;
+            Owner.health += _hpAmount;
             Owner.UpdateHealth(_hpAmount);
 
             Owner.strength += _strAmount;
