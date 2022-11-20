@@ -13,13 +13,11 @@ namespace MWP.Buffs
 
         [FormerlySerializedAs("_isInfinite")] [SerializeField] private bool isInfinite;
 
-        [FormerlySerializedAs("_timer")] [SerializeField]
+        [FormerlySerializedAs("_timer")] [SerializeField] [HideIf("isInfinite")]
         private float timer;
 
+        [HideInInspector] public Character Owner;
         public int UniqueId => uniqueId;
-
-
-        public static event Action<Buff> OnRemove;
 
         public void UpdateBuff(float deltaTime)
         {
@@ -31,13 +29,13 @@ namespace MWP.Buffs
             if (!(timer <= 0)) return;
             
             // Debug.Log("Remove buff");
-            OnRemove?.Invoke(this);
+            Owner.RemoveBuff(this);
             Destroy(this);
         }
 
 
-        public abstract void Grant(Character character);
+        public abstract void Grant();
 
-        public abstract void Remove(Character character);
+        public abstract void Remove();
     }
 }

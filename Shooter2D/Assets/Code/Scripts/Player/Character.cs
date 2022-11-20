@@ -80,8 +80,7 @@ namespace MWP
             
             var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
             gunInstance.Pick(this);
-
-            Buff.OnRemove += RemoveBuff;
+            
             EnableMovement();
         }
 
@@ -222,7 +221,7 @@ namespace MWP
         {
             if (!_buffList.ContainsKey(buff.UniqueId))
             {
-                buff.Grant(this);
+                buff.Grant();
                 _buffList.Add(buff.UniqueId, buff);
                 return;
             }
@@ -232,7 +231,7 @@ namespace MWP
 
         public void RemoveBuff(Buff buff)
         {
-            buff.Remove(this);
+            buff.Remove();
             _buffList.Remove(buff.UniqueId);
         }
 

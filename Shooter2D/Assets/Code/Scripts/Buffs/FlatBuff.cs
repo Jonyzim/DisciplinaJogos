@@ -13,24 +13,24 @@ namespace MWP.Buffs
 
         [SerializeField] private int _spdAmount;
 
-        public override void Grant(Character character)
+        public override void Grant()
         {
-            character.health += character.health;
-            character.UpdateHealth(_hpAmount);
+            Owner.health += Owner.health;
+            Owner.UpdateHealth(_hpAmount);
 
-            character.strength += _strAmount;
-            character.aim += _aimAmount;
-            character.speed += _spdAmount;
+            Owner.strength += _strAmount;
+            Owner.aim += _aimAmount;
+            Owner.speed += _spdAmount;
         }
 
-        public override void Remove(Character character)
+        public override void Remove()
         {
-            character.health -= _hpAmount;
-            character.UpdateHealth();
+            Owner.health -= _hpAmount;
+            Owner.UpdateHealth();
 
-            character.strength -= _strAmount;
-            character.aim -= _aimAmount;
-            character.speed -= _spdAmount;
+            Owner.strength -= _strAmount;
+            Owner.aim -= _aimAmount;
+            Owner.speed -= _spdAmount;
         }
     }
 }
