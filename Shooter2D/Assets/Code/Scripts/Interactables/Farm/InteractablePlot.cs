@@ -18,6 +18,8 @@ namespace MWP.Interactables
         private Plant _plant;
         [SerializeField] private Sprite[] groundSprites;
         private bool _isWatered = false;
+        [SerializeField] private GameObject plantFx;
+        [SerializeField] private GameObject waterFx;
 
         // TODO: Quando no teclado não rega(?)
         public override void Interact(Character character)
@@ -44,6 +46,7 @@ namespace MWP.Interactables
                 {
                     if (!_isWatered)
                     {
+                        Instantiate(waterFx, transform);
                         _plant.WaterPlant();
                         defaultRenderer.sprite = groundSprites[1];
                         _isWatered = true;
@@ -65,8 +68,10 @@ namespace MWP.Interactables
         {
             if (plantPrefab != null)
             {
+                Instantiate(plantFx,transform);
                 var plantObject = Instantiate(plantPrefab, transform);
                 _plant = plantObject.GetComponent<Plant>();
+
             }
 
             _isLocked = false;

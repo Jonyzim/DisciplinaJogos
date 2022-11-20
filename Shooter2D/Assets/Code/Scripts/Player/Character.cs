@@ -7,6 +7,7 @@ using MWP.Interactables;
 using MWP.Misc;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Events;
 
 namespace MWP
 {
@@ -54,7 +55,7 @@ namespace MWP
         
         private Coroutine _damageFx;
         private bool _isDashing;
-
+        [SerializeField] UnityEvent damageEvent;
         public int CurHealth
         {
             get => _curHealth;
@@ -146,6 +147,7 @@ namespace MWP
             _curHealth += value;
             if (_damageFx != null)
                 StopCoroutine(_damageFx);
+            damageEvent.Invoke();
             _damageFx = StartCoroutine(DamageFx());
             if (_curHealth > health) _curHealth = health;
 

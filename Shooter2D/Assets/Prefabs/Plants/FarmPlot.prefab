@@ -151,6 +151,8 @@ MonoBehaviour:
   groundSprites:
   - {fileID: 21300000, guid: 6f88a620fe6f52b42a3e87bbe8db8200, type: 3}
   - {fileID: 21300000, guid: d03762b614b56fe4db7b5e5540f573aa, type: 3}
+  plantFx: {fileID: 5941398804333921897, guid: 2d8623cb32876a2449c8d03fd7a475cc, type: 3}
+  waterFx: {fileID: 1048267378967706154, guid: 49dd6fad9f24d3e489be9c1d5b4328e0, type: 3}
 --- !u!212 &8505358314903055160
 SpriteRenderer:
   m_ObjectHideFlags: 0
