@@ -82,6 +82,8 @@ namespace MWP
             gunInstance.Pick(this);
             
             EnableMovement();
+            
+            transform.position = PlayerController.SActivePlayers[0].Pawn.transform.position;
         }
 
         private void Update()
