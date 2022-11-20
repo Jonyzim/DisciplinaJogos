@@ -33,7 +33,7 @@ MonoBehaviour:
     IsEnabled: 1
   - Name: "Boc\xE3o"
     Description: Qualquer coisa de teste 1
-    EffectsDescription: STR +50
+    EffectsDescription: STR +50 \n HP -50
     PreviewImage: {fileID: 2002830940033880219, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
     PlantPrefab: {fileID: 4940103148996634650, guid: 0cfe22698f44b484a9411d21ad1ca87a, type: 3}
     IsEnabled: 1

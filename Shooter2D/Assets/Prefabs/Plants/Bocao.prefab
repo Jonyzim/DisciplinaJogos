@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 472488577680674614, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
   - {fileID: 2002830940033880219, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
   plantRenderer: {fileID: 5314655864463325497}
-  buff: {fileID: 11400000, guid: 9594b909597944d468c07e15c4375f0b, type: 2}
+  buff: {fileID: 11400000, guid: 7f08ba858aec7b4438cf5cecc074cb82, type: 2}
 --- !u!212 &5314655864463325497
 SpriteRenderer:
   m_ObjectHideFlags: 0

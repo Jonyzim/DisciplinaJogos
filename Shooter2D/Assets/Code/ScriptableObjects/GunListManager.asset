@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunList:
   - GunPrefab: {fileID: 3098353581014689407, guid: ad9d7b058e41693439c147d687e6815f, type: 3}
-    Price: 10
+    Price: 150
     IsAvailable: 1
   - GunPrefab: {fileID: 2939160714627083132, guid: a52dc34091814204ea9945ed337f59ff, type: 3}
-    Price: 10
+    Price: 150
     IsAvailable: 1
   - GunPrefab: {fileID: 1720661398340679343, guid: 792d96dee7a5563428101634b8c56263, type: 3}
-    Price: 10
+    Price: 150
     IsAvailable: 1
   - GunPrefab: {fileID: 7774268563185631068, guid: 6350c2055769f9348bfc6a0fc1b87fef, type: 3}
-    Price: 10
+    Price: 150
     IsAvailable: 1
   - GunPrefab: {fileID: 1720661398340679343, guid: b4d9c314dd342bf4f9f605dd2be48222, type: 3}
-    Price: 35
+    Price: 350
     IsAvailable: 1
   - GunPrefab: {fileID: 1720661398340679343, guid: dcc681fce23244d49a18e42211b03080, type: 3}
-    Price: 35
+    Price: 250
     IsAvailable: 1
   - GunPrefab: {fileID: 1720661398340679343, guid: e08e1eda3afdd3d45ac112b8be35a6f0, type: 3}
-    Price: 35
+    Price: 300
     IsAvailable: 1
