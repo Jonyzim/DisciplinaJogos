@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6371102700354100447}
   - component: {fileID: 7373799879527116971}
   - component: {fileID: 2782954769245714593}
-  - component: {fileID: 1521681566283715081}
   - component: {fileID: 2691148463424046939}
   m_Layer: 8
   m_Name: Enemy
@@ -107,8 +106,8 @@ MonoBehaviour:
   noiseSmoothness: 1
   Seeker: {fileID: 2782954769245714593}
   DetectionRadius: 13
-  MinHoverDistance: 3
-  MaxHoverDistance: 7
+  MinHoverDistance: 1
+  MaxHoverDistance: 4
   ResetDistance: 15
   Speed: 7
   AttackDelay: 5
@@ -123,6 +122,13 @@ MonoBehaviour:
   _scoreViewPrefab: {fileID: 8847933786509121587, guid: e512c9c134163bc4c962303c4eb5567f, type: 3}
   _rigidBody: {fileID: 6371102700354100447}
   _damageColor: {r: 1, g: 0, b: 0, a: 1}
+  _life: 100
+  attackRange: 4
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  explosionFx: {fileID: 5907475208971951868, guid: a4f704f14e2a98a4e833623eed598b47, type: 3}
+  damage: 30
 --- !u!114 &6672506089872805760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +156,7 @@ MonoBehaviour:
   - {x: -0.46555614, y: 0.46976852, z: 0}
   m_ShapePathHash: -1296545891
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43234
+  m_InstanceId: 57190
 --- !u!50 &6371102700354100447
 Rigidbody2D:
   serializedVersion: 4
@@ -226,19 +232,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &1521681566283715081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152129265690600296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb291513dd25f8468de5ee7c41e67f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!95 &2691148463424046939
 Animator:
   serializedVersion: 3

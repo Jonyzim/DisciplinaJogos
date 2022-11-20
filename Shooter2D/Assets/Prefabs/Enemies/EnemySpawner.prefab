@@ -75,4 +75,6 @@ MonoBehaviour:
     m_Bits: 64
   _spawnRadius: 35
   _spawnDelay: 0.5
-  _maxConcurrentSpawns: 20
+  baseConcurrentSpawns: 5
+  maxConcurrentSpawns: 20
+  scalingConcurrentSpawns: 2

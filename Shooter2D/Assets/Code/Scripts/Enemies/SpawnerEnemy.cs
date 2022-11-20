@@ -20,8 +20,11 @@ namespace MWP.Enemies
         [SerializeField] private float _spawnRadius;
 
         [SerializeField] private float _spawnDelay;
-
-        [SerializeField] private int _maxConcurrentSpawns;
+    
+        [Header("Concurrent Spawn Parameters")]
+        [SerializeField] private int baseConcurrentSpawns;
+        [SerializeField] private int maxConcurrentSpawns;
+        [SerializeField] private int scalingConcurrentSpawns;
 
         private int _curSpawned;
 
@@ -38,9 +41,20 @@ namespace MWP.Enemies
         //Unity Methods
         private void Start()
         {
+            
             _camera = Camera.main;
             _curSpawned = 0;
             GameEvents.Instance.OnWaveBegin += UpdateEnemyList;
+            GameEvents.Instance.OnWaveEnd += UpdateConcurrentSpawns;
+        }
+
+        private void UpdateConcurrentSpawns()
+        {
+            baseConcurrentSpawns += scalingConcurrentSpawns;
+            if (baseConcurrentSpawns >= maxConcurrentSpawns)
+            {
+                baseConcurrentSpawns = maxConcurrentSpawns;
+            }
         }
 
         private void Update()
@@ -70,7 +84,7 @@ namespace MWP.Enemies
         {
             if (GameManager.Instance.RemainingEnemies - _curSpawned <= 0) return;
             
-            if (_curSpawned < _maxConcurrentSpawns)
+            if (_curSpawned < baseConcurrentSpawns)
             {
                 _spawnPoints = GetSpawnPoints();
                 if (_spawnPoints.Count == 0)
