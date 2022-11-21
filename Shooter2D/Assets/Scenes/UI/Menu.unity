@@ -552,16 +552,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072141981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f360417d90b4602409241106e19a9741, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BgmEvent:
+  CollisionTag: 
+  EventReference:
     Guid:
       Data1: 596285973
       Data2: 1082055943
       Data3: -1816422225
       Data4: 1440257663
     Path: event:/BGM/MilkyWayPunksMenu
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &1072141983
 Transform:
   m_ObjectHideFlags: 0
@@ -915,9 +926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a53f164e8d58a42855c3d3360fb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioManager: {fileID: 11400000, guid: 389d316f496950944bba1eea17f6c895, type: 2}
-  Loop: 1
-  MixerGroup: {fileID: -7827476955612365313, guid: 0c9c0c04ebaaf78449accf116ace5075, type: 2}
 --- !u!1 &1249518226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,8 +1043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1292018639}
   mapManager: {fileID: 11400000, guid: d66a13d673b89914580155908ec32506, type: 2}
-  startMap: MapaJony
-  endlessMap: MapaDeTeste
+  startMap: SpaceShip
+  endlessMap: SpaceShip
 --- !u!1 &1278226188
 GameObject:
   m_ObjectHideFlags: 0

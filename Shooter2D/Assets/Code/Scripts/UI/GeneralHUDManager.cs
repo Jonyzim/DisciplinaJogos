@@ -17,6 +17,7 @@ namespace MWP.UI
         [SerializeField] private TMP_Text _enemiesRemainingText;
 
         private TimeSpan _waveTimeSpan;
+        [SerializeField] private GameObject gameOverScreen;
 
         private void Start()
         {
@@ -37,7 +38,10 @@ namespace MWP.UI
 
             _enemiesRemainingText.text = GameManager.Instance.RemainingEnemies.ToString();
         }
-
+        public void ShowGameOverScreen()
+        {
+            gameOverScreen.SetActive(true);
+        }
         private void ShowWaveUI()
         {
             _waveTimerText.enabled = true;

@@ -1,6 +1,6 @@
 using MWP.ScriptableObjects;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace MWP.UI
 {
     public class MenuButtonManager : MonoBehaviour
@@ -15,6 +15,7 @@ namespace MWP.UI
         private void Start()
         {
             Cursor.visible = true;
+            if(menuPanel!=null)
             menuPanel.SetActive(false);
         }
 
@@ -28,7 +29,10 @@ namespace MWP.UI
         {
             mapManager.LoadMap(endlessMap);
         }
-
+        public void LoadSceneByName(string name)
+        {
+            SceneManager.LoadScene(name);
+        }
         public void QuitGame()
         {
             Debug.Log("Quit Game");
