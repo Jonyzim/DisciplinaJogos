@@ -17,6 +17,8 @@ namespace MWP.UI
             Cursor.visible = true;
             if(menuPanel!=null)
             menuPanel.SetActive(false);
+            if (Time.timeScale != 1f)
+                Time.timeScale = 1f;
         }
 
 
