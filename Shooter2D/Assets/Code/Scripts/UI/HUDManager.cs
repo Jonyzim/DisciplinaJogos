@@ -2,6 +2,7 @@ using MWP.Misc;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace MWP.UI
 {
@@ -14,7 +15,8 @@ namespace MWP.UI
         public TMP_Text ScoreText;
         public TMP_Text AmmoText;
         public int Score;
-
+        [SerializeField] private Image IconImage;
+        [SerializeField] private List<Sprite> characterIcons;
         [SerializeField] private Image HealthBarSprite;
         [SerializeField] private GameObject _pauseMenu;
         private bool _thisPlayerPaused;
@@ -35,11 +37,24 @@ namespace MWP.UI
         }
 
         //Methods
-        public void SetupHUD(int id)
+        public void SetupHUD(int id,string character)
         {
             Id = id;
             var rectTransform = GetComponent<RectTransform>();
+            if (character=="Cow")
+            {
+                IconImage.sprite = characterIcons[0];
+            }else if (character == "Pig")
+            {
+                IconImage.sprite = characterIcons[1];
+            }else if (character == "Sheep")
+            {
+                IconImage.sprite = characterIcons[2];
+            }else if (character == "Bull")
+            {
+                IconImage.sprite = characterIcons[3];
 
+            }
             switch (Id)
             {
                 case 1:

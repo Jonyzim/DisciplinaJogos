@@ -68,7 +68,7 @@ namespace MWP
             GameEvents.Instance.OnSetUiMode += SetInputMode;
 
 
-            Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(PlayerId);
+            Instantiate(_HUDPrefab).GetComponentInChildren<HUDManager>().SetupHUD(PlayerId, _characterPrefab[PlayerId - 1].name);
 
 
             //TODO: Change to character selection instead
