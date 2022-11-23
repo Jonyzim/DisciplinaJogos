@@ -36,8 +36,10 @@ namespace MWP.GameStates
         
         private float _hpMultiplier = 1.0f;
     
-        public int WaveMultiplier = 2;
+        public int WaveMultiplier;
 
+        public GameObject EndScreen;
+        
         private static GameManager _instance;
 
         public float WaveTime;
@@ -51,6 +53,9 @@ namespace MWP.GameStates
         [HideInInspector] public int CurWave;
 
         public int PlayerCredit;
+
+        [HideInInspector]
+        public int CharactersAlive;
 
         private GameStateFactory _factory;
 
@@ -104,6 +109,17 @@ namespace MWP.GameStates
         {
             PlayerCredit += credit;
         }
+
+
+        public void AddCharacter()
+        {
+            CharactersAlive++;
+        }
+        public void KilLCharacter()
+        {
+            CharactersAlive--;
+        }
+            
 
 #if (UNITY_EDITOR)
         [Button]

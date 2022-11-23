@@ -1150,12 +1150,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveMultiplier: 3
-  WaveTime: 30
+  EndScreen: {fileID: 2323268645050941700, guid: dab2cc760f271004f882820e3dc542f1, type: 3}
+  WaveTime: 3
   WaveTimer: 0
   RemainingEnemies: 0
   CanStartWave: 0
   CurWave: 0
   PlayerCredit: 100
+  CharactersAlive: 0
   creditBaseGain: 75
   creditWaveMultiplayer: 25
 --- !u!4 &1679318776

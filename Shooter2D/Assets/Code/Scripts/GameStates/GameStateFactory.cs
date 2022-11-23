@@ -16,7 +16,8 @@ namespace MWP.GameStates
             {
                 { "IdleState", null },
                 { "WaveState", null },
-                { "PausedState", null }
+                { "PausedState", null },
+                { "EndState", null }
             };
         }
 
@@ -33,6 +34,11 @@ namespace MWP.GameStates
         public GameState StatePaused
         {
             get { return _cache["PausedState"] ??= new GameStatePaused(_context, this); }
+        }
+
+        public GameState StateEnd
+        {
+            get { return _cache["EndState"] ??= new GameStateEnd(_context, this); }
         }
     }
 }

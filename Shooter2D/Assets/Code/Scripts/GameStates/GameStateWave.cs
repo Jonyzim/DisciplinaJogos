@@ -20,6 +20,7 @@ namespace MWP.GameStates
         public override void UpdateState()
         {
             if (Context.RemainingEnemies <= 0) Context.SwitchState(Factory.StateIdle);
+            if (Context.CharactersAlive <= 0) Context.SwitchState(Factory.StateEnd);
         }
 
         public override void ExitState()

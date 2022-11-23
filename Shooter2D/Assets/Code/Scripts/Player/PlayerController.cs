@@ -46,6 +46,8 @@ namespace MWP
         private PlayerInput _playerInput;
         private int _score;
 
+        public int Score => _score;
+
         public Character Pawn => _pawn;
         public int PlayerId { get; private set; }
 
@@ -53,6 +55,14 @@ namespace MWP
         private void Start()
         {
             _cam = Camera.main;
+            
+            GameEvents.Instance.OnScoreUpdate += (int id, int value) =>
+            {
+                if (id == this.PlayerId)
+                {
+                    _score += value;
+                }
+            };
 
             for (var i = 0; i < 4; i++)
                 if (SActivePlayers[i] == null)

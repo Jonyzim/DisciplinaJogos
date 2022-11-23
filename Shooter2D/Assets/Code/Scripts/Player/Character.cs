@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MWP.Buffs;
+using MWP.GameStates;
 using MWP.Guns;
 using MWP.Interactables;
 using MWP.Misc;
@@ -73,6 +74,8 @@ namespace MWP
         public int OwnerId { get; private set; }
 
         //------------------------------------ Unity Methods --------------------------------------------
+        
+        
         private void Start()
         {
             _curHealth = health;
@@ -80,6 +83,7 @@ namespace MWP
             
             var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
             gunInstance.Pick(this);
+            GameManager.Instance.AddCharacter();
             
             EnableMovement();
             
@@ -244,7 +248,9 @@ namespace MWP
                 .GetComponent<InteractableCorpse>();
 
             interactableCorpse.Initialize(this);
-
+            
+            GameManager.Instance.KilLCharacter();
+            
             gameObject.SetActive(false);
         }
 
