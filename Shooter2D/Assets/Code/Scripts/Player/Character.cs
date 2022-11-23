@@ -166,6 +166,7 @@ namespace MWP
             if (_curHealth <= 0)
             {
                 _curHealth = 0;
+                StopAllCoroutines();
                 Kill();
             }
 
