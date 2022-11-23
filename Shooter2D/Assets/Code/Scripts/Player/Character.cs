@@ -127,7 +127,6 @@ namespace MWP
             if (_interactableList.Count != 0)
             {
                 _interactableList[0].Interact(this);
-                _body.velocity = Vector2.zero;
             }
         }
 
