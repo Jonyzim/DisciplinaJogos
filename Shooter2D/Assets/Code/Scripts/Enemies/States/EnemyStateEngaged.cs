@@ -29,13 +29,13 @@ namespace MWP.Enemies.States
             Vector2 targetPos = Context.Target.transform.position;
             var distanceToTarget = Vector2.Distance(targetPos, Context.gameObject.transform.position);
 
-            if (distanceToTarget > Context.ResetDistance)
+            if (distanceToTarget > Context.ResetDistance || !Context.Target.activeSelf)
             {
                 Context.isHovering = false;
                 Context.SwitchState(Factory.StateSearch);
             }
 
-            if (distanceToTarget > Context.MaxHoverDistance)
+            else if (distanceToTarget > Context.MaxHoverDistance)
             {
                 FollowPath();
                 if (CurAstarTimer <= 0)
