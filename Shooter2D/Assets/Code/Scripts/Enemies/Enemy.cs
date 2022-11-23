@@ -114,18 +114,21 @@ namespace MWP.Enemies
         public virtual bool TakeDamage(Vector3? pos, float damage)
         {
             if (IsDead) return false;
-
             var position = pos ?? transform.position;
 
             Instantiate(HitFxPrefab, position, Quaternion.identity);
             StartCoroutine(DamageFx());
             var damageCaused = Mathf.Min(_life, damage);
             _life -= damage;
-            var scorePos = transform.position;
-            scorePos.y += 1f;
-            var score = Instantiate(_scoreViewPrefab, scorePos, Quaternion.identity, _scoreCanvas);
 
-            score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
+            if (_scoreViewPrefab != null)
+            {
+
+                var scorePos = transform.position;
+                scorePos.y += 1f;
+                var score = Instantiate(_scoreViewPrefab, scorePos, Quaternion.identity, _scoreCanvas);
+                score.GetComponentInChildren<TMP_Text>().text = damageCaused.ToString();
+            }
 
             if (_life <= 0)
             {
