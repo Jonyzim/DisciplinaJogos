@@ -222,6 +222,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cfc3796f-b987-4a45-af79-b65c64c1c3b7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d25e56c1-4e58-4fe4-abac-5ef6423838d5",
                     "path": "<Keyboard>/r",
                     "interactions": "",

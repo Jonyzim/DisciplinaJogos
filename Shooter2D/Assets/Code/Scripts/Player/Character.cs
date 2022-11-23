@@ -125,7 +125,10 @@ namespace MWP
         public void Interact(int id)
         {
             if (_interactableList.Count != 0)
+            {
                 _interactableList[0].Interact(this);
+                _body.velocity = Vector2.zero;
+            }
         }
 
         private IEnumerator ChangeColorFx(Color initial, Color final)

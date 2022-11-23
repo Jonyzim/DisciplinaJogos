@@ -2251,15 +2251,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333293248974, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 91.72
+      value: 181.96
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333293248974, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 13.72
+      value: 13.735
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333293248974, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -261.96
+      value: -243.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124987333293248975, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
+      propertyPath: m_Text
+      value: Use F key to interact with objects, R key to reload, Q to drop guns,
+        shift to dash and t to turn light off/on
       objectReference: {fileID: 0}
     - target: {fileID: 4124987333293248975, guid: 6c174012b6cb47041bb3653e5252d5ae, type: 3}
       propertyPath: m_FontData.m_Font

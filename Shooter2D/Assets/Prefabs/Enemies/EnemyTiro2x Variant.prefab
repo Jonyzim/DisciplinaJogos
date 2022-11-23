@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.70980394
       objectReference: {fileID: 0}
+    - target: {fileID: 3985792614583299563, guid: 8e067e4d7bf26c846bcb2c075cadd391, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3985792614583299565, guid: 8e067e4d7bf26c846bcb2c075cadd391, type: 3}
       propertyPath: m_RootOrder
       value: 0

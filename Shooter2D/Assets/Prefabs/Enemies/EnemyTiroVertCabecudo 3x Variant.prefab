@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6317663427956792942, guid: 6cbfe70ae19de924283481ef3bcb6a9b, type: 3}
       propertyPath: m_Name
-      value: EnemyTiroVertCabecudo 3x
+      value: EnemyTiroVertCabecudo 3x Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6317663427956792943, guid: 6cbfe70ae19de924283481ef3bcb6a9b, type: 3}
       propertyPath: m_Color.b

@@ -13,39 +13,27 @@ MonoBehaviour:
   m_Name: PlantListManager
   m_EditorClassIdentifier: 
   PlantList:
-  - Name: Sambambaia
+  - Name: Sambambaya
     Description: Qualquer coisa de teste 1
     EffectsDescription: '+20 STR '
     PreviewImage: {fileID: 21300000, guid: ca90450bbc659984fbc94199ca338394, type: 3}
     PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
     IsEnabled: 1
-  - Name: "Vermelh\xE2ncia"
+  - Name: Vermelancia
     Description: Qualquer coisa de teste 2
     EffectsDescription: +50 HP
     PreviewImage: {fileID: 3152015382633929253, guid: ca8b6f1763afea644aa77e9e785f243f, type: 3}
     PlantPrefab: {fileID: 748838398245871572, guid: 9165391f53b3639418f83615c9ec40dd, type: 3}
     IsEnabled: 1
-  - Name: Girassou
+  - Name: Girasgiras
     Description: Qualquer coisa de teste 3
     EffectsDescription: '+50 SPD '
     PreviewImage: {fileID: 5929551374071277255, guid: b0afa0929e5a2ae4b89cf64ec88c329d, type: 3}
     PlantPrefab: {fileID: 4724920955751877498, guid: 03700ba5beda72046a1574d2e99242df, type: 3}
     IsEnabled: 1
-  - Name: "Boc\xE3o"
+  - Name: Bocudo
     Description: Qualquer coisa de teste 1
     EffectsDescription: STR +50 HP -50
     PreviewImage: {fileID: 2002830940033880219, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
     PlantPrefab: {fileID: 4940103148996634650, guid: 0cfe22698f44b484a9411d21ad1ca87a, type: 3}
     IsEnabled: 1
-  - Name: Planta 5
-    Description: Qualquer coisa de teste 1
-    EffectsDescription: STR +50
-    PreviewImage: {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
-    PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
-    IsEnabled: 0
-  - Name: Planta 6
-    Description: Qualquer coisa de teste 1
-    EffectsDescription: STR +50
-    PreviewImage: {fileID: 21300000, guid: 392c4478559dcde47bc8818ff9c5b4af, type: 3}
-    PlantPrefab: {fileID: 2634231487495600747, guid: 9d3d729ec6b9e9e48b228161b91e29a6, type: 3}
-    IsEnabled: 0

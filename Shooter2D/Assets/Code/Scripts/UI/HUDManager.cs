@@ -123,7 +123,7 @@ namespace MWP.UI
 
         private void PauseGame(int id)
         {
-            if (Id == id)
+            if (Id == id && id==1)
             {
                 if (!s_IsPaused)
                 {
@@ -140,6 +140,14 @@ namespace MWP.UI
                     _thisPlayerPaused = false;
                 }
             }
+        }
+        public void ClosePause()
+        {
+
+            Time.timeScale = 1f;
+            _pauseMenu.SetActive(false);
+            s_IsPaused = false;
+            _thisPlayerPaused = false;
         }
 
         private void AddScore(int id, int n)
