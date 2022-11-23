@@ -813,7 +813,7 @@ namespace FMODUnity
 #if !UNITY_EDITOR
                 if (!string.IsNullOrEmpty(Settings.Instance.TargetSubFolder))
                 {
-                    bankFolder = RuntimeUtils.GetCommonPlatformPath(Path.Combine(bankFolder, Settings.Instance.TargetSubFolder));
+                    bankFolder = RuntimeUtils.GetCommonPlatformPath(System.IO.Path.Combine(bankFolder, Settings.Instance.TargetSubFolder));
                 }
 #endif
 

@@ -9,15 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/Menu.unity
     guid: e97744d92b612494eac542d0b3542146
   - enabled: 1
-    path: Assets/Scenes/TestMaps/SampleMap.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Maps/SpaceShip.unity
     guid: f1c87831ea97a6746ae8fe06b2efca5d
   - enabled: 1
     path: Assets/Scenes/Core/Core.unity
     guid: e6a34e95f19edf4418b042900262676d
-  - enabled: 1
-    path: Assets/Scenes/TestMaps/Jony.unity
-    guid: 9759a9a6346c4e646b812463073bd832
   m_configObjects: {}
