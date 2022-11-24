@@ -1,4 +1,5 @@
 using System;
+using MWP.GameStates;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -50,6 +51,7 @@ namespace MWP.Interactables
             corpse.gameObject.SetActive(true);
             corpse.transform.parent = null;
             corpse.CurHealth = 20;
+            GameManager.Instance.AddCharacter();
 
             DestroyThis(character);
         }
