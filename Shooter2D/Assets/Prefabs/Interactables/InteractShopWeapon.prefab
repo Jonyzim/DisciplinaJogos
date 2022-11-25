@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2018291674118206227}
   - component: {fileID: 8236961724002406939}
   - component: {fileID: 5417998648147434117}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BoxImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001667134995066087}
   - component: {fileID: 5747952956533158132}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Floating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 6213190731475091406}
   - component: {fileID: 8458755656773040393}
   - component: {fileID: 642355193848178809}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 4328773849647778914}
   - component: {fileID: 6664268300083780862}
   - component: {fileID: 7024802601656303214}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 1139301994659635562}
   - component: {fileID: 2590251799511246601}
   - component: {fileID: 5186609798891289605}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6781624544694257969}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PriceBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 7901006980651322950}
   - component: {fileID: 7901006980651322951}
   - component: {fileID: 7789210059659897898}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: InteractShopWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,11 +500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e80758f2fe45fa4fa4539bec59f6512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewGun: {fileID: 0}
-  _gunListManager: {fileID: 11400000, guid: 05e764b8907ca0d42b713200c7c185ae, type: 2}
+  newGun: {fileID: 0}
+  gunListManager: {fileID: 11400000, guid: 05e764b8907ca0d42b713200c7c185ae, type: 2}
   priceText: {fileID: 7024802601656303214}
-  _priceBox: {fileID: 7618236882875465829}
-  _iconBox: {fileID: 7394853644076015035}
+  priceBox: {fileID: 7618236882875465829}
+  iconBox: {fileID: 7394853644076015035}
 --- !u!58 &7789210059659897898
 CircleCollider2D:
   m_ObjectHideFlags: 0
