@@ -66,7 +66,7 @@ namespace MWP.Interactables
 
         private void SetPlant(GameObject plantPrefab)
         {
-            if (plantPrefab != null)
+            if (plantPrefab != null && _plant == null)
             {
                 Instantiate(plantFx,transform);
                 var plantObject = Instantiate(plantPrefab, transform);
