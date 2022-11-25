@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6578037451689888445}
   - component: {fileID: 3033945839792844171}
   - component: {fileID: 8505358314903055160}
-  - component: {fileID: 7128648126867884960}
+  - component: {fileID: 4102044229343768222}
   m_Layer: 2
   m_Name: FarmPlot
   m_TagString: Untagged
@@ -204,8 +204,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!61 &7128648126867884960
-BoxCollider2D:
+--- !u!58 &4102044229343768222
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -218,15 +218,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 1
