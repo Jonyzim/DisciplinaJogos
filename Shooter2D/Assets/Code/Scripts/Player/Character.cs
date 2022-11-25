@@ -19,6 +19,8 @@ namespace MWP
         [SerializeField] private float dashCooldown;
         [SerializeField] private TrailRenderer trail;
 
+        public GameObject weaponSlot;
+        
         [SerializeField] private float dashPower;
 
         [SerializeField] private float dashTime = 0.1f;

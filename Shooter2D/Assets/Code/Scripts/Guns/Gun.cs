@@ -71,8 +71,8 @@ namespace MWP.Guns
             
             character.PickWeapon(this, defaultFlag);
             
-            transf.parent = character.gameObject.transform;
-            transf.localPosition = Vector3.zero;
+            transf.parent = character.weaponSlot.transform;
+            transf.localPosition = new Vector3(0, 0.75f, 0);
             transf.localScale = Vector3.one;
             
             GameEvents.Instance.PickWeapon(_ownerId, _magazineSprite, _backgroundSprite);
