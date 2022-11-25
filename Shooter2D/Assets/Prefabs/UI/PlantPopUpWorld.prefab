@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2.7261047}
+  m_AnchoredPosition: {x: 0, y: -2.7260742}
   m_SizeDelta: {x: 0, y: -5.4522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6839238502597197822
@@ -125,7 +125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.15, y: 296.2739}
+  m_AnchoredPosition: {x: -9.15, y: 537.2739}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8887184507382419427
@@ -687,9 +687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Escolha uma planta
-
-'
+  m_text: Choose a plant
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 363cc69ba85873b45b2425ce4cecaf6c, type: 2}
   m_sharedMaterial: {fileID: 3839770018401479416, guid: 363cc69ba85873b45b2425ce4cecaf6c, type: 2}
