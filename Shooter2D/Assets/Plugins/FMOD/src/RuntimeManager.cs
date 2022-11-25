@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-
+using System.Collections;
 #if UNITY_ADDRESSABLES_EXIST
 using UnityEngine.AddressableAssets;
 #endif
