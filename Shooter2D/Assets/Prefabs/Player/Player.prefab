@@ -225,9 +225,9 @@ MonoBehaviour:
   PlayerEventSystem: {fileID: 8520809822957558077}
   _HUDPrefab: {fileID: 8600263705661354210, guid: ae61558f8b8aca544a3a4667afa6a6c1, type: 3}
   _characterPrefab:
+  - {fileID: 6166942393867221984, guid: a459eaa20b18b8c428c6aefd672fe677, type: 3}
   - {fileID: 5920281237807834607, guid: 7bdf1751f12b9c845b0ff34fd6a992f4, type: 3}
   - {fileID: 4675349809066727412, guid: 9f137bc36c0f0f246a4591dae3d675e6, type: 3}
-  - {fileID: 6166942393867221984, guid: a459eaa20b18b8c428c6aefd672fe677, type: 3}
   - {fileID: 1038257187066757836, guid: 18509276e80c5b645a6a53f5c9240180, type: 3}
   _pawn: {fileID: 0}
 --- !u!114 &8589076917191964790

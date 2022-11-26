@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2219099369803377064, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3358821086999997903, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -59,9 +63,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6808387862699273520, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
       propertyPath: m_Name
       value: CorpseCow Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077367845851201902, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67a1b9c9d2edd624dab56b8bab2e436d, type: 3}

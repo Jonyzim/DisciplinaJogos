@@ -4944,5 +4944,5 @@ MonoBehaviour:
   _reach: 30
   _hitLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2049
   _particles: {fileID: 6449976476276772354}
