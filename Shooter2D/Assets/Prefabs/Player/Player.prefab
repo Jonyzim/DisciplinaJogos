@@ -74,7 +74,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: -6284195003911884674, guid: 8b05586f8bf3f3444ad8cfcef5188836, type: 3}
   m_TrackedDevicePositionAction: {fileID: -7966065644827176130, guid: 8b05586f8bf3f3444ad8cfcef5188836, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7479150850690108255, guid: 8b05586f8bf3f3444ad8cfcef5188836, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1 &6416487421848645488
 GameObject:
