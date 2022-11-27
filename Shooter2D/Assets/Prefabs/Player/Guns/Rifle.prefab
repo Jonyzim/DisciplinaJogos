@@ -135,7 +135,7 @@ MonoBehaviour:
   Spread: 0.5
   _damage: 80
   _reloadTime: 2.5
-  _clip: 4
+  _clip: 5
   _maxAmmo: 40
   ShotSfxEvent:
     Guid:

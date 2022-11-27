@@ -135,7 +135,7 @@ MonoBehaviour:
   _flashLight: {fileID: 9012900671052290817}
   Rof: 20
   Spread: 0
-  _damage: 4
+  _damage: 7
   _reloadTime: 1
   _clip: 200
   _maxAmmo: 1000
