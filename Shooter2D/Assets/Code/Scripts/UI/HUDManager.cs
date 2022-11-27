@@ -141,6 +141,8 @@ namespace MWP.UI
 
         private void AddBuff(int id, Buff buff)
         {
+            if (Id != id) return;
+            
             var instance = Instantiate(buffIconPrefab, buffGrid.transform).GetComponent<HUDBuffIconManager>();
             instance.Initialize(buff);
         }
