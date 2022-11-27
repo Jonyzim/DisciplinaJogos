@@ -11,7 +11,6 @@ namespace MWP.Interactables
     {
         [SerializeField] private SpriteRenderer defaultRenderer;
         [FormerlySerializedAs("_plantSelectionPopup")] [SerializeField] private GameObject plantSelectionPopup;
-        [SerializeField] private Transform canvas;
         private int _interactingId = -1;
         private bool _isLocked;
 
@@ -31,11 +30,9 @@ namespace MWP.Interactables
                 _isLocked = true;
                 _interactingId = character.OwnerId;
 
-                //PlantGridLayoutManager popupManager = Instantiate(_plantSelectionPopup, Player.s_ActivePlayers[id - 1].PlayerCanvas.transform).GetComponent<PlantGridLayoutManager>();
-
-                var popupManager = Instantiate(plantSelectionPopup, canvas).GetComponent<PlantGridLayoutManager>();
-                PlayerController.SActivePlayers[_interactingId - 1].PlayerEventSystem.playerRoot =
-                    canvas.gameObject;
+                var popupManager = Instantiate(plantSelectionPopup, PlayerController.SActivePlayers[_interactingId - 1].playerCanvas.transform).
+                    GetComponent<PlantGridLayoutManager>();
+                
                 popupManager.OnChoosePlant += SetPlant;
                 popupManager.Initialize(_interactingId);
             }

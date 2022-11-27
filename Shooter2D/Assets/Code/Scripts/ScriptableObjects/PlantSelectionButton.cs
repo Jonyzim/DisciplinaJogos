@@ -8,23 +8,18 @@ namespace MWP.ScriptableObjects
     {
         public PlantEntry PlantInfo;
 
-        public override void OnPointerEnter(PointerEventData eventData)
-        {
-            Select();
-        }
-
         public override void OnSelect(BaseEventData eventData)
         {
             // TODO: Fix reference later
+            SelectPlant();
+        }
+
+        private void SelectPlant()
+        {
             GetComponentInParent<PlantGridLayoutManager>().ChangePlantDisplay(gameObject, PlantInfo);
         }
 
-        public override void OnSubmit(BaseEventData eventData)
-        {
-            GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
-        }
-
-        public override void OnPointerClick(PointerEventData eventData)
+        public void ClickPlant()
         {
             GetComponentInParent<PlantGridLayoutManager>().ChoosePlant(PlantInfo.PlantPrefab);
         }

@@ -21,6 +21,34 @@ namespace MWP.UI
 
         public void Initialize(int id)
         {
+            var rectTransform = GetComponent<RectTransform>();
+            var width = rectTransform.rect.width;
+            var height = rectTransform.rect.height;
+            switch (id)
+            {
+                case 1:
+                    rectTransform.anchorMin = new Vector2(0, 1);
+                    rectTransform.anchorMax = new Vector2(0, 1);
+                    rectTransform.anchoredPosition = new Vector2(width/2, -height/2);
+                    break;
+                case 2:
+                    rectTransform.anchorMin = new Vector2(1, 1);
+                    rectTransform.anchorMax = new Vector2(1, 1);
+                    rectTransform.anchoredPosition = new Vector2(-width/2, -height/2);
+                    break;
+
+                case 3:
+                    rectTransform.anchorMin = new Vector2(0, 0);
+                    rectTransform.anchorMax = new Vector2(0, 0);
+                    rectTransform.anchoredPosition = new Vector2(width/2, height/2);
+                    break;
+                case 4:
+                    rectTransform.anchorMin = new Vector2(1, 0);
+                    rectTransform.anchorMax = new Vector2(1, 0);
+                    rectTransform.anchoredPosition = new Vector2(-width/2, height/2);
+                    break;
+            }
+            
             OwnerId = id;
             GameEvents.Instance.SetUiMode(OwnerId, true);
 
@@ -61,9 +89,6 @@ namespace MWP.UI
         {
             if (OnChoosePlant != null) OnChoosePlant(plantPrefab);
             
-            //Dirty Fix
-            PlayerController.SActivePlayers[OwnerId - 1].PlayerEventSystem.playerRoot =
-                PlayerController.SActivePlayers[OwnerId - 1].playerCanvas.gameObject;
             GameEvents.Instance.SetUiMode(OwnerId, false);
             Destroy(gameObject);
         }
