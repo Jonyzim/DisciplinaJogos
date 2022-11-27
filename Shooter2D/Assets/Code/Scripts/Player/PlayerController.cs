@@ -4,6 +4,7 @@ using MWP.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
 
 namespace MWP
@@ -24,6 +25,8 @@ namespace MWP
         }
 
         private static int _sActivePlayersCount = 0;
+
+        public GameObject _pausePrefab;
         
         [FormerlySerializedAs("PlayerCanvas")] public Canvas playerCanvas;
         public MultiplayerEventSystem PlayerEventSystem;
@@ -127,7 +130,11 @@ namespace MWP
 
         public void OnPause(InputAction.CallbackContext context)
         {
-            if (context.performed) GameEvents.Instance.Pause(PlayerId);
+            if (!context.performed) return;
+            
+            GameEvents.Instance.Pause(PlayerId);
+            var pauseInstance = Instantiate(_pausePrefab, playerCanvas.transform).GetComponent<PauseManager>();
+            pauseInstance.Initialize(this);
         }
 
         public void OnFire(InputAction.CallbackContext context)

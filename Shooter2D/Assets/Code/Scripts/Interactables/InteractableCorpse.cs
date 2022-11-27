@@ -34,10 +34,9 @@ namespace MWP.Interactables
                 character.DisableMovement();
                 _curTimer = 0;
                 _interactingCharacter = character;
-
             }
             
-            else
+            else if(_interactingCharacter == character)
             {
                 _isInteracting = false;
                 character.EnableMovement();

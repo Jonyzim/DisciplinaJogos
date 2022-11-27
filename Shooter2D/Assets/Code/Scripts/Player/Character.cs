@@ -297,6 +297,7 @@ namespace MWP
         public void DisableMovement()
         {
             _canMove = false;
+            Move(Vector2.zero);
             ReleaseFire();
         }
 

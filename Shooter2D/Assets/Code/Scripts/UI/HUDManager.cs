@@ -1,3 +1,4 @@
+using System;
 using MWP.Misc;
 using TMPro;
 using UnityEngine;
@@ -33,11 +34,10 @@ namespace MWP.UI
             GameEvents.Instance.OnReloadUpdate += UpdateReload;
             GameEvents.Instance.OnAmmoUpdate += UpdateAmmo;
             GameEvents.Instance.OnScoreUpdate += AddScore;
-            GameEvents.Instance.OnPause += PauseGame;
         }
 
         //Methods
-        public void SetupHUD(int id,string character)
+        public void SetupHUD(int id, string character)
         {
             Id = id;
             var rectTransform = GetComponent<RectTransform>();
@@ -121,35 +121,6 @@ namespace MWP.UI
             }
         }
 
-        private void PauseGame(int id)
-        {
-            if (Id == id && id==1)
-            {
-                if (!s_IsPaused)
-                {
-                    Time.timeScale = 0f;
-                    _pauseMenu.SetActive(true);
-                    s_IsPaused = true;
-                    _thisPlayerPaused = true;
-                }
-                else
-                {
-                    Time.timeScale = 1f;
-                    _pauseMenu.SetActive(false);
-                    s_IsPaused = false;
-                    _thisPlayerPaused = false;
-                }
-            }
-        }
-        public void ClosePause()
-        {
-
-            Time.timeScale = 1f;
-            _pauseMenu.SetActive(false);
-            s_IsPaused = false;
-            _thisPlayerPaused = false;
-        }
-
         private void AddScore(int id, int n)
         {
             if (Id == id)
@@ -157,6 +128,16 @@ namespace MWP.UI
                 Score += n;
                 ScoreText.text = Score.ToString().PadLeft(10, '0');
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.Instance.OnPickWeapon -= ChangeClip;
+            GameEvents.Instance.OnClipUpdate -= UpdateClip;
+            GameEvents.Instance.OnHealthUpdate -= UpdateHealth;
+            GameEvents.Instance.OnReloadUpdate -= UpdateReload;
+            GameEvents.Instance.OnAmmoUpdate -= UpdateAmmo;
+            GameEvents.Instance.OnScoreUpdate -= AddScore;
         }
     }
 }
