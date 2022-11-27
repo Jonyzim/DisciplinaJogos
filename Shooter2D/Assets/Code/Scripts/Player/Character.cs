@@ -6,6 +6,7 @@ using MWP.GameStates;
 using MWP.Guns;
 using MWP.Interactables;
 using MWP.Misc;
+using MWP.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Events;
@@ -204,7 +205,7 @@ namespace MWP
             if (!_canMove) return;
             var bodyVelocity = velocity * (BaseSpeed * (speed / 100f));
             if(animator!=null)
-            animator.SetBool("isWalking", bodyVelocity.magnitude > 0.01f);
+                animator.SetBool("isWalking", bodyVelocity.magnitude > 0.01f);
             _body.velocity = bodyVelocity;
         }
 
@@ -231,13 +232,18 @@ namespace MWP
         public void AddBuff(Buff buff)
         {
             buff.Owner = this;
-            if (!_buffList.ContainsKey(buff.UniqueId))
+            Buff oldBuff;
+            
+            if (!_buffList.TryGetValue(buff.UniqueId, out oldBuff))
             {
                 buff.Grant();
                 _buffList.Add(buff.UniqueId, buff);
+                GameEvents.Instance.BuffUpdate(OwnerId, buff);
                 return;
             }
 
+            // Refreshes buff
+            oldBuff.CurTimer = oldBuff.Timer;
             Destroy(buff);
         }
 

@@ -44,6 +44,7 @@ namespace MWP.Interactables
 
         public void Use(Character character)
         {
+            Debug.Log("PLANT USED");
             character.AddBuff(Instantiate(buff));
             Destroy(gameObject);
         }

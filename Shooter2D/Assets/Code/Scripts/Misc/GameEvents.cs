@@ -1,4 +1,5 @@
 using System;
+using MWP.Buffs;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -95,6 +96,14 @@ namespace MWP.Misc
         public void AmmoUpdate(int id, uint curAmmo, uint maxAmmo)
         {
             OnAmmoUpdate?.Invoke(id, curAmmo, maxAmmo);
+        }
+
+        public event Action<int, Buff> OnBuffUpdate;
+        
+        public void BuffUpdate(int id, Buff buff)
+        {
+            Debug.Log("BUFF CREATED");
+            OnBuffUpdate?.Invoke(id, buff);
         }
     }
 }

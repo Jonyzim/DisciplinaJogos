@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using MWP.Buffs;
 
 namespace MWP.UI
 {
@@ -21,7 +22,14 @@ namespace MWP.UI
         [SerializeField] private Image HealthBarSprite;
         [SerializeField] private GameObject _pauseMenu;
         private bool _thisPlayerPaused;
+        
+        [Header("Buff List Variables")]
+        [SerializeField] private GridLayoutGroup buffGrid;
+
+        [SerializeField] private GameObject buffIconPrefab;
+        
         public static bool s_IsPaused { get; private set; }
+        
 
 
         //Unity Methods
@@ -34,6 +42,7 @@ namespace MWP.UI
             GameEvents.Instance.OnReloadUpdate += UpdateReload;
             GameEvents.Instance.OnAmmoUpdate += UpdateAmmo;
             GameEvents.Instance.OnScoreUpdate += AddScore;
+            GameEvents.Instance.OnBuffUpdate += AddBuff;
         }
 
         //Methods
@@ -130,6 +139,13 @@ namespace MWP.UI
             }
         }
 
+        private void AddBuff(int id, Buff buff)
+        {
+            var instance = Instantiate(buffIconPrefab, buffGrid.transform).GetComponent<HUDBuffIconManager>();
+            instance.Initialize(buff);
+        }
+
+
         private void OnDestroy()
         {
             GameEvents.Instance.OnPickWeapon -= ChangeClip;
@@ -138,6 +154,7 @@ namespace MWP.UI
             GameEvents.Instance.OnReloadUpdate -= UpdateReload;
             GameEvents.Instance.OnAmmoUpdate -= UpdateAmmo;
             GameEvents.Instance.OnScoreUpdate -= AddScore;
+            GameEvents.Instance.OnBuffUpdate -= AddBuff;
         }
     }
 }
