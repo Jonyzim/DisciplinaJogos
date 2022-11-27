@@ -29,8 +29,8 @@ namespace MWP.Misc
                 _offset = targetGroup.gameObject.transform.position - _cam.gameObject.transform.position;
             //TODO: Add offset for singleplayer controller aiming
             else
-                _offset =
-                    (_cam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - new Vector3(0.5f, 0.5f, 0f)) * 2;
+                //_offset =
+                //    (_cam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - new Vector3(0.5f, 0.5f, 0f)) * 2;
 
             if (PlayerController.SActivePlayers[0] == null) return;
             _offset = Vector2.Min(_offset, maxOffsetAmount);
