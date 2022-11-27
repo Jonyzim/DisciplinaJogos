@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SpdBuff
   m_EditorClassIdentifier: 
   uniqueId: 1
+  buffIcon: {fileID: 5929551374071277255, guid: b0afa0929e5a2ae4b89cf64ec88c329d, type: 3}
   isInfinite: 0
   timer: 120
   Owner: {fileID: 0}

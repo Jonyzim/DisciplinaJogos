@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: HpBuff
   m_EditorClassIdentifier: 
   uniqueId: 2
+  buffIcon: {fileID: 3152015382633929253, guid: ca8b6f1763afea644aa77e9e785f243f, type: 3}
   isInfinite: 0
   timer: 120
+  Owner: {fileID: 0}
   _hpAmount: 50
   _strAmount: 0
   _aimAmount: 0

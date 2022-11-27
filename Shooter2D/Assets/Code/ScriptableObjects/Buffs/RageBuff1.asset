@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: RageBuff1
   m_EditorClassIdentifier: 
   uniqueId: 3
+  buffIcon: {fileID: 2002830940033880219, guid: 82d6e24909dd4c445a87f76eb84dc7d9, type: 3}
   isInfinite: 0
   timer: 120
+  Owner: {fileID: 0}
   _hpAmount: -50
   _strAmount: 50
   _aimAmount: 0

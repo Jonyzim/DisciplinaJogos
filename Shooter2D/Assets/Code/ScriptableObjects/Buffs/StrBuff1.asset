@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d08b112b5edb6b409b56f9ae293bf3a, type: 3}
   m_Name: StrBuff1
   m_EditorClassIdentifier: 
-  _uniqueId: 0
-  _isInfinite: 0
-  _timer: 120
+  uniqueId: 0
+  buffIcon: {fileID: 21300000, guid: ca90450bbc659984fbc94199ca338394, type: 3}
+  isInfinite: 0
+  timer: 120
+  Owner: {fileID: 0}
   _hpAmount: 0
   _strAmount: 20
   _aimAmount: 0
