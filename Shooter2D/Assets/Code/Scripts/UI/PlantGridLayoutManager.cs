@@ -18,6 +18,7 @@ namespace MWP.UI
         [SerializeField] private Sprite _unknownImage;
         [SerializeField] private GameObject plantObject;
         private GameObject lastSelected;
+        private float padding = 30;
 
         public void Initialize(int id)
         {
@@ -29,23 +30,23 @@ namespace MWP.UI
                 case 1:
                     rectTransform.anchorMin = new Vector2(0, 1);
                     rectTransform.anchorMax = new Vector2(0, 1);
-                    rectTransform.anchoredPosition = new Vector2(width/2, -height/2);
+                    rectTransform.anchoredPosition = new Vector2(((width / 2) + padding), -((height/2) + padding));
                     break;
                 case 2:
                     rectTransform.anchorMin = new Vector2(1, 1);
                     rectTransform.anchorMax = new Vector2(1, 1);
-                    rectTransform.anchoredPosition = new Vector2(-width/2, -height/2);
+                    rectTransform.anchoredPosition = new Vector2(-((width/2) + padding), -((height/2) + padding));
                     break;
 
                 case 3:
                     rectTransform.anchorMin = new Vector2(0, 0);
                     rectTransform.anchorMax = new Vector2(0, 0);
-                    rectTransform.anchoredPosition = new Vector2(width/2, height/2);
+                    rectTransform.anchoredPosition = new Vector2(((width/2) + padding), (height/2) + padding);
                     break;
                 case 4:
                     rectTransform.anchorMin = new Vector2(1, 0);
                     rectTransform.anchorMax = new Vector2(1, 0);
-                    rectTransform.anchoredPosition = new Vector2(-width/2, height/2);
+                    rectTransform.anchoredPosition = new Vector2(-((width/2) + padding), (height/2) + padding);
                     break;
             }
             
