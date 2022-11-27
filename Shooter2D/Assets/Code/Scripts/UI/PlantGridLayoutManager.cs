@@ -60,6 +60,10 @@ namespace MWP.UI
         public void ChoosePlant(GameObject plantPrefab)
         {
             if (OnChoosePlant != null) OnChoosePlant(plantPrefab);
+            
+            //Dirty Fix
+            PlayerController.SActivePlayers[OwnerId - 1].PlayerEventSystem.playerRoot =
+                PlayerController.SActivePlayers[OwnerId - 1].playerCanvas.gameObject;
             GameEvents.Instance.SetUiMode(OwnerId, false);
             Destroy(gameObject);
         }

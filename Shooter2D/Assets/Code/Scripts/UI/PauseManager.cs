@@ -1,5 +1,6 @@
 ﻿using System;
 using MWP.Misc;
+using TMPro;
 using UnityEngine;
 
 namespace MWP.UI
@@ -8,12 +9,22 @@ namespace MWP.UI
     {
         private static bool _sIsPaused;
 
+        [SerializeField] private TMP_Text titleText;
+
         [SerializeField] private GameObject firstSelected;
         
         private PlayerController _ownerPlayer;
 
         public void Initialize(PlayerController player)
         {
+            if (_sIsPaused)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            titleText.text = $"Player {player.PlayerId} paused";
+            
             _ownerPlayer = player;
             
             _ownerPlayer.PlayerEventSystem.SetSelectedGameObject(firstSelected);
@@ -23,11 +34,6 @@ namespace MWP.UI
 
         private void PauseGame()
         {
-            if (_sIsPaused)
-            {
-                Destroy(gameObject);
-                return;
-            }
             _sIsPaused = true;
             Time.timeScale = 0f;
         }

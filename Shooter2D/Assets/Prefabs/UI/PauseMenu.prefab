@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ffb25b1f31418cb78c21fe5b499767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 517145702020478499}
   firstSelected: {fileID: 3451966976562240824}
 --- !u!1 &603089143194095041
 GameObject:
