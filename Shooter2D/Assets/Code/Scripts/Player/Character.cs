@@ -85,7 +85,7 @@ namespace MWP
             _body = GetComponent<Rigidbody2D>();
             
             var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
-            gunInstance.Pick(this);
+            gunInstance.Pick(this, true);
             GameManager.Instance.AddCharacter();
             
             EnableMovement();
@@ -113,7 +113,6 @@ namespace MWP
             equippedGun.Drop(this);
             var gunInstance = Instantiate(_defaultGun).GetComponent<Gun>();
             gunInstance.Pick(this, true);
-            _hasDefaultWeapon = true;
         }
 
         //Methods

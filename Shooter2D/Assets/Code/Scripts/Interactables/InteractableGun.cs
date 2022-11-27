@@ -15,7 +15,7 @@ namespace MWP.Interactables
             if (gunComponent == null) return;
             
             character.equippedGun?.Drop(character);
-            gunComponent.Pick(character);
+            gunComponent.Pick(character, false);
             DestroyThis(character);
         }
 

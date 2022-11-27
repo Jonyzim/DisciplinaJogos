@@ -47,10 +47,6 @@ namespace MWP.Guns
         {
             _curClip = _clip;
             _curAmmo = _maxAmmo - _curClip;
-
-            //Caso a arma já esteja equipada antes do jogo começar
-            var character = gameObject.GetComponentInParent<Character>();
-            if (character != null) Pick(character);
         }
 
         protected virtual void Update()
@@ -63,7 +59,7 @@ namespace MWP.Guns
         }
 
         // Methods
-        public void Pick(Character character, bool defaultFlag = false)
+        public void Pick(Character character, bool defaultFlag)
         {
             _flashLight.enabled = true;
             SetOwner(character);
