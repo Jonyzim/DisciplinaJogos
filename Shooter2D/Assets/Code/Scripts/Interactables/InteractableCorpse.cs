@@ -48,9 +48,8 @@ namespace MWP.Interactables
         private void Revive(Character character)
         {
             corpse.gameObject.SetActive(true);
-            corpse.transform.parent = null;
-            corpse.CurHealth = 20;
-            GameManager.Instance.AddCharacter();
+            corpse.Revive();
+            
 
             DestroyThis(character);
         }

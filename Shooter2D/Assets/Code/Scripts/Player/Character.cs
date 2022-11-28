@@ -59,6 +59,8 @@ namespace MWP
         
         private Coroutine _damageFx;
         private bool _isDashing;
+        public bool isAlive;
+        
         [SerializeField] UnityEvent damageEvent;
         [SerializeField] UnityEvent cureEvent;
         public int CurHealth
@@ -76,11 +78,16 @@ namespace MWP
 
         public int OwnerId { get; private set; }
 
+        
+        public event Action<Character> OnDeath;
+        public event Action<Character> OnRevive;
+        
         //------------------------------------ Unity Methods --------------------------------------------
         
         
         private void Start()
         {
+            isAlive = true;
             _curHealth = health;
             _body = GetComponent<Rigidbody2D>();
             
@@ -201,7 +208,7 @@ namespace MWP
 
         public void Move(Vector2 velocity)
         {
-            if (!_canMove) return;
+            if (!_canMove) velocity = Vector2.zero;
             var bodyVelocity = velocity * (BaseSpeed * (speed / 100f));
             if(animator!=null)
                 animator.SetBool("isWalking", bodyVelocity.magnitude > 0.01f);
@@ -260,8 +267,22 @@ namespace MWP
             interactableCorpse.Initialize(this);
             
             GameManager.Instance.KilLCharacter();
-            
+
+            isAlive = false;
+            OnDeath?.Invoke(this);
+
             gameObject.SetActive(false);
+        }
+
+        public void Revive()
+        {
+            transform.parent = null;
+            CurHealth = 20;
+            isAlive = true;
+
+            OnRevive?.Invoke(this);
+            
+            GameManager.Instance.AddCharacter();
         }
 
         public IEnumerator Dash(Vector2 direction)
@@ -302,7 +323,6 @@ namespace MWP
         public void DisableMovement()
         {
             _canMove = false;
-            Move(Vector2.zero);
             ReleaseFire();
         }
 

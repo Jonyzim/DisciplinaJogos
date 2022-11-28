@@ -14,7 +14,6 @@ namespace MWP.UI
         private void Update()
         {
             radialTimer.fillAmount = _buff.CurTimer / _buff.Timer;
-            Debug.Log(_buff.CurTimer);
             if (_buff.CurTimer < 0)
             {
                 Destroy(gameObject);
